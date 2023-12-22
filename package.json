@@ -8,12 +8,30 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "prettier --ignore-path .gitignore --write . --cache"
+    "format": "prettier --ignore-path .gitignore --write . --cache",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "dependencies": {
     "astro": "^4.0.7"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^2.1.4",
+    "@eslint/js": "^8.56.0",
+    "@types/eslint": "^8.56.0",
+    "@types/eslint-config-prettier": "^6.11.3",
+    "@types/eslint__eslintrc": "^2.1.1",
+    "@types/eslint__js": "^8.42.3",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "astro-eslint-parser": "^0.16.0",
+    "eslint": "^8.56.0",
+    "eslint-config-flat-gitignore": "^0.1.2",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-define-config": "^2.0.0",
+    "eslint-plugin-astro": "^0.31.0",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "globals": "^13.24.0",
     "prettier": "^3.1.1",
     "prettier-plugin-astro": "^0.12.2",
     "prettier-plugin-tailwindcss": "^0.5.9"
