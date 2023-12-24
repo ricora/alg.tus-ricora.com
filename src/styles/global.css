@@ -2,14 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html,
-  body {
-    height: max-content;
-    min-height: 100%;
-  }
-}
-
 /* Generated from https://ui.shadcn.com/themes */
 @layer base {
   :root {
@@ -64,5 +56,10 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  html,
+  body {
+    @apply h-full max-h-max transition-colors duration-500
   }
 }

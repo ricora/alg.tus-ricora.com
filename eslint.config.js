@@ -21,7 +21,8 @@ const globalConfig = defineFlatConfig([
         "error",
         {
           // AstroではPropsという名前の型を暗黙的にpropsの型として利用するため、未使用でもエラーを表示しない
-          varsIgnorePattern: "Props",
+          varsIgnorePattern: "(Props)|(^_)",
+          argsIgnorePattern: "^_",
         },
       ],
     },

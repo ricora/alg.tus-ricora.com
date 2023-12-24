@@ -4,11 +4,17 @@ import { MainLayout } from "@/layouts/MainLayout"
 ---
 
 <MainLayout title="RICORA Programming Team" description="東京理科大学 電子計算機研究会 プログラミング班">
-  <main class="flex flex-1 flex-col gap-6 py-12">
+  <main class="flex flex-1 flex-col gap-4 py-12">
     <!-- 仮のモックアップ -->
     {
-      new Array(10).fill(null).map(() => (
-        <div class="flex flex-row items-center gap-2 rounded-xl bg-card p-2 shadow-md dark:bg-zinc-900">
+      new Array(10).fill(null).map((_, i) => (
+        <div
+          class="flex flex-row items-center gap-2 rounded-xl bg-card p-4 shadow-md duration-1000 ease-out animate-in fade-in-0 slide-in-from-bottom-6 hover:bg-muted/60"
+          style={{
+            "animation-delay": `${i * 160}ms`,
+            "animation-fill-mode": "backwards",
+          }}
+        >
           <Icon name="fluent-emoji-flat:pencil" class="w-28 rounded-2xl p-6" />
           <div class="my-2 flex flex-col gap-2">
             <header>
