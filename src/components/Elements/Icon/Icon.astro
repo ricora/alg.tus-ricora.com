@@ -6,14 +6,13 @@ import type { IconName } from "./type"
 export type Props = HTMLAttributes<"div"> & { name: IconName; alt?: string }
 const props = Astro.props
 
-const getIconData = async (icon: string, alt?: string) => {
+const getIconData = async (icon: string) => {
   await Iconify.loadIcon(icon)
 
   const iconData = Iconify.getIcon(icon)
   if (!iconData) throw new Error(`Icon ${icon} not found`)
 
   return {
-    title: alt ?? icon,
     left: iconData.left,
     top: iconData.top,
     width: iconData.width,
@@ -22,7 +21,7 @@ const getIconData = async (icon: string, alt?: string) => {
   }
 }
 
-const icon = await getIconData(props.name, props.alt)
+const icon = await getIconData(props.name)
 ---
 
 <div class={props.class}>
@@ -32,7 +31,7 @@ const icon = await getIconData(props.name, props.alt)
     fill="none"
     style="width:100%"
   >
-    <title>{icon.title}</title>
+    {props.alt && <title>{props.alt}</title>}
     <Fragment set:html={icon.body} />
   </svg>
 </div>
