@@ -1,0 +1,13 @@
+---
+import { Icon, type IconName } from "@/components/Elements/Icon"
+import type { HTMLAttributes } from "astro/types"
+
+type Props = HTMLAttributes<"a"> & {
+  name: IconName
+}
+const { href, ...props } = Astro.props
+---
+
+<a href={href} {...props}>
+  <Icon name={props.name} class="h-6 w-6 text-black" />
+</a>

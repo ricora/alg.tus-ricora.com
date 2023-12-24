@@ -5,5 +5,6 @@ import solidJs from "@astrojs/solid-js"
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://alg.tus-ricora.com/",
   integrations: [tailwind(), solidJs()],
 })

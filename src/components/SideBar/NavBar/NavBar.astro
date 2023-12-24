@@ -1,0 +1,37 @@
+---
+import { Image } from "astro:assets"
+import { twMerge } from "tailwind-merge"
+import RicoraLogo from "@/assets/brand/ricora.svg"
+import type { HTMLAttributes } from "astro/types"
+import IconLink from "./IconLink.astro"
+import Links from "./Links.astro"
+
+type Props = HTMLAttributes<"aside">
+const { class: className, ...props } = Astro.props
+---
+
+<aside
+  class={twMerge(
+    "flex flex-col gap-4 py-12 md:sticky md:top-0 md:h-dvh md:max-w-[25%] lg:max-w-[20%] xl:max-w-[15%]",
+    className,
+  )}
+  {...props}
+>
+  <a href="/" class="h-fit w-fit">
+    <Image src={RicoraLogo} alt="RICORA" class="h-32 w-32 rounded-full bg-white shadow-md" />
+  </a>
+  <div class="flex flex-col gap-2">
+    <h1 class="text-xl font-bold">RICORA Programming Team</h1>
+    <h2 class="text-sm">東京理科大学 電子計算機研究会 プログラミング班</h2>
+  </div>
+  <div class="flex flex-row gap-2">
+    <IconLink name="line-md:github-loop" href={new URL("https://github.com/RICORA/")} />
+    <IconLink name="line-md:twitter-x" href={new URL("https://twitter.com/ricora_alg/")} />
+    <IconLink name="line-md:youtube" href={new URL("https://www.youtube.com/channel/UC4qBY_aaTvTkQ3E0PY89T2A")} />
+  </div>
+  <Links />
+  <div class="mt-auto hidden md:flex">
+    <!-- TODO: トグルボタンを実装する -->
+    <button class="rounded-md border bg-gray-200 p-2 transition hover:bg-gray-300">ダークモード（Fake）</button>
+  </div>
+</aside>
