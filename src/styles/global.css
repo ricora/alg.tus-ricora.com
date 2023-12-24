@@ -55,7 +55,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground bg-gradient-to-br from-zinc-200 to-zinc-50 dark:from-zinc-950 dark:to-zinc-900 repeat-infinite bg-fixed;
   }
 
   html,

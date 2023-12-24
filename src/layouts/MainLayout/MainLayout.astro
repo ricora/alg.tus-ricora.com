@@ -36,7 +36,7 @@ const bundledThemeScript = "console.time('theme');" + result.outputFiles[0].text
     {props.description && <meta name="description" content={props.description} />}
     <!-- TODO: SEO e.g. og, twitter card -->
   </head>
-  <body class="bg-background">
+  <body>
     <script is:inline set:html={bundledThemeScript} />
     <div class="relative mx-auto flex h-fit min-h-full flex-col px-4 md:flex-row md:gap-8 xl:max-w-[1536px]">
       <NavBar />
