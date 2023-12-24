@@ -17,6 +17,14 @@ const globalConfig = defineFlatConfig([
   {
     rules: {
       "no-var": "error",
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          // AstroではPropsという名前の型を暗黙的にpropsの型として利用するため、未使用でもエラーを表示しない
+          varsIgnorePattern: "(Props)|(^_)",
+          argsIgnorePattern: "^_",
+        },
+      ],
     },
     languageOptions: {
       globals: {
@@ -41,6 +49,10 @@ const astroConfig = defineFlatConfig({
   files: ["**/*.astro"],
   languageOptions: {
     parser: astroESLintParser,
+    parserOptions: {
+      parser: "@typescript-eslint/parser",
+      extraFileExtensions: [".astro"],
+    },
   },
 })
 

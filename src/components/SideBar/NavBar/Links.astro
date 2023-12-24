@@ -1,0 +1,80 @@
+---
+import { Icon, type IconName } from "@/components/Elements/Icon"
+
+type Link = {
+  title: string
+  icon: IconName
+  href: string
+}
+const links: Link[] = [
+  {
+    title: "ホーム",
+    icon: "tabler:home",
+    href: "/",
+  },
+  {
+    title: "お知らせ",
+    icon: "tabler:news",
+    href: "/news",
+  },
+  {
+    title: "活動記録",
+    icon: "tabler:activity",
+    href: "/activities",
+  },
+  {
+    title: "作品紹介",
+    icon: "tabler:star",
+    href: "/works",
+  },
+  {
+    title: "タグ",
+    icon: "tabler:tag",
+    href: "/tags",
+  },
+  {
+    title: "ブログ",
+    icon: "tabler:archive",
+    href: "/archives",
+  },
+  {
+    title: "RICORAについて",
+    icon: "tabler:info-circle",
+    href: "/about-us",
+  },
+  {
+    title: "お問い合わせ",
+    icon: "tabler:mail",
+    href: "/contact",
+  },
+  {
+    title: "メンバー",
+    icon: "tabler:users",
+    href: "/members",
+  },
+  {
+    title: "リンク",
+    icon: "tabler:link",
+    href: "/link",
+  },
+  {
+    title: "検索",
+    icon: "tabler:search",
+    href: "/search",
+  },
+]
+---
+
+<div class="hidden flex-col overflow-y-auto md:flex">
+  {
+    links.map((link) => (
+      <a
+        href={link.href}
+        class="flex flex-row gap-4 rounded-md p-2 text-muted-foreground transition hover:bg-muted hover:text-foreground"
+      >
+        <Icon name={link.icon} class="h-6 w-6" />
+        <span>{link.title}</span>
+      </a>
+    ))
+  }
+</div>

@@ -1,0 +1,47 @@
+---
+import "@/styles/global.css"
+import themeScript from "./theme?raw"
+import { build } from "esbuild"
+import { NavBar } from "@/components/SideBar/NavBar"
+import { InfoBar } from "@/components/SideBar/InfoBar"
+
+type Props = {
+  title: string
+  description?: string
+}
+const props = Astro.props
+
+const result = await build({
+  stdin: {
+    contents: themeScript,
+    resolveDir: ".",
+    loader: "ts",
+  },
+  bundle: true,
+  format: "iife",
+  target: "es6",
+  minify: true,
+  write: false,
+})
+const bundledThemeScript = "console.time('theme');" + result.outputFiles[0].text + "console.timeLog('theme');"
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{props.title}</title>
+    {props.description && <meta name="description" content={props.description} />}
+    <!-- TODO: SEO e.g. og, twitter card -->
+  </head>
+  <body>
+    <script is:inline set:html={bundledThemeScript} />
+    <div class="relative mx-auto flex h-fit min-h-full flex-col px-4 md:flex-row md:gap-8 xl:max-w-[1536px]">
+      <NavBar />
+      <slot />
+      <InfoBar />
+    </div>
+  </body>
+</html>

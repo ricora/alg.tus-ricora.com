@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets"
+import { twMerge } from "tailwind-merge"
+import RicoraLogo from "@/assets/brand/ricora.svg"
+import type { HTMLAttributes } from "astro/types"
+import IconLink from "./IconLink.astro"
+import Links from "./Links.astro"
+import { ToggleThemeButton } from "./ToggleThemeButton"
+
+type Props = HTMLAttributes<"aside">
+const { class: className, ...props } = Astro.props
+---
+
+<script>
+  // TODO: SolidJS or Reactで宣言的に実装する
+  import { toggleTheme } from "@/lib/theme"
+  document.querySelector("#toggleTheme")?.addEventListener("click", toggleTheme)
+</script>
+
+<aside
+  class={twMerge(
+    "flex flex-col gap-4 py-12 md:sticky md:top-0 md:h-dvh md:max-w-[25%] lg:max-w-[20%] xl:max-w-[15%]",
+    className,
+  )}
+  {...props}
+>
+  <a href="/" class="mx-2 h-fit w-fit">
+    <Image src={RicoraLogo} alt="RICORA" class="h-32 w-32 rounded-full bg-card shadow-md" />
+  </a>
+  <div class="mx-2 flex flex-col gap-2">
+    <h1 class="text-xl font-bold">RICORA Programming Team</h1>
+    <h2 class="gap-2 text-sm text-muted-foreground">
+      <span class="inline-block">東京理科大学<span> </span></span>
+      <span class="inline-block">電子計算機研究会<span> </span></span>
+      <span class="inline-block">プログラミング班</span>
+    </h2>
+  </div>
+  <div class="mx-2 flex flex-row gap-2">
+    <IconLink name="line-md:github-loop" label="GitHub" href={new URL("https://github.com/RICORA/")} />
+    <IconLink name="line-md:twitter-x" label="X (旧Twitter)" href={new URL("https://twitter.com/ricora_alg/")} />
+    <IconLink
+      name="line-md:youtube"
+      label="YouTube"
+      href={new URL("https://www.youtube.com/channel/UC4qBY_aaTvTkQ3E0PY89T2A")}
+    />
+  </div>
+  <Links />
+  <div class="mt-auto hidden md:flex">
+    <ToggleThemeButton client:only="solid" />
+  </div>
+</aside>
