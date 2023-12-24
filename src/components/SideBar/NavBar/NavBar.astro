@@ -10,6 +10,12 @@ type Props = HTMLAttributes<"aside">
 const { class: className, ...props } = Astro.props
 ---
 
+<script>
+  // TODO: SolidJS or Reactで宣言的に実装する
+  import { toggleTheme } from "@/lib/theme"
+  document.querySelector("#toggleTheme")?.addEventListener("click", toggleTheme)
+</script>
+
 <aside
   class={twMerge(
     "flex flex-col gap-4 py-12 md:sticky md:top-0 md:h-dvh md:max-w-[25%] lg:max-w-[20%] xl:max-w-[15%]",
@@ -18,11 +24,11 @@ const { class: className, ...props } = Astro.props
   {...props}
 >
   <a href="/" class="h-fit w-fit">
-    <Image src={RicoraLogo} alt="RICORA" class="h-32 w-32 rounded-full bg-white shadow-md" />
+    <Image src={RicoraLogo} alt="RICORA" class="h-32 w-32 rounded-full bg-card shadow-md" />
   </a>
   <div class="flex flex-col gap-2">
     <h1 class="text-xl font-bold">RICORA Programming Team</h1>
-    <h2 class="text-sm">東京理科大学 電子計算機研究会 プログラミング班</h2>
+    <h2 class="text-sm text-muted-foreground">東京理科大学 電子計算機研究会 プログラミング班</h2>
   </div>
   <div class="flex flex-row gap-2">
     <IconLink name="line-md:github-loop" href={new URL("https://github.com/RICORA/")} />
@@ -32,6 +38,6 @@ const { class: className, ...props } = Astro.props
   <Links />
   <div class="mt-auto hidden md:flex">
     <!-- TODO: トグルボタンを実装する -->
-    <button class="rounded-md border bg-gray-200 p-2 transition hover:bg-gray-300">ダークモード（Fake）</button>
+    <button class="rounded-md border p-2 transition hover:bg-muted" id="toggleTheme">ダークモード（Fake）</button>
   </div>
 </aside>

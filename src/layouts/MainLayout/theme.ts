@@ -1,6 +1,5 @@
+import type { Theme } from "@/lib/theme"
 import { atom } from "nanostores"
-
-export type Theme = "light" | "dark"
 
 const STORAGE_KEY = "theme"
 
@@ -30,10 +29,10 @@ const saveThemeToStroge = (theme: Theme) => {
 
 const initTheme = () => {
   // グローバル変数としてテーマを保持する
-  theme = atom<Theme>(resolveTheme(getThemeFromStorage()))
+  themeAtom = atom<Theme>(resolveTheme(getThemeFromStorage()))
 
   // テーマの変更をDOMに反映し、localStorageに保存する
-  theme.subscribe((value) => {
+  themeAtom.subscribe((value) => {
     writeThemeToDom(value)
     saveThemeToStroge(value)
     console.log("Theme has changed to", value)
@@ -42,9 +41,9 @@ const initTheme = () => {
   // デバイスでダークモードもしくはライトモードが有効になった場合、サイトのテーマをそれに合わせる
   darkModeMediaQuery.addEventListener("change", (event) => {
     if (event.matches) {
-      theme.set("dark")
+      themeAtom.set("dark")
     } else {
-      theme.set("light")
+      themeAtom.set("light")
     }
   })
 }

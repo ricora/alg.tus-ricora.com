@@ -10,12 +10,12 @@
   }
 }
 
-/* Copied from https://ui.shadcn.com/themes */
+/* Generated from https://ui.shadcn.com/themes */
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 220 1% 96%;
     --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
+    --card: 210 1% 98%;
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
@@ -55,5 +55,14 @@
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }

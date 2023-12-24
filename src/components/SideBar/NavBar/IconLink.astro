@@ -9,5 +9,5 @@ const { href, ...props } = Astro.props
 ---
 
 <a href={href} {...props}>
-  <Icon name={props.name} class="h-6 w-6 text-black" />
+  <Icon name={props.name} class="h-6 w-6 text-muted-foreground transition hover:text-foreground" />
 </a>

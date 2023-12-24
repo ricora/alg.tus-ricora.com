@@ -68,7 +68,10 @@ const links: Link[] = [
 <div class="hidden flex-col overflow-y-auto md:flex">
   {
     links.map((link) => (
-      <a href={link.href} class="flex flex-row gap-4 rounded-md p-2 transition hover:bg-gray-200/60">
+      <a
+        href={link.href}
+        class="flex flex-row gap-4 rounded-md p-2 text-muted-foreground transition hover:bg-muted hover:text-foreground"
+      >
         <Icon name={link.icon} class="h-6 w-6" />
         <span>{link.title}</span>
       </a>
