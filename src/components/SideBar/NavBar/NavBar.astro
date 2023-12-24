@@ -5,6 +5,7 @@ import RicoraLogo from "@/assets/brand/ricora.svg"
 import type { HTMLAttributes } from "astro/types"
 import IconLink from "./IconLink.astro"
 import Links from "./Links.astro"
+import { ToggleThemeButton } from "./ToggleThemeButton"
 
 type Props = HTMLAttributes<"aside">
 const { class: className, ...props } = Astro.props
@@ -37,7 +38,6 @@ const { class: className, ...props } = Astro.props
   </div>
   <Links />
   <div class="mt-auto hidden md:flex">
-    <!-- TODO: トグルボタンを実装する -->
-    <button class="rounded-md border p-2 transition hover:bg-muted" id="toggleTheme">ダークモード（Fake）</button>
+    <ToggleThemeButton client:only="solid" />
   </div>
 </aside>

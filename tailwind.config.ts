@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss"
+import tailwindcssAnimate from "tailwindcss-animate"
 
 export default {
   darkMode: ["class", '[data-theme="dark"]'],
@@ -45,7 +46,29 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      animation: {
+        "switch-to-right": "switch-to-right 0.3s ease-out",
+        "switch-to-left": "switch-to-left 0.3s ease-out",
+      },
+      keyframes: {
+        "switch-to-right": {
+          from: {
+            left: "0",
+          },
+          to: {
+            left: "calc(100% - 1.5rem)",
+          },
+        },
+        "switch-to-left": {
+          from: {
+            left: "calc(100% - 1.5rem)",
+          },
+          to: {
+            left: "0",
+          },
+        },
+      },
     },
   },
-  plugins: [],
+  plugins: [tailwindcssAnimate],
 } satisfies Config
