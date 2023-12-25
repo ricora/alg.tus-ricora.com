@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@ark-ui/solid": "^1.2.0",
+    "@astrojs/mdx": "^2.0.2",
     "@astrojs/solid-js": "^3.0.2",
     "@astrojs/tailwind": "^5.0.4",
     "@nanostores/solid": "^0.4.2",
