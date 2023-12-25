@@ -12,7 +12,7 @@ export const Tooltip: Component<Props> = (_props) => {
   const [props, arkProps] = splitProps(_props, ["children", "tip"])
 
   return (
-    <ArkTooltip.Root closeDelay={150} openDelay={300} {...props}>
+    <ArkTooltip.Root closeDelay={150} openDelay={300} {...arkProps}>
       <ArkTooltip.Trigger>{props.children}</ArkTooltip.Trigger>
       <Portal>
         <ArkTooltip.Positioner>
