@@ -1,8 +1,7 @@
 import { atom, type WritableAtom } from "nanostores"
+import { isBrowser } from "./runtime"
 
 export type Theme = "light" | "dark"
-
-const isBrowser = typeof window !== "undefined"
 
 /**
  * グローバル変数として保存されている`themeAtom`を取得する
