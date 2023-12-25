@@ -19,6 +19,7 @@
     "@astrojs/solid-js": "^3.0.2",
     "@astrojs/tailwind": "^5.0.4",
     "@nanostores/solid": "^0.4.2",
+    "@tailwindcss/typography": "^0.5.10",
     "astro": "^4.0.7",
     "nanostores": "^0.9.5",
     "solid-js": "^1.8.7",
