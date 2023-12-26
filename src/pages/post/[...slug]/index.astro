@@ -1,4 +1,6 @@
 ---
+import { Callout } from "@/components/Elements/Callout"
+import CalloutTitle from "@/components/Elements/Callout/CalloutTitle.astro"
 import { Icon, type IconName } from "@/components/Elements/Icon"
 import { MainLayout } from "@/layouts/MainLayout"
 import { isDev } from "@/lib/runtime"
@@ -58,7 +60,12 @@ const readingTime = Math.round(post.body.length / 600)
         </div>
       </header>
       <section class="prose mt-16 dark:prose-invert">
-        <Content />
+        <Content
+          components={{
+            callout: Callout,
+            "callout-title": CalloutTitle,
+          }}
+        />
       </section>
     </article>
   </main>

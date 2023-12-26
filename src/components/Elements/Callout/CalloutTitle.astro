@@ -1,0 +1,20 @@
+---
+import { twMerge } from "tailwind-merge"
+import { Icon } from "../Icon"
+import { type CalloutKind, getCallout } from "./callouts"
+
+type Props = {
+  calloutType: CalloutKind
+}
+const props = Astro.props
+
+const title: string | undefined = await Astro.slots.render("default")
+const callout = getCallout(props.calloutType)
+---
+
+<div class={twMerge("flex flex-row items-center gap-1.5 font-bold", callout.twTitleClass)}>
+  <Icon name={callout.icon} class="h-5 w-5" />
+  <div>
+    {title ? <Fragment set:html={title} /> : <span>{callout.label}</span>}
+  </div>
+</div>
