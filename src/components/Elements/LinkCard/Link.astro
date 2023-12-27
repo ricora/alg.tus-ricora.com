@@ -1,0 +1,10 @@
+---
+import type { HTMLAttributes } from "astro/types"
+
+type Props = HTMLAttributes<"a">
+const { slot, ...props } = Astro.props
+---
+
+<a {...props}>
+  {slot ? slot : props.href}
+</a>

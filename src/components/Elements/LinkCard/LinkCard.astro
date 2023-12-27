@@ -1,0 +1,50 @@
+---
+import type { HTMLAttributes } from "astro/types"
+import { twMerge } from "tailwind-merge"
+import { getFavicon, getOGP } from "./ogp"
+import Link from "./Link.astro"
+
+type Props = HTMLAttributes<"a">
+const { href, slot, ...props } = Astro.props
+const url = new URL(href ?? "")
+
+const { title, description, image } = await getOGP(url)
+const favicon = await getFavicon(url)
+
+const shouldInvertFavicon = url.hostname.includes("github")
+---
+
+{
+  title ? (
+    <div class="h-36">
+      <a
+        class="not-prose flex min-h-full flex-row items-center rounded-lg border bg-secondary/25 not-italic transition hover:bg-secondary/80 hover:dark:bg-secondary/50"
+        href={url.href}
+        {...props}
+      >
+        <div class="flex min-w-0 flex-1 flex-col justify-between gap-2 px-5">
+          <p class="line-clamp-2 text-xl font-bold">{title}</p>
+          {description && <p class="truncate text-muted-foreground">{description}</p>}
+          <div class="flex flex-row items-center gap-2">
+            <img src={favicon} class={twMerge("inline-block h-4 w-4", shouldInvertFavicon && "dark:invert")} />
+            <p class="truncate">{url.hostname}</p>
+          </div>
+        </div>
+        {image && (
+          <div class="flex-shrink-0">
+            <img
+              src={image.href}
+              class="h-36 w-36 rounded-r-lg object-cover md:w-fit"
+              alt={title ?? ""}
+              loading="lazy"
+            />
+          </div>
+        )}
+      </a>
+    </div>
+  ) : (
+    <Link {...props} href={url.href}>
+      {slot ? slot : url.href}
+    </Link>
+  )
+}
