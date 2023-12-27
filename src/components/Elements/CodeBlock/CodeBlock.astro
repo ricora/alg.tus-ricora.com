@@ -1,0 +1,61 @@
+---
+import { type RehypeCustomCodeMeta } from "rehype-custom-code"
+import "./shiki.css"
+import { twMerge } from "tailwind-merge"
+
+type Style = { [x: string]: string | number | null | undefined }
+
+type Props = RehypeCustomCodeMeta & {
+  class: string
+  style: Style
+  tabIndex: number
+  lang: string
+  code: string
+  showLineNumbers: boolean
+  startLine: number
+  diff: boolean
+}
+const {
+  class: className,
+  style,
+  tabIndex,
+  diff,
+  title,
+  showLineNumbers,
+  ...props
+} = Object.entries(Astro.props)
+  .map(([key, value]) => {
+    switch (key) {
+      case "tabindex":
+        return ["tabIndex", value]
+      case "show-line-numbers":
+        return ["showLineNumbers", value]
+      case "start-line":
+        return ["startLine", value]
+      default:
+        return [key, value]
+    }
+  })
+  .reduce((acc, [key, value]) => ({ ...acc, [key as string]: value }), {}) as Props
+console.log(props)
+---
+
+<div tabindex={tabIndex} class="my-6 group-data-[callout]/callout:my-2">
+  {
+    title && (
+      <div class="flex w-fit flex-row items-center gap-2 rounded-t-lg border border-b-0 bg-white/70 px-4 py-2 font-mono text-xs dark:bg-zinc-800/70">
+        <div>{title}</div>
+      </div>
+    )
+  }
+  <pre
+    data-shiki
+    data-diff={diff}
+    data-show-line-numbers={showLineNumbers}
+    class={twMerge(
+      className,
+      "m-0 text-[0.9rem] !bg-white/70 dark:!bg-zinc-900/70 rounded-none rounded-b-lg rounded-tr-lg border p-0 py-4",
+      title ? "" : "rounded-tl-lg",
+    )}
+    {style}><slot /></pre>
+</div>

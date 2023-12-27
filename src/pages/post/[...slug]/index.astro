@@ -5,6 +5,7 @@ import { Icon, type IconName } from "@/components/Elements/Icon"
 import { MainLayout } from "@/layouts/MainLayout"
 import { isDev } from "@/lib/runtime"
 import { getCollection } from "astro:content"
+import { CodeBlock } from "@/components/Elements/CodeBlock"
 import type { CollectionEntry } from "astro:content"
 
 export const getStaticPaths = async () => {
@@ -64,6 +65,7 @@ const readingTime = Math.round(post.body.length / 600)
           components={{
             callout: Callout,
             "callout-title": CalloutTitle,
+            pre: CodeBlock,
           }}
         />
       </section>
