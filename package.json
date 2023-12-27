@@ -52,6 +52,7 @@
     "husky": "^8.0.0",
     "jsdom": "^23.0.1",
     "lint-staged": "^15.2.0",
+    "postcss-load-config": "^5.0.2",
     "prettier": "^3.1.1",
     "prettier-plugin-astro": "^0.12.2",
     "prettier-plugin-tailwindcss": "^0.5.9",
