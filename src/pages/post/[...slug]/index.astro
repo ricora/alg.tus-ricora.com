@@ -7,6 +7,7 @@ import { isDev } from "@/lib/runtime"
 import { getCollection } from "astro:content"
 import { CodeBlock } from "@/components/Elements/CodeBlock"
 import type { CollectionEntry } from "astro:content"
+import { LinkCard } from "@/components/Elements/LinkCard"
 
 export const getStaticPaths = async () => {
   const postEntries = await getCollection("post", ({ data }) => (isDev ? true : !data.draft))
@@ -66,6 +67,7 @@ const readingTime = Math.round(post.body.length / 600)
             callout: Callout,
             "callout-title": CalloutTitle,
             pre: CodeBlock,
+            "link-card": LinkCard,
           }}
         />
       </section>
