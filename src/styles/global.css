@@ -55,11 +55,11 @@
     @apply border-border;
   }
   body {
-    @apply text-foreground bg-gradient-to-br from-zinc-200 to-zinc-50 dark:from-zinc-950 dark:to-zinc-900 repeat-infinite bg-fixed;
+    @apply bg-gradient-to-br from-zinc-200 to-zinc-50 bg-fixed text-foreground repeat-infinite dark:from-zinc-950 dark:to-zinc-900;
   }
 
   html,
   body {
-    @apply h-full max-h-max transition-colors duration-500
+    @apply h-full max-h-max transition-colors duration-500;
   }
 }
