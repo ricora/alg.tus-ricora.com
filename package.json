@@ -40,6 +40,7 @@
     "@typescript-eslint/eslint-plugin": "^6.15.0",
     "@typescript-eslint/parser": "^6.15.0",
     "astro-eslint-parser": "^0.16.0",
+    "cssnano": "^6.0.2",
     "dedent": "^1.5.1",
     "esbuild": "^0.19.10",
     "eslint": "^8.56.0",
