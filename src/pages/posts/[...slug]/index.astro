@@ -12,7 +12,7 @@ import { LinkCard } from "@/components/Elements/LinkCard"
 import { OEmbed } from "@/components/Elements/Embed"
 
 export const getStaticPaths = async () => {
-  const postEntries = await getCollection("post", ({ data }) => (isDev ? true : !data.draft))
+  const postEntries = await getCollection("posts", ({ data }) => (isDev ? true : !data.draft))
   return postEntries.map((post) => ({
     params: {
       slug: post.slug,
@@ -24,7 +24,7 @@ export const getStaticPaths = async () => {
 }
 
 type Props = {
-  post: CollectionEntry<"post">
+  post: CollectionEntry<"posts">
 }
 const { post } = Astro.props
 
