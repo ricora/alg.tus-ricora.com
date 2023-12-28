@@ -16,7 +16,7 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
       - name: Format
-        run: bun format:check
+        run: bun run format:check
 
   lint:
     runs-on: ubuntu-22.04
@@ -28,7 +28,7 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
       - name: Lint
-        run: bun lint
+        run: bun run lint
 
   build:
     runs-on: ubuntu-22.04
