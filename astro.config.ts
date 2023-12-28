@@ -19,6 +19,9 @@ import rehypeKatex from "rehype-katex"
 // https://astro.build/config
 export default defineConfig({
   site: "https://alg.tus-ricora.com/",
+  redirects: {
+    "/p/[...slug]": "/posts/[...slug]",
+  },
   integrations: [tailwind(), solidJs(), mdx()],
   markdown: {
     remarkPlugins: [
