@@ -9,6 +9,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier --ignore-path .gitignore --write . --cache",
+    "format:check": "prettier --ignore-path .gitignore --check . --cache",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "prepare": "husky install"
