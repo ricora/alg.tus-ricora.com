@@ -13,6 +13,8 @@ import {
 } from "rehype-custom-code"
 import { remarkMetaString } from "remark-meta-string"
 import { oEmbedTransformer, remarkEmbed, type RemarkEmbedOptions } from "./src/lib/remark-plugins/remarkEmbed"
+import remarkMath from "remark-math"
+import rehypeKatex from "rehype-katex"
 
 // https://astro.build/config
 export default defineConfig({
@@ -20,12 +22,14 @@ export default defineConfig({
   integrations: [tailwind(), solidJs(), mdx()],
   markdown: {
     remarkPlugins: [
+      remarkMath,
       remarkCallout,
       remarkMetaString,
       [remarkEmbed, { transformers: [oEmbedTransformer] } satisfies RemarkEmbedOptions],
       remarkLinkCard,
     ],
     rehypePlugins: [
+      rehypeKatex,
       [
         rehypeCustomCode,
         {
