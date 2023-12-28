@@ -1,15 +1,17 @@
 ---
 import type { HTMLAttributes } from "astro/types"
 import { twMerge } from "tailwind-merge"
-import { getFavicon, getOGP } from "./ogp"
 import Link from "./Link.astro"
+import { unfurl } from "unfurl.js"
 
 type Props = HTMLAttributes<"a">
 const { href, slot, ...props } = Astro.props
 const url = new URL(href ?? "")
 
-const { title, description, image } = await getOGP(url)
-const favicon = await getFavicon(url)
+const {
+  open_graph: { title, description, images },
+  favicon,
+} = await unfurl(url.href)
 
 const shouldInvertFavicon = url.hostname.includes("github")
 ---
@@ -30,12 +32,12 @@ const shouldInvertFavicon = url.hostname.includes("github")
             <p class="truncate">{url.hostname}</p>
           </div>
         </div>
-        {image && (
+        {images && (
           <div class="flex-shrink-0">
             <img
-              src={image.href}
+              src={images[0].url}
               class="h-36 w-36 rounded-r-lg object-cover md:w-fit"
-              alt={title ?? ""}
+              alt={images[0].alt ?? title}
               loading="lazy"
             />
           </div>
