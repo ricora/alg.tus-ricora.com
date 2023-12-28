@@ -12,6 +12,7 @@
     "commitMessageAction": "Lock file maintenance",
     "commitMessageTopic": null,
     "commitMessageExtra": null,
+    "timezone": "Asia/Tokyo",
     "schedule": ["before 4am on monday"],
     "groupName": null,
     "prBodyDefinitions": {
