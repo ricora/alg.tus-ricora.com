@@ -1,0 +1,3 @@
+[data-oembed] > iframe {
+  @apply !mx-auto w-full;
+}

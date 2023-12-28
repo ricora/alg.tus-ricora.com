@@ -12,6 +12,7 @@ export const remarkLinkCard: Plugin<[], Root> = () => {
       if (
         paragraph?.type !== "paragraph" ||
         paragraph.children.length !== 1 ||
+        (link.data?.hName != null && link.data?.hName !== "a") ||
         link.children.length !== 1 ||
         link.children[0].type !== "text" ||
         link.children[0].value !== link.url

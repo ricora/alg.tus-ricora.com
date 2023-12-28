@@ -1,0 +1,19 @@
+---
+import "./oEmbed.css"
+import type { Metadata } from "unfurl.js/dist/types"
+
+const getProps = (props: Props) => {
+  props.oEmbed = JSON.parse(props.oEmbed as unknown as string) // props.oEmbed is a stringified JSON
+  return props
+}
+
+type Props = {
+  oEmbed: Metadata["oEmbed"]
+  href: string
+}
+
+const { oEmbed, href } = getProps(Astro.props)
+if (oEmbed == null) return null
+---
+
+{"html" in oEmbed ? <div class="w-full" set:html={oEmbed.html} data-oembed /> : <a href={href}>{href}</a>}

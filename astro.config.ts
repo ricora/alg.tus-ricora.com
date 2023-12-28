@@ -12,13 +12,19 @@ import {
   transformerLineNumbers,
 } from "rehype-custom-code"
 import { remarkMetaString } from "remark-meta-string"
+import { oEmbedTransformer, remarkEmbed, type RemarkEmbedOptions } from "./src/lib/remark-plugins/remarkEmbed"
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://alg.tus-ricora.com/",
   integrations: [tailwind(), solidJs(), mdx()],
   markdown: {
-    remarkPlugins: [remarkCallout, remarkMetaString, remarkLinkCard],
+    remarkPlugins: [
+      remarkCallout,
+      remarkMetaString,
+      [remarkEmbed, { transformers: [oEmbedTransformer] } satisfies RemarkEmbedOptions],
+      remarkLinkCard,
+    ],
     rehypePlugins: [
       [
         rehypeCustomCode,

@@ -8,6 +8,7 @@ import { getCollection } from "astro:content"
 import { CodeBlock } from "@/components/Elements/CodeBlock"
 import type { CollectionEntry } from "astro:content"
 import { LinkCard } from "@/components/Elements/LinkCard"
+import { OEmbed } from "@/components/Elements/Embed"
 
 export const getStaticPaths = async () => {
   const postEntries = await getCollection("post", ({ data }) => (isDev ? true : !data.draft))
@@ -68,6 +69,7 @@ const readingTime = Math.round(post.body.length / 600)
             "callout-title": CalloutTitle,
             pre: CodeBlock,
             "link-card": LinkCard,
+            oembed: OEmbed,
           }}
         />
       </section>
