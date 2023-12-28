@@ -22,7 +22,6 @@ const {
   diff,
   title,
   showLineNumbers,
-  ...props
 } = Object.entries(Astro.props)
   .map(([key, value]) => {
     switch (key) {
@@ -37,7 +36,6 @@ const {
     }
   })
   .reduce((acc, [key, value]) => ({ ...acc, [key as string]: value }), {}) as Props
-console.log(props)
 ---
 
 <div tabindex={tabIndex} class="my-6 group-data-[callout]/callout:my-2">
