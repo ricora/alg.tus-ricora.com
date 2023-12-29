@@ -1,0 +1,17 @@
+{
+  "name": "migration",
+  "type": "module",
+  "scripts": {
+    "migrate:posts": "bun run ./src/migratePosts.ts"
+  },
+  "dependencies": {
+    "yaml": "^2.3.4",
+    "emojilib": "^3.0.11"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
