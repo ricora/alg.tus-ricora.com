@@ -1,11 +1,11 @@
 ---
 import type { HTMLAttributes } from "astro/types"
 import { twMerge } from "tailwind-merge"
-import Link from "./Link.astro"
 import { unfurl } from "unfurl.js"
+import { Icon } from "../Icon"
 
 type Props = HTMLAttributes<"a">
-const { href, slot, ...props } = Astro.props
+const { href, ...props } = Astro.props
 const url = new URL(href ?? "")
 
 const metadata = await unfurl(url.href).catch(() => undefined)
@@ -15,37 +15,37 @@ const favicon = metadata?.favicon
 const shouldInvertFavicon = url.hostname.includes("github")
 ---
 
-{
-  og && og.title && og.description ? (
-    <div class="h-36">
-      <a
-        class="not-prose flex min-h-full flex-row items-center rounded-lg border bg-secondary/25 not-italic transition hover:bg-secondary/80 hover:dark:bg-secondary/50"
-        href={url.href}
-        {...props}
-      >
-        <div class="flex min-w-0 flex-1 flex-col justify-between gap-2 px-5">
-          <p class="line-clamp-2 text-xl font-bold">{og.title}</p>
-          {og.description && <p class="truncate text-muted-foreground">{og.description}</p>}
-          <div class="flex flex-row items-center gap-2">
+<div class="h-36">
+  <a
+    class="not-prose flex min-h-full flex-row items-center rounded-lg border bg-secondary/25 not-italic transition hover:bg-secondary/80 hover:dark:bg-secondary/50"
+    href={url.href}
+    {...props}
+  >
+    <div class="flex min-w-0 flex-1 flex-col justify-between gap-2 px-5">
+      <p class="line-clamp-2 text-xl font-bold">{og?.title ?? href}</p>
+      {og?.description && <p class="truncate text-muted-foreground">{og.description}</p>}
+      <div class="flex flex-row items-center gap-2">
+        {
+          favicon ? (
             <img src={favicon} class={twMerge("inline-block h-4 w-4", shouldInvertFavicon && "dark:invert")} />
-            <p class="truncate">{url.hostname}</p>
-          </div>
-        </div>
-        {og.images && (
-          <div class="flex-shrink-0">
-            <img
-              src={og.images[0].url}
-              class="h-36 w-36 rounded-r-lg object-cover md:w-fit"
-              alt={og.images[0].alt ?? og.title}
-              loading="lazy"
-            />
-          </div>
-        )}
-      </a>
+          ) : (
+            <Icon name="tabler:world-x" class="h-4 w-4" />
+          )
+        }
+        <p class="truncate">{url.hostname}</p>
+      </div>
     </div>
-  ) : (
-    <Link {...props} href={url.href}>
-      {slot ? slot : url.href}
-    </Link>
-  )
-}
+    {
+      og?.images && (
+        <div class="flex-shrink-0">
+          <img
+            src={og.images[0].url}
+            class="roundjed-r-lg h-36 w-36 object-cover md:w-fit"
+            alt={og.images[0].alt ?? og.title ?? href}
+            loading="lazy"
+          />
+        </div>
+      )
+    }
+  </a>
+</div>
