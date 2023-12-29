@@ -10,6 +10,8 @@ import { CodeBlock } from "@/components/Elements/CodeBlock"
 import type { CollectionEntry } from "astro:content"
 import { LinkCard } from "@/components/Elements/LinkCard"
 import { OEmbed } from "@/components/Elements/Embed"
+import { calculateReadingTime } from "@/lib/posts"
+import { formatDate } from "@/lib/date"
 
 export const getStaticPaths = async () => {
   const postEntries = await getCollection("posts", ({ data }) => (isDev ? true : !data.draft))
@@ -30,9 +32,9 @@ const { post } = Astro.props
 
 const { Content } = await post.render()
 
-const date = new Date(post.data.date).toLocaleDateString("ja-JP")
-const lastmod = new Date(post.data.lastmod).toLocaleDateString("ja-JP")
-const readingTime = Math.round(post.body.length / 600)
+const date = formatDate(post.data.date)
+const lastmod = post.data.lastmod ? formatDate(post.data.lastmod) : undefined
+const readingTime = calculateReadingTime(post.body)
 ---
 
 <MainLayout title="hoge">
@@ -51,12 +53,14 @@ const readingTime = Math.round(post.body.length / 600)
               {date}
             </div>
           </div>
-          <div class="mx-auto my-2">
-            <div class="font-bold">最終更新</div>
-            <div>
-              {lastmod}
-            </div>
-          </div>
+          {
+            lastmod && (
+              <div class="mx-auto my-2">
+                <div class="font-bold">最終更新</div>
+                <div>{lastmod}</div>
+              </div>
+            )
+          }
           <div class="mx-auto my-2">
             <div class="font-bold">読了時間</div>
             <div>約 {readingTime} 分</div>

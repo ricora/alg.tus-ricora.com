@@ -5,7 +5,7 @@ export const postSchema = z
     title: z.string(),
     draft: z.boolean(),
     date: z.date(),
-    lastmod: z.date(),
+    lastmod: z.date().optional(),
     categories: z.array(z.enum(["news"])), // TODO: update
     tags: z.array(z.string()).optional(),
     icon: z.string(),
