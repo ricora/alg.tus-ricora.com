@@ -4,5 +4,11 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "eslint.validate": ["javascript", "javascriptreact", "astro", "typescript", "typescriptreact"],
-  "eslint.experimental.useFlatConfig": true
+  "eslint.experimental.useFlatConfig": true,
+  "tailwindCSS.experimental.classRegex": [
+    // key名がtwで始まるものをtailwindのクラスとして認識する
+    // e.g. twColor: text-red-500;
+    // > https://github.com/tailwindlabs/tailwindcss-intellisense/issues/270
+    "tw.*:(?:.|\n)*?[\"'`]([^\"'`]*).*?,"
+  ]
 }

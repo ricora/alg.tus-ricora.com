@@ -1,0 +1,25 @@
+---
+import { twMerge } from "tailwind-merge"
+import { type CalloutKind, callouts } from "./callouts"
+
+type Props = {
+  calloutType: string
+  isFoldable: boolean
+  class: string
+  className: string
+}
+const { calloutType, ...props } = Astro.props
+---
+
+<div
+  class={twMerge(
+    "flex flex-col my-6 rounded-lg p-4 pb-5 border gap-2 group-data-[callout]/callout:my-2 group/callout",
+    "prose-headings:my-0 prose-p:my-0 prose-blockquote:my-0 prose-pre:my-0 prose-ol:my-0 prose-ul:my-0",
+    calloutType in callouts ? callouts[calloutType as CalloutKind].twContainerClass : callouts.note.twContainerClass,
+    props.class,
+    props.className,
+  )}
+  data-callout
+>
+  <slot />
+</div>
