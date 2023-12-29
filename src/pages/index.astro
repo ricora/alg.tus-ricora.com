@@ -5,6 +5,8 @@ import { isDev } from "@/lib/runtime"
 import { getCollection } from "astro:content"
 import { formatDate } from "@/lib/date"
 import { calculateReadingTime } from "@/lib/posts"
+import { twMerge } from "tailwind-merge"
+import { categories } from "@/content/categories"
 
 const posts = await getCollection("posts", ({ data }) => (isDev ? true : !data.draft))
 ---
@@ -27,14 +29,21 @@ const posts = await getCollection("posts", ({ data }) => (isDev ? true : !data.d
             <div class="my-2 flex flex-col gap-2">
               <header>
                 <div class="flex flex-row gap-2">
-                  {post.data.categories.map((category: string) => (
-                    <a
-                      href="/activities"
-                      class="rounded-md bg-blue-400 px-4 py-1 font-bold text-white transition hover:bg-blue-300"
-                    >
-                      {category}
-                    </a>
-                  ))}
+                  {post.data.categories.map((categorySlug: keyof typeof categories) => {
+                    const category = categories[categorySlug]
+                    return (
+                      <a
+                        href={`/${categorySlug}`}
+                        class={twMerge(
+                          "flex flex-row items-center gap-1 rounded-md bg-blue-400 px-4 py-1 font-bold text-white transition hover:bg-blue-300",
+                          category.twClassName,
+                        )}
+                      >
+                        <Icon name={category.icon} class="h-5 w-5" />
+                        <div>{category.title}</div>
+                      </a>
+                    )
+                  })}
                 </div>
               </header>
               <a href={`/posts/${post.slug}`}>
