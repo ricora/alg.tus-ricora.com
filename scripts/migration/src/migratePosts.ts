@@ -59,7 +59,10 @@ const migrateFrontmatter = async (content: string) => {
     const emojiUnicode: string = yaml.emoji // e.g. "1f389"
     const emojiStr = String.fromCodePoint(parseInt(emojiUnicode, 16))
 
-    if (!(emojiStr in emojiList)) return content
+    if (!(emojiStr in emojiList)) {
+      console.error(`Error: Emoji ${emojiStr} (U+${emojiUnicode}) is not found in emojiList`)
+      return content
+    }
     // @ts-expect-error: emojiList is not typed
     const emojiKeywords: string[] = emojiList[emojiStr]
 
