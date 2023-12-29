@@ -3,12 +3,23 @@ import type { HTMLAttributes } from "astro/types"
 import { twMerge } from "tailwind-merge"
 import Link from "./Link.astro"
 import { unfurl } from "unfurl.js"
+import type { Metadata } from "unfurl.js/dist/types"
 
 type Props = HTMLAttributes<"a">
 const { href, slot, ...props } = Astro.props
 const url = new URL(href ?? "")
 
-const { open_graph: og, favicon } = await unfurl(url.href)
+let og: Metadata["open_graph"] | undefined
+let favicon: string | undefined
+
+try {
+  const { open_graph, favicon: favicon_url } = await unfurl(url.href)
+  og = open_graph
+  favicon = favicon_url
+} catch (e) {
+  console.error("[ERROR] Failed to fetch metadata for", url.href)
+  console.error(e)
+}
 
 const shouldInvertFavicon = url.hostname.includes("github")
 ---

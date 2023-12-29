@@ -71,7 +71,10 @@ export const remarkEmbed: Plugin<[RemarkEmbedOptions?], Root> = (options = defau
       }
       transforms.push(
         transform().catch((e) => {
-          file.fail(e.message, link.position, "remarkEmbed")
+          const msg = `[ERROR] Failed to embed ${link.url} in ${file.path} at ${link.position?.start?.line}`
+          console.error(msg)
+          console.error(e)
+          file.message(msg + "; " + JSON.stringify(e), link.position, "remarkEmbed")
         }),
       )
     })
