@@ -8,16 +8,13 @@ type Props = HTMLAttributes<"a">
 const { href, slot, ...props } = Astro.props
 const url = new URL(href ?? "")
 
-const {
-  open_graph: { title, description, images },
-  favicon,
-} = await unfurl(url.href)
+const { open_graph: og, favicon } = await unfurl(url.href)
 
 const shouldInvertFavicon = url.hostname.includes("github")
 ---
 
 {
-  title ? (
+  og && og.title && og.description ? (
     <div class="h-36">
       <a
         class="not-prose flex min-h-full flex-row items-center rounded-lg border bg-secondary/25 not-italic transition hover:bg-secondary/80 hover:dark:bg-secondary/50"
@@ -25,19 +22,19 @@ const shouldInvertFavicon = url.hostname.includes("github")
         {...props}
       >
         <div class="flex min-w-0 flex-1 flex-col justify-between gap-2 px-5">
-          <p class="line-clamp-2 text-xl font-bold">{title}</p>
-          {description && <p class="truncate text-muted-foreground">{description}</p>}
+          <p class="line-clamp-2 text-xl font-bold">{og.title}</p>
+          {og.description && <p class="truncate text-muted-foreground">{og.description}</p>}
           <div class="flex flex-row items-center gap-2">
             <img src={favicon} class={twMerge("inline-block h-4 w-4", shouldInvertFavicon && "dark:invert")} />
             <p class="truncate">{url.hostname}</p>
           </div>
         </div>
-        {images && (
+        {og.images && (
           <div class="flex-shrink-0">
             <img
-              src={images[0].url}
+              src={og.images[0].url}
               class="h-36 w-36 rounded-r-lg object-cover md:w-fit"
-              alt={images[0].alt ?? title}
+              alt={og.images[0].alt ?? og.title}
               loading="lazy"
             />
           </div>
