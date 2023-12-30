@@ -26,6 +26,7 @@ export const membersSchema = z.object({
       link: z.string().url(),
     }),
   ),
+  joined_year: z.number().min(1976).max(new Date().getFullYear()),
 })
 export type MembersSchema = z.infer<typeof membersSchema>
 

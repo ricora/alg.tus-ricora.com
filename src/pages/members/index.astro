@@ -7,11 +7,11 @@ const members = await getCollection("members")
 ---
 
 <MainLayout title="メンバー - RICORA Programming Team">
-  <main class="py-16">
+  <main class="mx-auto py-16">
     <section class="flex flex-col gap-12">
       <h1 class="mx-auto text-4xl font-bold">メンバー</h1>
       <div class="mx-auto grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {members.map((member) => <UserCard {...member} />)}
+        {members.sort((a, b) => b.data.joined_year - a.data.joined_year).map((member) => <UserCard {...member} />)}
       </div>
     </section>
   </main>
