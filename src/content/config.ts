@@ -21,7 +21,7 @@ export const membersSchema = z.object({
   image: z.string().url(),
   social: z.array(
     z.object({
-      icon: z.string(),
+      icon: z.string().optional(),
       link: z.string().url(),
     }),
   ),

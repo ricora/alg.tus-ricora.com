@@ -1,11 +1,10 @@
 ---
-import { Image } from "astro:assets"
 import { twMerge } from "tailwind-merge"
-import RicoraLogo from "@/assets/brand/ricora.svg"
 import type { HTMLAttributes } from "astro/types"
 import IconLink from "./IconLink.astro"
 import Links from "./Links.astro"
 import { ToggleThemeButton } from "./ToggleThemeButton"
+import { Icon } from "@/components/Elements/Icon"
 
 type Props = HTMLAttributes<"aside">
 const { class: className, ...props } = Astro.props
@@ -25,7 +24,7 @@ const { class: className, ...props } = Astro.props
   {...props}
 >
   <a href="/" class="mx-2 h-fit w-fit">
-    <Image src={RicoraLogo} alt="RICORA" class="h-32 w-32 rounded-full bg-card shadow-md" />
+    <Icon name="brand:ricora" alt="RICORA" class="h-32 w-32 rounded-full bg-card p-2 shadow-md" />
   </a>
   <div class="mx-2 flex flex-col gap-2">
     <h1 class="text-xl font-bold">RICORA Programming Team</h1>
