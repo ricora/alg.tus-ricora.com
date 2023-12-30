@@ -1,0 +1,18 @@
+---
+import UserCard from "@/components/Elements/UserCard/UserCard.astro"
+import { MainLayout } from "@/layouts/MainLayout"
+import { getCollection } from "astro:content"
+
+const members = await getCollection("members")
+---
+
+<MainLayout title="メンバー - RICORA Programming Team">
+  <main class="py-16">
+    <section class="flex flex-col gap-12">
+      <h1 class="mx-auto text-4xl font-bold">メンバー</h1>
+      <div class="mx-auto grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {members.map((member) => <UserCard {...member} />)}
+      </div>
+    </section>
+  </main>
+</MainLayout>
