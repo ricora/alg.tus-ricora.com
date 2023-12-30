@@ -12,6 +12,7 @@
     "format:check": "prettier --ignore-path .gitignore --check . --cache",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
+    "test": "bun test",
     "prepare": "husky install"
   },
   "dependencies": {
