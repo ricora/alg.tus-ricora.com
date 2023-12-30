@@ -2,14 +2,14 @@
 import type { CollectionEntry } from "astro:content"
 import { Icon, type IconName } from "../Icon"
 import { Tooltip } from "../Tooltip"
-import { domainToUnicode } from "node:url"
+import { toUnicode } from "punycode"
 
 type Props = CollectionEntry<"members">
 const { data: user } = Astro.props
 
 const removeProtocol = (url: string) => {
   const urlObj = new URL(url)
-  return domainToUnicode(urlObj.host) + decodeURI(urlObj.pathname)
+  return toUnicode(urlObj.host) + decodeURI(urlObj.pathname)
 }
 ---
 

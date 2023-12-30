@@ -62,6 +62,7 @@
     "prettier": "^3.1.1",
     "prettier-plugin-astro": "^0.12.2",
     "prettier-plugin-tailwindcss": "^0.5.9",
+    "punycode": "^2.3.1",
     "rehype-custom-code": "^0.3.2",
     "rehype-katex": "^7.0.0",
     "rehype-stringify": "^10.0.0",
