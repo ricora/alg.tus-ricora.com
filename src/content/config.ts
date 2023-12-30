@@ -15,11 +15,30 @@ export const postSchema = z
   .strict()
 export type PostSchema = z.infer<typeof postSchema>
 
+export const membersSchema = z.object({
+  name: z.string(),
+  description: z.string(),
+  image: z.string().url(),
+  social: z.array(
+    z.object({
+      icon: z.string(),
+      link: z.string().url(),
+    }),
+  ),
+})
+export type MembersSchema = z.infer<typeof membersSchema>
+
 const postColection = defineCollection({
   type: "content",
   schema: postSchema,
 })
 
+const membersCollection = defineCollection({
+  type: "data",
+  schema: membersSchema,
+})
+
 export const collections = {
   post: postColection,
+  members: membersCollection,
 }
