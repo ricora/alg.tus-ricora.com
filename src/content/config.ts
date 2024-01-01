@@ -5,7 +5,7 @@ import { zodEnumFromObj } from "@/lib/zod"
 export const postsSchema = z
   .object({
     title: z.string(),
-    draft: z.boolean(),
+    draft: z.boolean().optional(),
     date: z.date(),
     lastmod: z.date().optional(),
     categories: z.array(zodEnumFromObj(categories)),
@@ -32,7 +32,7 @@ export type MembersSchema = z.infer<typeof membersSchema>
 
 export const pagesSchema = z.object({
   title: z.string(),
-  draft: z.boolean(),
+  draft: z.boolean().optional(),
   date: z.date().optional(),
   lastmod: z.date().optional(),
   links: z
