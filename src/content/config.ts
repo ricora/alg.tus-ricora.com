@@ -64,7 +64,7 @@ const membersCollection = defineCollection({
 })
 
 export const collections = {
-  post: postsCollection,
+  posts: postsCollection,
   pages: pagesCollection,
   members: membersCollection,
 }
