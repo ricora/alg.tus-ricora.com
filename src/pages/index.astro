@@ -1,6 +1,6 @@
 ---
 import { Icon } from "@/components/Elements/Icon"
-import { MainLayout } from "@/layouts/MainLayout"
+import { BaseLayout } from "@/layouts/BaseLayout"
 import { isDev } from "@/lib/runtime"
 import { getCollection } from "astro:content"
 import { formatDate } from "@/lib/date"
@@ -11,7 +11,7 @@ import { categories } from "@/content/categories"
 const posts = await getCollection("posts", ({ data }) => (isDev ? true : !data.draft))
 ---
 
-<MainLayout title="RICORA Programming Team" description="東京理科大学 電子計算機研究会 プログラミング班">
+<BaseLayout title="RICORA Programming Team" description="東京理科大学 電子計算機研究会 プログラミング班">
   <main class="flex flex-1 flex-col gap-6 py-12">
     <!-- 仮のモックアップ -->
     {
@@ -70,4 +70,4 @@ const posts = await getCollection("posts", ({ data }) => (isDev ? true : !data.d
         ))
     }
   </main>
-</MainLayout>
+</BaseLayout>

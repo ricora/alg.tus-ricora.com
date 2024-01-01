@@ -3,7 +3,7 @@ import "katex/dist/katex.min.css"
 import { Callout } from "@/components/Elements/Callout"
 import CalloutTitle from "@/components/Elements/Callout/CalloutTitle.astro"
 import { Icon, type IconName } from "@/components/Elements/Icon"
-import { MainLayout } from "@/layouts/MainLayout"
+import { BaseLayout } from "@/layouts/BaseLayout"
 import { isDev } from "@/lib/runtime"
 import { getCollection } from "astro:content"
 import { CodeBlock } from "@/components/Elements/CodeBlock"
@@ -37,7 +37,7 @@ const lastmod = post.data.lastmod ? formatDate(post.data.lastmod) : undefined
 const readingTime = calculateReadingTime(post.body)
 ---
 
-<MainLayout title="hoge">
+<BaseLayout title="hoge">
   <main class="my-12 flex-1">
     <article class="mx-auto max-w-screen-md">
       <header class="flex flex-col items-center gap-6">
@@ -80,7 +80,7 @@ const readingTime = calculateReadingTime(post.body)
       </section>
     </article>
   </main>
-</MainLayout>
+</BaseLayout>
 
 <style is:global>
   .katex {

@@ -1,12 +1,12 @@
 ---
 import UserCard from "@/components/Elements/UserCard/UserCard.astro"
-import { MainLayout } from "@/layouts/MainLayout"
+import { BaseLayout } from "@/layouts/BaseLayout"
 import { getCollection } from "astro:content"
 
 const members = await getCollection("members")
 ---
 
-<MainLayout title="メンバー - RICORA Programming Team">
+<BaseLayout title="メンバー - RICORA Programming Team">
   <main class="mx-auto py-16">
     <section class="flex flex-col gap-12">
       <h1 class="mx-auto text-4xl font-bold">メンバー</h1>
@@ -15,4 +15,4 @@ const members = await getCollection("members")
       </div>
     </section>
   </main>
-</MainLayout>
+</BaseLayout>
