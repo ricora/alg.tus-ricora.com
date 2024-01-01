@@ -1,0 +1,26 @@
+---
+import "katex/dist/katex.min.css"
+import { isDev } from "@/lib/runtime"
+import { getCollection } from "astro:content"
+import type { CollectionEntry } from "astro:content"
+import { PageLayout } from "@/layouts/PageLayout"
+
+export const getStaticPaths = async () => {
+  const postEntries = await getCollection("pages", ({ data }) => (isDev ? true : !data.draft))
+  return postEntries.map((page) => ({
+    params: {
+      slug: page.slug,
+    },
+    props: {
+      page,
+    },
+  }))
+}
+
+type Props = {
+  page: CollectionEntry<"pages">
+}
+const { page } = Astro.props
+---
+
+<PageLayout title={page.data.title + " - RICORA Programming Team"} page={page} />

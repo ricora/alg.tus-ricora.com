@@ -2,7 +2,7 @@ import { z, defineCollection } from "astro:content"
 import { categories } from "./categories"
 import { zodEnumFromObj } from "@/lib/zod"
 
-export const postSchema = z
+export const postsSchema = z
   .object({
     title: z.string(),
     draft: z.boolean(),
@@ -11,19 +11,9 @@ export const postSchema = z
     categories: z.array(zodEnumFromObj(categories)),
     tags: z.array(z.string()).optional(),
     icon: z.string(),
-    links: z
-      .array(
-        z.object({
-          title: z.string().optional(),
-          description: z.string().optional(),
-          website: z.string().url(),
-          image: z.string().url().optional(),
-        }),
-      )
-      .optional(),
   })
   .strict()
-export type PostSchema = z.infer<typeof postSchema>
+export type PostsSchema = z.infer<typeof postsSchema>
 
 export const membersSchema = z.object({
   name: z.string(),
@@ -40,14 +30,32 @@ export const membersSchema = z.object({
 })
 export type MembersSchema = z.infer<typeof membersSchema>
 
-const postColection = defineCollection({
+export const pagesSchema = z.object({
+  title: z.string(),
+  draft: z.boolean(),
+  date: z.date().optional(),
+  lastmod: z.date().optional(),
+  links: z
+    .array(
+      z.object({
+        title: z.string().optional(),
+        description: z.string().optional(),
+        website: z.string().url(),
+        image: z.string().url().optional(),
+      }),
+    )
+    .optional(),
+})
+export type PagesSchema = z.infer<typeof pagesSchema>
+
+const postsCollection = defineCollection({
   type: "content",
-  schema: postSchema,
+  schema: postsSchema,
 })
 
 const pagesCollection = defineCollection({
   type: "content",
-  schema: postSchema,
+  schema: pagesSchema,
 })
 
 const membersCollection = defineCollection({
@@ -56,7 +64,7 @@ const membersCollection = defineCollection({
 })
 
 export const collections = {
-  post: postColection,
+  post: postsCollection,
   pages: pagesCollection,
   members: membersCollection,
 }

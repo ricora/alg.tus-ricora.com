@@ -1,4 +1,5 @@
 ---
+import "@/styles/katex.css"
 import { Icon, type IconName } from "@/components/Elements/Icon"
 import { BaseLayout, type BaseLayoutProps } from "@/layouts/BaseLayout"
 import { formatDate } from "@/lib/date"
@@ -15,7 +16,7 @@ const { Content } = await post.render()
 
 const date = formatDate(post.data.date)
 const lastmod = post.data.lastmod ? formatDate(post.data.lastmod) : undefined
-const readingTime = calculateReadingTime(post.data.content)
+const readingTime = calculateReadingTime(post.body)
 ---
 
 <BaseLayout {...props}>
@@ -54,9 +55,3 @@ const readingTime = calculateReadingTime(post.data.content)
     </article>
   </main>
 </BaseLayout>
-
-<style is:global>
-  .katex {
-    font-size: 1.1rem !important;
-  }
-</style>
