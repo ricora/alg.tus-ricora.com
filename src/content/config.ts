@@ -1,6 +1,4 @@
-import { z, defineCollection } from "astro:content"
-import { categories } from "./categories"
-import { zodEnumFromObj } from "@/lib/zod"
+import { z, defineCollection, reference } from "astro:content"
 
 export const postsSchema = z
   .object({
@@ -8,7 +6,7 @@ export const postsSchema = z
     draft: z.boolean().optional(),
     date: z.date(),
     lastmod: z.date().optional(),
-    categories: z.array(zodEnumFromObj(categories)),
+    categories: z.array(reference("categories")),
     tags: z.array(z.string()).optional(),
     icon: z.string(),
   })
@@ -48,6 +46,17 @@ export const pagesSchema = z.object({
 })
 export type PagesSchema = z.infer<typeof pagesSchema>
 
+export const categoriesSchema = z.object({
+  title: z.string(),
+  twClassName: z.string(),
+  icon: z.string(),
+})
+export type CategoriesSchema = z.infer<typeof categoriesSchema>
+
+export const tagsSchema = z.object({
+  title: z.string(),
+})
+
 const postsCollection = defineCollection({
   type: "content",
   schema: postsSchema,
@@ -63,8 +72,20 @@ const membersCollection = defineCollection({
   schema: membersSchema,
 })
 
+const categoriesCollection = defineCollection({
+  type: "data",
+  schema: categoriesSchema,
+})
+
+const tagsCollection = defineCollection({
+  type: "data",
+  schema: tagsSchema,
+})
+
 export const collections = {
   posts: postsCollection,
   pages: pagesCollection,
   members: membersCollection,
+  categories: categoriesCollection,
+  tags: tagsCollection,
 }

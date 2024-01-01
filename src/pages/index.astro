@@ -1,14 +1,14 @@
 ---
-import { Icon } from "@/components/Elements/Icon"
+import { Icon, type IconName } from "@/components/Elements/Icon"
 import { BaseLayout } from "@/layouts/BaseLayout"
 import { isDev } from "@/lib/runtime"
 import { getCollection } from "astro:content"
 import { formatDate } from "@/lib/date"
 import { calculateReadingTime } from "@/lib/posts"
 import { twMerge } from "tailwind-merge"
-import { categories } from "@/content/categories"
 
 const posts = await getCollection("posts", ({ data }) => (isDev ? true : !data.draft))
+const categories = await getCollection("categories")
 ---
 
 <BaseLayout title="RICORA Programming Team" description="東京理科大学 電子計算機研究会 プログラミング班">
@@ -25,22 +25,22 @@ const posts = await getCollection("posts", ({ data }) => (isDev ? true : !data.d
               "animation-fill-mode": "backwards",
             }}
           >
-            <Icon name={post.data.icon} class="w-28 rounded-2xl p-6" />
+            <Icon name={post.data.icon as IconName} class="w-28 rounded-2xl p-6" />
             <div class="my-2 flex flex-col gap-2">
               <header>
                 <div class="flex flex-row gap-2">
-                  {post.data.categories.map((categorySlug: keyof typeof categories) => {
-                    const category = categories[categorySlug]
+                  {post.data.categories.map(({ id }) => {
+                    const category = categories.find((category) => category.id === id)!
                     return (
                       <a
-                        href={`/${categorySlug}`}
+                        href={`/${id}`}
                         class={twMerge(
                           "flex flex-row items-center gap-1 rounded-md bg-blue-400 px-4 py-1 font-bold text-white transition hover:bg-blue-300",
-                          category.twClassName,
+                          category.data.twClassName,
                         )}
                       >
-                        <Icon name={category.icon} class="h-5 w-5" />
-                        <div>{category.title}</div>
+                        <Icon name={category.data.icon as IconName} class="h-5 w-5" />
+                        <div>{category.data.title}</div>
                       </a>
                     )
                   })}
