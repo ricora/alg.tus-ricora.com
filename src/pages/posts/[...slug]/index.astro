@@ -23,4 +23,4 @@ type Props = {
 const { post } = Astro.props
 ---
 
-<PostLayout title="hoge" post={post} />
+<PostLayout title={post.data.title} post={post} />
