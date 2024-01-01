@@ -11,6 +11,16 @@ export const postSchema = z
     categories: z.array(zodEnumFromObj(categories)),
     tags: z.array(z.string()).optional(),
     icon: z.string(),
+    links: z
+      .array(
+        z.object({
+          title: z.string().optional(),
+          description: z.string().optional(),
+          website: z.string().url(),
+          image: z.string().url().optional(),
+        }),
+      )
+      .optional(),
   })
   .strict()
 export type PostSchema = z.infer<typeof postSchema>
@@ -35,6 +45,11 @@ const postColection = defineCollection({
   schema: postSchema,
 })
 
+const pagesCollection = defineCollection({
+  type: "content",
+  schema: postSchema,
+})
+
 const membersCollection = defineCollection({
   type: "data",
   schema: membersSchema,
@@ -42,5 +57,6 @@ const membersCollection = defineCollection({
 
 export const collections = {
   post: postColection,
+  pages: pagesCollection,
   members: membersCollection,
 }
