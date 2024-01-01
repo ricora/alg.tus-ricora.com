@@ -1,0 +1,62 @@
+---
+import { Icon, type IconName } from "@/components/Elements/Icon"
+import { BaseLayout, type BaseLayoutProps } from "@/layouts/BaseLayout"
+import { formatDate } from "@/lib/date"
+import { calculateReadingTime } from "@/lib/posts"
+import type { CollectionEntry } from "astro:content"
+import { mdxComponents } from "@/lib/mdx"
+
+export type Props = BaseLayoutProps & {
+  post: CollectionEntry<"posts">
+}
+const { post, ...props } = Astro.props
+
+const { Content } = await post.render()
+
+const date = formatDate(post.data.date)
+const lastmod = post.data.lastmod ? formatDate(post.data.lastmod) : undefined
+const readingTime = calculateReadingTime(post.data.content)
+---
+
+<BaseLayout {...props}>
+  <main class="my-12 flex-1">
+    <article class="mx-auto max-w-screen-md">
+      <header class="flex flex-col items-center gap-6">
+        <Icon
+          name={post.data.icon as IconName}
+          class="h-44 w-44 rounded-full bg-card p-8 shadow-md dark:bg-transparent"
+        />
+        <h1 class="text-3xl font-bold">{post.data.title}</h1>
+        <div class="flex w-full max-w-lg flex-row flex-wrap justify-between text-center">
+          <div class="mx-auto my-2">
+            <div class="font-bold">投稿</div>
+            <div>
+              {date}
+            </div>
+          </div>
+          {
+            lastmod && (
+              <div class="mx-auto my-2">
+                <div class="font-bold">最終更新</div>
+                <div>{lastmod}</div>
+              </div>
+            )
+          }
+          <div class="mx-auto my-2">
+            <div class="font-bold">読了時間</div>
+            <div>約 {readingTime} 分</div>
+          </div>
+        </div>
+      </header>
+      <section class="prose mt-16 max-w-full dark:prose-invert">
+        <Content components={mdxComponents} />
+      </section>
+    </article>
+  </main>
+</BaseLayout>
+
+<style is:global>
+  .katex {
+    font-size: 1.1rem !important;
+  }
+</style>

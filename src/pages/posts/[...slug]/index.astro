@@ -1,17 +1,9 @@
 ---
 import "katex/dist/katex.min.css"
-import { Callout } from "@/components/Elements/Callout"
-import CalloutTitle from "@/components/Elements/Callout/CalloutTitle.astro"
-import { Icon, type IconName } from "@/components/Elements/Icon"
-import { BaseLayout } from "@/layouts/BaseLayout"
 import { isDev } from "@/lib/runtime"
 import { getCollection } from "astro:content"
-import { CodeBlock } from "@/components/Elements/CodeBlock"
 import type { CollectionEntry } from "astro:content"
-import { LinkCard } from "@/components/Elements/LinkCard"
-import { OEmbed } from "@/components/Elements/Embed"
-import { calculateReadingTime } from "@/lib/posts"
-import { formatDate } from "@/lib/date"
+import { PostLayout } from "@/layouts/PostLayout"
 
 export const getStaticPaths = async () => {
   const postEntries = await getCollection("posts", ({ data }) => (isDev ? true : !data.draft))
@@ -29,61 +21,6 @@ type Props = {
   post: CollectionEntry<"posts">
 }
 const { post } = Astro.props
-
-const { Content } = await post.render()
-
-const date = formatDate(post.data.date)
-const lastmod = post.data.lastmod ? formatDate(post.data.lastmod) : undefined
-const readingTime = calculateReadingTime(post.body)
 ---
 
-<BaseLayout title="hoge">
-  <main class="my-12 flex-1">
-    <article class="mx-auto max-w-screen-md">
-      <header class="flex flex-col items-center gap-6">
-        <Icon
-          name={post.data.icon as IconName}
-          class="h-44 w-44 rounded-full bg-card p-8 shadow-md dark:bg-transparent"
-        />
-        <h1 class="text-3xl font-bold">{post.data.title}</h1>
-        <div class="flex w-full max-w-lg flex-row flex-wrap justify-between text-center">
-          <div class="mx-auto my-2">
-            <div class="font-bold">投稿</div>
-            <div>
-              {date}
-            </div>
-          </div>
-          {
-            lastmod && (
-              <div class="mx-auto my-2">
-                <div class="font-bold">最終更新</div>
-                <div>{lastmod}</div>
-              </div>
-            )
-          }
-          <div class="mx-auto my-2">
-            <div class="font-bold">読了時間</div>
-            <div>約 {readingTime} 分</div>
-          </div>
-        </div>
-      </header>
-      <section class="prose mt-16 max-w-full dark:prose-invert">
-        <Content
-          components={{
-            callout: Callout,
-            "callout-title": CalloutTitle,
-            pre: CodeBlock,
-            "link-card": LinkCard,
-            oembed: OEmbed,
-          }}
-        />
-      </section>
-    </article>
-  </main>
-</BaseLayout>
-
-<style is:global>
-  .katex {
-    font-size: 1.1rem !important;
-  }
-</style>
+<PostLayout title="hoge" post={post} />
