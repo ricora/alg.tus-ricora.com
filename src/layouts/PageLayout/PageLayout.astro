@@ -1,0 +1,36 @@
+---
+import "@/styles/katex.css"
+import { BaseLayout, type BaseLayoutProps } from "@/layouts/BaseLayout"
+import type { CollectionEntry } from "astro:content"
+import { mdxComponents } from "@/lib/mdx"
+import { LinkCard } from "@/components/Elements/LinkCard"
+
+export type Props = BaseLayoutProps & {
+  page: CollectionEntry<"pages">
+}
+const { page, ...props } = Astro.props
+
+const { Content } = await page.render()
+---
+
+<BaseLayout {...props}>
+  <main class="my-12 flex-1">
+    <article class="mx-auto max-w-screen-md">
+      <header class="flex flex-col items-center gap-6">
+        <h1 class="text-4xl font-bold">{page.data.title}</h1>
+      </header>
+      <section class="prose mt-12 max-w-full dark:prose-invert">
+        {
+          page.data.links && (
+            <div class="flex flex-col gap-6">
+              {page.data.links.map((link) => (
+                <LinkCard title={link.title} href={link.website} description={link.description} image={link.image} />
+              ))}
+            </div>
+          )
+        }
+        <Content components={mdxComponents} />
+      </section>
+    </article>
+  </main>
+</BaseLayout>

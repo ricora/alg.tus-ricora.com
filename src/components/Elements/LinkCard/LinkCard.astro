@@ -1,52 +1,59 @@
 ---
 import type { HTMLAttributes } from "astro/types"
 import { twMerge } from "tailwind-merge"
-import Link from "./Link.astro"
 import { unfurl } from "unfurl.js"
+import { Icon } from "../Icon"
 
-type Props = HTMLAttributes<"a">
-const { href, slot, ...props } = Astro.props
+type Props = HTMLAttributes<"a"> & {
+  title?: string
+  description?: string
+  image?: string
+}
+const { href, title, description, image, ...props } = Astro.props
 const url = new URL(href ?? "")
 
-const {
-  open_graph: { title, description, images },
-  favicon,
-} = await unfurl(url.href)
+const metadata = await unfurl(url.href).catch(() => undefined)
+const og = metadata?.open_graph
+const favicon = metadata?.favicon
 
 const shouldInvertFavicon = url.hostname.includes("github")
 ---
 
-{
-  title ? (
-    <div class="h-36">
-      <a
-        class="not-prose flex min-h-full flex-row items-center rounded-lg border bg-secondary/25 not-italic transition hover:bg-secondary/80 hover:dark:bg-secondary/50"
-        href={url.href}
-        {...props}
-      >
-        <div class="flex min-w-0 flex-1 flex-col justify-between gap-2 px-5">
-          <p class="line-clamp-2 text-xl font-bold">{title}</p>
-          {description && <p class="truncate text-muted-foreground">{description}</p>}
-          <div class="flex flex-row items-center gap-2">
+<div class="h-36">
+  <a
+    class="not-prose flex min-h-full flex-row items-center rounded-lg border bg-secondary/25 not-italic transition hover:bg-secondary/80 hover:dark:bg-secondary/50"
+    href={url.href}
+    {...props}
+  >
+    <div class="flex min-w-0 flex-1 flex-col justify-between gap-2 px-5">
+      <p class="line-clamp-2 text-xl font-bold">{title ?? og?.title ?? href}</p>
+      {
+        (description || og?.description) && (
+          <p class="truncate text-muted-foreground">{description ?? og?.description}</p>
+        )
+      }
+      <div class="flex flex-row items-center gap-2">
+        {
+          favicon ? (
             <img src={favicon} class={twMerge("inline-block h-4 w-4", shouldInvertFavicon && "dark:invert")} />
-            <p class="truncate">{url.hostname}</p>
-          </div>
-        </div>
-        {images && (
-          <div class="flex-shrink-0">
-            <img
-              src={images[0].url}
-              class="h-36 w-36 rounded-r-lg object-cover md:w-fit"
-              alt={images[0].alt ?? title}
-              loading="lazy"
-            />
-          </div>
-        )}
-      </a>
+          ) : (
+            <Icon name="tabler:world-x" class="h-4 w-4" />
+          )
+        }
+        <p class="truncate">{title ?? url.hostname}</p>
+      </div>
     </div>
-  ) : (
-    <Link {...props} href={url.href}>
-      {slot ? slot : url.href}
-    </Link>
-  )
-}
+    {
+      (image || og?.images) && (
+        <div class="flex-shrink-0">
+          <img
+            src={image ?? og?.images?.[0].url}
+            class="roundjed-r-lg h-36 w-36 object-cover md:w-fit"
+            alt={og?.images?.[0].alt ?? og?.title ?? url.href}
+            loading="lazy"
+          />
+        </div>
+      )
+    }
+  </a>
+</div>

@@ -1,3 +1,5 @@
+import { brandIconCollection } from "@/assets/icons/brand"
+
 // Generated from https://github.com/iconify/icon-sets/tree/f452e4e0eb684bc42ece9daacb5b61800b8d9aa1/json
 export type IconName =
   | `academicons:${string}`
@@ -165,3 +167,4 @@ export type IconName =
   | `wpf:${string}`
   | `zmdi:${string}`
   | `zondicons:${string}`
+  | `brand:${keyof (typeof brandIconCollection)["icons"]}`
