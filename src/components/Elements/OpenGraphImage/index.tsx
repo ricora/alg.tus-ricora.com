@@ -1,5 +1,5 @@
 import { loadDefaultJapaneseParser } from "budoux"
-import fs from "fs"
+import fs from "node:fs"
 import satori from "satori"
 import sharp from "sharp"
 
