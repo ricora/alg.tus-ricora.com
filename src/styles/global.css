@@ -63,3 +63,28 @@
     @apply h-full max-h-max transition-colors duration-500;
   }
 }
+
+section.footnotes {
+  margin-top: 3rem;
+  font-size: 0.9rem;
+  color: #77838c;
+
+  ol > li {
+    margin: 0;
+
+    &::marker {
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    > p {
+      margin: 0;
+    }
+  }
+}
+
+span[id="footnote-label"] {
+  padding-bottom: 3px;
+  border-bottom: 1px solid #cfdce6;
+  font-weight: 700;
+}
