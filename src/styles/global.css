@@ -67,7 +67,7 @@
 section.footnotes {
   margin-top: 3rem;
   font-size: 0.9rem;
-  color: #77838c;
+  color: theme(colors.muted.foreground);
 
   ol > li {
     margin: 0;
@@ -85,6 +85,6 @@ section.footnotes {
 
 span[id="footnote-label"] {
   padding-bottom: 3px;
-  border-bottom: 1px solid #cfdce6;
+  border-bottom: 1px solid theme(colors.muted.foreground / 40%);
   font-weight: 700;
 }
