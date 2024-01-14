@@ -52,6 +52,10 @@ export default defineConfig({
         } satisfies RehypeCustomCodeOptions,
       ],
     ],
+    remarkRehype: {
+      footnoteLabel: "脚注",
+      footnoteLabelTagName: "span",
+    },
     syntaxHighlight: false,
   },
 })
