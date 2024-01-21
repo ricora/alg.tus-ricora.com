@@ -25,8 +25,8 @@ const categories = await getCollection("categories")
               "animation-fill-mode": "backwards",
             }}
           >
-            <Icon name={post.data.icon as IconName} class="w-24 flex-none rounded-2xl p-6 sm:w-28" />
-            <div class="my-2 flex flex-col gap-2">
+            <Icon name={post.data.icon as IconName} class="w-20 flex-none rounded-2xl p-4 sm:w-28 sm:p-6" />
+            <div class="my-2 flex flex-col gap-2.5 sm:gap-4">
               <header>
                 <div class="flex flex-row flex-wrap gap-2">
                   {post.data.categories.map(({ id }) => {
@@ -35,7 +35,7 @@ const categories = await getCollection("categories")
                       <a
                         href={`/${id}`}
                         class={twMerge(
-                          "flex flex-row items-center gap-1 rounded-md bg-blue-400 px-4 py-1 font-bold text-white transition hover:brightness-110",
+                          "flex flex-row items-center gap-1 rounded-md bg-blue-400 px-2.5 py-1 text-sm font-bold text-white transition hover:brightness-110 sm:px-4 sm:text-base",
                           category.data.twClassName,
                         )}
                       >
@@ -47,11 +47,11 @@ const categories = await getCollection("categories")
                 </div>
               </header>
               <a href={`/posts/${post.slug}`}>
-                <h2 class="text-2xl font-black">{post.data.title}</h2>
+                <h2 class="text-lg font-black sm:text-xl md:text-2xl">{post.data.title}</h2>
               </a>
-              <footer class="flex flex-row flex-wrap gap-4 text-sm font-semibold text-gray-500">
+              <footer class="flex flex-row flex-wrap gap-2 text-xs font-semibold text-gray-500 sm:gap-4 sm:text-sm">
                 <div class="flex flex-row items-center gap-2">
-                  <Icon name="tabler:calendar-time" class="h-5 w-5" />
+                  <Icon name="tabler:calendar-time" class="h-4 w-4 sm:h-5 sm:w-5" />
                   <span>投稿: {formatDate(post.data.date)}</span>
                 </div>
                 {post.data.lastmod && (
