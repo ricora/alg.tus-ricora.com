@@ -12,7 +12,12 @@ import {
   transformerLineNumbers,
 } from "rehype-custom-code"
 import { remarkMetaString } from "remark-meta-string"
-import { oEmbedTransformer, remarkEmbed, type RemarkEmbedOptions } from "./src/lib/remark-plugins/remarkEmbed"
+import {
+  googleSlidesTransformer,
+  oEmbedTransformer,
+  remarkEmbed,
+  type RemarkEmbedOptions,
+} from "./src/lib/remark-plugins/remarkEmbed"
 import remarkMath from "remark-math"
 import rehypeKatex from "rehype-katex"
 
@@ -28,7 +33,12 @@ export default defineConfig({
       remarkMath,
       remarkCallout,
       remarkMetaString,
-      [remarkEmbed, { transformers: [oEmbedTransformer] } satisfies RemarkEmbedOptions],
+      [
+        remarkEmbed,
+        {
+          transformers: [oEmbedTransformer, googleSlidesTransformer],
+        } satisfies RemarkEmbedOptions,
+      ],
       remarkLinkCard,
     ],
     rehypePlugins: [

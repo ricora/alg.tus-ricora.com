@@ -33,6 +33,44 @@ export const oEmbedTransformer: Readonly<Transformer> = {
   },
 }
 
+export const googleSlidesTransformer: Readonly<Transformer> = {
+  hName: "iframe",
+  hProperties: async (url): Promise<HProperties> => {
+    const isWeb = url.pathname.startsWith("/presentation/d/e/")
+    if (isWeb) {
+      // Webとして公開されている場合は、そのまま埋め込み用のURLを返す
+      const paths = url.pathname.split("/")
+      paths[paths.length - 1] = "embed"
+      return {
+        src: new URL(paths.join("/"), url.origin).href,
+        width: "100%",
+        frameBorder: "0",
+        allowFullScreen: "true",
+        mozAllowFullScreen: "true",
+        msAllowFullScreen: "true",
+        style: "aspect-ratio: 960/569;",
+      }
+    }
+
+    const paths = url.pathname.split("/")
+    paths[paths.length - 1] = "embed"
+    return {
+      src: new URL(paths.join("/"), url.origin).href,
+      width: "100%",
+      frameBorder: "0",
+      allowFullScreen: "true",
+      mozAllowFullScreen: "true",
+      msAllowFullScreen: "true",
+      style: "aspect-ratio: 960/569;",
+    }
+  },
+  match: async (url) => {
+    const isGoogleDocs = url.hostname === "docs.google.com"
+    const isGoogleSlides = url.pathname.startsWith("/presentation/d/")
+    return isGoogleDocs && isGoogleSlides
+  },
+}
+
 export const remarkEmbed: Plugin<[RemarkEmbedOptions?], Root> = (options = defaultRemarkEmbedOptions) => {
   return async (tree, file) => {
     const transforms: Promise<void>[] = []
