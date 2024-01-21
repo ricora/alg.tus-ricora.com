@@ -33,6 +33,51 @@ export const oEmbedTransformer: Readonly<Transformer> = {
   },
 }
 
+export const googleSlidesTransformer: Readonly<Transformer> = {
+  hName: "iframe",
+  hProperties: async (url): Promise<HProperties> => {
+    const getEmbedUrl = (isWeb: boolean) => {
+      const path = url.pathname.split("/")
+
+      if (isWeb) {
+        // [ファイル] > [共有] > [ウェブに公開] で生成されたリンクである場合は、そのまま埋め込み用のURLを返す
+        // e.g. https://docs.google.com/presentation/d/e/XXXXXXXX/pub -> https://docs.google.com/presentation/d/e/XXXXXXXX/embed
+        path[path.length - 1] = "embed"
+        return new URL(path.join("/"), url.origin)
+      }
+
+      if (path.length <= 3) {
+        // URLの末尾がpresentation IDで終わっている場合は、末尾にembedを追加する
+        // e.g. https://docs.google.com/presentation/d/XXXXXXXX/ -> https://docs.google.com/presentation/d/XXXXXXXX/embed
+        path.push("embed")
+      } else {
+        // URLの末尾が`/edit`など、presentation ID以外で終わっている場合は、末尾をembedに置き換える
+        // e.g. https://docs.google.com/presentation/d/XXXXXXXX/edit -> https://docs.google.com/presentation/d/XXXXXXXX/embed
+        path[path.length - 1] = "embed"
+      }
+      return new URL(path.join("/"), url.origin)
+    }
+
+    // [ファイル] > [共有] > [ウェブに公開] で生成されたリンクであるかどうか
+    const isWeb = url.pathname.startsWith("/presentation/d/e/")
+
+    return {
+      src: getEmbedUrl(isWeb).href,
+      width: "100%",
+      frameBorder: "0",
+      allowFullScreen: "true",
+      mozAllowFullScreen: "true",
+      msAllowFullScreen: "true",
+      style: "aspect-ratio: 960/569;",
+    }
+  },
+  match: async (url) => {
+    const isGoogleDocs = url.hostname === "docs.google.com"
+    const isGoogleSlides = url.pathname.startsWith("/presentation/d/")
+    return isGoogleDocs && isGoogleSlides
+  },
+}
+
 export const remarkEmbed: Plugin<[RemarkEmbedOptions?], Root> = (options = defaultRemarkEmbedOptions) => {
   return async (tree, file) => {
     const transforms: Promise<void>[] = []
