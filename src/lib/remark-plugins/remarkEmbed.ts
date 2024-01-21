@@ -36,26 +36,33 @@ export const oEmbedTransformer: Readonly<Transformer> = {
 export const googleSlidesTransformer: Readonly<Transformer> = {
   hName: "iframe",
   hProperties: async (url): Promise<HProperties> => {
-    const isWeb = url.pathname.startsWith("/presentation/d/e/")
-    if (isWeb) {
-      // [ファイル] > [共有] > [ウェブに公開]で生成されたリンクは、そのまま埋め込み用のURLを返す
-      const paths = url.pathname.split("/")
-      paths[paths.length - 1] = "embed"
-      return {
-        src: new URL(paths.join("/"), url.origin).href,
-        width: "100%",
-        frameBorder: "0",
-        allowFullScreen: "true",
-        mozAllowFullScreen: "true",
-        msAllowFullScreen: "true",
-        style: "aspect-ratio: 960/569;",
+    const getEmbedUrl = (isWeb: boolean) => {
+      const path = url.pathname.split("/")
+
+      if (isWeb) {
+        // [ファイル] > [共有] > [ウェブに公開] で生成されたリンクである場合は、そのまま埋め込み用のURLを返す
+        // e.g. https://docs.google.com/presentation/d/e/XXXXXXXX/pub -> https://docs.google.com/presentation/d/e/XXXXXXXX/embed
+        path[path.length - 1] = "embed"
+        return new URL(path.join("/"), url.origin)
       }
+
+      if (path.length <= 3) {
+        // URLの末尾がpresentation IDで終わっている場合は、末尾にembedを追加する
+        // e.g. https://docs.google.com/presentation/d/XXXXXXXX/ -> https://docs.google.com/presentation/d/XXXXXXXX/embed
+        path.push("embed")
+      } else {
+        // URLの末尾が`/edit`など、presentation ID以外で終わっている場合は、末尾をembedに置き換える
+        // e.g. https://docs.google.com/presentation/d/XXXXXXXX/edit -> https://docs.google.com/presentation/d/XXXXXXXX/embed
+        path[path.length - 1] = "embed"
+      }
+      return new URL(path.join("/"), url.origin)
     }
 
-    const paths = url.pathname.split("/")
-    paths[paths.length - 1] = "embed"
+    // [ファイル] > [共有] > [ウェブに公開] で生成されたリンクであるかどうか
+    const isWeb = url.pathname.startsWith("/presentation/d/e/")
+
     return {
-      src: new URL(paths.join("/"), url.origin).href,
+      src: getEmbedUrl(isWeb).href,
       width: "100%",
       frameBorder: "0",
       allowFullScreen: "true",
