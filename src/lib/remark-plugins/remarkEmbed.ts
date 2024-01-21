@@ -38,7 +38,7 @@ export const googleSlidesTransformer: Readonly<Transformer> = {
   hProperties: async (url): Promise<HProperties> => {
     const isWeb = url.pathname.startsWith("/presentation/d/e/")
     if (isWeb) {
-      // Webとして公開されている場合は、そのまま埋め込み用のURLを返す
+      // [ファイル] > [共有] > [ウェブに公開]で生成されたリンクは、そのまま埋め込み用のURLを返す
       const paths = url.pathname.split("/")
       paths[paths.length - 1] = "embed"
       return {
