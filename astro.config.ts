@@ -20,6 +20,7 @@ import {
 } from "./src/lib/remark-plugins/remarkEmbed"
 import remarkMath from "remark-math"
 import rehypeKatex from "rehype-katex"
+import { pagefind } from "./src/lib/astro-integrations/pagefind"
 
 // https://astro.build/config
 export default defineConfig({
@@ -27,7 +28,7 @@ export default defineConfig({
   redirects: {
     "/p/[...slug]": "/posts/[...slug]",
   },
-  integrations: [tailwind(), solidJs(), mdx()],
+  integrations: [tailwind(), solidJs(), mdx(), pagefind()],
   markdown: {
     remarkPlugins: [
       remarkMath,
