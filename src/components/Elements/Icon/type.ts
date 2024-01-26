@@ -168,3 +168,11 @@ export type IconName =
   | `zmdi:${string}`
   | `zondicons:${string}`
   | `brand:${keyof (typeof brandIconCollection)["icons"]}`
+
+export type IconData = {
+  left: number
+  top: number
+  width: number
+  height: number
+  body: string
+}
