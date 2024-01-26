@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://alg.tus-ricora.com/sitemap-index.xml
