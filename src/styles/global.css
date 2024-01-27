@@ -60,7 +60,7 @@
 
   html,
   body {
-    @apply h-full max-h-max transition-colors duration-500;
+    @apply h-max min-h-full transition-colors duration-500;
   }
 }
 

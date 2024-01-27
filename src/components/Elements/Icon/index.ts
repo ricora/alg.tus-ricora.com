@@ -1,3 +1,2 @@
-export { default as Icon } from "./Icon.astro"
-export * from "./Icon.astro"
-export * from "./type"
+export { Icon, type IconProps } from "./Icon"
+export type { IconName } from "./type"

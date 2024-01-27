@@ -17,7 +17,7 @@ const { Content } = await page.render()
   <main class="my-12 flex-1">
     <article class="mx-auto max-w-screen-md">
       <header class="flex flex-col items-center gap-6">
-        <h1 class="text-4xl font-bold">{page.data.title}</h1>
+        <h1 class="text-4xl font-bold" data-pagefind-meta="title">{page.data.title}</h1>
       </header>
       <section class="prose mt-12 max-w-full dark:prose-invert">
         {
