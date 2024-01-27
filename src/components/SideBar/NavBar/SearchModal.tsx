@@ -1,5 +1,6 @@
 import { Search } from "@/components/Elements/Search/Search"
 import { Dialog } from "@ark-ui/solid"
+import { createShortcut } from "@solid-primitives/keyboard"
 import { createSignal, type Component, type JSX } from "solid-js"
 import { Portal } from "solid-js/web"
 
@@ -9,6 +10,9 @@ type SearchModalProps = {
 }
 export const SearchModal: Component<SearchModalProps> = (props) => {
   const [isOpen, setIsOpen] = createSignal(false)
+  const toggleIsOpen = () => setIsOpen((isOpen) => !isOpen)
+
+  createShortcut(["Control", "K"], toggleIsOpen, { preventDefault: true })
 
   return (
     <Dialog.Root closeOnEscapeKeyDown closeOnInteractOutside open={isOpen()} onOpenChange={(e) => setIsOpen(e.open)}>
