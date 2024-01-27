@@ -34,6 +34,7 @@ const bundledThemeScript = "console.time('theme');" + result.outputFiles[0].text
     <meta name="generator" content={Astro.generator} />
     <title>{props.title}</title>
     {props.description && <meta name="description" content={props.description} />}
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <!-- TODO: SEO e.g. og, twitter card -->
   </head>
   <body>
