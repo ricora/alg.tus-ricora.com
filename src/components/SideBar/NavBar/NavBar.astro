@@ -5,6 +5,7 @@ import IconLink from "./IconLink.astro"
 import Links from "./Links.astro"
 import { ToggleThemeButton } from "./ToggleThemeButton"
 import { Icon } from "@/components/Elements/Icon"
+import { SearchModal } from "./SearchModal"
 
 type Props = HTMLAttributes<"aside">
 const { class: className, ...props } = Astro.props
@@ -44,6 +45,10 @@ const { class: className, ...props } = Astro.props
     />
   </div>
   <Links />
+  <SearchModal client:only="solid">
+    <Icon slot="searchIcon" name="tabler:search" class="h-6 w-6" />
+    <Icon slot="buttonIcon" name="tabler:search" class="h-6 w-6" />
+  </SearchModal>
   <div class="mt-auto hidden md:flex">
     <ToggleThemeButton client:only="solid" />
   </div>
