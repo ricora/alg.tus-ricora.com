@@ -5,10 +5,10 @@ import { visit } from "unist-util-visit"
 export const remarkCallout: Plugin<[], mdast.Root> = () => {
   return (tree) => {
     visit(tree, "blockquote", (node) => {
-      const calloutTypeNode = node.children[0]
-      if (calloutTypeNode.type !== "paragraph") return
+      const paragraphNode = node.children[0]
+      if (paragraphNode.type !== "paragraph") return
 
-      const calloutTypeTextNode = calloutTypeNode.children[0]
+      const calloutTypeTextNode = paragraphNode.children[0]
       if (calloutTypeTextNode.type !== "text") return
 
       // Parse callout syntax
@@ -61,7 +61,7 @@ export const remarkCallout: Plugin<[], mdast.Root> = () => {
         })
       }
       if (calloutBodyText.length <= 0) {
-        for (const [i, child] of calloutTypeNode.children.slice(1).entries()) {
+        for (const [i, child] of paragraphNode.children.slice(1).entries()) {
           // All inline node before the line break is added as callout title
           if (child.type !== "text") {
             titleNode.children.push(child)
@@ -85,10 +85,13 @@ export const remarkCallout: Plugin<[], mdast.Root> = () => {
               value: bodyTextLines.join("\n"),
             })
             // Add all nodes after the current node as callout body
-            bodyNode[0].children.push(...calloutTypeNode.children.slice(i + 2))
+            bodyNode[0].children.push(...paragraphNode.children.slice(i + 2))
             break
           }
         }
+      } else {
+        // Add all nodes after the current node as callout body
+        bodyNode[0].children.push(...paragraphNode.children.slice(1))
       }
 
       // Add body and title to callout root node children

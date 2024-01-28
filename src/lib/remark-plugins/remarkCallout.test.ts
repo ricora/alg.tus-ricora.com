@@ -197,4 +197,21 @@ describe("remarkCallout", () => {
     const calloutBody = callout?.children[1]
     expect(calloutBody?.innerHTML).toBe("body first line <code>code</code> here")
   })
+
+  test("callout with strong, emphasis, and inline code", async () => {
+    const md = dedent`
+      > [!warn] title here
+      > body **first** _line_ \`code\` here
+    `
+
+    const { html } = await process(md)
+
+    const doc = parser.parseFromString(html, "text/html")
+
+    const callout = doc.querySelector("callout")
+    expect(callout).not.toBeNull()
+    expect(callout?.getAttribute("calloutType")).toBe("warn")
+    expect(callout?.getAttribute("calloutIsFoldable")).toBe("false")
+    expect(callout?.children[1].innerHTML).toBe("body <strong>first</strong> <em>line</em> <code>code</code> here")
+  })
 })
