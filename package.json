@@ -60,7 +60,7 @@
     "hast-util-from-html": "^2.0.1",
     "hast-util-select": "^6.0.2",
     "hast-util-to-html": "^9.0.0",
-    "husky": "^8.0.0",
+    "husky": "^9.0.0",
     "jsdom": "^24.0.0",
     "katex": "^0.16.9",
     "lint-staged": "^15.2.0",
