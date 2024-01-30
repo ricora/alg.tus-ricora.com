@@ -16,7 +16,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@ark-ui/solid": "^1.2.0",
+    "@ark-ui/solid": "^2.0.0",
     "@astrojs/mdx": "^2.0.2",
     "@astrojs/sitemap": "^3.0.5",
     "@astrojs/solid-js": "^4.0.0",
