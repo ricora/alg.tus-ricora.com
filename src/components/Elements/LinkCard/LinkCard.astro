@@ -25,14 +25,14 @@ const shouldInvertFavicon = url.hostname.includes("github")
     href={url.href}
     {...props}
   >
-    <div class="flex min-w-0 flex-1 flex-col justify-between gap-2 px-5">
-      <p class="line-clamp-2 text-xl font-bold">{title ?? og?.title ?? href}</p>
+    <div class="flex min-w-0 flex-1 flex-col justify-between gap-2 overflow-auto break-all px-5">
+      <p class="line-clamp-2 text-base font-bold">{title ?? og?.title ?? href}</p>
       {
         (description || og?.description) && (
-          <p class="truncate text-muted-foreground">{description ?? og?.description}</p>
+          <p class=" line-clamp-3 text-xs text-muted-foreground">{description ?? og?.description}</p>
         )
       }
-      <div class="flex flex-row items-center gap-2">
+      <div class="flex flex-row items-center gap-2 text-xs">
         {
           favicon ? (
             <img src={favicon} class={twMerge("inline-block h-4 w-4", shouldInvertFavicon && "dark:invert")} />
@@ -48,7 +48,7 @@ const shouldInvertFavicon = url.hostname.includes("github")
         <div class="flex-shrink-0">
           <img
             src={image ?? og?.images?.[0].url}
-            class="roundjed-r-lg h-36 w-36 object-cover md:w-fit"
+            class="roundjed-r-lg h-24 w-24 object-cover md:w-fit"
             alt={og?.images?.[0].alt ?? og?.title ?? url.href}
             loading="lazy"
           />
