@@ -17,16 +17,15 @@ type Props = {
 }
 
 const { oEmbed, href } = getProps(Astro.props)
-console.log(oEmbed)
 ---
 
 {
-  oEmbed.type === "photo" ? (
-    <OEmbedPhoto {oEmbed} {href} />
-  ) : oEmbed.type === "video" ? (
-    <OEmbedVideo {oEmbed} {href} />
-  ) : oEmbed.type === "rich" ? (
-    <OEmbedRich {oEmbed} {href} />
+  oEmbed.type === "photo" && oEmbed.url ? (
+    <OEmbedPhoto {oEmbed} />
+  ) : oEmbed.type === "video" && oEmbed.html ? (
+    <OEmbedVideo {oEmbed} />
+  ) : oEmbed.type === "rich" && oEmbed.html ? (
+    <OEmbedRich {oEmbed} />
   ) : (
     <LinkCard href={href} />
   )
