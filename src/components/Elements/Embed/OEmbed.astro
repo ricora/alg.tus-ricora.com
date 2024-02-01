@@ -22,11 +22,11 @@ console.log(oEmbed)
 
 {
   oEmbed.type === "photo" ? (
-    <OEmbedPhoto {oEmbed} />
+    <OEmbedPhoto {oEmbed} {href} />
   ) : oEmbed.type === "video" ? (
-    <OEmbedVideo {oEmbed} />
+    <OEmbedVideo {oEmbed} {href} />
   ) : oEmbed.type === "rich" ? (
-    <OEmbedRich {oEmbed} />
+    <OEmbedRich {oEmbed} {href} />
   ) : (
     <LinkCard href={href} />
   )

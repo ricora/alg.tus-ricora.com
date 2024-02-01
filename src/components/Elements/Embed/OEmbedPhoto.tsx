@@ -1,7 +1,9 @@
 import type { Component } from "solid-js"
 import type { OEmbedPhoto as OEmbedPhotoSchema } from "./oEmbedSchema"
+import { LinkCard } from "../LinkCard"
 
-export const OEmbedPhoto: Component<{ oEmbed: OEmbedPhotoSchema }> = (props) => {
+export const OEmbedPhoto: Component<{ oEmbed: OEmbedPhotoSchema; href: string }> = (props) => {
+  if (!props.oEmbed.url) return <LinkCard href={props.href} />
   return (
     <img
       class="mx-auto max-h-full max-w-full"
