@@ -1,6 +1,6 @@
 # alg.tus-ricora.com (WIP)
 
-> [!warning]
+> [!WARNING]
 > このリポジトリは現在開発中です。
 
 <!-- TODO: Wikiのリンクを張る -->
@@ -24,7 +24,7 @@
   - JavaScriptランタイム
   - 必要バージョン：[`.tool-versions`](./.tool-versions)を参照
 
-> [!tip] > [mise](https://github.com/jdx/mise)や[asdf](https://asdf-vm.com/)といったバージョン管理ツールを利用すると、[`.tool-versions`](./.tool-versions)に記載されたバージョンのBunを簡単にインストールすることができます。
+> [!TIP] > [mise](https://github.com/jdx/mise)や[asdf](https://asdf-vm.com/)といったバージョン管理ツールを利用すると、[`.tool-versions`](./.tool-versions)に記載されたバージョンのBunを簡単にインストールすることができます。
 
 ### 🚀 Getting Started
 
@@ -71,13 +71,15 @@
 
 ### 📁 Directory Structure
 
-- `src/components/Elements/`: プロジェクト全体で使われるコンポーネント
-- `src/components/SideBar/`: サイドバーのコンポーネント
-- `src/content/posts/`: ブログ記事のMDXファイル
-- `src/content/members/`: RICORA Programming Teamのメンバー情報
-- `src/content/pages/`: `/about-us`や`/contact`などのページのMDXファイル
-- `src/layouts/`: ページのレイアウト
-- `src/pages/`: ページのエントリポイント
-- `src/styles/`: サイト全体で使われるスタイル
+| Directory                 | Description                                      |
+| :------------------------ | :----------------------------------------------- |
+| `src/components/Elements` | プロジェクト全体で使われるコンポーネント         |
+| `src/components/SideBar`  | サイドバーのコンポーネント                       |
+| `src/content/posts`       | ブログ記事のMDXファイル                          |
+| `src/content/members`     | RICORA Programming Teamのメンバー情報            |
+| `src/content/pages`       | `/about-us`や`/contact`などのページのMDXファイル |
+| `src/layouts`             | ページのレイアウト                               |
+| `src/pages`               | ページのエントリポイント                         |
+| `src/styles`              | サイト全体で使われるスタイル                     |
 
 [Project Structure | Astro Docs](https://docs.astro.build/en/basics/project-structure/)や[Bulletproof React](https://github.com/alan2207/bulletproof-react)を参考にしています。
