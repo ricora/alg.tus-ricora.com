@@ -104,3 +104,11 @@ span[id="footnote-label"] {
   font-style: normal;
   font-display: swap;
 }
+
+@font-face {
+  font-family: "Juisee";
+  src: url("/fonts/juisee/Juisee-Regular.woff2") format("woff2");
+  font-weight: regular;
+  font-style: normal;
+  font-display: swap;
+}
