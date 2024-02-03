@@ -1,5 +1,7 @@
 # alg.tus-ricora.com (WIP)
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=734781265&skip_quickstart=true&geo=SoutheastAsia)
+
 > [!WARNING]
 > このリポジトリは現在開発中です。
 
