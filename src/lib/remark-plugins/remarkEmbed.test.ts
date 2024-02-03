@@ -17,7 +17,7 @@ const process = async (md: string) => {
     await unified()
       .use(remarkParse)
       .use(remarkEmbed, {
-        transformers: [oEmbedTransformer, googleSlidesTransformer],
+        transformers: [googleSlidesTransformer, oEmbedTransformer],
       })
       .use(() => (tree: mdast.Root) => {
         mdast = tree

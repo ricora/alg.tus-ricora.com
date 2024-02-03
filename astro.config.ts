@@ -38,7 +38,7 @@ export default defineConfig({
       [
         remarkEmbed,
         {
-          transformers: [oEmbedTransformer, googleSlidesTransformer],
+          transformers: [googleSlidesTransformer, oEmbedTransformer],
         } satisfies RemarkEmbedOptions,
       ],
       remarkLinkCard,
