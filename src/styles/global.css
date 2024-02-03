@@ -140,7 +140,7 @@ span[id="footnote-label"] {
 @font-face {
   font-family: "Juisee";
   src: url("/fonts/juisee/JuiseeHW-Bold.woff2") format("woff2");
-  font-weight: bold;
+  font-weight: theme(fontWeight.bold);
   font-style: normal;
   font-display: swap;
 }
