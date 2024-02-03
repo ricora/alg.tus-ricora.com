@@ -107,8 +107,32 @@ span[id="footnote-label"] {
 
 @font-face {
   font-family: "Juisee";
-  src: url("/fonts/juisee/Juisee-Regular.woff2") format("woff2");
+  src: url("/fonts/juisee/JuiseeHW-Regular.woff2") format("woff2");
   font-weight: regular;
   font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Juisee";
+  src: url("/fonts/juisee/JuiseeHW-RegularItalic.woff2") format("woff2");
+  font-weight: regular;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Juisee";
+  src: url("/fonts/juisee/JuiseeHW-Bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Juisee";
+  src: url("/fonts/juisee/JuiseeHW-BoldItalic.woff2") format("woff2");
+  font-weight: bold;
+  font-style: italic;
   font-display: swap;
 }
