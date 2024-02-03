@@ -93,18 +93,3 @@
 | `bun run --bun preview`         | ビルドした成果物をローカルサーバーでプレビューする    |
 | `bun run --bun astro ...`       | `astro add`, `astro check`といったAstro CLIを実行する |
 | `bun run --bun astro -- --help` | Astro CLIの使い方を見る                               |
-
-### 📁 Directory Structure
-
-| Directory                 | Description                                      |
-| :------------------------ | :----------------------------------------------- |
-| `src/components/Elements` | プロジェクト全体で使われるコンポーネント         |
-| `src/components/SideBar`  | サイドバーのコンポーネント                       |
-| `src/content/posts`       | ブログ記事のMDXファイル                          |
-| `src/content/members`     | RICORA Programming Teamのメンバー情報            |
-| `src/content/pages`       | `/about-us`や`/contact`などのページのMDXファイル |
-| `src/layouts`             | ページのレイアウト                               |
-| `src/pages`               | ページのエントリポイント                         |
-| `src/styles`              | サイト全体で使われるスタイル                     |
-
-[Project Structure | Astro Docs](https://docs.astro.build/en/basics/project-structure/)や[Bulletproof React](https://github.com/alan2207/bulletproof-react)を参考にしています。
