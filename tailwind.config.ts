@@ -70,8 +70,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["LINESeedJP OTF Rg", "sans-serif"],
-        bold: ["LINESeedJP OTF Bd", "sans-serif"],
+        sans: ["LINE Seed JP", "sans-serif"],
         mono: ["Juisee"],
       },
     },
