@@ -124,7 +124,7 @@ span[id="footnote-label"] {
 @font-face {
   font-family: "Juisee";
   src: url("/fonts/juisee/JuiseeHW-Regular.woff2") format("woff2");
-  font-weight: regular;
+  font-weight: theme(fontWeight.normal);
   font-style: normal;
   font-display: swap;
 }
