@@ -71,7 +71,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ["LINESeedJP", ...defaultTheme.fontFamily.sans],
+        sans: ["LINE Seed JP", ...defaultTheme.fontFamily.sans],
         mono: ["Juisee", ...defaultTheme.fontFamily.mono],
       },
     },
