@@ -132,7 +132,7 @@ span[id="footnote-label"] {
 @font-face {
   font-family: "Juisee";
   src: url("/fonts/juisee/JuiseeHW-RegularItalic.woff2") format("woff2");
-  font-weight: regular;
+  font-weight: theme(fontWeight.normal);
   font-style: italic;
   font-display: swap;
 }
