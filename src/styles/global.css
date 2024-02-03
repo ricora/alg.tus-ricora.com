@@ -106,6 +106,22 @@ span[id="footnote-label"] {
 }
 
 @font-face {
+  font-family: "LINE Seed JP";
+  src: url("/fonts/line-seed-jp/LINESeedJP_OTF_Th.woff2") format("woff2");
+  font-weight: theme(fontWeight.thin);
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "LINE Seed JP";
+  src: url("/fonts/line-seed-jp/LINESeedJP_OTF_Eb.woff2") format("woff2");
+  font-weight: theme(fontWeight.extrabold);
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "Juisee";
   src: url("/fonts/juisee/JuiseeHW-Regular.woff2") format("woff2");
   font-weight: regular;
