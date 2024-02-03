@@ -92,7 +92,7 @@ span[id="footnote-label"] {
 @font-face {
   font-family: "LINE Seed JP";
   src: url("/fonts/line-seed-jp/LINESeedJP_OTF_Rg.woff2") format("woff2");
-  font-weight: regular;
+  font-weight: theme(fontWeight.normal);
   font-style: normal;
   font-display: swap;
 }
