@@ -24,7 +24,9 @@
   - JavaScriptランタイム
   - 必要バージョン：[`.tool-versions`](./.tool-versions)を参照
 
-> [!TIP] > [mise](https://github.com/jdx/mise)や[asdf](https://asdf-vm.com/)といったバージョン管理ツールを利用すると、[`.tool-versions`](./.tool-versions)に記載されたバージョンのBunを簡単にインストールすることができます。
+<!-- prettier-ignore -->
+> [!TIP]
+> [mise](https://github.com/jdx/mise)や[asdf](https://asdf-vm.com/)といったバージョン管理ツールを利用すると、[`.tool-versions`](./.tool-versions)に記載されたバージョンのBunを簡単にインストールすることができます。
 
 ### 🚀 Getting Started
 
