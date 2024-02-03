@@ -59,11 +59,69 @@ Issueを作成する前に同様のIssueが既に存在しないかをよく確�
 
 #### Featureブランチを切る方法
 
-### 環境構築
+### 開発環境の構築
 
-#### ローカル環境の場合
+このプロジェクトではJavaScriptランタイムとして[Bun](https://bun.sh/)を利用しています。必要なバージョンは[`.tool-versions`](./.tool-versions)を参照してください。
 
-#### GitHub Codespacesを利用する場合
+<!-- prettier-ignore -->
+> [!TIP]
+> [mise](https://github.com/jdx/mise)や[asdf](https://asdf-vm.com/)といったバージョン管理ツールを利用すると、[`.tool-versions`](./.tool-versions)に記載されたバージョンのBunを簡単にインストールすることができます。
+
+#### ローカル環境で開発を行う
+
+##### 依存関係のインストール
+
+以下のコマンドで依存関係をインストールします。
+
+```sh
+bun install
+```
+
+##### ビルド
+
+以下のコマンドでビルドを行い、静的なHTMLファイルを生成します。
+
+```sh
+bun run --bun build
+```
+
+ビルド結果は`./dist/`に保存されます。
+
+このコマンドは、TypeScriptの型チェックとサイトのビルドを行います。これらを個別に行いたい場合は、`bun run --bun astro check`と`bun run --bun astro build`をそれぞれ実行してください。
+
+##### 開発サーバーの起動
+
+以下のコマンドで開発サーバーを起動します。
+
+```sh
+bun run --bun dev
+```
+
+> [!WARNING]
+> 開発サーバーを起動する前に、ビルドを一度行ってください。
+> ビルド時に検索用インデックスを生成するため、ビルドをしないと検索エンジンとして利用している[pagefind](https://pagefind.app/)が正しく動作しません。
+
+開発サーバーはデフォルトでは[http://localhost:4321/](http://localhost:4321/)で起動します。HMR (Hot Module Replacement)によって、ファイルの変更を検知して自動的にブラウザの画面が更新されます。
+
+##### テスト
+
+以下のコマンドでテストを実行します。
+
+```sh
+bun run test
+```
+
+テストには[bun test](https://bun.sh/docs/cli/test)を利用しています。今後テストランナーを変更する可能性を考慮してscriptsを経由していますが、単に`bun test`としても実行できます。
+
+##### プレビューサーバーの起動
+
+以下のコマンドで`dist/`ディレクトリの中身をプレビューするサーバーを起動します。
+
+```sh
+bun run --bun preview
+```
+
+#### GitHub Codespacesで開発を行う
 
 ### 記事を執筆する
 
