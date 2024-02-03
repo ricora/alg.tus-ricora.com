@@ -69,6 +69,10 @@ export default {
           },
         },
       },
+      fontFamily: {
+        sans: ["LINESeedJP OTF Rg", "sans-serif"],
+        bold: ["LINESeedJP OTF Bd", "sans-serif"],
+      },
     },
   },
   plugins: [tailwindcssAnimate, typography],

@@ -88,3 +88,19 @@ span[id="footnote-label"] {
   border-bottom: 1px solid theme(colors.muted.foreground / 40%);
   font-weight: 700;
 }
+
+@font-face {
+  font-family: "LINESeedJP OTF Rg";
+  src: url("/fonts/line-seed-jp/LINESeedJP_OTF_Rg.woff2") format("woff2");
+  font-weight: regular;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "LINESeedJP OTF Bd";
+  src: url("/fonts/line-seed-jp/LINESeedJP_OTF_Bd.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
