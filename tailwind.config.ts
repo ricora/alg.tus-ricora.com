@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss"
 import tailwindcssAnimate from "tailwindcss-animate"
 import typography from "@tailwindcss/typography"
+import defaultTheme from "tailwindcss/defaultTheme"
 
 export default {
   darkMode: ["class", '[data-theme="dark"]'],
@@ -68,6 +69,10 @@ export default {
             left: "0",
           },
         },
+      },
+      fontFamily: {
+        sans: ["LINE Seed JP", ...defaultTheme.fontFamily.sans],
+        mono: ["Juisee", ...defaultTheme.fontFamily.mono],
       },
     },
   },
