@@ -66,6 +66,12 @@ Issueを作成する前に同様のIssueが既に存在しないかをよく確�
 <!-- prettier-ignore -->
 > [!TIP]
 > [mise](https://github.com/jdx/mise)や[asdf](https://asdf-vm.com/)といったバージョン管理ツールを利用すると、[`.tool-versions`](./.tool-versions)に記載されたバージョンのBunを簡単にインストールすることができます。
+> 
+> [mise](https://github.com/jdx/mise)の場合、
+> ```sh
+> mise install
+> ```
+> で必要なバージョンのBunをインストールできます。
 
 #### ローカル環境で開発を行う
 
