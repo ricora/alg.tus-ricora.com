@@ -7,7 +7,13 @@ import { InfoBar } from "@/components/SideBar/InfoBar"
 import OpenGraphMeta from "./OpenGraph.astro"
 import type { OpenGraph } from "./openGraphSchema"
 import type { PartiallyPartial } from "@/lib/type"
-import type { TwitterCard } from "./twitterCardSchema"
+import type {
+  TwitterCard,
+  TwitterSummaryCard,
+  TiwtterAppCard,
+  TwitterPlayerCard,
+  TwitterSummaryLargeImageCard,
+} from "./twitterCardSchema"
 import TwitterCardMeta from "./TwitterCard.astro"
 
 export type Props = {
@@ -15,7 +21,11 @@ export type Props = {
   titleSuffix?: string
   description?: string
   og: PartiallyPartial<OpenGraph, "title" | "type" | "image">
-  twitter?: TwitterCard
+  twitter?:
+    | TwitterSummaryCard
+    | TwitterSummaryLargeImageCard
+    | PartiallyPartial<TiwtterAppCard, "site">
+    | PartiallyPartial<TwitterPlayerCard, "site">
 }
 const props = Astro.props
 
