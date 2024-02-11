@@ -59,6 +59,8 @@ const bundledThemeScript = "console.time('theme');" + result.outputFiles[0].text
     {props.description && <meta name="description" content={props.description} />}
     <link rel="sitemap" href="/sitemap-index.xml" />
     <OpenGraphMeta {...og} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@ricora_alg" />
   </head>
   <body>
     <script is:inline set:html={bundledThemeScript} />
