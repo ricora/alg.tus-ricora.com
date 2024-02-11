@@ -7,12 +7,15 @@ import { InfoBar } from "@/components/SideBar/InfoBar"
 import OpenGraphMeta from "./OpenGraph.astro"
 import type { OpenGraph } from "./openGraphSchema"
 import type { PartiallyPartial } from "@/lib/type"
+import type { TwitterCard } from "./twitterCardSchema"
+import TwitterCardMeta from "./TwitterCard.astro"
 
 export type Props = {
   title: string
   titleSuffix?: string
   description?: string
   og: PartiallyPartial<OpenGraph, "title" | "type" | "image">
+  twitter?: TwitterCard
 }
 const props = Astro.props
 
@@ -33,6 +36,17 @@ const og = {
     ...props.og.prefixies,
   },
 } satisfies OpenGraph
+
+const twitter: TwitterCard = props.twitter
+  ? {
+      site: props.twitter.site ?? "@ricora_alg",
+      ...props.twitter,
+    }
+  : {
+      card: "summary",
+      title: og.title,
+      site: "@ricora_alg",
+    }
 
 const result = await build({
   stdin: {
@@ -59,8 +73,7 @@ const bundledThemeScript = "console.time('theme');" + result.outputFiles[0].text
     {props.description && <meta name="description" content={props.description} />}
     <link rel="sitemap" href="/sitemap-index.xml" />
     <OpenGraphMeta {...og} />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@ricora_alg" />
+    <TwitterCardMeta {...twitter} />
   </head>
   <body>
     <script is:inline set:html={bundledThemeScript} />

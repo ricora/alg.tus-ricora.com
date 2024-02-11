@@ -1,0 +1,55 @@
+---
+import type { TwitterCard } from "./twitterCardSchema"
+type Props = TwitterCard
+const props = Astro.props
+---
+
+{
+  props.card === "summary" ? (
+    <>
+      <meta name="twitter:card" content={props.card} />
+      {props.site && <meta name="twitter:site" content={props.site} />}
+      <meta name="twitter:title" content={props.title} />
+      {props.description && <meta name="twitter:description" content={props.description} />}
+      {props.image && <meta name="twitter:image" content={props.image} />}
+      {props.imageAlt && <meta name="twitter:image:alt" content={props.imageAlt} />}
+    </>
+  ) : props.card === "summary_large_image" ? (
+    <>
+      <meta name="twitter:card" content={props.card} />
+      {props.site && <meta name="twitter:site" content={props.site} />}
+      <meta name="twitter:title" content={props.title} />
+      {props.description && <meta name="twitter:description" content={props.description} />}
+      <meta name="twitter:image" content={props.image} />
+      {props.imageAlt && <meta name="twitter:image:alt" content={props.imageAlt} />}
+    </>
+  ) : props.card === "player" ? (
+    <>
+      <meta name="twitter:card" content={props.card} />
+      <meta name="twitter:title" content={props.title} />
+      <meta name="twitter:site" content={props.site} />
+      {props.description && <meta name="twitter:description" content={props.description} />}
+      <meta name="twitter:player" content={props.player} />
+      <meta name="twitter:player:width" content={props.playerWidth.toString()} />
+      <meta name="twitter:player:height" content={props.playerHeight.toString()} />
+      <meta name="twitter:image" content={props.image} />
+      {props.imageAlt && <meta name="twitter:image:alt" content={props.imageAlt} />}
+    </>
+  ) : (
+    <>
+      <meta name="twitter:card" content={props.card} />
+      <meta name="twitter:site" content={props.site} />
+      {props.description && <meta name="twitter:description" content={props.description} />}
+      <meta name="twitter:app:id:iphone" content={props.appIdIphone} />
+      <meta name="twitter:app:id:ipad" content={props.appIdIpad} />
+      <meta name="twitter:app:id:googleplay" content={props.appIdGoogleplay} />
+      {props.appUrlIphone && <meta name="twitter:app:url:iphone" content={props.appUrlIphone} />}
+      {props.appUrlIpad && <meta name="twitter:app:url:ipad" content={props.appUrlIpad} />}
+      {props.appUrlGoogleplay && <meta name="twitter:app:url:googleplay" content={props.appUrlGoogleplay} />}
+      {props.appNameIphone && <meta name="twitter:app:name:iphone" content={props.appNameIphone} />}
+      {props.appNameIpad && <meta name="twitter:app:name:ipad" content={props.appNameIpad} />}
+      {props.appNameGoogleplay && <meta name="twitter:app:name:googleplay" content={props.appNameGoogleplay} />}
+      {props.appCountry && <meta name="twitter:app:country" content={props.appCountry} />}
+    </>
+  )
+}
