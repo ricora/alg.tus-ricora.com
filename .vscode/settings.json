@@ -3,7 +3,7 @@
   "[astro]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "eslint.validate": ["javascript", "javascriptreact", "astro", "typescript", "typescriptreact"],
+  "eslint.validate": ["javascript", "javascriptreact", "astro", "typescript", "typescriptreact", "markdown", "mdx"],
   "eslint.experimental.useFlatConfig": true,
   "tailwindCSS.experimental.classRegex": [
     // key名がtwで始まるものをtailwindのクラスとして認識する

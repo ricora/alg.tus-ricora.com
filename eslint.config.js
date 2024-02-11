@@ -8,8 +8,11 @@ import globals from "globals"
 import typescriptESLint from "@typescript-eslint/eslint-plugin"
 import typescriptESLintParser from "@typescript-eslint/parser"
 import astroESLintParser from "astro-eslint-parser"
+import * as mdx from "eslint-plugin-mdx"
 
 /// <reference types="@eslint-types/typescript-eslint" />
+
+const isFix = process.argv.findIndex((arg) => arg.startsWith("--fix")) !== -1
 
 const compat = new FlatCompat()
 
@@ -56,6 +59,28 @@ const astroConfig = defineFlatConfig({
   },
 })
 
+// todo: auto-fixで出力されるMDXが壊れているため、簡易的な対応として自動修正を無効化している。恐らくASTからMDXへの変換の際に問題が発生していると思われる
+/** @type {import("eslint-define-config").FlatESLintConfig[]} */
+const mdxConfig = isFix
+  ? []
+  : // @ts-expect-error: eslint-mdxはeslint-define-configに対応していない
+    // @see https://github.com/mdx-js/eslint-mdx/issues/526
+    defineFlatConfig([
+      {
+        ...mdx.flat,
+        processor: mdx.createRemarkProcessor({
+          lintCodeBlocks: false,
+          languageMapper: {},
+        }),
+      },
+      {
+        ...mdx.flatCodeBlocks,
+        rules: {
+          ...mdx.flatCodeBlocks.rules,
+        },
+      },
+    ])
+
 export default defineFlatConfig([
   gitignore(),
   eslint.configs.recommended,
@@ -63,4 +88,5 @@ export default defineFlatConfig([
   ...extendedConfig,
   ...globalConfig,
   astroConfig,
+  ...mdxConfig,
 ])
