@@ -6,8 +6,9 @@ import { formatDate } from "@/lib/date"
 import { calculateReadingTime } from "@/lib/posts"
 import type { CollectionEntry } from "astro:content"
 import { mdxComponents } from "@/lib/mdx"
+import * as path from "node:path"
 
-export type Props = BaseLayoutProps & {
+export type Props = Partial<BaseLayoutProps> & {
   post: CollectionEntry<"posts">
 }
 const { post, ...props } = Astro.props
@@ -19,7 +20,16 @@ const lastmod = post.data.lastmod ? formatDate(post.data.lastmod) : undefined
 const readingTime = calculateReadingTime(post.body)
 ---
 
-<BaseLayout {...props}>
+<BaseLayout
+  title={post.data.title}
+  og={{
+    type: "article",
+    url: new URL(path.join("posts", post.slug), Astro.site),
+    image: new URL(path.join("posts", `${post.slug}.png`), Astro.site),
+    ...props.og,
+  }}
+  {...props}
+>
   <main class="my-12 flex-1">
     <article class="mx-auto max-w-screen-md">
       <header class="flex flex-col items-center gap-6">

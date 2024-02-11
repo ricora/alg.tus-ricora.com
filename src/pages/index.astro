@@ -11,7 +11,14 @@ const posts = await getCollection("posts", ({ data }) => (isDev ? true : !data.d
 const categories = await getCollection("categories")
 ---
 
-<BaseLayout title="RICORA Programming Team" description="東京理科大学 電子計算機研究会 プログラミング班">
+<BaseLayout
+  title="RICORA Programming Team"
+  titleSuffix=""
+  description="東京理科大学 電子計算機研究会 プログラミング班"
+  og={{
+    url: Astro.site!,
+  }}
+>
   <main class="flex flex-1 flex-col gap-6 py-12">
     <!-- 仮のモックアップ -->
     {

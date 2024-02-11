@@ -6,7 +6,12 @@ import { getCollection } from "astro:content"
 const members = await getCollection("members")
 ---
 
-<BaseLayout title="メンバー - RICORA Programming Team">
+<BaseLayout
+  title="メンバー"
+  og={{
+    url: new URL("members", Astro.site),
+  }}
+>
   <main class="mx-auto py-16">
     <section class="flex flex-col gap-12">
       <h1 class="mx-auto text-4xl font-bold" data-pagefind-meta="title">メンバー</h1>
