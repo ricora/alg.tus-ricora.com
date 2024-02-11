@@ -18,15 +18,23 @@ const { Content } = await post.render()
 const date = formatDate(post.data.date)
 const lastmod = post.data.lastmod ? formatDate(post.data.lastmod) : undefined
 const readingTime = calculateReadingTime(post.body)
+
+const postUrl = new URL(path.join("posts", post.slug), Astro.site)
+const ogImageUrl = new URL(path.join("posts", `${post.slug}.png`), Astro.site)
 ---
 
 <BaseLayout
   title={post.data.title}
   og={{
     type: "article",
-    url: new URL(path.join("posts", post.slug), Astro.site),
-    image: new URL(path.join("posts", `${post.slug}.png`), Astro.site),
+    url: postUrl,
+    image: ogImageUrl,
     ...props.og,
+  }}
+  twitter={{
+    card: "summary_large_image",
+    image: ogImageUrl,
+    title: post.data.title,
   }}
   {...props}
 >
