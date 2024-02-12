@@ -1,6 +1,10 @@
 ---
+import { LinkCard } from "../LinkCard"
 import "./oEmbed.css"
-import type { Metadata } from "unfurl.js/dist/types"
+import type { OEmbed } from "./oEmbedSchema"
+import { OEmbedVideo } from "./OEmbedVideo"
+import { OEmbedRich } from "./OEmbedRich"
+import { OEmbedPhoto } from "./OEmbedPhoto"
 
 const getProps = (props: Props) => {
   props.oEmbed = JSON.parse(props.oEmbed as unknown as string) // props.oEmbed is a stringified JSON
@@ -8,12 +12,21 @@ const getProps = (props: Props) => {
 }
 
 type Props = {
-  oEmbed: Metadata["oEmbed"]
+  oEmbed: OEmbed
   href: string
 }
 
 const { oEmbed, href } = getProps(Astro.props)
-if (oEmbed == null) return null
 ---
 
-{"html" in oEmbed ? <div class="w-full" set:html={oEmbed.html} data-oembed /> : <a href={href}>{href}</a>}
+{
+  oEmbed.type === "photo" && oEmbed.url ? (
+    <OEmbedPhoto {oEmbed} />
+  ) : oEmbed.type === "video" && oEmbed.html ? (
+    <OEmbedVideo {oEmbed} />
+  ) : oEmbed.type === "rich" && oEmbed.html ? (
+    <OEmbedRich {oEmbed} />
+  ) : (
+    <LinkCard href={href} />
+  )
+}
