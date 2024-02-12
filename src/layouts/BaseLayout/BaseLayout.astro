@@ -10,7 +10,7 @@ import type { PartiallyPartial } from "@/lib/type"
 import type {
   TwitterCard,
   TwitterSummaryCard,
-  TiwtterAppCard,
+  TwitterAppCard,
   TwitterPlayerCard,
   TwitterSummaryLargeImageCard,
 } from "./twitterCardSchema"
@@ -24,7 +24,7 @@ export type Props = {
   twitter?:
     | TwitterSummaryCard
     | TwitterSummaryLargeImageCard
-    | PartiallyPartial<TiwtterAppCard, "site">
+    | PartiallyPartial<TwitterAppCard, "site">
     | PartiallyPartial<TwitterPlayerCard, "site">
 }
 const props = Astro.props
