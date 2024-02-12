@@ -33,6 +33,31 @@ export const oEmbedTransformer: Readonly<Transformer> = {
   },
 }
 
+export const youTubeTransformer: Readonly<Transformer> = {
+  hName: "iframe",
+  hProperties: async (url): Promise<HProperties> => {
+    const convertToEmbedUrl = (url: string): string => {
+      const regExp = /^.*(watch\?v=|embed\/)([^#&?]*).*/
+      const match = url.match(regExp)
+
+      if (match && match[2]) {
+        return "https://www.youtube.com/embed/" + match[2]
+      } else {
+        throw new Error("Invalid YouTube URL")
+      }
+    }
+
+    return {
+      src: convertToEmbedUrl(url.href),
+      width: "100%",
+      height: "360",
+    }
+  },
+  match: async (url) => {
+    return url.hostname === "www.youtube.com"
+  },
+}
+
 export const googleSlidesTransformer: Readonly<Transformer> = {
   hName: "iframe",
   hProperties: async (url): Promise<HProperties> => {
