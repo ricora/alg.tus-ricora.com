@@ -1,0 +1,60 @@
+---
+import type { OpenGraph } from "./openGraphSchema"
+type Props = OpenGraph
+const og = Astro.props
+---
+
+<meta property="og:title" content={og.title} />
+<meta property="og:type" content={og.type} />
+{
+  og.image instanceof URL ? (
+    <meta property="og:image" content={og.image.href} />
+  ) : (
+    og.image && (
+      <>
+        <meta property="og:image" content={og.image.url.href} />
+        {og.image.secureUrl && <meta property="og:image:secure_url" content={og.image.secureUrl.href} />}
+        {og.image.type && <meta property="og:image:type" content={og.image.type} />}
+        {og.image.width && <meta property="og:image:width" content={og.image.width.toString()} />}
+        {og.image.height && <meta property="og:image:height" content={og.image.height.toString()} />}
+        {og.image.alt && <meta property="og:image:alt" content={og.image.alt} />}
+      </>
+    )
+  )
+}
+<meta property="og:url" content={og.url.href} />
+{og.url && <link rel="canonical" href={og.url.href} />}
+{
+  og.audio instanceof URL ? (
+    <meta property="og:audio" content={og.audio.href} />
+  ) : (
+    og.audio && (
+      <>
+        <meta property="og:audio" content={og.audio.url.href} />
+        {og.audio.secureUrl && <meta property="og:audio:secure_url" content={og.audio.secureUrl.href} />}
+        {og.audio.type && <meta property="og:audio:type" content={og.audio.type} />}
+      </>
+    )
+  )
+}
+{og.description && <meta property="og:description" content={og.description} />}
+{og.determiner && <meta property="og:determiner" content={og.determiner} />}
+{og.locale && <meta property="og:locale" content={og.locale} />}
+{og.localeAlternate?.map((locale) => <meta property="og:locale:alternate" content={locale} />)}
+{og.siteName && <meta property="og:site_name" content={og.siteName} />}
+{
+  og.video instanceof URL ? (
+    <meta property="og:video" content={og.video.href} />
+  ) : (
+    og.video && (
+      <>
+        <meta property="og:video" content={og.video.url.href} />
+        {og.video.secureUrl && <meta property="og:video:secure_url" content={og.video.secureUrl.href} />}
+        {og.video.type && <meta property="og:video:type" content={og.video.type} />}
+        {og.video.width && <meta property="og:video:width" content={og.video.width.toString()} />}
+        {og.video.height && <meta property="og:video:height" content={og.video.height.toString()} />}
+        {og.video.alt && <meta property="og:video:alt" content={og.video.alt} />}
+      </>
+    )
+  )
+}

@@ -4,12 +4,61 @@ import themeScript from "./theme?raw"
 import { build } from "esbuild"
 import { NavBar } from "@/components/SideBar/NavBar"
 import { InfoBar } from "@/components/SideBar/InfoBar"
+import OpenGraphMeta from "./OpenGraph.astro"
+import type { OpenGraph } from "./openGraphSchema"
+import type { PartiallyPartial } from "@/lib/type"
+import type {
+  TwitterCard,
+  TwitterSummaryCard,
+  TwitterAppCard,
+  TwitterPlayerCard,
+  TwitterSummaryLargeImageCard,
+} from "./twitterCardSchema"
+import TwitterCardMeta from "./TwitterCard.astro"
+import * as path from "node:path"
 
 export type Props = {
   title: string
+  titleSuffix?: string
   description?: string
+  og: PartiallyPartial<OpenGraph, "title" | "type" | "image">
+  twitter?:
+    | TwitterSummaryCard
+    | TwitterSummaryLargeImageCard
+    | PartiallyPartial<TwitterAppCard, "site">
+    | PartiallyPartial<TwitterPlayerCard, "site">
 }
 const props = Astro.props
+
+const titleSuffix = props.titleSuffix ?? "RICORA Programming Team"
+const title = titleSuffix ? `${props.title} - ${titleSuffix}` : props.title
+
+if (!Astro.site) throw new Error("Please set the site URL in astro.config.ts")
+const og = {
+  title: props.og.title ?? props.title,
+  description: props.og.description ?? props.description,
+  type: props.og.type ?? "website",
+  siteName: "RICORA Programming Team",
+  locale: "ja_JP",
+  image: props.og.image ?? new URL(path.join("images", "og.png"), Astro.site),
+  ...props.og,
+  prefixies: {
+    og: "https://ogp.me/ns#",
+    ...props.og.prefixies,
+  },
+} satisfies OpenGraph
+
+const twitter: TwitterCard = props.twitter
+  ? {
+      site: props.twitter.site ?? "@ricora_alg",
+      ...props.twitter,
+    }
+  : {
+      card: "summary",
+      title: og.title,
+      site: "@ricora_alg",
+      image: new URL(path.join("images", "logo.png"), Astro.site),
+    }
 
 const result = await build({
   stdin: {
@@ -27,15 +76,16 @@ const bundledThemeScript = "console.time('theme');" + result.outputFiles[0].text
 ---
 
 <html lang="ja">
-  <head>
+  <head prefix={Object.entries(og.prefixies).reduce((acc, [key, value]) => acc + `${key}: ${value} `, "")}>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{props.title}</title>
+    <title>{title}</title>
     {props.description && <meta name="description" content={props.description} />}
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <!-- TODO: SEO e.g. og, twitter card -->
+    <OpenGraphMeta {...og} />
+    <TwitterCardMeta {...twitter} />
   </head>
   <body>
     <script is:inline set:html={bundledThemeScript} />

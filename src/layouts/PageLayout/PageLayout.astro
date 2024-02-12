@@ -5,7 +5,7 @@ import type { CollectionEntry } from "astro:content"
 import { mdxComponents } from "@/lib/mdx"
 import { LinkCard } from "@/components/Elements/LinkCard"
 
-export type Props = BaseLayoutProps & {
+export type Props = Partial<BaseLayoutProps> & {
   page: CollectionEntry<"pages">
 }
 const { page, ...props } = Astro.props
@@ -13,7 +13,14 @@ const { page, ...props } = Astro.props
 const { Content } = await page.render()
 ---
 
-<BaseLayout {...props}>
+<BaseLayout
+  title={page.data.title}
+  og={{
+    url: new URL(page.slug, Astro.site),
+    ...props.og,
+  }}
+  {...props}
+>
   <main class="my-12 flex-1">
     <article class="mx-auto max-w-screen-md">
       <header class="flex flex-col items-center gap-6">
