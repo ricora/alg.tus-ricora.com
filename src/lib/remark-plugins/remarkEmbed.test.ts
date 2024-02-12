@@ -7,8 +7,7 @@ import dedent from "dedent"
 import type * as hast from "hast"
 import type * as mdast from "mdast"
 import { JSDOM } from "jsdom"
-import { googleSlidesTransformer, oEmbedTransformer, remarkEmbed } from "./remarkEmbed"
-import { unfurl } from "unfurl.js"
+import { googleSlidesTransformer, oEmbedTransformer, remarkEmbed, youTubeTransformer } from "./remarkEmbed"
 
 const process = async (md: string) => {
   let hast: hast.Node
@@ -17,7 +16,7 @@ const process = async (md: string) => {
     await unified()
       .use(remarkParse)
       .use(remarkEmbed, {
-        transformers: [googleSlidesTransformer, oEmbedTransformer],
+        transformers: [youTubeTransformer, googleSlidesTransformer, oEmbedTransformer],
       })
       .use(() => (tree: mdast.Root) => {
         mdast = tree
@@ -45,19 +44,30 @@ describe("remarkEmbed", () => {
     parser = new jsdom.window.DOMParser()
   })
 
-  test("YouTube video should be embedded with oEmbed", async () => {
+  test("YouTube video (www.youtube.com/watch?v=) should be embedded with iframe", async () => {
     const md = dedent`
       <https://www.youtube.com/watch?v=Gy5vAs_jQSo>
     `
-    const expectedOEmbedData = (await unfurl("https://www.youtube.com/watch?v=Gy5vAs_jQSo")).oEmbed
 
     const { html } = await process(md)
     const doc = parser.parseFromString(html, "text/html")
-    const oEmbed = doc.querySelector("oembed")
-    const actualOEmbedData = JSON.parse(oEmbed?.getAttribute("oEmbed") ?? "")
+    const iframe = doc.querySelector("iframe")
 
-    expect(oEmbed).not.toBeNull()
-    expect(actualOEmbedData).toEqual(expectedOEmbedData)
+    expect(iframe).not.toBeNull()
+    expect(iframe?.getAttribute("src")).toBe("https://www.youtube.com/embed/Gy5vAs_jQSo")
+  })
+
+  test("YouTube video (www.youtube.com/embed/) should be embedded with iframe", async () => {
+    const md = dedent`
+      <https://www.youtube.com/embed/Gy5vAs_jQSo>
+    `
+
+    const { html } = await process(md)
+    const doc = parser.parseFromString(html, "text/html")
+    const iframe = doc.querySelector("iframe")
+
+    expect(iframe).not.toBeNull()
+    expect(iframe?.getAttribute("src")).toBe("https://www.youtube.com/embed/Gy5vAs_jQSo")
   })
 
   test("Google Slides should be embedded with iframe", async () => {
