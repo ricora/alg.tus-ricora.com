@@ -16,6 +16,7 @@ import {
   googleSlidesTransformer,
   oEmbedTransformer,
   remarkEmbed,
+  youTubeTransformer,
   type RemarkEmbedOptions,
 } from "./src/lib/remark-plugins/remarkEmbed"
 import remarkMath from "remark-math"
@@ -38,7 +39,7 @@ export default defineConfig({
       [
         remarkEmbed,
         {
-          transformers: [googleSlidesTransformer, oEmbedTransformer],
+          transformers: [youTubeTransformer, googleSlidesTransformer, oEmbedTransformer],
         } satisfies RemarkEmbedOptions,
       ],
       remarkLinkCard,
