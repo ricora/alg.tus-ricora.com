@@ -57,6 +57,10 @@ Issueを作成する前に同様のIssueが既に存在しないかをよく確�
 
 #### Forkをする方法
 
+[GitHubのリポジトリ](https://github.com/ricora/alg-blog)の右上にある「Fork」ボタンをクリックして、自分のアカウントにこのリポジトリをフォークしてください。
+
+![image](https://github.com/ricora/alg-blog/assets/96561881/92fd2f08-92c4-40f8-ae6f-9265c771f003)
+
 #### Featureブランチを切る方法
 
 ### 開発環境の構築
