@@ -40,7 +40,7 @@ export type TwitterPlayerCard = {
 /**
  * @see https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/app-card
  */
-export type TiwtterAppCard = {
+export type TwitterAppCard = {
   card: "app"
   site: string
   description?: string
@@ -56,4 +56,4 @@ export type TiwtterAppCard = {
   appCountry?: string
 }
 
-export type TwitterCard = TwitterSummaryCard | TwitterSummaryLargeImageCard | TwitterPlayerCard | TiwtterAppCard
+export type TwitterCard = TwitterSummaryCard | TwitterSummaryLargeImageCard | TwitterPlayerCard | TwitterAppCard
