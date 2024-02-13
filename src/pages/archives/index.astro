@@ -1,0 +1,136 @@
+---
+import { Icon, type IconName } from "@/components/Elements/Icon"
+import { BaseLayout } from "@/layouts/BaseLayout"
+import { formatDate } from "@/lib/date"
+import { calculateReadingTime } from "@/lib/posts"
+import { isDev } from "@/lib/runtime"
+import { getCollection } from "astro:content"
+import { twMerge } from "tailwind-merge"
+
+const posts = await getCollection("posts", ({ data }) => (isDev ? true : !data.draft))
+posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+
+const categories = await getCollection("categories")
+// TODO: タグも表示する
+//const tags = await getCollection("tags")
+
+type PostsType = typeof posts
+type postsByYearType = { [year: number]: PostsType }
+
+const postsByYear: postsByYearType = posts.reduce((acc, post) => {
+  const year = new Date(post.data.date).getFullYear()
+  if (!acc[year]) {
+    acc[year] = []
+  }
+  acc[year].push(post)
+  return acc
+}, {} as postsByYearType)
+---
+
+<BaseLayout
+  title="RICORA Programming Team"
+  titleSuffix=""
+  description="東京理科大学 電子計算機研究会 プログラミング班"
+  og={{
+    url: Astro.site!,
+  }}
+>
+  <main class="flex flex-1 flex-col gap-6 py-12">
+    <div>
+      <nav class="flex gap-3 border-b border-gray-300 text-sm md:text-lg dark:border-gray-700">
+        <span class="-mb-[1px] border-b border-gray-900 py-2 dark:border-gray-100">
+          <a
+            href="/archives"
+            class="flex flex-row gap-1 overflow-y-auto rounded-md p-2 text-foreground transition hover:bg-muted"
+            ><Icon name="tabler:archive" class="h-5 w-5 flex-none md:h-7 md:w-7" /><span>Archives</span></a
+          >
+        </span>
+        <span class="py-2">
+          <a
+            href="/categories"
+            class="flex flex-row gap-1 overflow-y-auto rounded-md p-2 text-muted-foreground transition hover:bg-muted hover:text-foreground"
+            ><Icon name="tabler:category" class="h-5 w-5 flex-none md:h-7 md:w-7" /><span>Categories</span></a
+          >
+        </span>
+        <span class="py-2">
+          <a
+            href="/tags"
+            class="flex flex-row gap-1 overflow-y-auto rounded-md p-2 text-muted-foreground transition hover:bg-muted hover:text-foreground"
+            ><Icon name="tabler:tag" class="h-5 w-5 flex-none md:h-7 md:w-7" /><span>Tags</span></a
+          >
+        </span>
+      </nav>
+    </div>
+
+    <ol class="relative border-s border-gray-300 dark:border-gray-700">
+      {
+        Object.entries(postsByYear)
+          .sort((a, b) => Number(b[0]) - Number(a[0]))
+          .map(([year, posts]) => {
+            return (
+              <li class="mb-10 ms-4">
+                <div class="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full border border-white bg-gray-200 dark:border-gray-900 dark:bg-gray-700" />
+                <time class="mb-3 text-lg font-normal leading-none text-gray-400 dark:text-gray-600">{year}</time>
+                <div class="flex flex-col gap-3 py-3">
+                  {posts.map((post, i) => {
+                    // TODO: コンポーネントに切り出す
+                    return (
+                      <div
+                        class="flex flex-row items-center gap-2 rounded-xl bg-card/50 p-4 backdrop-blur-lg duration-1000 ease-out animate-in fade-in-0 slide-in-from-bottom-6 hover:bg-muted/60"
+                        style={{
+                          "animation-delay": `${i * 160}ms`,
+                          "animation-fill-mode": "backwards",
+                        }}
+                      >
+                        <Icon name={post.data.icon as IconName} class="w-20 flex-none rounded-2xl p-4 sm:w-28 sm:p-6" />
+                        <div class="my-2 flex flex-col gap-2.5 sm:gap-4">
+                          <header>
+                            <div class="flex flex-row flex-wrap gap-2">
+                              {post.data.categories.map(({ id }) => {
+                                const category = categories.find((category) => category.id === id)!
+                                return (
+                                  <a
+                                    href={`/${id}`}
+                                    class={twMerge(
+                                      "flex flex-row items-center gap-1 rounded-md bg-blue-400 px-2.5 py-1 text-sm font-bold text-white transition hover:brightness-110 sm:px-4 sm:text-base",
+                                      category.data.twClassName,
+                                    )}
+                                  >
+                                    <Icon name={category.data.icon as IconName} class="h-5 w-5" />
+                                    <div>{category.data.title}</div>
+                                  </a>
+                                )
+                              })}
+                            </div>
+                          </header>
+                          <a href={`/posts/${post.slug}`}>
+                            <h2 class="text-lg font-black sm:text-xl md:text-2xl">{post.data.title}</h2>
+                          </a>
+                          <footer class="flex flex-row flex-wrap gap-2 text-xs font-semibold text-gray-500 sm:gap-4 sm:text-sm">
+                            <div class="flex flex-row items-center gap-2">
+                              <Icon name="tabler:calendar-time" class="h-4 w-4 sm:h-5 sm:w-5" />
+                              <span>投稿: {formatDate(post.data.date)}</span>
+                            </div>
+                            {post.data.lastmod && (
+                              <div class="flex flex-row items-center gap-2">
+                                <Icon name="tabler:refresh" class="h-5 w-5" />
+                                <span>最終更新: {formatDate(post.data.lastmod)}</span>
+                              </div>
+                            )}
+                            <div class="flex flex-row items-center gap-2">
+                              <Icon name="tabler:clock" class="h-5 w-5" />
+                              <span>読了時間: 約{calculateReadingTime(post.body)}分</span>
+                            </div>
+                          </footer>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </li>
+            )
+          })
+      }
+    </ol>
+  </main>
+</BaseLayout>
