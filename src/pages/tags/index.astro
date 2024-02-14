@@ -1,8 +1,8 @@
 ---
+import { Tabs, type TabsProps } from "@/components/Elements/Tabs"
 import { BaseLayout } from "@/layouts/BaseLayout"
 import { isDev } from "@/lib/runtime"
 import { getCollection } from "astro:content"
-import { Tabs } from "@/components/Elements/Tabs"
 
 const posts = await getCollection("posts", ({ data }) => (isDev ? true : !data.draft))
 
@@ -14,16 +14,18 @@ for (const tag of tagCollection) {
   tagIdToTitle[tag.id] = tag.data.title
 }
 
-const tagSlugs = []
+const tagSlugs: string[] = []
 for (const post of posts) {
-  for (const tag of post.data.tags) {
-    if (!tagSlugs.includes(tag)) {
-      tagSlugs.push(tag)
+  if (post.data && post.data.tags) {
+    for (const tag of post.data.tags) {
+      if (!tagSlugs.includes(tag)) {
+        tagSlugs.push(tag)
+      }
     }
   }
 }
 
-const tabProps = {
+const tabProps: TabsProps = {
   tabs: [
     {
       value: "アーカイブ",
