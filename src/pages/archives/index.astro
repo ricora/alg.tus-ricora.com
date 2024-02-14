@@ -6,6 +6,7 @@ import { calculateReadingTime } from "@/lib/posts"
 import { isDev } from "@/lib/runtime"
 import { getCollection } from "astro:content"
 import { twMerge } from "tailwind-merge"
+import { Tabs } from "@/components/Elements/Tabs"
 
 const posts = await getCollection("posts", ({ data }) => (isDev ? true : !data.draft))
 posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
@@ -25,6 +26,27 @@ const postsByYear: postsByYearType = posts.reduce((acc, post) => {
   acc[year].push(post)
   return acc
 }, {} as postsByYearType)
+
+const tabProps = {
+  tabs: [
+    {
+      value: "アーカイブ",
+      icon: "tabler:archive",
+      href: "/archives",
+      isActive: true,
+    },
+    {
+      value: "カテゴリ",
+      icon: "tabler:category",
+      href: "/categories",
+    },
+    {
+      value: "タグ",
+      icon: "tabler:tag",
+      href: "/tags",
+    },
+  ],
+}
 ---
 
 <BaseLayout
@@ -36,29 +58,7 @@ const postsByYear: postsByYearType = posts.reduce((acc, post) => {
 >
   <main class="flex flex-1 flex-col gap-6 py-12">
     <div>
-      <nav class="flex gap-3 border-b border-gray-300 text-sm md:text-lg dark:border-gray-700">
-        <span class="-mb-[1px] border-b border-gray-900 py-2 dark:border-gray-100">
-          <a
-            href="/archives"
-            class="flex flex-row gap-1 overflow-y-auto rounded-md p-2 text-foreground transition hover:bg-muted"
-            ><Icon name="tabler:archive" class="h-5 w-5 flex-none md:h-7 md:w-7" /><span>Archives</span></a
-          >
-        </span>
-        <span class="py-2">
-          <a
-            href="/categories"
-            class="flex flex-row gap-1 overflow-y-auto rounded-md p-2 text-muted-foreground transition hover:bg-muted hover:text-foreground"
-            ><Icon name="tabler:category" class="h-5 w-5 flex-none md:h-7 md:w-7" /><span>Categories</span></a
-          >
-        </span>
-        <span class="py-2">
-          <a
-            href="/tags"
-            class="flex flex-row gap-1 overflow-y-auto rounded-md p-2 text-muted-foreground transition hover:bg-muted hover:text-foreground"
-            ><Icon name="tabler:tag" class="h-5 w-5 flex-none md:h-7 md:w-7" /><span>Tags</span></a
-          >
-        </span>
-      </nav>
+      <Tabs {...tabProps} />
     </div>
 
     <ol class="relative border-s border-gray-300 dark:border-gray-700">
