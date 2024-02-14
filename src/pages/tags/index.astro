@@ -1,0 +1,76 @@
+---
+import { BaseLayout } from "@/layouts/BaseLayout"
+import { isDev } from "@/lib/runtime"
+import { getCollection } from "astro:content"
+import { Tabs } from "@/components/Elements/Tabs"
+
+const posts = await getCollection("posts", ({ data }) => (isDev ? true : !data.draft))
+
+const tagCollection = await getCollection("tags")
+
+const tagIdToTitle: { [key: string]: string } = {}
+
+for (const tag of tagCollection) {
+  tagIdToTitle[tag.id] = tag.data.title
+}
+
+const tagSlugs = []
+for (const post of posts) {
+  for (const tag of post.data.tags) {
+    if (!tagSlugs.includes(tag)) {
+      tagSlugs.push(tag)
+    }
+  }
+}
+
+const tabProps = {
+  tabs: [
+    {
+      value: "アーカイブ",
+      icon: "tabler:archive",
+      href: "/archives",
+    },
+    {
+      value: "カテゴリ",
+      icon: "tabler:category",
+      href: "/categories",
+    },
+    {
+      value: "タグ",
+      icon: "tabler:tag",
+      href: "/tags",
+      isActive: true,
+    },
+  ],
+}
+---
+
+<BaseLayout
+  title="タグ"
+  description="東京理科大学 電子計算機研究会 プログラミング班"
+  og={{
+    url: Astro.site!,
+  }}
+>
+  <main class="flex flex-1 flex-col gap-6 py-12">
+    <div>
+      <Tabs {...tabProps} />
+    </div>
+
+    <div class="flex flex-wrap">
+      {
+        tagSlugs.map((tag) => (
+          <a
+            href={`/tags/${tag}`}
+            class="m-1 rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 text-sm transition hover:brightness-90 dark:border-gray-700 dark:bg-gray-950"
+          >
+            <>
+              <span class="pr-1 text-xs text-muted-foreground">#</span>
+              <span>{Object.prototype.hasOwnProperty.call(tagIdToTitle, tag) ? tagIdToTitle[tag] : tag}</span>
+            </>
+          </a>
+        ))
+      }
+    </div>
+  </main>
+</BaseLayout>
