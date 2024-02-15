@@ -43,6 +43,7 @@ export type IconProps = ComponentProps<"div"> & {
 
 const IconComponent: Component<IconProps> = (props) => {
   if (!isServer) {
+    // eslint-disable-next-line no-console
     console.error("Icon component should only be used on the server")
     return null
   }

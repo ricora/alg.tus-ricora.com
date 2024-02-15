@@ -35,7 +35,6 @@ const initTheme = () => {
   themeAtom.subscribe((value) => {
     writeThemeToDom(value)
     saveThemeToStroge(value)
-    console.log("Theme has changed to", value)
   })
 
   // デバイスでダークモードもしくはライトモードが有効になった場合、サイトのテーマをそれに合わせる
