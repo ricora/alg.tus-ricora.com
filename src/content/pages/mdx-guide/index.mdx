@@ -7,9 +7,22 @@ import { TwoColumn } from "./TwoColumn"
 
 ## 見出し
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx # 見出し1 ## 見出し2 ### 見出し3 #### 見出し4 ```</div>
-  <div slot="right"># 見出し1 ## 見出し2 ### 見出し3 #### 見出し4</div>
+  <div slot="left">
+    ```mdx
+    # 見出し1
+    ## 見出し2
+    ### 見出し3
+    #### 見出し4
+    ```
+  </div>
+  <div slot="right">
+    # 見出し1
+    ## 見出し2
+    ### 見出し3
+    #### 見出し4
+  </div>
 </TwoColumn>
 
 > [!warning]
@@ -19,36 +32,89 @@ import { TwoColumn } from "./TwoColumn"
 
 ### 箇条書き
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx - リスト1 - リスト2 - リスト2-1 - リスト2-2 ```</div>
-  <div slot="right">- リスト1 - リスト2 - リスト2-1 - リスト2-2</div>
+  <div slot="left">
+    ```mdx
+    - リスト1
+    - リスト2
+      - リスト2-1
+      - リスト2-2
+    ```
+  </div>
+  <div slot="right">
+    - リスト1
+    - リスト2
+      - リスト2-1
+      - リスト2-2
+  </div>
 </TwoColumn>
 
 ### 番号付きリスト
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx 1. リスト1 2. リスト2 1. リスト2-1 2. リスト2-2 ```</div>
-  <div slot="right">1. リスト1 2. リスト2 1. リスト2-1 2. リスト2-2</div>
+  <div slot="left">
+    ```mdx
+    1. リスト1
+    2. リスト2
+      1. リスト2-1
+      2. リスト2-2
+    ```
+  </div>
+  <div slot="right">
+    1. リスト1
+    2. リスト2
+        1. リスト2-1
+        2. リスト2-2
+  </div>
 </TwoColumn>
 
 ## インラインスタイル
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx *イタリック* **太字** ***太字イタリック*** ~~取り消し線~~ `inline code` ```</div>
-  <div slot="right">*イタリック* **太字** ***太字イタリック*** ~~取り消し線~~ `inline code`</div>
+  <div slot="left">
+    ```mdx
+    *イタリック*  
+    **太字**  
+    ***太字イタリック***  
+    ~~取り消し線~~  
+    `inline code`
+    ```
+  </div>
+  <div slot="right">
+    *イタリック*  
+    **太字**  
+    ***太字イタリック***  
+    ~~取り消し線~~  
+    `inline code`
+  </div>
 </TwoColumn>
 
 ## テキストリンク
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx [リンク](https://alg.tus-ricora.com) ```</div>
-  <div slot="right">[リンク](https://alg.tus-ricora.com)</div>
+  <div slot="left">
+    ```mdx
+    [リンク](https://alg.tus-ricora.com)
+    ```
+  </div>
+  <div slot="right">
+    [リンク](https://alg.tus-ricora.com)
+  </div>
 </TwoColumn>
 
 ## 画像
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx ![RICORAのロゴ](./images/ricora.svg) ```</div>
+  <div slot="left">
+    ```mdx
+    ![RICORAのロゴ](./images/ricora.svg)
+    ```
+  </div>
   <div slot="right" class="*:*:m-0 *:m-0">
     ![RICORAのロゴ](./images/ricora.svg)
   </div>
@@ -56,86 +122,171 @@ import { TwoColumn } from "./TwoColumn"
 
 ## テーブル
 
+{/* prettier-ignore */}
 <TwoColumn>
   <div slot="left">
-    ```mdx | ヘッダ1 | ヘッダ2 | ヘッダ3 | | ------- | ------- | ------- | | 1-1 | 1-2 | 1-3 | | 2-1 | 2-2 | 2-3 | ```
+    ```mdx
+    | ヘッダ1 | ヘッダ2 | ヘッダ3 |
+    | ------- | ------- | ------- |
+    | 1-1     | 1-2     | 1-3     |
+    | 2-1     | 2-2     | 2-3     |
+    ```
   </div>
   <div slot="right" class="*:my-0">
-    | ヘッダ1 | ヘッダ2 | ヘッダ3 | | ------- | ------- | ------- | | 1-1 | 1-2 | 1-3 | | 2-1 | 2-2 | 2-3 |
+    | ヘッダ1 | ヘッダ2 | ヘッダ3 |
+    | ------- | ------- | ------- |
+    | 1-1     | 1-2     | 1-3     |
+    | 2-1     | 2-2     | 2-3     |
   </div>
 </TwoColumn>
 
 ### テーブルのスタイル
 
+{/* prettier-ignore */}
 <TwoColumn>
   <div slot="left">
-    ```mdx | 左揃え | 中央揃え | 右揃え | | :------ | :------: | -----: | | 1-1 | 1-2 | 1-3 | | 2-1 | 2-2 | 2-3 | ```
+    ```mdx
+    | 左揃え  | 中央揃え | 右揃え |
+    | :------ | :------: | -----: |
+    | 1-1     | 1-2      | 1-3    |
+    | 2-1     | 2-2      | 2-3    |
+    ```
   </div>
   <div slot="right" class="*:my-0">
-    | 左揃え | 中央揃え | 右揃え | | :------ | :------: | -----: | | 1-1 | 1-2 | 1-3 | | 2-1 | 2-2 | 2-3 |
+    | 左揃え  | 中央揃え | 右揃え |
+    | :------ | :------: | -----: |
+    | 1-1     | 1-2      | 1-3    |
+    | 2-1     | 2-2      | 2-3    |
   </div>
 </TwoColumn>
 
 ## コードブロック
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">````mdx ```javascript const hello = "Hello, World!"; console.log(hello); ``` ````</div>
-  <div slot="right">```javascript const hello = "Hello, World!"; console.log(hello); ```</div>
+  <div slot="left">
+    ````mdx
+    ```javascript
+    const hello = "Hello, World!";
+    console.log(hello);
+    ```
+    ````
+  </div>
+  <div slot="right">
+    ```javascript
+    const hello = "Hello, World!";
+    console.log(hello);
+    ```
+  </div>
 </TwoColumn>
 
 ### タイトル付きコードブロック
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">````mdx ```javascript title=app.js const hello = "Hello, World!"; console.log(hello); ``` ````</div>
-  <div slot="right">```javascript title=app.js const hello = "Hello, World!"; console.log(hello); ```</div>
+  <div slot="left">
+    ````mdx
+    ```javascript title=app.js
+    const hello = "Hello, World!";
+    console.log(hello);
+    ```
+    ````
+  </div>
+  <div slot="right">
+    ```javascript title=app.js
+    const hello = "Hello, World!";
+    console.log(hello);
+    ```
+  </div>
 </TwoColumn>
 
 ### 行番号付きコードブロック
 
+{/* prettier-ignore */}
 <TwoColumn>
   <div slot="left">
-    ````mdx ```javascript showLineNumbers const hello = "Hello, World!"; console.log(hello); ``` ````
+    ````mdx
+    ```javascript showLineNumbers
+    const hello = "Hello, World!";
+    console.log(hello);
+    ```
+    ````
   </div>
-  <div slot="right">```javascript showLineNumbers const hello = "Hello, World!"; console.log(hello); ```</div>
+  <div slot="right">
+    ```javascript showLineNumbers
+    const hello = "Hello, World!";
+    console.log(hello);
+    ```
+  </div>
 </TwoColumn>
 
 ### 行ハイライト
 
+{/* prettier-ignore */}
 <TwoColumn>
   <div slot="left">
-    ````mdx ```javascript {(1 - 3, 5)}
-    const hello = "Hello," const world = "World!"; console.log(hello, world); // 4行目はハイライトされない console.log("Hello,
-    MDX!"); ``` ````
+    ````mdx
+    ```javascript {1-3, 5}
+    const hello = "Hello,"
+    const world = "World!";
+    console.log(hello, world);
+    // 4行目はハイライトされない
+    console.log("Hello, MDX!");
+    ```
+    ````
   </div>
   <div slot="right">
-    ```javascript {(1 - 3, 5)}
-    const hello = "Hello," const world = "World!"; console.log(hello, world); // 4行目はハイライトされない console.log("Hello,
-    MDX!"); ```
+    ```javascript {1-3, 5}
+    const hello = "Hello,"
+    const world = "World!";
+    console.log(hello, world);
+    // 4行目はハイライトされない
+    console.log("Hello, MDX!");
+    ```
   </div>
 </TwoColumn>
 
 ### Diff表示
 
+{/* prettier-ignore */}
 <TwoColumn>
   <div slot="left">
-    ````mdx ```javascript diff - const hello = "Hello, World!"; + const hello = "Hello, MDX!"; console.log(hello); ```
+    ````mdx
+    ```javascript diff
+    - const hello = "Hello, World!";
+    + const hello = "Hello, MDX!";
+      console.log(hello);
+    ```
     ````
   </div>
   <div slot="right">
-    ```javascript diff - const hello = "Hello, World!"; + const hello = "Hello, MDX!"; console.log(hello); ```
+    ```javascript diff
+    - const hello = "Hello, World!";
+    + const hello = "Hello, MDX!";
+      console.log(hello);
+    ```
   </div>
 </TwoColumn>
 
 ### 複数の属性を指定
 
+{/* prettier-ignore */}
 <TwoColumn>
   <div slot="left">
-    ````mdx ```javascript diff showLineNumbers {2} title="app.js" - const hello = "Hello, World!"; + const hello =
-    "Hello, MDX!"; console.log(hello); ``` ````
+    ````mdx
+    ```javascript diff showLineNumbers {2} title="app.js"
+    - const hello = "Hello, World!";
+    + const hello = "Hello, MDX!";
+      console.log(hello);
+    ```
+    ````
   </div>
   <div slot="right">
-    ```javascript diff showLineNumbers {2} title="app.js" - const hello = "Hello, World!"; + const hello = "Hello,
-    MDX!"; console.log(hello); ```
+    ```javascript diff showLineNumbers {2} title="app.js"
+    - const hello = "Hello, World!";
+    + const hello = "Hello, MDX!";
+      console.log(hello);
+    ```
   </div>
 </TwoColumn>
 
@@ -143,6 +294,7 @@ import { TwoColumn } from "./TwoColumn"
 
 ### 数式ブロック
 
+{/* prettier-ignore */}
 <TwoColumn>
   <div slot="left">
     ```mdx
@@ -160,20 +312,37 @@ import { TwoColumn } from "./TwoColumn"
 
 ### インライン数式
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx $a^2 + b^2 = c^2$ ```</div>
-  <div slot="right">$a^2 + b^2 = c^2$</div>
+  <div slot="left">
+    ```mdx
+    $a^2 + b^2 = c^2$
+    ```
+  </div>
+  <div slot="right">
+    $a^2 + b^2 = c^2$
+  </div>
 </TwoColumn>
 
 ## 引用
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx > 引用文 > 引用文 ```</div>
-  <div slot="right">> 引用文 > 引用文</div>
+  <div slot="left">
+    ```mdx
+    > 引用文
+    > 引用文
+    ```
+  </div>
+  <div slot="right">
+    > 引用文
+    > 引用文
+  </div>
 </TwoColumn>
 
 ## 脚注
 
+{/* prettier-ignore */}
 <TwoColumn>
   <div slot="left">
     ```mdx
@@ -193,151 +362,359 @@ import { TwoColumn } from "./TwoColumn"
 
 ## 区切り線
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx --- ```</div>
-  <div slot="right">---</div>
+  <div slot="left">
+    ```mdx
+    ---
+    ```
+  </div>
+  <div slot="right">
+    ---
+  </div>
 </TwoColumn>
 
 ## コメントアウト
 
+{/* prettier-ignore */}
 <TwoColumn>
   <div slot="left">
     ```mdx
     {/* コメントアウト */}
     ```
   </div>
-  <div slot="right">{/* コメントアウト */}</div>
+  <div slot="right">
+    {/* コメントアウト */}
+  </div>
 </TwoColumn>
 
 ## コールアウト
 
 ### コールアウトの種類
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx > [!note] > コールアウト ```</div>
-  <div slot="right">> [!note] > コールアウト</div>
+  <div slot="left">
+    ```mdx
+    > [!note]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right">
+    > [!note]
+    > コールアウト
+  </div>
 </TwoColumn>
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx > [!info] > コールアウト ```</div>
-  <div slot="right">> [!info] > コールアウト</div>
+  <div slot="left">
+    ```mdx
+    > [!info]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right">
+    > [!info]
+    > コールアウト
+  </div>
 </TwoColumn>
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx > [!abstract] > コールアウト ```</div>
-  <div slot="right">> [!abstract] > コールアウト</div>
+  <div slot="left">
+    ```mdx
+    > [!abstract]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right">
+    > [!abstract]
+    > コールアウト
+  </div>
 </TwoColumn>
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx > [!tldl] > コールアウト ```</div>
-  <div slot="right">> [!tldr] > コールアウト</div>
+  <div slot="left">
+    ```mdx
+    > [!tldl]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right">
+    > [!tldr]
+    > コールアウト
+  </div>
 </TwoColumn>
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx > [!todo] > コールアウト ```</div>
-  <div slot="right">> [!todo] > コールアウト</div>
+  <div slot="left">
+    ```mdx
+    > [!todo]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right">
+    > [!todo]
+    > コールアウト
+  </div>
 </TwoColumn>
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx > [!tip] > コールアウト ```</div>
-  <div slot="right">> [!tip] > コールアウト</div>
+  <div slot="left">
+    ```mdx
+    > [!tip]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right">
+    > [!tip]
+    > コールアウト
+  </div>
 </TwoColumn>
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx > [!success] > コールアウト ```</div>
-  <div slot="right">> [!success] > コールアウト</div>
+  <div slot="left">
+    ```mdx
+    > [!success]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right">
+    > [!success]
+    > コールアウト
+  </div>
 </TwoColumn>
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx > [!question] > コールアウト ```</div>
-  <div slot="right">> [!question] > コールアウト</div>
+  <div slot="left">
+    ```mdx
+    > [!question]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right">
+    > [!question]
+    > コールアウト
+  </div>
 </TwoColumn>
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx > [!warning] > コールアウト ```</div>
-  <div slot="right">> [!warning] > コールアウト</div>
+  <div slot="left">
+    ```mdx
+    > [!warning]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right">
+    > [!warning]
+    > コールアウト
+  </div>
 </TwoColumn>
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx > [!caution] > コールアウト ```</div>
-  <div slot="right">> [!caution] > コールアウト</div>
+  <div slot="left">
+    ```mdx
+    > [!caution]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right">
+    > [!caution]
+    > コールアウト
+  </div>
 </TwoColumn>
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx > [!failure] > コールアウト ```</div>
-  <div slot="right">> [!failure] > コールアウト</div>
+  <div slot="left">
+    ```mdx
+    > [!failure]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right">
+    > [!failure]
+    > コールアウト
+  </div>
 </TwoColumn>
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx > [!danger] > コールアウト ```</div>
-  <div slot="right">> [!danger] > コールアウト</div>
+  <div slot="left">
+    ```mdx
+    > [!danger]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right">
+    > [!danger]
+    > コールアウト
+  </div>
 </TwoColumn>
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx > [!error] > コールアウト ```</div>
-  <div slot="right">> [!error] > コールアウト</div>
+  <div slot="left">
+    ```mdx
+    > [!error]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right">
+    > [!error]
+    > コールアウト
+  </div>
 </TwoColumn>
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx > [!bug] > コールアウト ```</div>
-  <div slot="right">> [!bug] > コールアウト</div>
+  <div slot="left">
+    ```mdx
+    > [!bug]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right">
+    > [!bug]
+    > コールアウト
+  </div>
 </TwoColumn>
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx > [!important] > コールアウト ```</div>
-  <div slot="right">> [!important] > コールアウト</div>
+  <div slot="left">
+    ```mdx
+    > [!important]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right">
+    > [!important]
+    > コールアウト
+  </div>
 </TwoColumn>
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx > [!example] > コールアウト ```</div>
-  <div slot="right">> [!example] > コールアウト</div>
+  <div slot="left">
+    ```mdx
+    > [!example]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right">
+    > [!example]
+    > コールアウト
+  </div>
 </TwoColumn>
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx > [!quote] > コールアウト ```</div>
-  <div slot="right">> [!quote] > コールアウト</div>
+  <div slot="left">
+    ```mdx
+    > [!quote]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right">
+    > [!quote]
+    > コールアウト
+  </div>
 </TwoColumn>
 
 ### タイトル付きコールアウト
 
 任意のコールアウトには、タイトルを付けることができます。
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx > [!note] 重要ポイント > This is a note. ```</div>
-  <div slot="right">> [!note] 重要ポイント > This is a note.</div>
+  <div slot="left">
+    ```mdx
+    > [!note] 重要ポイント
+    > This is a note.
+    ```
+  </div>
+  <div slot="right">
+    > [!note] 重要ポイント
+    > This is a note.
+  </div>
 </TwoColumn>
 
 タイトルには、任意のインライン要素を含めることができます。
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx > [!note] $a=1$のとき`true`となる*理由* > This is a note. ```</div>
-  <div slot="right">> [!note] $a=1$のとき`true`となる*理由* > This is a note.</div>
+  <div slot="left">
+    ```mdx
+    > [!note] $a=1$のとき`true`となる*理由*
+    > This is a note.
+    ```
+  </div>
+  <div slot="right">
+    > [!note] $a=1$のとき`true`となる*理由*
+    > This is a note.
+  </div>
 </TwoColumn>
 
 ### ネストしたコールアウト
 
 コールアウトはネストすることができます。
 
+{/* prettier-ignore */}
 <TwoColumn>
   <div slot="left">
-    ```mdx > [!note] > コールアウト > > [!info] > > ネストしたコールアウト > > > [!warning] > > >
-    さらにネストしたコールアウト ```
+    ```mdx
+    > [!note]
+    > コールアウト
+    > > [!info]
+    > > ネストしたコールアウト
+    > > > [!warning]
+    > > > さらにネストしたコールアウト
+    ```
   </div>
   <div slot="right">
-    > [!note] > コールアウト > > [!info] > > ネストしたコールアウト > > > [!warning] > > > さらにネストしたコールアウト
+    > [!note]
+    > コールアウト
+    > > [!info]
+    > > ネストしたコールアウト
+    > > > [!warning]
+    > > > さらにネストしたコールアウト
   </div>
 </TwoColumn>
 
 また、コールアウト内では他のブロック要素を含めることができます。
 
+{/* prettier-ignore */}
 <TwoColumn>
   <div slot="left">
-    ```mdx > [!note] > ここは**コールアウト**の*中身*です。 > ```js title=app.js showLineNumbers > const hello = "Hello,
-    World!"; > console.log(hello); > ``` > - リスト1 > - リスト2 ```
+    ```mdx
+    > [!note]
+    > ここは**コールアウト**の*中身*です。
+    > ```js title=app.js showLineNumbers
+    > const hello = "Hello, World!";
+    > console.log(hello);
+    > ```
+    > - リスト1
+    > - リスト2
+    ```
   </div>
   <div slot="right">
-    > [!note] > ここは**コールアウト**の*中身*です。 > ```js title=app.js showLineNumbers > const hello = "Hello,
-    World!"; > console.log(hello); > ``` > - リスト1 > - リスト2
+    > [!note]
+    > ここは**コールアウト**の*中身*です。
+    > ```js title=app.js showLineNumbers
+    > const hello = "Hello, World!";
+    > console.log(hello);
+    > ```
+    > - リスト1
+    > - リスト2
   </div>
 </TwoColumn>
 
@@ -347,8 +724,13 @@ URLを直接そのまま記述することで、リンクカードを表示す�
 
 また、URLの上下には空行を入れてください。空行のない場合、リンクカードではなくURLがそのまま表示されます。
 
+{/* prettier-ignore */}
 <TwoColumn>
-  <div slot="left">```mdx https://github.com/ricora ```</div>
+  <div slot="left">
+    ```mdx
+    https://github.com/ricora
+    ```
+  </div>
   <div slot="right" class="*:m-0">
     https://github.com/ricora
   </div>
@@ -360,9 +742,12 @@ URLを直接そのまま記述することで、リンクカードを表示す�
 
 import { LinkCard } from "@/components/Elements/LinkCard"
 
+{/* prettier-ignore */}
 <TwoColumn>
   <div slot="left">
-    ```mdx import {LinkCard} from "@/components/Elements/LinkCard"
+    ```mdx
+    import { LinkCard } from "@/components/Elements/LinkCard"
+    
     <LinkCard href="https://github.com/ricora" />
     ```
   </div>
