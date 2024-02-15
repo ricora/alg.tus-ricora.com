@@ -20,7 +20,7 @@ const lastmod = post.data.lastmod ? formatDate(post.data.lastmod) : undefined
 const readingTime = calculateReadingTime(post.body)
 
 const postUrl = new URL(path.join("posts", post.slug), Astro.site)
-const ogImageUrl = new URL(path.join("posts", `${post.slug}.png`), Astro.site)
+const ogImageUrl = new URL(path.join("posts", post.slug, "og.png"), Astro.site)
 ---
 
 <BaseLayout
