@@ -16,6 +16,7 @@ const compat = new FlatCompat()
 const globalConfig = defineFlatConfig([
   {
     rules: {
+      "no-console": "error",
       "no-var": "error",
       "@typescript-eslint/no-unused-vars": [
         "error",
