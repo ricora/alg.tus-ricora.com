@@ -12,8 +12,6 @@ export type TabsProps = {
 }
 
 export const Tabs: Component<TabsProps> = (props) => {
-  console.log(props)
-
   return (
     <nav class="flex gap-3 border-b border-gray-300 text-sm md:text-lg dark:border-gray-700">
       {props.tabs.map((tab) => {
