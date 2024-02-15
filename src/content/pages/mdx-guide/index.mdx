@@ -1,0 +1,406 @@
+---
+title: RICORAのMDX記法一覧
+draft: false
+---
+
+import { TwoColumn } from "./TwoColumn"
+
+## 見出し
+
+<TwoColumn>
+  <div slot="left">```mdx # 見出し1 ## 見出し2 ### 見出し3 #### 見出し4 ```</div>
+  <div slot="right"># 見出し1 ## 見出し2 ### 見出し3 #### 見出し4</div>
+</TwoColumn>
+
+> [!warning]
+> アクセシビリティの観点から、見出しはレベル2から始めてください。
+
+## リスト
+
+### 箇条書き
+
+<TwoColumn>
+  <div slot="left">```mdx - リスト1 - リスト2 - リスト2-1 - リスト2-2 ```</div>
+  <div slot="right">- リスト1 - リスト2 - リスト2-1 - リスト2-2</div>
+</TwoColumn>
+
+### 番号付きリスト
+
+<TwoColumn>
+  <div slot="left">```mdx 1. リスト1 2. リスト2 1. リスト2-1 2. リスト2-2 ```</div>
+  <div slot="right">1. リスト1 2. リスト2 1. リスト2-1 2. リスト2-2</div>
+</TwoColumn>
+
+## インラインスタイル
+
+<TwoColumn>
+  <div slot="left">```mdx *イタリック* **太字** ***太字イタリック*** ~~取り消し線~~ `inline code` ```</div>
+  <div slot="right">*イタリック* **太字** ***太字イタリック*** ~~取り消し線~~ `inline code`</div>
+</TwoColumn>
+
+## テキストリンク
+
+<TwoColumn>
+  <div slot="left">```mdx [リンク](https://alg.tus-ricora.com) ```</div>
+  <div slot="right">[リンク](https://alg.tus-ricora.com)</div>
+</TwoColumn>
+
+## 画像
+
+<TwoColumn>
+  <div slot="left">```mdx ![RICORAのロゴ](./images/ricora.svg) ```</div>
+  <div slot="right" class="*:*:m-0 *:m-0">
+    ![RICORAのロゴ](./images/ricora.svg)
+  </div>
+</TwoColumn>
+
+## テーブル
+
+<TwoColumn>
+  <div slot="left">
+    ```mdx | ヘッダ1 | ヘッダ2 | ヘッダ3 | | ------- | ------- | ------- | | 1-1 | 1-2 | 1-3 | | 2-1 | 2-2 | 2-3 | ```
+  </div>
+  <div slot="right" class="*:my-0">
+    | ヘッダ1 | ヘッダ2 | ヘッダ3 | | ------- | ------- | ------- | | 1-1 | 1-2 | 1-3 | | 2-1 | 2-2 | 2-3 |
+  </div>
+</TwoColumn>
+
+### テーブルのスタイル
+
+<TwoColumn>
+  <div slot="left">
+    ```mdx | 左揃え | 中央揃え | 右揃え | | :------ | :------: | -----: | | 1-1 | 1-2 | 1-3 | | 2-1 | 2-2 | 2-3 | ```
+  </div>
+  <div slot="right" class="*:my-0">
+    | 左揃え | 中央揃え | 右揃え | | :------ | :------: | -----: | | 1-1 | 1-2 | 1-3 | | 2-1 | 2-2 | 2-3 |
+  </div>
+</TwoColumn>
+
+## コードブロック
+
+<TwoColumn>
+  <div slot="left">````mdx ```javascript const hello = "Hello, World!"; console.log(hello); ``` ````</div>
+  <div slot="right">```javascript const hello = "Hello, World!"; console.log(hello); ```</div>
+</TwoColumn>
+
+### タイトル付きコードブロック
+
+<TwoColumn>
+  <div slot="left">````mdx ```javascript title=app.js const hello = "Hello, World!"; console.log(hello); ``` ````</div>
+  <div slot="right">```javascript title=app.js const hello = "Hello, World!"; console.log(hello); ```</div>
+</TwoColumn>
+
+### 行番号付きコードブロック
+
+<TwoColumn>
+  <div slot="left">
+    ````mdx ```javascript showLineNumbers const hello = "Hello, World!"; console.log(hello); ``` ````
+  </div>
+  <div slot="right">```javascript showLineNumbers const hello = "Hello, World!"; console.log(hello); ```</div>
+</TwoColumn>
+
+### 行ハイライト
+
+<TwoColumn>
+  <div slot="left">
+    ````mdx ```javascript {(1 - 3, 5)}
+    const hello = "Hello," const world = "World!"; console.log(hello, world); // 4行目はハイライトされない console.log("Hello,
+    MDX!"); ``` ````
+  </div>
+  <div slot="right">
+    ```javascript {(1 - 3, 5)}
+    const hello = "Hello," const world = "World!"; console.log(hello, world); // 4行目はハイライトされない console.log("Hello,
+    MDX!"); ```
+  </div>
+</TwoColumn>
+
+### Diff表示
+
+<TwoColumn>
+  <div slot="left">
+    ````mdx ```javascript diff - const hello = "Hello, World!"; + const hello = "Hello, MDX!"; console.log(hello); ```
+    ````
+  </div>
+  <div slot="right">
+    ```javascript diff - const hello = "Hello, World!"; + const hello = "Hello, MDX!"; console.log(hello); ```
+  </div>
+</TwoColumn>
+
+### 複数の属性を指定
+
+<TwoColumn>
+  <div slot="left">
+    ````mdx ```javascript diff showLineNumbers {2} title="app.js" - const hello = "Hello, World!"; + const hello =
+    "Hello, MDX!"; console.log(hello); ``` ````
+  </div>
+  <div slot="right">
+    ```javascript diff showLineNumbers {2} title="app.js" - const hello = "Hello, World!"; + const hello = "Hello,
+    MDX!"; console.log(hello); ```
+  </div>
+</TwoColumn>
+
+## 数式
+
+### 数式ブロック
+
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    $$
+    \forall \epsilon > 0, \exists \delta > 0 \text{ s.t. } |x - a| < \delta \Rightarrow |f(x) - b| < \epsilon
+    $$
+    ```
+  </div>
+  <div slot="right">
+    $$
+    \forall \epsilon > 0, \exists \delta > 0 \text{ s.t. } |x - a| < \delta \Rightarrow |f(x) - b| < \epsilon
+    $$
+  </div>
+</TwoColumn>
+
+### インライン数式
+
+<TwoColumn>
+  <div slot="left">```mdx $a^2 + b^2 = c^2$ ```</div>
+  <div slot="right">$a^2 + b^2 = c^2$</div>
+</TwoColumn>
+
+## 引用
+
+<TwoColumn>
+  <div slot="left">```mdx > 引用文 > 引用文 ```</div>
+  <div slot="right">> 引用文 > 引用文</div>
+</TwoColumn>
+
+## 脚注
+
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    これは脚注です[^1]。
+
+    [^1]: 脚注の内容
+    ```
+
+  </div>
+  <div slot="right">
+    これは脚注です[^1]。
+
+    [^1]: 脚注の内容
+
+  </div>
+</TwoColumn>
+
+## 区切り線
+
+<TwoColumn>
+  <div slot="left">```mdx --- ```</div>
+  <div slot="right">---</div>
+</TwoColumn>
+
+## コメントアウト
+
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    {/* コメントアウト */}
+    ```
+  </div>
+  <div slot="right">{/* コメントアウト */}</div>
+</TwoColumn>
+
+## コールアウト
+
+### コールアウトの種類
+
+<TwoColumn>
+  <div slot="left">```mdx > [!note] > コールアウト ```</div>
+  <div slot="right">> [!note] > コールアウト</div>
+</TwoColumn>
+
+<TwoColumn>
+  <div slot="left">```mdx > [!info] > コールアウト ```</div>
+  <div slot="right">> [!info] > コールアウト</div>
+</TwoColumn>
+
+<TwoColumn>
+  <div slot="left">```mdx > [!abstract] > コールアウト ```</div>
+  <div slot="right">> [!abstract] > コールアウト</div>
+</TwoColumn>
+
+<TwoColumn>
+  <div slot="left">```mdx > [!tldl] > コールアウト ```</div>
+  <div slot="right">> [!tldr] > コールアウト</div>
+</TwoColumn>
+
+<TwoColumn>
+  <div slot="left">```mdx > [!todo] > コールアウト ```</div>
+  <div slot="right">> [!todo] > コールアウト</div>
+</TwoColumn>
+
+<TwoColumn>
+  <div slot="left">```mdx > [!tip] > コールアウト ```</div>
+  <div slot="right">> [!tip] > コールアウト</div>
+</TwoColumn>
+
+<TwoColumn>
+  <div slot="left">```mdx > [!success] > コールアウト ```</div>
+  <div slot="right">> [!success] > コールアウト</div>
+</TwoColumn>
+
+<TwoColumn>
+  <div slot="left">```mdx > [!question] > コールアウト ```</div>
+  <div slot="right">> [!question] > コールアウト</div>
+</TwoColumn>
+
+<TwoColumn>
+  <div slot="left">```mdx > [!warning] > コールアウト ```</div>
+  <div slot="right">> [!warning] > コールアウト</div>
+</TwoColumn>
+
+<TwoColumn>
+  <div slot="left">```mdx > [!caution] > コールアウト ```</div>
+  <div slot="right">> [!caution] > コールアウト</div>
+</TwoColumn>
+
+<TwoColumn>
+  <div slot="left">```mdx > [!failure] > コールアウト ```</div>
+  <div slot="right">> [!failure] > コールアウト</div>
+</TwoColumn>
+
+<TwoColumn>
+  <div slot="left">```mdx > [!danger] > コールアウト ```</div>
+  <div slot="right">> [!danger] > コールアウト</div>
+</TwoColumn>
+
+<TwoColumn>
+  <div slot="left">```mdx > [!error] > コールアウト ```</div>
+  <div slot="right">> [!error] > コールアウト</div>
+</TwoColumn>
+
+<TwoColumn>
+  <div slot="left">```mdx > [!bug] > コールアウト ```</div>
+  <div slot="right">> [!bug] > コールアウト</div>
+</TwoColumn>
+
+<TwoColumn>
+  <div slot="left">```mdx > [!important] > コールアウト ```</div>
+  <div slot="right">> [!important] > コールアウト</div>
+</TwoColumn>
+
+<TwoColumn>
+  <div slot="left">```mdx > [!example] > コールアウト ```</div>
+  <div slot="right">> [!example] > コールアウト</div>
+</TwoColumn>
+
+<TwoColumn>
+  <div slot="left">```mdx > [!quote] > コールアウト ```</div>
+  <div slot="right">> [!quote] > コールアウト</div>
+</TwoColumn>
+
+### タイトル付きコールアウト
+
+任意のコールアウトには、タイトルを付けることができます。
+
+<TwoColumn>
+  <div slot="left">```mdx > [!note] 重要ポイント > This is a note. ```</div>
+  <div slot="right">> [!note] 重要ポイント > This is a note.</div>
+</TwoColumn>
+
+タイトルには、任意のインライン要素を含めることができます。
+
+<TwoColumn>
+  <div slot="left">```mdx > [!note] $a=1$のとき`true`となる*理由* > This is a note. ```</div>
+  <div slot="right">> [!note] $a=1$のとき`true`となる*理由* > This is a note.</div>
+</TwoColumn>
+
+### ネストしたコールアウト
+
+コールアウトはネストすることができます。
+
+<TwoColumn>
+  <div slot="left">
+    ```mdx > [!note] > コールアウト > > [!info] > > ネストしたコールアウト > > > [!warning] > > >
+    さらにネストしたコールアウト ```
+  </div>
+  <div slot="right">
+    > [!note] > コールアウト > > [!info] > > ネストしたコールアウト > > > [!warning] > > > さらにネストしたコールアウト
+  </div>
+</TwoColumn>
+
+また、コールアウト内では他のブロック要素を含めることができます。
+
+<TwoColumn>
+  <div slot="left">
+    ```mdx > [!note] > ここは**コールアウト**の*中身*です。 > ```js title=app.js showLineNumbers > const hello = "Hello,
+    World!"; > console.log(hello); > ``` > - リスト1 > - リスト2 ```
+  </div>
+  <div slot="right">
+    > [!note] > ここは**コールアウト**の*中身*です。 > ```js title=app.js showLineNumbers > const hello = "Hello,
+    World!"; > console.log(hello); > ``` > - リスト1 > - リスト2
+  </div>
+</TwoColumn>
+
+## リンクカード
+
+URLを直接そのまま記述することで、リンクカードを表示することができます。
+
+また、URLの上下には空行を入れてください。空行のない場合、リンクカードではなくURLがそのまま表示されます。
+
+<TwoColumn>
+  <div slot="left">```mdx https://github.com/ricora ```</div>
+  <div slot="right" class="*:m-0">
+    https://github.com/ricora
+  </div>
+</TwoColumn>
+
+ただし、埋め込みに対応しているURLの場合は、[埋め込み](#埋め込み)が優先して表示されます。
+
+埋め込みに対応しているURLでリンクカードを表示したい場合は、以下のように`LinkCard`コンポーネントを使用してください。
+
+import { LinkCard } from "@/components/Elements/LinkCard"
+
+<TwoColumn>
+  <div slot="left">
+    ```mdx import {LinkCard} from "@/components/Elements/LinkCard"
+    <LinkCard href="https://github.com/ricora" />
+    ```
+  </div>
+  <div slot="right">
+    <LinkCard href="https://github.com/ricora" />
+  </div>
+</TwoColumn>
+
+## 埋め込み
+
+[oEmbed](https://oembed.com/)に対応しているURLを以下のように記述することで、埋め込みを表示することができます。[リンクカード](#リンクカード)と同様に、URLの上下には空行を入れてください。
+
+```mdx
+https://www.youtube.com/watch?v=Gy5vAs_jQSo
+```
+
+以下に対応しているウェブサイトの例を示します。これら以外でも、[oEmbed](https://oembed.com/)に対応しているウェブサイトであれば、埋め込みが表示されます。
+
+### YouTube
+
+https://www.youtube.com/watch?v=Gy5vAs_jQSo
+
+### Speaker Deck
+
+https://speakerdeck.com/tengu712/simplest-vulkan-tutorial-in-japanese
+
+### Docswell
+
+https://www.docswell.com/s/EpicGamesJapan/5EV87K-UE5_Lumen101
+
+### Google Slides
+
+https://docs.google.com/presentation/d/1yCKxpsaNmTpDeXw1a1P04GsgbX417-GAJMhd2Lc70XY/embed
+
+### Spotify
+
+https://open.spotify.com/playlist/37i9dQZF1DXdurasRmJgpJ?si=20dd3d8c5b4f4547
+
+### Adventar
+
+https://adventar.org/calendars/7447
