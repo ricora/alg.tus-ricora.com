@@ -28,7 +28,7 @@ import sitemap from "@astrojs/sitemap"
 export default defineConfig({
   site: "https://alg.tus-ricora.com/",
   redirects: {
-    "/p/[...slug]": "/posts/[...slug]",
+    "/p/[...slug]/": "/posts/[...slug]/",
   },
   integrations: [tailwind(), solidJs(), mdx(), sitemap(), pagefind()],
   markdown: {
