@@ -103,18 +103,18 @@ import { TwoColumn } from "./TwoColumn"
 <TwoColumn>
   <div slot="left">
     ```mdx
-    *イタリック*  
-    **太字**  
-    ***太字イタリック***  
-    ~~取り消し線~~  
+    *イタリック*
+    **太字**
+    ***太字イタリック***
+    ~~取り消し線~~
     `inline code`
     ```
   </div>
   <div slot="right">
-    *イタリック*  
-    **太字**  
-    ***太字イタリック***  
-    ~~取り消し線~~  
+    *イタリック*
+    **太字**
+    ***太字イタリック***
+    ~~取り消し線~~
     `inline code`
   </div>
 </TwoColumn>
@@ -897,3 +897,66 @@ https://open.spotify.com/playlist/37i9dQZF1DXdurasRmJgpJ?si=20dd3d8c5b4f4547
 ### Adventar
 
 https://adventar.org/calendars/7447
+
+## JSX
+
+MDXでは、ファイル内にJSXを記述することができます。
+
+以下に、カスタムコンポーネント`Counter`を`./Counter.tsx`に作成し、それをMDX内でインポートして使用する例を示します。
+
+import { Counter } from "./Counter"
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left" class="flex flex-col gap-8">
+    ```mdx
+    import { Counter } from "./Counter"
+
+    <Counter client:visible />
+    ```
+    ```tsx title=Counter.tsx
+    import { createSignal, type Component } from "solid-js"
+
+    export const Counter: Component = () => {
+      const [count, setCount] = createSignal(0)
+
+      const increment = () => setCount((prev) => prev + 1)
+      const decrement = () => setCount((prev) => prev - 1)
+
+      return (
+        <div class="space-x-2">
+          <div class="p-2">Count: {count()}</div>
+          <button onClick={increment} class="rounded border p-2 font-mono">
+            +1
+          </button>
+          <button onClick={decrement} class="rounded border p-2 font-mono">
+            -1
+          </button>
+        </div>
+      )
+    }
+    ```
+
+  </div>
+  <div slot="right">
+    <Counter client:visible />
+  </div>
+</TwoColumn>
+
+詳しくは、[MDXの公式ドキュメント](https://mdxjs.com/docs/what-is-mdx/#jsx)を参照してください。
+
+## JavaScript式
+
+MDXでは、ファイル内にJavaScript式を記述することができます。
+
+`{}`で囲まれた部分は、JavaScript式として評価されます。
+
+<TwoColumn>
+  <div slot="left">
+    ```mdx 1 + 1 = {1 + 1}
+    ```
+  </div>
+  <div slot="right">1 + 1 = {1 + 1}</div>
+</TwoColumn>
+
+詳しくは、[MDXの公式ドキュメント](https://mdxjs.com/docs/what-is-mdx/#expressions)を参照してください。
