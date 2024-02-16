@@ -943,7 +943,15 @@ import { Counter } from "./Counter"
   </div>
 </TwoColumn>
 
-また、任意のHTML要素（カスタムコンポーネントを含む）の中では、MDX記法を使用することができます。
+> [!warning] インタラクティブなコンポーネントの使用
+> インタラクティブなコンポーネントを使用する場合は、`client:*`ディレクティブを適用することを忘れないでください。
+>
+> `client:*`ディレクティブを適用することで、クライアントサイドでコンポーネントのJavaScriptが実行されるようになります。これにより、インタラクティブな操作が可能になります。
+> 利用可能な`client:*`ディレクティブについては、以下のリンクを参照してください。
+>
+> https://docs.astro.build/ja/reference/directives-reference/#client-directives
+
+また、任意のJSX要素の中ではMDX記法を使用することができます。
 
 {/* prettier-ignore */}
 <TwoColumn>
