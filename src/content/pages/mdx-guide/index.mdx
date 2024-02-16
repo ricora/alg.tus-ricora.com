@@ -106,7 +106,7 @@ import { TwoColumn } from "./TwoColumn"
   </div>
 </TwoColumn>
 
-また、文の末尾に半角スペースを2つ入れることで、改行を行うことができます。
+また、文の末尾に半角スペースを2つ入れることで、改行されます。
 
 ## テキストリンク
 
@@ -178,7 +178,7 @@ import { TwoColumn } from "./TwoColumn"
 
 ## コードブロック
 
-コードブロックは、バッククォート3つで囲むことで記述することができます。
+コードブロックは、バッククォート3つで囲むことで記述できます。
 
 {/* prettier-ignore */}
 <TwoColumn>
@@ -198,7 +198,7 @@ import { TwoColumn } from "./TwoColumn"
   </div>
 </TwoColumn>
 
-最初のバッククォート3つの後に、言語名を指定することで、シンタックスハイライトを行うことができます。シンタックスハイライトには[Shiki](https://shiki.style/)を使用しています。シンタックスハイライトをサポートしている言語については、[Shikiのドキュメント](https://shiki.style/languages)を参照してください。
+最初のバッククォート3つの後に、言語名を指定することで、シンタックスハイライトが適用されます。シンタックスハイライトには[Shiki](https://shiki.style/)を使用しています。シンタックスハイライトをサポートしている言語については、[Shikiのドキュメント](https://shiki.style/languages)を参照してください。
 
 言語名の後には、半角スペース区切りで属性を指定することができます。以下に利用可能な属性の例を示します。
 
@@ -292,7 +292,7 @@ import { TwoColumn } from "./TwoColumn"
 
 ### 複数の属性を指定
 
-タイトルや行番号、Diff表示など、複数の属性を同時に指定することができます。
+タイトルや行番号、Diff表示など、複数の属性を同時に指定できます。
 
 {/* prettier-ignore */}
 <TwoColumn>
@@ -316,7 +316,7 @@ import { TwoColumn } from "./TwoColumn"
 
 ## 数式
 
-数式は、LaTeX形式で記述することができます。数式のレンダリングには[KaTeX](https://katex.org/)を使用しています。
+数式は、LaTeX形式で記述できます。数式のレンダリングには[KaTeX](https://katex.org/)を使用しています。
 
 使用できるLaTeXのコマンドについては、[KaTeXのドキュメント](https://katex.org/docs/supported.html)を参照してください。
 
@@ -416,9 +416,9 @@ import { TwoColumn } from "./TwoColumn"
 
 ## コールアウト
 
-[引用](#引用)の先頭の行に、`[!type] title`という形式の記述をすることで、コールアウトを表示することができます。
+[引用](#引用)の先頭の行に、`[!type] title`という形式の記述をすることで、コールアウトを表示できます。
 
-ただし、`type`はコールアウトの種類を表し、`title`はコールアウトのタイトルを表します。また、`title`は省略することができます。
+ただし、`type`はコールアウトの種類を表し、`title`はコールアウトのタイトルを表します。また、`title`は省略できます。
 
 ### コールアウトの種類
 
@@ -736,7 +736,7 @@ import { TwoColumn } from "./TwoColumn"
   </div>
 </TwoColumn>
 
-また、コールアウト内では他のブロック要素を含めることができます。
+また、コールアウト内には他のブロック要素を含めることができます。
 
 {/* prettier-ignore */}
 <TwoColumn>
@@ -766,7 +766,7 @@ import { TwoColumn } from "./TwoColumn"
 
 ## リンクカード
 
-URLを直接そのまま記述することで、リンクカードを表示することができます。
+URLを直接そのまま記述することで、リンクカードを表示できます。
 
 また、URLの上下には空行を入れてください。空行のない場合、リンクカードではなくURLがそのまま表示されます。
 
@@ -804,7 +804,7 @@ import { LinkCard } from "@/components/Elements/LinkCard"
 
 ## 埋め込み
 
-[oEmbed](https://oembed.com/)に対応しているURLを以下のように記述することで、埋め込みを表示することができます。[リンクカード](#リンクカード)と同様に、URLの上下には空行を入れてください。
+[oEmbed](https://oembed.com/)に対応しているURLを以下のように記述することで、埋め込みを表示できます。[リンクカード](#リンクカード)と同様に、URLの上下には空行を入れてください。
 
 ```mdx
 https://www.youtube.com/watch?v=Gy5vAs_jQSo
