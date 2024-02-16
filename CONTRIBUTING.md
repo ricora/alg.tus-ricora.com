@@ -92,19 +92,19 @@ bun install
 以下のコマンドでビルドを行い、静的なHTMLファイルを生成します。
 
 ```sh
-bun run --bun build
+bun run build
 ```
 
 ビルド結果は`./dist/`に保存されます。
 
-このコマンドは、TypeScriptの型チェックとサイトのビルドを行います。これらを個別に行いたい場合は、`bun run --bun astro check`と`bun run --bun astro build`をそれぞれ実行してください。
+このコマンドは、TypeScriptの型チェックとサイトのビルドを行います。これらを個別に行いたい場合は、`bun run astro check`と`bun run astro build`をそれぞれ実行してください。
 
 ##### 開発サーバーの起動
 
 以下のコマンドで開発サーバーを起動します。
 
 ```sh
-bun run --bun dev
+bun run dev
 ```
 
 > [!WARNING]
@@ -128,7 +128,7 @@ bun run test
 以下のコマンドで`dist/`ディレクトリの中身をプレビューするサーバーを起動します。
 
 ```sh
-bun run --bun preview
+bun run preview
 ```
 
 #### GitHub Codespacesで開発を行う
