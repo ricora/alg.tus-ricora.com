@@ -43,8 +43,17 @@ import { TwoColumn } from "./TwoColumn"
   </div>
 </TwoColumn>
 
-> [!warning]
+> [!warning] 見出し1は使用しない
 > アクセシビリティの観点から、見出しはレベル2から始めてください。
+>
+> これは、慣例的に見出し1は文書のタイトルとして使用されるためです。本サイトでは、文書のタイトルは[フロントマター](#フロントマター)で指定するため、見出し1を使用することはありません。
+>
+> 見出し1, 2, ...はそれぞれHTMLの`h1`, `h2`, ...として最終的に表示されます。したがって、MDX内でもHTMLの慣例に則り、以下のリンクに示されているように見出し1は1つのページに1つだけ使用することが推奨されます。
+>
+> https://developer.mozilla.org/ja/docs/Web/HTML/Element/Heading_Elements#1_%E3%81%A4%E3%81%AE%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AB%E8%A4%87%E6%95%B0%E3%81%AE_h1_%E8%A6%81%E7%B4%A0%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%AA%E3%81%84
+
+> [!warning] 見出し5, 6の使用は推奨されない
+> 見出し5, 6は、一般的には使用されません。見出しのレベルが深くなると、文書の構造が複雑になり、読みにくくなるためです。
 
 ## リスト
 
@@ -94,18 +103,18 @@ import { TwoColumn } from "./TwoColumn"
 <TwoColumn>
   <div slot="left">
     ```mdx
-    *イタリック*  
-    **太字**  
-    ***太字イタリック***  
-    ~~取り消し線~~  
+    *イタリック*
+    **太字**
+    ***太字イタリック***
+    ~~取り消し線~~
     `inline code`
     ```
   </div>
   <div slot="right">
-    *イタリック*  
-    **太字**  
-    ***太字イタリック***  
-    ~~取り消し線~~  
+    *イタリック*
+    **太字**
+    ***太字イタリック***
+    ~~取り消し線~~
     `inline code`
   </div>
 </TwoColumn>
@@ -797,9 +806,10 @@ import { LinkCard } from "@/components/Elements/LinkCard"
   <div slot="left">
     ```mdx
     import { LinkCard } from "@/components/Elements/LinkCard"
-    
+
     <LinkCard href="https://github.com/ricora" />
     ```
+
   </div>
   <div slot="right">
     <LinkCard href="https://github.com/ricora" />
