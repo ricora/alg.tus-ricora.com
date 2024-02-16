@@ -951,12 +951,16 @@ MDXでは、ファイル内にJavaScript式を記述することができます�
 
 `{}`で囲まれた部分は、JavaScript式として評価されます。
 
+{/* prettier-ignore */}
 <TwoColumn>
   <div slot="left">
-    ```mdx 1 + 1 = {1 + 1}
+    ```mdx
+    1 + 1 = {1 + 1}
     ```
   </div>
-  <div slot="right">1 + 1 = {1 + 1}</div>
+  <div slot="right">
+    1 + 1 = {1 + 1}
+  </div>
 </TwoColumn>
 
 詳しくは、[MDXの公式ドキュメント](https://mdxjs.com/docs/what-is-mdx/#expressions)を参照してください。
