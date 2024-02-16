@@ -92,6 +92,8 @@ import { TwoColumn } from "./TwoColumn"
   </div>
 </TwoColumn>
 
+また、文の末尾に半角スペースを2つ入れることで、改行を行うことができます。
+
 ## テキストリンク
 
 {/* prettier-ignore */}
@@ -162,6 +164,8 @@ import { TwoColumn } from "./TwoColumn"
 
 ## コードブロック
 
+コードブロックは、バッククォート3つで囲むことで記述することができます。
+
 {/* prettier-ignore */}
 <TwoColumn>
   <div slot="left">
@@ -179,6 +183,10 @@ import { TwoColumn } from "./TwoColumn"
     ```
   </div>
 </TwoColumn>
+
+最初のバッククォート3つの後に、言語名を指定することで、シンタックスハイライトを行うことができます。シンタックスハイライトには[Shiki](https://shiki.style/)を使用しています。シンタックスハイライトをサポートしている言語については、[Shikiのドキュメント](https://shiki.style/languages)を参照してください。
+
+言語名の後には、半角スペース区切りで属性を指定することができます。以下に利用可能な属性の例を示します。
 
 ### タイトル付きコードブロック
 
@@ -270,6 +278,8 @@ import { TwoColumn } from "./TwoColumn"
 
 ### 複数の属性を指定
 
+タイトルや行番号、Diff表示など、複数の属性を同時に指定することができます。
+
 {/* prettier-ignore */}
 <TwoColumn>
   <div slot="left">
@@ -291,6 +301,10 @@ import { TwoColumn } from "./TwoColumn"
 </TwoColumn>
 
 ## 数式
+
+数式は、LaTeX形式で記述することができます。数式のレンダリングには[KaTeX](https://katex.org/)を使用しています。
+
+使用できるLaTeXのコマンドについては、[KaTeXのドキュメント](https://katex.org/docs/supported.html)を参照してください。
 
 ### 数式ブロック
 
@@ -331,11 +345,9 @@ import { TwoColumn } from "./TwoColumn"
   <div slot="left">
     ```mdx
     > 引用文
-    > 引用文
     ```
   </div>
   <div slot="right">
-    > 引用文
     > 引用文
   </div>
 </TwoColumn>
@@ -390,6 +402,10 @@ import { TwoColumn } from "./TwoColumn"
 
 ## コールアウト
 
+[引用](#引用)の先頭の行に、`[!type] title`という形式の記述をすることで、コールアウトを表示することができます。
+
+ただし、`type`はコールアウトの種類を表し、`title`はコールアウトのタイトルを表します。また、`title`は省略することができます。
+
 ### コールアウトの種類
 
 {/* prettier-ignore */}
@@ -400,7 +416,7 @@ import { TwoColumn } from "./TwoColumn"
     > コールアウト
     ```
   </div>
-  <div slot="right">
+  <div slot="right" class="*:my-0">
     > [!note]
     > コールアウト
   </div>
@@ -414,7 +430,7 @@ import { TwoColumn } from "./TwoColumn"
     > コールアウト
     ```
   </div>
-  <div slot="right">
+  <div slot="right" class="*:my-0">
     > [!info]
     > コールアウト
   </div>
@@ -428,7 +444,7 @@ import { TwoColumn } from "./TwoColumn"
     > コールアウト
     ```
   </div>
-  <div slot="right">
+  <div slot="right" class="*:my-0">
     > [!abstract]
     > コールアウト
   </div>
@@ -442,7 +458,7 @@ import { TwoColumn } from "./TwoColumn"
     > コールアウト
     ```
   </div>
-  <div slot="right">
+  <div slot="right" class="*:my-0">
     > [!tldr]
     > コールアウト
   </div>
@@ -456,7 +472,7 @@ import { TwoColumn } from "./TwoColumn"
     > コールアウト
     ```
   </div>
-  <div slot="right">
+  <div slot="right" class="*:my-0">
     > [!todo]
     > コールアウト
   </div>
@@ -470,7 +486,7 @@ import { TwoColumn } from "./TwoColumn"
     > コールアウト
     ```
   </div>
-  <div slot="right">
+  <div slot="right" class="*:my-0">
     > [!tip]
     > コールアウト
   </div>
@@ -484,7 +500,7 @@ import { TwoColumn } from "./TwoColumn"
     > コールアウト
     ```
   </div>
-  <div slot="right">
+  <div slot="right" class="*:my-0">
     > [!success]
     > コールアウト
   </div>
@@ -498,7 +514,7 @@ import { TwoColumn } from "./TwoColumn"
     > コールアウト
     ```
   </div>
-  <div slot="right">
+  <div slot="right" class="*:my-0">
     > [!question]
     > コールアウト
   </div>
@@ -512,7 +528,7 @@ import { TwoColumn } from "./TwoColumn"
     > コールアウト
     ```
   </div>
-  <div slot="right">
+  <div slot="right" class="*:my-0">
     > [!warning]
     > コールアウト
   </div>
@@ -526,7 +542,7 @@ import { TwoColumn } from "./TwoColumn"
     > コールアウト
     ```
   </div>
-  <div slot="right">
+  <div slot="right" class="*:my-0">
     > [!caution]
     > コールアウト
   </div>
@@ -540,7 +556,7 @@ import { TwoColumn } from "./TwoColumn"
     > コールアウト
     ```
   </div>
-  <div slot="right">
+  <div slot="right" class="*:my-0">
     > [!failure]
     > コールアウト
   </div>
@@ -554,7 +570,7 @@ import { TwoColumn } from "./TwoColumn"
     > コールアウト
     ```
   </div>
-  <div slot="right">
+  <div slot="right" class="*:my-0">
     > [!danger]
     > コールアウト
   </div>
@@ -568,7 +584,7 @@ import { TwoColumn } from "./TwoColumn"
     > コールアウト
     ```
   </div>
-  <div slot="right">
+  <div slot="right" class="*:my-0">
     > [!error]
     > コールアウト
   </div>
@@ -582,7 +598,7 @@ import { TwoColumn } from "./TwoColumn"
     > コールアウト
     ```
   </div>
-  <div slot="right">
+  <div slot="right" class="*:my-0">
     > [!bug]
     > コールアウト
   </div>
@@ -596,7 +612,7 @@ import { TwoColumn } from "./TwoColumn"
     > コールアウト
     ```
   </div>
-  <div slot="right">
+  <div slot="right" class="*:my-0">
     > [!important]
     > コールアウト
   </div>
@@ -610,7 +626,7 @@ import { TwoColumn } from "./TwoColumn"
     > コールアウト
     ```
   </div>
-  <div slot="right">
+  <div slot="right" class="*:my-0">
     > [!example]
     > コールアウト
   </div>
@@ -624,9 +640,25 @@ import { TwoColumn } from "./TwoColumn"
     > コールアウト
     ```
   </div>
-  <div slot="right">
+  <div slot="right" class="*:my-0">
     > [!quote]
     > コールアウト
+  </div>
+</TwoColumn>
+
+また、未定義なコールアウトを使用した場合、それはNoteとして表示されます。
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    > [!undefined]
+    > 未定義のコールアウト
+    ```
+  </div>
+  <div slot="right" class="*:my-0">
+    > [!undefined]
+    > 未定義のコールアウト
   </div>
 </TwoColumn>
 
@@ -642,7 +674,7 @@ import { TwoColumn } from "./TwoColumn"
     > This is a note.
     ```
   </div>
-  <div slot="right">
+  <div slot="right" class="*:my-0">
     > [!note] 重要ポイント
     > This is a note.
   </div>
@@ -658,7 +690,7 @@ import { TwoColumn } from "./TwoColumn"
     > This is a note.
     ```
   </div>
-  <div slot="right">
+  <div slot="right" class="*:my-0">
     > [!note] $a=1$のとき`true`となる*理由*
     > This is a note.
   </div>
@@ -680,7 +712,7 @@ import { TwoColumn } from "./TwoColumn"
     > > > さらにネストしたコールアウト
     ```
   </div>
-  <div slot="right">
+  <div slot="right" class="*:my-0">
     > [!note]
     > コールアウト
     > > [!info]
@@ -706,7 +738,7 @@ import { TwoColumn } from "./TwoColumn"
     > - リスト2
     ```
   </div>
-  <div slot="right">
+  <div slot="right" class="*:my-0">
     > [!note]
     > ここは**コールアウト**の*中身*です。
     > ```js title=app.js showLineNumbers
