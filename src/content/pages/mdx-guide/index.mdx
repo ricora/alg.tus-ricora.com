@@ -943,6 +943,40 @@ import { Counter } from "./Counter"
   </div>
 </TwoColumn>
 
+また、任意のHTML要素（カスタムコンポーネントを含む）の中では、MDX記法を使用することができます。
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    {/* prettier-ignore */}
+    <div class="border border-blue-600 rounded-lg bg-muted p-4">
+      - list 1
+      - list 2
+
+      > Done is better than perfect.
+    </div>
+    ```
+
+  </div>
+  <div slot="right">
+    <div class="border border-blue-600 rounded-lg bg-muted p-4">
+      - list 1
+      - list 2
+
+      > Done is better than perfect.
+    </div>
+
+  </div>
+</TwoColumn>
+
+> [!warning] Prettierを無効化する
+> HTML要素内でMDX記法を使用する場合、Prettierのフォーマットを無効化することを推奨します。
+>
+> Prettierは、HTML要素内の文字列を改行等を無視して1行にまとめるため、不正なフォーマットとなることがあります。そのため、HTML要素内でMDX記法を使用する場合は、`/* prettier-ignore */`を使用してPrettierのフォーマットを無効化してください。
+>
+> https://github.com/prettier/prettier/issues/12209
+
 詳しくは、[MDXの公式ドキュメント](https://mdxjs.com/docs/what-is-mdx/#jsx)を参照してください。
 
 ## JavaScript式
