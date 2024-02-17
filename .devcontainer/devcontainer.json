@@ -3,5 +3,16 @@
   "build": {
     "dockerfile": "../Dockerfile"
   },
-  "containerUser": "dev"
+  "containerUser": "dev",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "astro-build.astro-vscode",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "unifiedjs.vscode-mdx",
+        "github.vscode-github-actions"
+      ]
+    }
+  }
 }
