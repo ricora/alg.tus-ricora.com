@@ -1,29 +1,9 @@
 ---
 import { Tabs, type TabsProps } from "@/components/Elements/Tabs"
 import { BaseLayout } from "@/layouts/BaseLayout"
-import { isDev } from "@/lib/runtime"
-import { getCollection } from "astro:content"
+import { getTags } from "@/lib/tags"
 
-const posts = await getCollection("posts", ({ data }) => (isDev ? true : !data.draft))
-
-const tagCollection = await getCollection("tags")
-
-const tagIdToTitle: { [key: string]: string } = {}
-
-for (const tag of tagCollection) {
-  tagIdToTitle[tag.id] = tag.data.title
-}
-
-const tagSlugs: string[] = []
-for (const post of posts) {
-  if (post.data && post.data.tags) {
-    for (const tag of post.data.tags) {
-      if (!tagSlugs.includes(tag)) {
-        tagSlugs.push(tag)
-      }
-    }
-  }
-}
+const tags = await getTags()
 
 const tabProps: TabsProps = {
   tabs: [
@@ -61,14 +41,14 @@ const tabProps: TabsProps = {
 
     <div class="flex flex-wrap">
       {
-        tagSlugs.map((tag) => (
+        tags.map((tag) => (
           <a
-            href={`/tags/${tag}`}
+            href={`/tags/${tag.id}`}
             class="m-1 rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 text-sm transition hover:brightness-90 dark:border-gray-700 dark:bg-gray-950"
           >
             <>
               <span class="pr-1 text-xs text-muted-foreground">#</span>
-              <span>{Object.prototype.hasOwnProperty.call(tagIdToTitle, tag) ? tagIdToTitle[tag] : tag}</span>
+              <span>{tag.title}</span>
             </>
           </a>
         ))

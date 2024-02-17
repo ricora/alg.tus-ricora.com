@@ -7,41 +7,9 @@ import { isDev } from "@/lib/runtime"
 import { getCollection } from "astro:content"
 import * as path from "node:path"
 import { twMerge } from "tailwind-merge"
-
-type Tag = {
-  id: string
-  title: string
-}
+import { getTags } from "@/lib/tags"
 
 export const getStaticPaths = async () => {
-  const getTags = async (): Promise<Tag[]> => {
-    const posts = await getCollection("posts", ({ data }) => (isDev ? true : !data.draft))
-    const tagCollection = await getCollection("tags")
-
-    const tagIdToTitle = tagCollection.reduce(
-      (acc, { id, data }) => {
-        acc[id] = data.title
-        return acc
-      },
-      {} as { [key: string]: string },
-    )
-    const tagIdList = posts.reduce((acc, { data }) => {
-      if (data.tags) {
-        data.tags.forEach((tag) => {
-          if (!acc.includes(tag)) {
-            acc.push(tag)
-          }
-        })
-      }
-      return acc
-    }, [] as string[])
-
-    return tagIdList.map((tagId) => ({
-      id: tagId,
-      title: tagId in tagIdToTitle ? tagIdToTitle[tagId] : tagId,
-    }))
-  }
-
   const tags = await getTags()
   return tags.map((tag) => ({
     params: {
