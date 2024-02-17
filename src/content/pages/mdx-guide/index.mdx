@@ -1,0 +1,1047 @@
+---
+title: 本サイトで利用可能なMDX記法一覧
+draft: false
+---
+
+import { TwoColumn } from "./TwoColumn"
+
+[MDX]: https://mdxjs.com/
+[GFM]: https://github.github.com/gfm/
+[CommonMark]: https://spec.commonmark.org/current/
+
+このページでは、本サイトで使用している[MDX]の記法について説明します。
+
+[MDX]は、Markdownをベースとしつつ、JSXをMarkdown内に記述することを可能としたマークアップ言語です。一部利用できない[Markdown（CommonMark）](https://spec.commonmark.org/current/)の記法がありますが、概ね[CommonMark]に準拠しています。
+
+また、本サイトでは[GitHub Flavored Markdown（GFM）](https://github.github.com/gfm/)で定義されている機能も利用できます。[GFM]は[CommonMark]のスーパーセットであり、URLの自動リンク化や脚注、打ち消し線や表組みなど、[CommonMark]にはない機能を提供しています。
+
+さらに、本サイト独自の拡張機能として、コールアウトやリンクカード、埋め込みなどの機能を提供しています。
+
+以下に利用可能な[MDX]記法を示します。
+
+## 見出し
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    # 見出し1
+    ## 見出し2
+    ### 見出し3
+    #### 見出し4
+    ##### 見出し5
+    ###### 見出し6
+    ```
+  </div>
+  <div slot="right">
+    # 見出し1
+    ## 見出し2
+    ### 見出し3
+    #### 見出し4
+    ##### 見出し5
+    ###### 見出し6
+  </div>
+</TwoColumn>
+
+> [!warning] 見出し1は使用しない
+> アクセシビリティの観点から、見出しはレベル2から始めてください。
+>
+> これは、慣例的に見出し1は文書のタイトルとして使用されるためです。本サイトでは、文書のタイトルは[フロントマター](#フロントマター)で指定するため、見出し1を使用することはありません。
+>
+> 見出し1, 2, ...はそれぞれHTMLの`h1`, `h2`, ...として最終的に表示されます。したがって、MDX内でもHTMLの慣例に則り、以下のリンクに示されているように見出し1は1つのページに1つだけ使用することが推奨されます。
+>
+> https://developer.mozilla.org/ja/docs/Web/HTML/Element/Heading_Elements#1_%E3%81%A4%E3%81%AE%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AB%E8%A4%87%E6%95%B0%E3%81%AE_h1_%E8%A6%81%E7%B4%A0%E3%82%92%E4%BD%BF%E7%94%A8%E3%81%97%E3%81%AA%E3%81%84
+
+> [!warning] 見出し5, 6の使用は推奨されない
+> 見出し5, 6は、一般的には使用されません。見出しのレベルが深くなると、文書の構造が複雑になり、読みにくくなるためです。
+>
+> また、`h5`, `h6`のスタイルは[@tailwindcss/typography](https://tailwindcss.com/docs/typography-plugin)で意図的に実装されていないことからも、見出し5, 6の使用は推奨されません。
+>
+> https://github.com/tailwindlabs/tailwindcss-typography/issues/262
+
+## リスト
+
+### 箇条書き
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    - リスト1
+    - リスト2
+      - リスト2-1
+      - リスト2-2
+    ```
+  </div>
+  <div slot="right">
+    - リスト1
+    - リスト2
+      - リスト2-1
+      - リスト2-2
+  </div>
+</TwoColumn>
+
+### 番号付きリスト
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    1. リスト1
+    2. リスト2
+      1. リスト2-1
+      2. リスト2-2
+    ```
+  </div>
+  <div slot="right">
+    1. リスト1
+    2. リスト2
+        1. リスト2-1
+        2. リスト2-2
+  </div>
+</TwoColumn>
+
+## インラインスタイル
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    *イタリック*\
+    **太字**\
+    ***太字イタリック***\
+    ~~取り消し線~~\
+    `inline code`
+    ```
+  </div>
+  <div slot="right">
+    *イタリック*\
+    **太字**\
+    ***太字イタリック***\
+    ~~取り消し線~~\
+    `inline code`
+  </div>
+</TwoColumn>
+
+また、文の末尾に`\`を記述することで、改行されます。
+
+## テキストリンク
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    [リンク](https://alg.tus-ricora.com)
+    ```
+  </div>
+  <div slot="right">
+    [リンク](https://alg.tus-ricora.com)
+  </div>
+</TwoColumn>
+
+## 画像
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    ![RICORAのロゴ](./images/ricora.svg)
+    ```
+  </div>
+  <div slot="right" class="*:*:m-0 *:m-0">
+    ![RICORAのロゴ](./images/ricora.svg)
+  </div>
+</TwoColumn>
+
+## テーブル
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    | ヘッダ1 | ヘッダ2 | ヘッダ3 |
+    | ------- | ------- | ------- |
+    | 1-1     | 1-2     | 1-3     |
+    | 2-1     | 2-2     | 2-3     |
+    ```
+  </div>
+  <div slot="right" class="*:my-0">
+    | ヘッダ1 | ヘッダ2 | ヘッダ3 |
+    | ------- | ------- | ------- |
+    | 1-1     | 1-2     | 1-3     |
+    | 2-1     | 2-2     | 2-3     |
+  </div>
+</TwoColumn>
+
+### テーブルのスタイル
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    | 左揃え  | 中央揃え | 右揃え |
+    | :------ | :------: | -----: |
+    | 1-1     | 1-2      | 1-3    |
+    | 2-1     | 2-2      | 2-3    |
+    ```
+  </div>
+  <div slot="right" class="*:my-0">
+    | 左揃え  | 中央揃え | 右揃え |
+    | :------ | :------: | -----: |
+    | 1-1     | 1-2      | 1-3    |
+    | 2-1     | 2-2      | 2-3    |
+  </div>
+</TwoColumn>
+
+## コードブロック
+
+コードブロックは、バッククォート3つで囲むことで記述できます。
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ````mdx
+    ```javascript
+    const hello = "Hello, World!";
+    console.log(hello);
+    ```
+    ````
+  </div>
+  <div slot="right">
+    ```javascript
+    const hello = "Hello, World!";
+    console.log(hello);
+    ```
+  </div>
+</TwoColumn>
+
+最初のバッククォート3つの後に、言語名を指定することで、シンタックスハイライトが適用されます。シンタックスハイライトには[Shiki](https://shiki.style/)を使用しています。シンタックスハイライトをサポートしている言語については、[Shikiのドキュメント](https://shiki.style/languages)を参照してください。
+
+言語名の後には、半角スペース区切りで属性を指定することができます。以下に利用可能な属性の例を示します。
+
+### タイトル付きコードブロック
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ````mdx
+    ```javascript title=app.js
+    const hello = "Hello, World!";
+    console.log(hello);
+    ```
+    ````
+  </div>
+  <div slot="right">
+    ```javascript title=app.js
+    const hello = "Hello, World!";
+    console.log(hello);
+    ```
+  </div>
+</TwoColumn>
+
+### 行番号付きコードブロック
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ````mdx
+    ```javascript showLineNumbers
+    const hello = "Hello, World!";
+    console.log(hello);
+    ```
+    ````
+  </div>
+  <div slot="right">
+    ```javascript showLineNumbers
+    const hello = "Hello, World!";
+    console.log(hello);
+    ```
+  </div>
+</TwoColumn>
+
+### 行ハイライト
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ````mdx
+    ```javascript {1-3, 5}
+    const hello = "Hello,"
+    const world = "World!";
+    console.log(hello, world);
+    // 4行目はハイライトされない
+    console.log("Hello, MDX!");
+    ```
+    ````
+  </div>
+  <div slot="right">
+    ```javascript {1-3, 5}
+    const hello = "Hello,"
+    const world = "World!";
+    console.log(hello, world);
+    // 4行目はハイライトされない
+    console.log("Hello, MDX!");
+    ```
+  </div>
+</TwoColumn>
+
+### Diff表示
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ````mdx
+    ```javascript diff
+    - const hello = "Hello, World!";
+    + const hello = "Hello, MDX!";
+      console.log(hello);
+    ```
+    ````
+  </div>
+  <div slot="right">
+    ```javascript diff
+    - const hello = "Hello, World!";
+    + const hello = "Hello, MDX!";
+      console.log(hello);
+    ```
+  </div>
+</TwoColumn>
+
+### 複数の属性を指定
+
+タイトルや行番号、Diff表示など、複数の属性を同時に指定できます。
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ````mdx
+    ```javascript diff showLineNumbers {2} title="app.js"
+    - const hello = "Hello, World!";
+    + const hello = "Hello, MDX!";
+      console.log(hello);
+    ```
+    ````
+  </div>
+  <div slot="right">
+    ```javascript diff showLineNumbers {2} title="app.js"
+    - const hello = "Hello, World!";
+    + const hello = "Hello, MDX!";
+      console.log(hello);
+    ```
+  </div>
+</TwoColumn>
+
+## 数式
+
+数式は、LaTeX形式で記述できます。数式のレンダリングには[KaTeX](https://katex.org/)を使用しています。
+
+使用できるLaTeXのコマンドについては、[KaTeXのドキュメント](https://katex.org/docs/supported.html)を参照してください。
+
+### 数式ブロック
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    $$
+    \forall \epsilon > 0, \exists \delta > 0 \text{ s.t. } |x - a| < \delta \Rightarrow |f(x) - b| < \epsilon
+    $$
+    ```
+  </div>
+  <div slot="right">
+    $$
+    \forall \epsilon > 0, \exists \delta > 0 \text{ s.t. } |x - a| < \delta \Rightarrow |f(x) - b| < \epsilon
+    $$
+  </div>
+</TwoColumn>
+
+### インライン数式
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    $a^2 + b^2 = c^2$
+    ```
+  </div>
+  <div slot="right">
+    $a^2 + b^2 = c^2$
+  </div>
+</TwoColumn>
+
+## 引用
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    > 引用文
+    ```
+  </div>
+  <div slot="right">
+    > 引用文
+  </div>
+</TwoColumn>
+
+## 脚注
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    これは脚注です[^1]。
+
+    [^1]: 脚注の内容
+    ```
+
+  </div>
+  <div slot="right">
+    これは脚注です[^1]。
+
+    [^1]: 脚注の内容
+
+  </div>
+</TwoColumn>
+
+## 区切り線
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    ---
+    ```
+  </div>
+  <div slot="right">
+    ---
+  </div>
+</TwoColumn>
+
+## コメントアウト
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    {/* コメントアウト */}
+    ```
+  </div>
+  <div slot="right">
+    {/* コメントアウト */}
+  </div>
+</TwoColumn>
+
+## フロントマター
+
+フロントマターは、MDXファイルの先頭に記述するYAML形式のメタデータです。フロントマターは、記事のタイトルやアイコン、公開日時、更新日時などの情報を指定するために使用されます。
+
+フロントマターは、ファイル先頭の`---`で囲まれた部分に記述します。以下にフロントマターの例を示します。
+
+```mdx
+---
+draft: false
+title: 記事のタイトル
+icon: fluent-emoji-flat:party-popper
+date: 2024-02-16T00:00:00+09:00
+lastmod: 2024-02-16T00:00:00+09:00
+categories:
+  - news
+tags:
+  - 雑記
+---
+```
+
+### 利用可能なプロパティ
+
+以下に利用可能なフロントマターのプロパティを示します。
+
+[日付]: https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date/parse#%E6%97%A5%E4%BB%98%E3%81%A8%E6%99%82%E5%88%BB%E3%81%AE%E6%96%87%E5%AD%97%E5%88%97%E6%9B%B8%E5%BC%8F
+
+| プロパティ名 | 必須 | 与えられる値                                                           | 説明                                                                                                     |
+| ------------ | ---- | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `draft`      | ❌   | `true`または`false`                                                    | 記事を下書きとして扱うかどうかを指定します。`true`の場合、記事は下書きとして扱われ、公開されません。     |
+| `title`      | ⭕   | 任意の文字列                                                           | 記事のタイトルを指定します。                                                                             |
+| `icon`       | ⭕   | [Iconify](https://icon-sets.iconify.design/)で定義されているアイコン名 | 記事のアイコンを指定します。指定するアイコンは、[Icônes](https://icones.js.org/)から検索すると便利です。 |
+| `date`       | ⭕   | [日付]                                                                 | 記事の公開日時を指定します。                                                                             |
+| `lastmod`    | ❌   | [日付]                                                                 | 記事の最終更新日時を指定します。                                                                         |
+| `categories` | ❌   | [カテゴリ名](#カテゴリ)の配列                                          | 記事のカテゴリを指定します。                                                                             |
+| `tags`       | ❌   | [タグ名](#タグ)の配列                                                  | 記事のタグを指定します。                                                                                 |
+
+### カテゴリ
+
+カテゴリは、記事の分類を行うために使用されます。カテゴリは、`categories`プロパティに配列で指定します。
+
+現在利用可能なカテゴリは、以下の通りです。
+
+- `activities`: 活動記録
+- `news`: お知らせ
+- `works`: 作品紹介
+
+利用可能なカテゴリは、[src/content/categories](https://github.com/ricora/alg-blog/tree/main/src/content/categories)にて定義されています。
+
+### タグ
+
+タグは、記事のキーワードを指定するために使用されます。タグは、`tags`プロパティに配列で指定します。
+
+タグは、[src/content/tags](https://github.com/ricora/alg-blog/tree/main/src/content/tags)にて定義されているタグのIDもしくは、任意の文字列を指定することができます。
+
+[src/content/tags](https://github.com/ricora/alg-blog/tree/main/src/content/tags)にて定義されていないタグを指定した場合、その指定したタグ名（文字列）が新たにタグとして登録されます。このとき、指定したタグ名（文字列）が新たに登録されたタグのID兼タイトルとなります。IDとタイトルを別々にしたい場合は、[src/content/tags](https://github.com/ricora/alg-blog/tree/main/src/content/tags)にて新たにタグを定義してください。このとき、新たに作成したYAMLファイルのファイル名がタグのIDとなり、YAMLファイル内の`title`プロパティの値がタグのタイトルとなります。
+
+> [!example] 例：タグの定義
+> 以下に、IDが`rust`でタイトルが`Rust`のタグを定義する例を示します。
+>
+> ```yaml title="src/content/tags/rust.yaml"
+> title: Rust
+> ```
+
+## コールアウト
+
+[引用](#引用)の先頭の行に、`[!type] title`という形式の記述をすることで、コールアウトを表示できます。
+
+ただし、`type`はコールアウトの種類を表し、`title`はコールアウトのタイトルを表します。また、`title`は省略できます。
+
+### コールアウトの種類
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    > [!note]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right" class="*:my-0">
+    > [!note]
+    > コールアウト
+  </div>
+</TwoColumn>
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    > [!info]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right" class="*:my-0">
+    > [!info]
+    > コールアウト
+  </div>
+</TwoColumn>
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    > [!abstract]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right" class="*:my-0">
+    > [!abstract]
+    > コールアウト
+  </div>
+</TwoColumn>
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    > [!tldl]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right" class="*:my-0">
+    > [!tldr]
+    > コールアウト
+  </div>
+</TwoColumn>
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    > [!todo]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right" class="*:my-0">
+    > [!todo]
+    > コールアウト
+  </div>
+</TwoColumn>
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    > [!tip]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right" class="*:my-0">
+    > [!tip]
+    > コールアウト
+  </div>
+</TwoColumn>
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    > [!success]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right" class="*:my-0">
+    > [!success]
+    > コールアウト
+  </div>
+</TwoColumn>
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    > [!question]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right" class="*:my-0">
+    > [!question]
+    > コールアウト
+  </div>
+</TwoColumn>
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    > [!warning]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right" class="*:my-0">
+    > [!warning]
+    > コールアウト
+  </div>
+</TwoColumn>
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    > [!caution]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right" class="*:my-0">
+    > [!caution]
+    > コールアウト
+  </div>
+</TwoColumn>
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    > [!failure]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right" class="*:my-0">
+    > [!failure]
+    > コールアウト
+  </div>
+</TwoColumn>
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    > [!danger]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right" class="*:my-0">
+    > [!danger]
+    > コールアウト
+  </div>
+</TwoColumn>
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    > [!error]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right" class="*:my-0">
+    > [!error]
+    > コールアウト
+  </div>
+</TwoColumn>
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    > [!bug]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right" class="*:my-0">
+    > [!bug]
+    > コールアウト
+  </div>
+</TwoColumn>
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    > [!important]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right" class="*:my-0">
+    > [!important]
+    > コールアウト
+  </div>
+</TwoColumn>
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    > [!example]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right" class="*:my-0">
+    > [!example]
+    > コールアウト
+  </div>
+</TwoColumn>
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    > [!quote]
+    > コールアウト
+    ```
+  </div>
+  <div slot="right" class="*:my-0">
+    > [!quote]
+    > コールアウト
+  </div>
+</TwoColumn>
+
+また、未定義なコールアウトを使用した場合、それはNoteとして表示されます。
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    > [!undefined]
+    > 未定義のコールアウト
+    ```
+  </div>
+  <div slot="right" class="*:my-0">
+    > [!undefined]
+    > 未定義のコールアウト
+  </div>
+</TwoColumn>
+
+### タイトル付きコールアウト
+
+任意のコールアウトには、タイトルを付けることができます。
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    > [!note] 重要ポイント
+    > This is a note.
+    ```
+  </div>
+  <div slot="right" class="*:my-0">
+    > [!note] 重要ポイント
+    > This is a note.
+  </div>
+</TwoColumn>
+
+タイトルには、任意のインライン要素を含めることができます。
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    > [!note] $a=1$のとき`true`となる*理由*
+    > This is a note.
+    ```
+  </div>
+  <div slot="right" class="*:my-0">
+    > [!note] $a=1$のとき`true`となる*理由*
+    > This is a note.
+  </div>
+</TwoColumn>
+
+### ネストしたコールアウト
+
+コールアウトはネストすることができます。
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    > [!note]
+    > コールアウト
+    > > [!info]
+    > > ネストしたコールアウト
+    > > > [!warning]
+    > > > さらにネストしたコールアウト
+    ```
+  </div>
+  <div slot="right" class="*:my-0">
+    > [!note]
+    > コールアウト
+    > > [!info]
+    > > ネストしたコールアウト
+    > > > [!warning]
+    > > > さらにネストしたコールアウト
+  </div>
+</TwoColumn>
+
+また、コールアウト内には他のブロック要素を含めることができます。
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    > [!note]
+    > ここは**コールアウト**の*中身*です。
+    > ```js title=app.js showLineNumbers
+    > const hello = "Hello, World!";
+    > console.log(hello);
+    > ```
+    > - リスト1
+    > - リスト2
+    ```
+  </div>
+  <div slot="right" class="*:my-0">
+    > [!note]
+    > ここは**コールアウト**の*中身*です。
+    > ```js title=app.js showLineNumbers
+    > const hello = "Hello, World!";
+    > console.log(hello);
+    > ```
+    > - リスト1
+    > - リスト2
+  </div>
+</TwoColumn>
+
+## リンクカード
+
+URLを直接そのまま記述することで、リンクカードを表示できます。
+
+また、URLの上下には空行を入れてください。空行のない場合、リンクカードではなくURLがそのまま表示されます。
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    https://github.com/ricora
+    ```
+  </div>
+  <div slot="right" class="*:m-0">
+    https://github.com/ricora
+  </div>
+</TwoColumn>
+
+ただし、埋め込みに対応しているURLの場合は、[埋め込み](#埋め込み)が優先して表示されます。
+
+埋め込みに対応しているURLでリンクカードを表示したい場合は、以下のように`LinkCard`コンポーネントを使用してください。
+
+import { LinkCard } from "@/components/Elements/LinkCard"
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    import { LinkCard } from "@/components/Elements/LinkCard"
+
+    <LinkCard href="https://github.com/ricora" />
+    ```
+
+  </div>
+  <div slot="right">
+    <LinkCard href="https://github.com/ricora" />
+  </div>
+</TwoColumn>
+
+## 埋め込み
+
+[oEmbed](https://oembed.com/)に対応しているURLを以下のように記述することで、埋め込みを表示できます。[リンクカード](#リンクカード)と同様に、URLの上下には空行を入れてください。
+
+```mdx
+https://www.youtube.com/watch?v=Gy5vAs_jQSo
+```
+
+以下に対応しているウェブサイトの例を示します。これら以外でも、[oEmbed](https://oembed.com/)に対応しているウェブサイトであれば、埋め込みが表示されます。
+
+### YouTube
+
+https://www.youtube.com/watch?v=Gy5vAs_jQSo
+
+### Speaker Deck
+
+https://speakerdeck.com/tengu712/simplest-vulkan-tutorial-in-japanese
+
+### Docswell
+
+https://www.docswell.com/s/EpicGamesJapan/5EV87K-UE5_Lumen101
+
+### Google Slides
+
+https://docs.google.com/presentation/d/1yCKxpsaNmTpDeXw1a1P04GsgbX417-GAJMhd2Lc70XY/embed
+
+### Spotify
+
+https://open.spotify.com/playlist/37i9dQZF1DXdurasRmJgpJ?si=20dd3d8c5b4f4547
+
+### Adventar
+
+https://adventar.org/calendars/7447
+
+## JSX
+
+[SolidJS]: https://docs.solidjs.com/
+[Astro]: https://astro.build/
+[React]: https://ja.react.dev/
+
+MDXでは、ファイル内にJSXを記述することができます。
+
+> [!note] JSXとは
+> [JSX（JavaScript XML）](https://facebook.github.io/jsx/)は、XMLライクなJavaScriptの拡張構文です。
+>
+> JSXを用いると、JavaScriptのコード内にHTMLタグのような構文が埋め込み可能となり、宣言的にUIを記述できます。
+> 一般的には[React]や[SolidJS]などのフレームワークで使用されますが、MDX内でも使用できます。
+>
+> 本サイトでは、[SolidJS]と[Astro]を使用しているため、[SolidJS]もしくは[Astro]のコンポーネントをインポートして使用することができます。
+> その他に、`div`や`span`といったHTMLタグも使用可能です。
+> ただし、これらJSX要素は最終的に`p`タグ内にレンダリングされることに注意してください。
+>
+> 詳しくは、以下のリンクを参照してください。
+>
+> https://typescriptbook.jp/reference/jsx
+>
+> https://docs.solidjs.com/concepts/understanding-jsx
+
+以下に、カスタムコンポーネント`Counter`を`./Counter.tsx`に作成し、それをMDX内でインポートして使用する例を示します。
+
+import { Counter } from "./Counter"
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left" class="flex flex-col gap-8">
+    ```mdx
+    import { Counter } from "./Counter"
+
+    <Counter client:visible />
+    ```
+    ```tsx title=Counter.tsx
+    import { createSignal, type Component } from "solid-js"
+
+    export const Counter: Component = () => {
+      const [count, setCount] = createSignal(0)
+
+      const increment = () => setCount((prev) => prev + 1)
+      const decrement = () => setCount((prev) => prev - 1)
+
+      return (
+        <div class="space-x-2">
+          <div class="p-2">Count: {count()}</div>
+          <button onClick={increment} class="rounded border p-2 font-mono">
+            +1
+          </button>
+          <button onClick={decrement} class="rounded border p-2 font-mono">
+            -1
+          </button>
+        </div>
+      )
+    }
+    ```
+
+  </div>
+  <div slot="right">
+    <Counter client:visible />
+  </div>
+</TwoColumn>
+
+> [!warning] インタラクティブなコンポーネントの使用
+> インタラクティブなコンポーネントを使用する場合は、`client:*`ディレクティブを適用することを忘れないでください。
+>
+> `client:*`ディレクティブを適用することで、クライアントサイドでコンポーネントのJavaScriptが実行されるようになります。これにより、インタラクティブな操作が可能になります。
+> 利用可能な`client:*`ディレクティブについては、以下のリンクを参照してください。
+>
+> https://docs.astro.build/ja/reference/directives-reference/#client-directives
+
+また、任意のJSX要素の中ではMDX記法を使用することができます。
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    {/* prettier-ignore */}
+    <div class="border border-blue-600 rounded-lg bg-muted p-4">
+      - list 1
+      - list 2
+
+      > Done is better than perfect.
+    </div>
+    ```
+
+  </div>
+  <div slot="right">
+    <div class="border border-blue-600 rounded-lg bg-muted p-4">
+      - list 1
+      - list 2
+
+      > Done is better than perfect.
+    </div>
+
+  </div>
+</TwoColumn>
+
+> [!warning] Prettierを無効化する
+> HTML要素内でMDX記法を使用する場合、Prettierのフォーマットを無効化することを推奨します。
+>
+> Prettierは、HTML要素内の文字列を改行等を無視して1行にまとめるため、不正なフォーマットとなることがあります。そのため、HTML要素内でMDX記法を使用する場合は、`/* prettier-ignore */`を使用してPrettierのフォーマットを無効化してください。
+>
+> https://github.com/prettier/prettier/issues/12209
+
+詳しくは、[MDXの公式ドキュメント](https://mdxjs.com/docs/what-is-mdx/#jsx)を参照してください。
+
+## JavaScript式
+
+MDXでは、ファイル内にJavaScript式を記述することができます。
+
+`{}`で囲まれた部分は、JavaScript式として評価されます。
+
+{/* prettier-ignore */}
+<TwoColumn>
+  <div slot="left">
+    ```mdx
+    1 + 1 = {1 + 1}
+    ```
+  </div>
+  <div slot="right">
+    1 + 1 = {1 + 1}
+  </div>
+</TwoColumn>
+
+詳しくは、[MDXの公式ドキュメント](https://mdxjs.com/docs/what-is-mdx/#expressions)を参照してください。
