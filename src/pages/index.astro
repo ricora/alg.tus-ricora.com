@@ -1,13 +1,12 @@
 ---
 import { Icon, type IconName } from "@/components/Elements/Icon"
 import { BaseLayout } from "@/layouts/BaseLayout"
-import { isDev } from "@/lib/runtime"
 import { getCollection } from "astro:content"
 import { formatDate } from "@/lib/date"
-import { calculateReadingTime } from "@/lib/posts"
+import { calculateReadingTime, getPosts } from "@/lib/posts"
 import { twMerge } from "tailwind-merge"
 
-const posts = await getCollection("posts", ({ data }) => (isDev ? true : !data.draft))
+const posts = await getPosts()
 const categories = await getCollection("categories")
 ---
 

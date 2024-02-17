@@ -2,8 +2,7 @@
 import { Icon, type IconName } from "@/components/Elements/Icon"
 import { BaseLayout } from "@/layouts/BaseLayout"
 import { formatDate } from "@/lib/date"
-import { calculateReadingTime } from "@/lib/posts"
-import { isDev } from "@/lib/runtime"
+import { calculateReadingTime, getPosts } from "@/lib/posts"
 import { getCollection } from "astro:content"
 import * as path from "node:path"
 import { twMerge } from "tailwind-merge"
@@ -23,7 +22,7 @@ export const getStaticPaths = async () => {
 
 const { tag } = Astro.props
 
-const posts = await getCollection("posts", ({ data }) => (isDev ? true : !data.draft))
+const posts = await getPosts()
 const categories = await getCollection("categories")
 
 const postsByTag = posts
