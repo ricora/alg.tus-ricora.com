@@ -455,7 +455,7 @@ tags:
 
 | プロパティ名 | 必須 | 与えられる値                                                           | 説明                                                                                                     |
 | ------------ | ---- | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `draft`      | ❌   | `true`または`false`                                                    | 記事を下書きとして扱うかどうかを指定します。`true`の場合、ページは下書きとして扱われ、公開されません。   |
+| `draft`      | ❌   | `true`または`false`                                                    | 記事を下書きとして扱うかどうかを指定します。`true`の場合、記事は下書きとして扱われ、公開されません。     |
 | `title`      | ⭕   | 任意の文字列                                                           | 記事のタイトルを指定します。                                                                             |
 | `icon`       | ⭕   | [Iconify](https://icon-sets.iconify.design/)で定義されているアイコン名 | 記事のアイコンを指定します。指定するアイコンは、[Icônes](https://icones.js.org/)から検索すると便利です。 |
 | `date`       | ⭕   | [日付]                                                                 | 記事の公開日時を指定します。                                                                             |
@@ -900,7 +900,27 @@ https://adventar.org/calendars/7447
 
 ## JSX
 
+[SolidJS]: https://docs.solidjs.com/
+[Astro]: https://astro.build/
+[React]: https://ja.react.dev/
+
 MDXでは、ファイル内にJSXを記述することができます。
+
+> [!note] JSXとは
+> [JSX（JavaScript XML）](https://facebook.github.io/jsx/)は、XMLライクなJavaScriptの拡張構文です。
+>
+> JSXを用いると、JavaScriptのコード内にHTMLタグのような構文が埋め込み可能となり、宣言的にUIを記述できます。
+> 一般的には[React]や[SolidJS]などのフレームワークで使用されますが、MDX内でも使用できます。
+>
+> 本サイトでは、[SolidJS]と[Astro]を使用しているため、[SolidJS]もしくは[Astro]のコンポーネントをインポートして使用することができます。
+> その他に、`div`や`span`といったHTMLタグも使用可能です。
+> ただし、これらJSX要素は最終的に`p`タグ内にレンダリングされることに注意してください。
+>
+> 詳しくは、以下のリンクを参照してください。
+>
+> https://typescriptbook.jp/reference/jsx
+>
+> https://docs.solidjs.com/concepts/understanding-jsx
 
 以下に、カスタムコンポーネント`Counter`を`./Counter.tsx`に作成し、それをMDX内でインポートして使用する例を示します。
 
