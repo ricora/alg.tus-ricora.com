@@ -3,12 +3,11 @@ import { Icon, type IconName } from "@/components/Elements/Icon"
 import { Tabs, type TabsProps } from "@/components/Elements/Tabs"
 import { BaseLayout } from "@/layouts/BaseLayout"
 import { formatDate } from "@/lib/date"
-import { calculateReadingTime } from "@/lib/posts"
-import { isDev } from "@/lib/runtime"
+import { calculateReadingTime, getPosts } from "@/lib/posts"
 import { getCollection } from "astro:content"
 import { twMerge } from "tailwind-merge"
 
-const posts = await getCollection("posts", ({ data }) => (isDev ? true : !data.draft))
+const posts = await getPosts()
 posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
 
 const categories = await getCollection("categories")
@@ -89,7 +88,7 @@ const tabProps: TabsProps = {
                                 const category = categories.find((category) => category.id === id)!
                                 return (
                                   <a
-                                    href={`/${id}`}
+                                    href={`/categories/${id}`}
                                     class={twMerge(
                                       "flex flex-row items-center gap-1 rounded-md bg-blue-400 px-2.5 py-1 text-sm font-bold text-white transition hover:brightness-110 sm:px-4 sm:text-base",
                                       category.data.twClassName,

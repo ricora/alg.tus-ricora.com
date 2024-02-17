@@ -1,29 +1,49 @@
 ---
 import { Icon, type IconName } from "@/components/Elements/Icon"
 import { BaseLayout } from "@/layouts/BaseLayout"
-import { getCollection } from "astro:content"
 import { formatDate } from "@/lib/date"
 import { calculateReadingTime, getPosts } from "@/lib/posts"
+import { getCollection } from "astro:content"
+import * as path from "node:path"
 import { twMerge } from "tailwind-merge"
+
+export const getStaticPaths = async () => {
+  const tags = await getCollection("categories")
+  return tags.map((category) => ({
+    params: {
+      slug: category.id,
+    },
+    props: {
+      category,
+    },
+  }))
+}
+
+const { category } = Astro.props
 
 const posts = await getPosts()
 const categories = await getCollection("categories")
+
+const postsByCategory = posts
+  .filter((post) => post.data.categories.some((postCategory) => postCategory.id === category.id))
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
 ---
 
-<BaseLayout
-  title="RICORA Programming Team"
-  titleSuffix=""
-  description="東京理科大学 電子計算機研究会 プログラミング班"
-  og={{
-    url: Astro.site!,
-  }}
->
-  <main class="flex flex-1 flex-col gap-6 py-12">
-    <!-- 仮のモックアップ -->
-    {
-      posts
-        .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
-        .map((post, i) => (
+<BaseLayout title={category.data.title} og={{ url: new URL(path.join("tags", category.id), Astro.site) }}>
+  <main class="flex flex-1 flex-col gap-8 py-12">
+    <header class="flex flex-col gap-6">
+      <h1 class="flex flex-row items-center gap-2 text-3xl font-bold sm:text-4xl md:gap-3 md:text-5xl">
+        <Icon name={category.data.icon as IconName} class="h-10 w-10 sm:h-12 sm:w-12 md:h-16 md:w-16" />
+        {category.data.title}
+      </h1>
+      <p class="text-muted-foreground sm:text-lg">
+        "{category.data.title}"に関連する{postsByCategory.length}件の記事を表示しています。
+      </p>
+    </header>
+    <div class="flex flex-col gap-6">
+      <!-- 仮のモックアップ -->
+      {
+        postsByCategory.map((post, i) => (
           <div
             class="flex flex-row items-center gap-2 rounded-xl bg-card/50 p-4 shadow-md backdrop-blur-lg duration-1000 ease-out animate-in fade-in-0 slide-in-from-bottom-6 hover:bg-muted/60"
             style={{
@@ -74,6 +94,7 @@ const categories = await getCollection("categories")
             </div>
           </div>
         ))
-    }
+      }
+    </div>
   </main>
 </BaseLayout>

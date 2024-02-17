@@ -1,12 +1,11 @@
 ---
 import "katex/dist/katex.min.css"
-import { isDev } from "@/lib/runtime"
-import { getCollection } from "astro:content"
 import type { CollectionEntry } from "astro:content"
 import { PostLayout } from "@/layouts/PostLayout"
+import { getPosts } from "@/lib/posts"
 
 export const getStaticPaths = async () => {
-  const postEntries = await getCollection("posts", ({ data }) => (isDev ? true : !data.draft))
+  const postEntries = await getPosts()
   return postEntries.map((post) => ({
     params: {
       slug: post.slug,
