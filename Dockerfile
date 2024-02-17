@@ -22,7 +22,7 @@ USER $USERNAME
 COPY .tool-versions ./.tool-versions
 
 RUN curl https://mise.run | sh \
-    && /home/dev/.local/bin/mise install \
-    && /home/dev/.local/bin/mise reshim \
+    && /home/$USERNAME/.local/bin/mise install \
+    && /home/$USERNAME/.local/bin/mise reshim \
     && echo 'eval "$(/home/'$USERNAME'/.local/bin/mise activate bash)"' >> ~/.bashrc \
     && echo 'export PS1="\[\e[01;32m\]\u@\h\[\e[m\]:\[\e[01;34m\]\w\[\e[m\]\$ "' >> ~/.bashrc
