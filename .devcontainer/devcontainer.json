@@ -1,6 +1,7 @@
 {
   "name": "alg.tus-ricora.com",
   "build": {
-    "dockerfile": "Dockerfile"
-  }
+    "dockerfile": "../Dockerfile"
+  },
+  "containerUser": "dev"
 }
