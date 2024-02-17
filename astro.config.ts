@@ -29,7 +29,6 @@ export default defineConfig({
   site: "https://alg.tus-ricora.com/",
   redirects: {
     "/p/[...slug]": "/posts/[...slug]",
-    "/[...slug]": "/categories/[...slug]",
   },
   integrations: [tailwind(), solidJs(), mdx(), sitemap(), pagefind()],
   markdown: {
