@@ -39,7 +39,7 @@ const categories = await getCollection("categories")
                     const category = categories.find((category) => category.id === id)!
                     return (
                       <a
-                        href={`/${id}`}
+                        href={`/categories/${id}`}
                         class={twMerge(
                           "flex flex-row items-center gap-1 rounded-md bg-blue-400 px-2.5 py-1 text-sm font-bold text-white transition hover:brightness-110 sm:px-4 sm:text-base",
                           category.data.twClassName,

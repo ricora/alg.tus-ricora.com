@@ -6,42 +6,41 @@ import { calculateReadingTime, getPosts } from "@/lib/posts"
 import { getCollection } from "astro:content"
 import * as path from "node:path"
 import { twMerge } from "tailwind-merge"
-import { getTags } from "@/lib/tags"
 
 export const getStaticPaths = async () => {
-  const tags = await getTags()
-  return tags.map((tag) => ({
+  const tags = await getCollection("categories")
+  return tags.map((category) => ({
     params: {
-      slug: tag.id,
+      slug: category.id,
     },
     props: {
-      tag,
+      category,
     },
   }))
 }
 
-const { tag } = Astro.props
+const { category } = Astro.props
 
 const posts = await getPosts()
 const categories = await getCollection("categories")
 
-const postsByTag = posts
-  .filter((post) => post.data.tags?.includes(tag.id))
+const postsByCategory = posts
+  .filter((post) => post.data.categories.some((category) => category.id === category.id))
   .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
 ---
 
-<BaseLayout title={tag.title} og={{ url: new URL(path.join("tags", tag.id), Astro.site) }}>
+<BaseLayout title={category.data.title} og={{ url: new URL(path.join("tags", category.id), Astro.site) }}>
   <main class="flex flex-1 flex-col gap-8 py-12">
     <header class="flex flex-col gap-6">
-      <h1 class="text-3xl font-bold sm:text-4xl md:text-5xl">{tag.title}</h1>
+      <h1 class="text-3xl font-bold sm:text-4xl md:text-5xl">{category.data.title}</h1>
       <p class="text-muted-foreground sm:text-lg">
-        "{tag.title}"に関連する{postsByTag.length}件の記事を表示しています。
+        "{category.data.title}"に関連する{postsByCategory.length}件の記事を表示しています。
       </p>
     </header>
     <div class="flex flex-col gap-6">
       <!-- 仮のモックアップ -->
       {
-        postsByTag.map((post, i) => (
+        postsByCategory.map((post, i) => (
           <div
             class="flex flex-row items-center gap-2 rounded-xl bg-card/50 p-4 shadow-md backdrop-blur-lg duration-1000 ease-out animate-in fade-in-0 slide-in-from-bottom-6 hover:bg-muted/60"
             style={{
@@ -57,7 +56,7 @@ const postsByTag = posts
                     const category = categories.find((category) => category.id === id)!
                     return (
                       <a
-                        href={`/${id}`}
+                        href={`/categories/${id}`}
                         class={twMerge(
                           "flex flex-row items-center gap-1 rounded-md bg-blue-400 px-2.5 py-1 text-sm font-bold text-white transition hover:brightness-110 sm:px-4 sm:text-base",
                           category.data.twClassName,
