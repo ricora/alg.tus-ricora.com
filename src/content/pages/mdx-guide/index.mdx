@@ -465,7 +465,7 @@ tags:
 | `date`       | ⭕   | [日付]                                                                 | 記事の公開日時を指定します。                                                                             |
 | `lastmod`    | ❌   | [日付]                                                                 | 記事の最終更新日時を指定します。                                                                         |
 | `categories` | ❌   | [カテゴリ名](#カテゴリ)の配列                                          | 記事のカテゴリを指定します。                                                                             |
-| `tags`       | ❌   | 任意の文字列の配列                                                     | 記事のタグを指定します。                                                                                 |
+| `tags`       | ❌   | [タグ名](#タグ)の配列                                                  | 記事のタグを指定します。                                                                                 |
 
 ### カテゴリ
 
@@ -478,6 +478,21 @@ tags:
 - `works`: 作品紹介
 
 利用可能なカテゴリは、[src/content/categories](https://github.com/ricora/alg-blog/tree/main/src/content/categories)にて定義されています。
+
+### タグ
+
+タグは、記事のキーワードを指定するために使用されます。タグは、`tags`プロパティに配列で指定します。
+
+タグは、[src/content/tags](https://github.com/ricora/alg-blog/tree/main/src/content/tags)にて定義されているタグのIDもしくは、任意の文字列を指定することができます。
+
+[src/content/tags](https://github.com/ricora/alg-blog/tree/main/src/content/tags)にて定義されていないタグを指定した場合、その指定したタグ名（文字列）が新たにタグとして登録されます。このとき、指定したタグ名（文字列）が新たに登録されたタグのID兼タイトルとなります。IDとタイトルを別々にしたい場合は、[src/content/tags](https://github.com/ricora/alg-blog/tree/main/src/content/tags)にて新たにタグを定義してください。このとき、新たに作成したYAMLファイルのファイル名がタグのIDとなり、YAMLファイル内の`title`プロパティの値がタグのタイトルとなります。
+
+> [!example] 例：タグの定義
+> 以下に、IDが`rust`でタイトルが`Rust`のタグを定義する例を示します。
+>
+> ```yaml title="src/content/tags/rust.yaml"
+> title: Rust
+> ```
 
 ## コールアウト
 
