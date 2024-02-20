@@ -77,17 +77,17 @@
 3. ビルドする
 
    ```sh
-   bun run --bun build
+   bun run build
    ```
 
    ビルドした成果物は`./dist/`に保存されます。
 
-   このコマンドは、TypeScriptの型チェックとサイトのビルドを行います。これらを個別に行いたい場合は、`bun run --bun astro check`と`bun run --bun astro build`をそれぞれ実行してください。
+   このコマンドは、TypeScriptの型チェックとサイトのビルドを行います。これらを個別に行いたい場合は、`bun run astro check`と`bun run astro build`をそれぞれ実行してください。
 
 4. 開発サーバーを立ち上げる
 
    ```sh
-   bun run --bun dev
+   bun run dev
    ```
 
    開発サーバーはデフォルトで`localhost:4321`で立ち上がります。
@@ -107,19 +107,19 @@
 6. ビルドした成果物をプレビューする
 
    ```sh
-   bun run --bun preview
+   bun run preview
    ```
 
 ### 🧞 Commands
 
 全てのコマンドは、ターミナル上でプロジェクトのルートディレクトリから実行してください:
 
-| Command                         | Action                                                |
-| :------------------------------ | :---------------------------------------------------- |
-| `bun install`                   | 依存関係をインストールする                            |
-| `bun run --bun dev`             | 開発サーバーを`localhost:4321`で立ち上げる            |
-| `bun run --bun build`           | `./dist/`へプロジェクトをビルドする                   |
-| `bun run test`                  | テストを実行する                                      |
-| `bun run --bun preview`         | ビルドした成果物をローカルサーバーでプレビューする    |
-| `bun run --bun astro ...`       | `astro add`, `astro check`といったAstro CLIを実行する |
-| `bun run --bun astro -- --help` | Astro CLIの使い方を見る                               |
+| Command                   | Action                                                |
+| :------------------------ | :---------------------------------------------------- |
+| `bun install`             | 依存関係をインストールする                            |
+| `bun run dev`             | 開発サーバーを`localhost:4321`で立ち上げる            |
+| `bun run build`           | `./dist/`へプロジェクトをビルドする                   |
+| `bun run test`            | テストを実行する                                      |
+| `bun run preview`         | ビルドした成果物をローカルサーバーでプレビューする    |
+| `bun run astro ...`       | `astro add`, `astro check`といったAstro CLIを実行する |
+| `bun run astro -- --help` | Astro CLIの使い方を見る                               |
