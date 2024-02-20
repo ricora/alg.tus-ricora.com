@@ -1,18 +1,12 @@
 ---
-import { Icon, type IconName } from "@/components/Elements/Icon"
+import { type IconName } from "@/components/Elements/Icon"
+import { PostCard } from "@/components/Elements/PostCard"
 import { Tabs, type TabsProps } from "@/components/Elements/Tabs"
 import { BaseLayout } from "@/layouts/BaseLayout"
-import { formatDate } from "@/lib/date"
-import { calculateReadingTime, getPosts } from "@/lib/posts"
-import { getCollection } from "astro:content"
-import { twMerge } from "tailwind-merge"
+import { getPosts } from "@/lib/posts"
 
 const posts = await getPosts()
 posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
-
-const categories = await getCollection("categories")
-// TODO: タグも表示する
-//const tags = await getCollection("tags")
 
 type PostsType = typeof posts
 type postsByYearType = { [year: number]: PostsType }
@@ -71,57 +65,18 @@ const tabProps: TabsProps = {
                 <time class="mb-3 text-lg font-normal leading-none text-gray-400 dark:text-gray-600">{year}</time>
                 <div class="flex flex-col gap-3 py-3">
                   {posts.map((post, i) => {
-                    // TODO: コンポーネントに切り出す
                     return (
-                      <div
-                        class="flex flex-row items-center gap-2 rounded-xl bg-card/50 p-4 backdrop-blur-lg duration-1000 ease-out animate-in fade-in-0 slide-in-from-bottom-6 hover:bg-muted/60"
-                        style={{
-                          "animation-delay": `${i * 160}ms`,
-                          "animation-fill-mode": "backwards",
-                        }}
-                      >
-                        <Icon name={post.data.icon as IconName} class="w-20 flex-none rounded-2xl p-4 sm:w-28 sm:p-6" />
-                        <div class="my-2 flex flex-col gap-2.5 sm:gap-4">
-                          <header>
-                            <div class="flex flex-row flex-wrap gap-2">
-                              {post.data.categories.map(({ id }) => {
-                                const category = categories.find((category) => category.id === id)!
-                                return (
-                                  <a
-                                    href={`/categories/${id}`}
-                                    class={twMerge(
-                                      "flex flex-row items-center gap-1 rounded-md bg-blue-400 px-2.5 py-1 text-sm font-bold text-white transition hover:brightness-110 sm:px-4 sm:text-base",
-                                      category.data.twClassName,
-                                    )}
-                                  >
-                                    <Icon name={category.data.icon as IconName} class="h-5 w-5" />
-                                    <div>{category.data.title}</div>
-                                  </a>
-                                )
-                              })}
-                            </div>
-                          </header>
-                          <a href={`/posts/${post.slug}`}>
-                            <h2 class="text-lg font-black sm:text-xl md:text-2xl">{post.data.title}</h2>
-                          </a>
-                          <footer class="flex flex-row flex-wrap gap-2 text-xs font-semibold text-gray-500 sm:gap-4 sm:text-sm">
-                            <div class="flex flex-row items-center gap-2">
-                              <Icon name="tabler:calendar-time" class="h-4 w-4 sm:h-5 sm:w-5" />
-                              <span>投稿: {formatDate(post.data.date)}</span>
-                            </div>
-                            {post.data.lastmod && (
-                              <div class="flex flex-row items-center gap-2">
-                                <Icon name="tabler:refresh" class="h-5 w-5" />
-                                <span>最終更新: {formatDate(post.data.lastmod)}</span>
-                              </div>
-                            )}
-                            <div class="flex flex-row items-center gap-2">
-                              <Icon name="tabler:clock" class="h-5 w-5" />
-                              <span>読了時間: 約{calculateReadingTime(post.body)}分</span>
-                            </div>
-                          </footer>
-                        </div>
-                      </div>
+                      <PostCard
+                        title={post.data.title}
+                        icon={post.data.icon as IconName}
+                        slug={post.slug}
+                        body={post.body}
+                        tags={post.data.tags ?? []}
+                        categories={post.data.categories.map((category) => category.id)}
+                        date={post.data.date}
+                        lastmod={post.data.lastmod}
+                        animationDelay={160 * i}
+                      />
                     )
                   })}
                 </div>
