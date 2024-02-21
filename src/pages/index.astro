@@ -1,23 +1,21 @@
 ---
 import { Icon, type IconName } from "@/components/Elements/Icon"
+import { PostCard } from "@/components/Elements/PostCard"
 import { BaseLayout } from "@/layouts/BaseLayout"
+import { getPosts } from "@/lib/posts"
 
-// TODO: 最新の記事を表示する
-//import { formatDate } from "@/lib/date"
-//import { calculateReadingTime, getPosts } from "@/lib/posts"
-//import { twMerge } from "tailwind-merge"
-//import { isDev } from "@/lib/runtime"
-//import { getCollection } from "astro:content"
+const posts = await getPosts()
+posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
 
-//const posts = await getCollection("posts", ({ data }) => (isDev ? true : !data.draft))
-//const categories = await getCollection("categories")
+type PostsType = typeof posts
 
 type ContentType = {
   headerTitle: string
   headerIcon: IconName
-  description: string
+  description?: string
   linkTitle: string
   link: string
+  posts?: PostsType
 }
 
 const contents: ContentType[] = [
@@ -32,7 +30,7 @@ const contents: ContentType[] = [
   {
     headerTitle: "最新ニュース",
     headerIcon: "fluent-emoji-flat:newspaper",
-    description: "ここに記事を3つくらい並べる。",
+    posts: posts.slice(0, 3),
     linkTitle: "記事一覧へ",
     link: "/archives",
   },
@@ -59,14 +57,32 @@ const contents: ContentType[] = [
       contents.map((content) => (
         <section>
           <div class="mx-auto max-w-screen-xl">
-            <div class="rounded-lg bg-card p-6 md:px-12 md:py-8 dark:bg-muted">
+            <div class="flex flex-col gap-6 rounded-lg border bg-card p-6 md:px-12 md:py-8">
               <h2 class="flex flex-row items-center gap-4 text-2xl font-black md:gap-6 md:text-4xl">
                 <>
                   <Icon name={content.headerIcon} class="w-10 flex-none md:w-12" />
                   <span>{content.headerTitle}</span>
                 </>
               </h2>
-              <p class="my-6 text-muted-foreground md:text-lg">{content.description}</p>
+              {content.description && <p class="text-muted-foreground md:text-lg">{content.description}</p>}
+
+              {content.posts && (
+                <div class="flex flex-col gap-3">
+                  {content.posts.map((post, i) => (
+                    <PostCard
+                      title={post.data.title}
+                      icon={post.data.icon as IconName}
+                      slug={post.slug}
+                      body={post.body}
+                      tags={post.data.tags ?? []}
+                      categories={post.data.categories.map((category) => category.id)}
+                      date={post.data.date}
+                      lastmod={post.data.lastmod}
+                      animationDelay={160 * i}
+                    />
+                  ))}
+                </div>
+              )}
 
               <a
                 href={content.link}
