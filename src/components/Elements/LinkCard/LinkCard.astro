@@ -9,12 +9,19 @@ type Props = HTMLAttributes<"a"> & {
   description?: string
   image?: string
 }
-const { href, title, description, image, ...props } = Astro.props
+const { href, title: titleProps, description: descriptionProps, image: imageProps, ...props } = Astro.props
 const url = new URL(href ?? "")
 
 const metadata = await unfurl(url.href).catch(() => undefined)
-const og = metadata?.open_graph
 const favicon = metadata?.favicon
+const title =
+  titleProps ?? metadata?.open_graph?.title ?? metadata?.title ?? metadata?.twitter_card?.title ?? url.hostname
+const description =
+  descriptionProps ?? metadata?.open_graph?.description ?? metadata?.description ?? metadata?.twitter_card?.description
+const image = {
+  url: imageProps ?? metadata?.open_graph?.images?.[0]?.url ?? metadata?.twitter_card?.images?.[0]?.url,
+  alt: metadata?.open_graph?.images?.[0]?.alt ?? metadata?.twitter_card?.images?.[0]?.alt,
+}
 
 const shouldInvertFavicon = url.hostname.includes("github")
 ---
@@ -26,12 +33,8 @@ const shouldInvertFavicon = url.hostname.includes("github")
     {...props}
   >
     <div class="flex min-w-0 flex-1 flex-col justify-between gap-2 overflow-auto break-all px-5">
-      <p class="line-clamp-2 text-base font-bold">{title ?? og?.title ?? href}</p>
-      {
-        (description || og?.description) && (
-          <p class=" line-clamp-3 text-xs text-muted-foreground">{description ?? og?.description}</p>
-        )
-      }
+      <p class="line-clamp-2 text-base font-bold">{title}</p>
+      {description && <p class=" line-clamp-3 text-xs text-muted-foreground">{description}</p>}
       <div class="flex flex-row items-center gap-2 text-xs">
         {
           favicon ? (
@@ -40,18 +43,13 @@ const shouldInvertFavicon = url.hostname.includes("github")
             <Icon name="tabler:world-x" class="h-4 w-4" />
           )
         }
-        <p class="truncate">{title ?? url.hostname}</p>
+        <p class="truncate">{url.hostname}</p>
       </div>
     </div>
     {
-      (image || og?.images) && (
+      image.url && (
         <div class="flex-shrink-0">
-          <img
-            src={image ?? og?.images?.[0].url}
-            class="roundjed-r-lg h-24 w-24 object-cover md:w-fit"
-            alt={og?.images?.[0].alt ?? og?.title ?? url.href}
-            loading="lazy"
-          />
+          <img src={image.url} class="roundjed-r-lg h-24 w-24 object-cover md:w-fit" alt={image.alt} loading="lazy" />
         </div>
       )
     }
