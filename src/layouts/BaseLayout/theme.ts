@@ -21,6 +21,7 @@ const resolveTheme = (theme: Theme | undefined): Theme => {
 const writeThemeToDom = (theme: Theme) => {
   document.documentElement.setAttribute("data-theme", theme)
   if (theme === "dark") document.documentElement.classList.add(theme)
+  else document.documentElement.classList.remove("dark")
 }
 
 const saveThemeToStroge = (theme: Theme) => {
