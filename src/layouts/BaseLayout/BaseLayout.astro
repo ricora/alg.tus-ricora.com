@@ -91,7 +91,7 @@ const bundledThemeScript = "console.time('theme');" + result.outputFiles[0].text
     <script is:inline set:html={bundledThemeScript} />
     <div class="relative mx-auto flex h-fit min-h-full flex-col px-4 md:flex-row md:gap-8 xl:max-w-[1536px]">
       <NavBar />
-      <div class="flex flex-col gap-8">
+      <div class="flex flex-col gap-8 flex-1">
         <slot />
         <footer class="p-4 text-center">
           &copy; {new Date().getFullYear()} RICORA Programming Team
