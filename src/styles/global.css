@@ -3,8 +3,15 @@
 @tailwind utilities;
 
 @layer base {
-  * {
-    @apply border-border-default;
+  body {
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1,
+      "palt" 1;
+  }
+
+  .border {
+    @apply border-border-subtle;
   }
 
   html,
