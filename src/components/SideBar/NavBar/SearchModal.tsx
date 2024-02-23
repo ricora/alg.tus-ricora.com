@@ -16,7 +16,7 @@ export const SearchModal: Component<SearchModalProps> = (props) => {
 
   return (
     <Dialog.Root closeOnEscapeKeyDown closeOnInteractOutside open={isOpen()} onOpenChange={(e) => setIsOpen(e.open)}>
-      <Dialog.Trigger class="flex flex-row gap-4 rounded-md p-2 text-muted-foreground transition hover:bg-muted hover:text-foreground">
+      <Dialog.Trigger class="flex flex-row gap-4 rounded-md p-2 text-fg-muted transition hover:bg-bg-muted hover:text-fg-default">
         {props.buttonIcon}
         <span>検索</span>
       </Dialog.Trigger>

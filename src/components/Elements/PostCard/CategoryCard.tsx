@@ -15,7 +15,7 @@ export const CategoryCard: Component<CategoryCardProps> = (props) => {
     <a
       href={`/categories/${props.id}`}
       class={twMerge(
-        "m-1 flex flex-row items-center gap-1 rounded-md bg-blue-400 px-2.5 py-1 text-sm font-bold text-white transition hover:brightness-110 sm:px-4 sm:text-base",
+        "m-1 flex flex-row items-center gap-1 rounded-md bg-blue-9 px-2.5 py-1 text-sm font-bold text-white transition sm:px-4 sm:text-base",
         category.data.twClassName,
       )}
     >

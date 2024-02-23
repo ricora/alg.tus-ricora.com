@@ -1,5 +1,5 @@
 ---
-import UserCard from "@/components/Elements/UserCard/UserCard.astro"
+import { UserCard } from "@/components/Elements/UserCard/UserCard"
 import { BaseLayout } from "@/layouts/BaseLayout"
 import { getCollection } from "astro:content"
 
@@ -16,7 +16,11 @@ const members = await getCollection("members")
     <section class="flex flex-col gap-12">
       <h1 class="mx-auto text-4xl font-bold" data-pagefind-meta="title">メンバー</h1>
       <div class="mx-auto grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {members.sort((a, b) => b.data.joined_year - a.data.joined_year).map((member) => <UserCard {...member} />)}
+        {
+          members
+            .sort((a, b) => b.data.joined_year - a.data.joined_year)
+            .map((member) => <UserCard client:visible {...member} />)
+        }
       </div>
     </section>
   </main>

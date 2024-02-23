@@ -80,7 +80,7 @@ export const Search: Component<SearchProps> = (props) => {
   return (
     <div
       class={twMerge(
-        "flex flex-col rounded-xl border bg-background p-2 backdrop-blur-xl dark:bg-background/60",
+        "flex flex-col rounded-xl border bg-bg-default p-2 backdrop-blur-2xl dark:bg-mauve-a2",
         props.class,
       )}
     >
@@ -95,7 +95,7 @@ export const Search: Component<SearchProps> = (props) => {
           placeholder="Search..."
           onInput={(e) => setQuery(e.currentTarget.value)}
           onKeyDown={handleKeyDown}
-          class="w-full bg-transparent text-lg font-bold text-foreground outline-none"
+          class="w-full bg-transparent text-lg font-bold text-fg-default outline-none"
         />
       </form>
       <Suspense>
@@ -134,8 +134,8 @@ const SearchResults: Component<SearchResultsProps> = (props) => {
   return (
     <>
       {props.results?.length === 0 ? (
-        <div class="mx-auto my-8 text-muted-foreground">
-          No results found for <span class="font-bold text-foreground">"{props.query}"</span>
+        <div class="mx-auto my-8 text-fg-muted">
+          No results found for <span class="font-bold text-fg-default">"{props.query}"</span>
         </div>
       ) : (
         <ol class="mt-3 flex flex-auto flex-col gap-2 overflow-y-auto">
@@ -171,7 +171,7 @@ const SearchResult: Component<SearchResultProps> = (props) => {
       <a
         class={twMerge(
           "flex flex-row gap-5 rounded-lg px-5 py-2 outline-none transition",
-          props.active && "sm:bg-zinc-600/10 sm:dark:bg-muted/60",
+          props.active && "sm:bg-mauve-a4",
         )}
         href={result()?.raw_url}
         ref={props.ref}
@@ -189,7 +189,7 @@ const SearchResult: Component<SearchResultProps> = (props) => {
         </div>
         <div class="flex flex-col gap-1">
           <div class="font-bold">{result()?.meta["title"]}</div>
-          <div class="text-sm text-muted-foreground" innerHTML={result()?.excerpt} />
+          <div class="text-sm text-fg-subtle" innerHTML={result()?.excerpt} />
         </div>
       </a>
     </li>

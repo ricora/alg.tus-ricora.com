@@ -1,7 +1,7 @@
 ---
 import { twMerge } from "tailwind-merge"
 import type { HTMLAttributes } from "astro/types"
-import IconLink from "./IconLink.astro"
+import { IconLink } from "./IconLink"
 import Links from "./Links.astro"
 import { ToggleThemeButton } from "./ToggleThemeButton"
 import { Icon } from "@/components/Elements/Icon"
@@ -26,23 +26,24 @@ const { class: className, ...props } = Astro.props
   {...props}
 >
   <a href="/" class="mx-2 h-fit w-fit">
-    <Icon name="brand:ricora" alt="RICORA" class="h-32 w-32 rounded-full bg-card p-2 shadow-md" />
+    <Icon name="brand:ricora" alt="RICORA" class="h-32 w-32 rounded-full bg-bg-default p-2 shadow-md" />
   </a>
   <div class="mx-2 flex flex-col gap-2">
     <h1 class="text-xl font-bold">RICORA Programming Team</h1>
-    <h2 class="gap-2 text-sm text-muted-foreground">
+    <h2 class="gap-2 text-sm text-fg-muted">
       <span class="inline-block">東京理科大学<span> </span></span>
       <span class="inline-block">電子計算機研究会<span> </span></span>
       <span class="inline-block">プログラミング班</span>
     </h2>
   </div>
   <div class="mx-2 flex flex-row gap-2">
-    <IconLink name="line-md:github-loop" label="GitHub" href={new URL("https://github.com/RICORA/")} />
-    <IconLink name="line-md:twitter-x" label="X (旧Twitter)" href={new URL("https://twitter.com/ricora_alg/")} />
+    <IconLink name="line-md:github-loop" label="GitHub" href="https://github.com/RICORA/" client:load />
+    <IconLink name="line-md:twitter-x" label="X (旧Twitter)" href="https://twitter.com/ricora_alg/" client:load />
     <IconLink
       name="line-md:youtube"
       label="YouTube"
-      href={new URL("https://www.youtube.com/channel/UC4qBY_aaTvTkQ3E0PY89T2A")}
+      href="https://www.youtube.com/channel/UC4qBY_aaTvTkQ3E0PY89T2A"
+      client:load
     />
   </div>
   <Links />
@@ -50,7 +51,7 @@ const { class: className, ...props } = Astro.props
     <Icon slot="searchIcon" name="tabler:search" class="h-6 w-6" />
     <Icon slot="buttonIcon" name="tabler:search" class="h-6 w-6" />
   </SearchModal>
-  <div class="mt-auto hidden md:flex">
+  <div class="mt-auto hidden p-2 md:flex">
     <ToggleThemeButton client:only="solid" />
   </div>
 </aside>

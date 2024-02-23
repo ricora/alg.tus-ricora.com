@@ -28,13 +28,13 @@ const shouldInvertFavicon = url.hostname.includes("github")
 
 <div class="h-36">
   <a
-    class="not-prose flex min-h-full flex-row items-center rounded-lg border bg-secondary/25 not-italic transition hover:bg-secondary/80 hover:dark:bg-secondary/50"
+    class="not-prose flex min-h-full flex-row items-center rounded-lg border not-italic transition hover:bg-mauve-a3 dark:bg-mauve-a2"
     href={url.href}
     {...props}
   >
-    <div class="flex min-w-0 flex-1 flex-col justify-between gap-2 overflow-auto break-all px-5">
-      <p class="line-clamp-2 text-base font-bold">{title}</p>
-      {description && <p class=" line-clamp-3 text-xs text-muted-foreground">{description}</p>}
+    <div class="flex min-w-0 flex-1 flex-col justify-between gap-2 overflow-auto break-all px-3 md:px-5">
+      <p class="line-clamp-2 font-bold">{title}</p>
+      {description && <p class=" line-clamp-3 text-xs text-fg-subtle">{description}</p>}
       <div class="flex flex-row items-center gap-2 text-xs">
         {
           favicon ? (
@@ -43,13 +43,18 @@ const shouldInvertFavicon = url.hostname.includes("github")
             <Icon name="tabler:world-x" class="h-4 w-4" />
           )
         }
-        <p class="truncate">{url.hostname}</p>
+        <p class="truncate text-fg-muted">{url.hostname}</p>
       </div>
     </div>
     {
       image.url && (
         <div class="flex-shrink-0">
-          <img src={image.url} class="roundjed-r-lg h-24 w-24 object-cover md:w-fit" alt={image.alt} loading="lazy" />
+          <img
+            src={image.url}
+            class="h-24 w-24 object-cover md:h-36 md:w-fit md:rounded-r-lg"
+            alt={image.alt}
+            loading="lazy"
+          />
         </div>
       )
     }

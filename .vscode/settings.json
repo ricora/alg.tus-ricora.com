@@ -7,7 +7,7 @@
   "eslint.experimental.useFlatConfig": true,
   "tailwindCSS.experimental.classRegex": [
     // key名がtwで始まるものをtailwindのクラスとして認識する
-    // e.g. twColor: text-red-500;
+    // e.g. twColor: text-red-6;
     // > https://github.com/tailwindlabs/tailwindcss-intellisense/issues/270
     "tw.*:(?:.|\n)*?[\"'`]([^\"'`]*).*?,"
   ]

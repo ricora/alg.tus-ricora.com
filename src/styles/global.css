@@ -1,61 +1,21 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-/* Generated from https://ui.shadcn.com/themes */
-@layer base {
-  :root {
-    --background: 220 1% 96%;
-    --foreground: 240 10% 3.9%;
-    --card: 210 1% 98%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
-    --radius: 0.5rem;
-  }
+@import "./radix-color.css";
 
-  [data-theme="dark"] {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
-  }
-}
+@import "@park-ui/tailwind-plugin/preset.css";
 
 @layer base {
-  * {
-    @apply border-border;
-  }
   body {
-    @apply bg-gradient-to-br from-zinc-200 to-zinc-50 bg-fixed text-foreground repeat-infinite dark:from-zinc-950 dark:to-zinc-900;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1,
+      "palt" 1;
+  }
+
+  body * {
+    @apply border-border-subtle;
   }
 
   html,
@@ -67,7 +27,7 @@
 section.footnotes {
   margin-top: 3rem;
   font-size: 0.9rem;
-  color: theme(colors.muted.foreground);
+  color: theme(colors.fg.muted);
 
   ol > li {
     margin: 0;
@@ -85,7 +45,7 @@ section.footnotes {
 
 span[id="footnote-label"] {
   padding-bottom: 3px;
-  border-bottom: 1px solid theme(colors.muted.foreground / 40%);
+  border-bottom: 1px solid theme(colors.fg.muted / 40%);
   font-weight: 700;
 }
 
