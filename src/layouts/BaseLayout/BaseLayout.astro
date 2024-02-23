@@ -92,7 +92,12 @@ const bundledThemeScript = "console.time('theme');" + result.outputFiles[0].text
     <script is:inline set:html={bundledThemeScript} />
     <div class="relative mx-auto flex h-fit min-h-full flex-col px-4 md:flex-row md:gap-8 xl:max-w-[1536px]">
       <NavBar />
-      <slot />
+      <div class="flex flex-1 flex-col gap-8">
+        <slot />
+        <footer class="p-4 text-center">
+          &copy; {new Date().getFullYear()} RICORA Programming Team
+        </footer>
+      </div>
       <InfoBar />
     </div>
     <div id="modal" class="fixed left-0 top-0"></div>

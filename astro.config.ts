@@ -28,7 +28,9 @@ import sitemap from "@astrojs/sitemap"
 export default defineConfig({
   site: "https://alg.tus-ricora.com/",
   redirects: {
-    "/p/[...slug]": "/posts/[...slug]",
+    // NOTE: Astroのバグで誤ったリダイレクト用のページが生成されるので、解決されるまでこの設定は無効化し、手動でリダイレクト用のページを生成する
+    //"/p/[...slug]": "/posts/[...slug]",
+    "/link": "/links",
   },
   integrations: [tailwind(), solidJs(), mdx(), sitemap(), pagefind()],
   markdown: {
