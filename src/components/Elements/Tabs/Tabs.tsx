@@ -13,12 +13,10 @@ export type TabsProps = {
 
 export const Tabs: Component<TabsProps> = (props) => {
   return (
-    <nav class="border-neutral-300 dark:border-neutral-700 flex gap-3 border-b text-sm md:text-lg">
+    <nav class="flex gap-3 border-b border-border-default text-sm md:text-lg">
       {props.tabs.map((tab) => {
         return (
-          <span
-            class={twMerge("py-2", tab.isActive ? "border-neutral-900 dark:border-neutral-100 -mb-[1px] border-b" : "")}
-          >
+          <span class={twMerge("py-2", tab.isActive && "-mb-[1px] border-b border-mauve-12")}>
             <a
               href={tab.href}
               class={twMerge(

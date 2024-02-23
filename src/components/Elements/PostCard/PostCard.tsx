@@ -4,6 +4,7 @@ import { calculateReadingTime } from "@/lib/posts"
 import { getCollection } from "astro:content"
 import { type Component } from "solid-js"
 import { twMerge } from "tailwind-merge"
+import { CategoryCard } from "./CategoryCard"
 
 const categories = await getCollection("categories")
 
@@ -20,12 +21,16 @@ export type PostCardProps = {
   date: Date
   lastmod?: Date
   animationDelay?: number
+  class?: string
 }
 
 export const PostCard: Component<PostCardProps> = (props) => {
   return (
     <div
-      class="flex flex-row items-center gap-2 rounded-xl bg-bg-default p-4 duration-1000 ease-out animate-in fade-in-0 slide-in-from-bottom-6 hover:bg-bg-muted"
+      class={twMerge(
+        "flex flex-row items-center gap-2 rounded-xl bg-bg-default p-4 duration-1000 ease-out animate-in fade-in-0 slide-in-from-bottom-6 hover:bg-bg-muted",
+        props.class,
+      )}
       style={{
         "animation-delay": `${props.animationDelay}ms`,
         "animation-fill-mode": "backwards",
@@ -35,27 +40,15 @@ export const PostCard: Component<PostCardProps> = (props) => {
       <div class="my-2 flex flex-col gap-2.5 sm:gap-4">
         <header>
           <div class="flex flex-row flex-wrap gap-2">
-            {props.categories.map((categoryId) => {
-              const category = categories.find((category) => category.id === categoryId)!
-              return (
-                <a
-                  href={`/categories/${categoryId}`}
-                  class={twMerge(
-                    "bg-blue-400 flex flex-row items-center gap-1 rounded-md px-2.5 py-1 text-sm font-bold text-white transition hover:brightness-110 sm:px-4 sm:text-base",
-                    category.data.twClassName,
-                  )}
-                >
-                  <Icon name={category.data.icon as IconName} class="h-5 w-5" />
-                  <div>{category.data.title}</div>
-                </a>
-              )
-            })}
+            {props.categories.map((category) => (
+              <CategoryCard id={category} />
+            ))}
           </div>
         </header>
         <a href={`/posts/${props.slug}`}>
           <h2 class="text-lg font-black sm:text-xl md:text-2xl">{props.title}</h2>
         </a>
-        <footer class="text-gray-500 flex flex-row flex-wrap gap-2 text-xs font-semibold sm:gap-4 sm:text-sm">
+        <footer class="flex flex-row flex-wrap gap-2 text-xs font-semibold text-fg-subtle sm:gap-4 sm:text-sm">
           <div class="flex flex-row items-center gap-2">
             <Icon name="tabler:calendar-time" class="h-4 w-4 sm:h-5 sm:w-5" />
             <span>投稿: {formatDate(props.date)}</span>

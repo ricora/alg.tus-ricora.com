@@ -9,16 +9,16 @@ const posts = await getPosts()
 posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
 
 type PostsType = typeof posts
-type postsByYearType = { [year: number]: PostsType }
+type PostsByYearType = { [year: number]: PostsType }
 
-const postsByYear: postsByYearType = posts.reduce((acc, post) => {
+const postsByYear = posts.reduce<PostsByYearType>((acc, post) => {
   const year = new Date(post.data.date).getFullYear()
   if (!acc[year]) {
     acc[year] = []
   }
   acc[year].push(post)
   return acc
-}, {} as postsByYearType)
+}, {})
 
 const tabProps: TabsProps = {
   tabs: [
@@ -54,15 +54,15 @@ const tabProps: TabsProps = {
       <Tabs {...tabProps} />
     </div>
 
-    <ol class="relative border-s border-gray-300 dark:border-gray-700">
+    <ol class="relative border-s border-border-muted">
       {
         Object.entries(postsByYear)
           .sort((a, b) => Number(b[0]) - Number(a[0]))
           .map(([year, posts]) => {
             return (
               <li class="mb-10 ms-4">
-                <div class="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full border border-white bg-gray-200 dark:border-gray-900 dark:bg-gray-700" />
-                <time class="mb-3 text-lg font-normal leading-none text-gray-400 dark:text-gray-600">{year}</time>
+                <div class="absolute -start-1.5 mt-1.5 h-3 w-3 rounded-full border border-border-muted bg-border-muted" />
+                <time class="mb-3 text-lg font-normal leading-none text-fg-muted">{year}</time>
                 <div class="flex flex-col gap-3 py-3">
                   {posts.map((post, i) => {
                     return (

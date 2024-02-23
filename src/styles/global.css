@@ -4,6 +4,8 @@
 
 @import "./radix-color.css";
 
+@import "@park-ui/tailwind-plugin/preset.css";
+
 @layer base {
   body {
     font-feature-settings:
@@ -12,7 +14,7 @@
       "palt" 1;
   }
 
-  .border {
+  body * {
     @apply border-border-subtle;
   }
 

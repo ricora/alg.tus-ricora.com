@@ -1,3 +1,3 @@
 mark {
-  @apply bg-transparent font-bold text-blue-5;
+  @apply bg-transparent font-bold text-blue-9 dark:text-blue-11;
 }

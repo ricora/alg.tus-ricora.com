@@ -44,12 +44,10 @@ const tabProps: TabsProps = {
         tags.map((tag) => (
           <a
             href={`/tags/${tag.id}`}
-            class="m-1 rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 text-sm transition hover:brightness-90 dark:border-gray-700 dark:bg-gray-950"
+            class="m-1 rounded-lg border bg-bg-default px-4 py-2 text-sm transition hover:bg-bg-muted"
           >
-            <>
-              <span class="pr-1 text-xs text-muted-foreground">#</span>
-              <span>{tag.title}</span>
-            </>
+            <span class="text-muted-foreground pr-1 text-xs">#</span>
+            <span>{tag.title}</span>
           </a>
         ))
       }
