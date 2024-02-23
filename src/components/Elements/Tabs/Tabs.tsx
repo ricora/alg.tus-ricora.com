@@ -13,15 +13,17 @@ export type TabsProps = {
 
 export const Tabs: Component<TabsProps> = (props) => {
   return (
-    <nav class="flex gap-3 border-b border-gray-300 text-sm md:text-lg dark:border-gray-700">
+    <nav class="border-neutral-300 dark:border-neutral-700 flex gap-3 border-b text-sm md:text-lg">
       {props.tabs.map((tab) => {
         return (
-          <span class={twMerge("py-2", tab.isActive ? "-mb-[1px] border-b border-gray-900 dark:border-gray-100" : "")}>
+          <span
+            class={twMerge("py-2", tab.isActive ? "border-neutral-900 dark:border-neutral-100 -mb-[1px] border-b" : "")}
+          >
             <a
               href={tab.href}
               class={twMerge(
-                "flex flex-row gap-1 overflow-y-auto rounded-md p-2 transition hover:bg-muted",
-                tab.isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground",
+                "flex flex-row gap-1 overflow-y-auto rounded-md p-2 transition hover:bg-bg-muted",
+                tab.isActive ? "text-fg-default" : "text-fg-muted hover:text-fg-default",
               )}
             >
               <Icon name={tab.icon} class="h-5 w-5 flex-none md:h-7 md:w-7" />

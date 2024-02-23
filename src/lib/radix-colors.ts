@@ -59,7 +59,7 @@ export type RadixColorPalette<Color extends RadixColor> = {
 }
 
 export const radixColor = <Color extends RadixColor>(color: Color): RadixColorPalette<Color> =>
-  new Array(12).reduce((palette, _, i) => {
+  new Array(12).fill(0).reduce((palette, _, i) => {
     palette[i + 1] = `var(--${color}-${i + 1})`
     palette[`a${i + 1}`] = `var(--${color}-a${i + 1})`
     return palette

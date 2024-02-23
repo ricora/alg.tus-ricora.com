@@ -25,7 +25,7 @@ export type PostCardProps = {
 export const PostCard: Component<PostCardProps> = (props) => {
   return (
     <div
-      class="flex flex-row items-center gap-2 rounded-xl bg-card/50 p-4 backdrop-blur-lg duration-1000 ease-out animate-in fade-in-0 slide-in-from-bottom-6 hover:bg-muted/60"
+      class="flex flex-row items-center gap-2 rounded-xl bg-bg-default p-4 duration-1000 ease-out animate-in fade-in-0 slide-in-from-bottom-6 hover:bg-bg-muted"
       style={{
         "animation-delay": `${props.animationDelay}ms`,
         "animation-fill-mode": "backwards",
@@ -41,7 +41,7 @@ export const PostCard: Component<PostCardProps> = (props) => {
                 <a
                   href={`/categories/${categoryId}`}
                   class={twMerge(
-                    "flex flex-row items-center gap-1 rounded-md bg-blue-400 px-2.5 py-1 text-sm font-bold text-white transition hover:brightness-110 sm:px-4 sm:text-base",
+                    "bg-blue-400 flex flex-row items-center gap-1 rounded-md px-2.5 py-1 text-sm font-bold text-white transition hover:brightness-110 sm:px-4 sm:text-base",
                     category.data.twClassName,
                   )}
                 >
@@ -55,7 +55,7 @@ export const PostCard: Component<PostCardProps> = (props) => {
         <a href={`/posts/${props.slug}`}>
           <h2 class="text-lg font-black sm:text-xl md:text-2xl">{props.title}</h2>
         </a>
-        <footer class="flex flex-row flex-wrap gap-2 text-xs font-semibold text-gray-500 sm:gap-4 sm:text-sm">
+        <footer class="text-gray-500 flex flex-row flex-wrap gap-2 text-xs font-semibold sm:gap-4 sm:text-sm">
           <div class="flex flex-row items-center gap-2">
             <Icon name="tabler:calendar-time" class="h-4 w-4 sm:h-5 sm:w-5" />
             <span>投稿: {formatDate(props.date)}</span>

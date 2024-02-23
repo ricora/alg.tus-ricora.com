@@ -7,9 +7,13 @@ import { radixColor } from "./src/lib/radix-colors"
 
 export default {
   darkMode: ["class", '[data-theme="dark"]'],
-  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue,yml,yaml}"],
+  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,ts,tsx,yml,yaml}"],
   theme: {
     colors: {
+      transparent: "transparent",
+      current: "currentColor",
+      white: "#ffffff",
+      black: "#000000",
       mauve: radixColor("mauve"),
       accent: radixColor("mauve"),
       tomato: radixColor("tomato"),
@@ -70,7 +74,7 @@ export default {
   plugins: [parkwindPlugin, tailwindcssAnimate, typography],
   parkUI: {
     accentColor: "neutral",
-    grayColor: "neutral",
+    grayColor: "mauve",
     borderRadius: "lg",
   },
 } satisfies Config

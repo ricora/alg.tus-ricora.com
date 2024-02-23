@@ -26,13 +26,13 @@
     & > span[data-line]::before {
       content: counter(line);
       counter-increment: line;
-      @apply mr-4 inline-block w-4 text-right text-neutral-400 dark:text-neutral-600;
+      @apply mr-4 inline-block w-4 text-right text-fg-subtle;
     }
   }
 
   /* 行ハイライト */
   & span[data-highlighted-line] {
-    @apply border-l-blue-400 bg-blue-200/20 dark:bg-neutral-600/20;
+    @apply border-l-blue-a8 bg-blue-a2;
   }
 
   /* diffハイライト */
@@ -43,7 +43,7 @@
 
     & span[data-diff-added] {
       & {
-        @apply bg-green-500/10 dark:bg-green-600/20;
+        @apply bg-green-a3;
       }
 
       & > span:first-child {
@@ -53,14 +53,14 @@
 
         &::before {
           content: "+";
-          @apply mr-2 text-green-500 dark:text-green-600;
+          @apply mr-2 text-green-8;
         }
       }
     }
 
     & span[data-diff-removed] {
       & {
-        @apply bg-red-500/10 dark:bg-red-600/20;
+        @apply bg-red-a3;
       }
 
       & > span:first-child {
@@ -70,7 +70,7 @@
 
         &::before {
           content: "-";
-          @apply mr-2 text-red-500 dark:text-red-600;
+          @apply mr-2 text-red-8;
         }
       }
     }
