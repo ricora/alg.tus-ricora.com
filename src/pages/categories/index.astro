@@ -1,0 +1,47 @@
+---
+import { CategoryCard } from "@/components/Elements/PostCard/CategoryCard"
+import { Tabs, type TabsProps } from "@/components/Elements/Tabs"
+import { BaseLayout } from "@/layouts/BaseLayout"
+import { getCategories } from "@/lib/categories"
+
+const categories = await getCategories()
+
+const tabProps: TabsProps = {
+  tabs: [
+    {
+      value: "アーカイブ",
+      icon: "tabler:archive",
+      href: "/archives",
+    },
+    {
+      value: "カテゴリ",
+      icon: "tabler:category",
+      href: "/categories",
+      isActive: true,
+    },
+    {
+      value: "タグ",
+      icon: "tabler:tag",
+      href: "/tags",
+    },
+  ],
+}
+---
+
+<BaseLayout
+  title="カテゴリ"
+  description="東京理科大学 電子計算機研究会 プログラミング班"
+  og={{
+    url: Astro.site!,
+  }}
+>
+  <main class="flex flex-1 flex-col gap-6 py-12">
+    <div>
+      <Tabs {...tabProps} />
+    </div>
+
+    <div class="flex flex-wrap">
+      {categories.map((category) => <CategoryCard id={category.id} />)}
+    </div>
+  </main>
+</BaseLayout>
