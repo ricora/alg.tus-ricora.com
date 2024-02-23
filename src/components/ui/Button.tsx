@@ -1,10 +1,11 @@
 import { type HTMLArkProps, ark } from "@ark-ui/solid"
-import { splitProps } from "solid-js"
+import { splitProps, type JSX } from "solid-js"
 import { type VariantProps, tv } from "tailwind-variants"
 
-export type ButtonProps = ButtonVariantProps & HTMLArkProps<"button">
+export type ButtonProps<T extends keyof JSX.IntrinsicElements> = ButtonVariantProps &
+  HTMLArkProps<T> & { class?: string; as?: T }
 
-export const Button = (props: ButtonProps) => {
+export const Button = <T extends keyof JSX.IntrinsicElements = "button">(props: ButtonProps<T>) => {
   const [variantProps, buttonProps] = splitProps(props, ["class", "size", "variant"])
   return <ark.button class={styles(variantProps)} {...buttonProps} />
 }
