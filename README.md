@@ -8,12 +8,36 @@
 
 ## 🤖 Tech Stack
 
-- [Astro](https://astro.build/)
-- [SolidJS](https://solidjs.com/)
-- [MDX](https://mdxjs.com/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Ark UI](https://ark-ui.com/)
+- **Meta-Framework**:
+  - [**Astro**](https://astro.build/) - Static Site Generator
+- **Framework**:
+  - [**SolidJS**](https://solidjs.com/) - UI Framework
+- **Component Library**:
+  - [**Ark UI**](https://ark-ui.com/) - Headless UI Component Library
+  - [**Park UI**](https://park-ui.com/) - Styled UI Component Library powered by Ark UI
+- **Styling**:
+  - [**Tailwind CSS**](https://tailwindcss.com/) - Utility-First CSS Framework
+  - [**Radix Colors**](https://radix-ui.com/colors) - Color System
+  - [**PostCSS**](https://postcss.org/) - CSS Post-Processor
+- **Content Rendering**:
+  - [**unified**](https://unifiedjs.com/) - Eco-system for processing content (used for rendering MDX)
+  - [**KaTeX**](https://katex.org/) - Math typesetting library
+  - [**shiki**](https://shiki.style/) - Syntax Highlighter
+- **Language**:
+  - [**TypeScript**](https://www.typescriptlang.org/) - JavaScript with syntax for types
+  - [**MDX**](https://mdxjs.com/) - Markdown for the component era (used for writing blog posts)
+  - [**YAML**](https://yaml.org/) - Human friendly data serialization standard
+- **Runtime**:
+  - [**Bun**](https://bun.sh/) - JavaScript all-in-one toolkit (used for package management, task running, testing, and more)
+  - [**Node.js**](https://nodejs.org/) - JavaScript runtime
+- **Other**:
+  - [**pagefind**](https://pagefind.app/) - Static search library
+  - [**nanostores**](https://github.com/nanostores/nanostores) - State management library
+  - [**iconify**](https://iconify.design/) - Universal icon framework
+  - [**unfurl**](https://github.com/jacktuck/unfurl) - Metadata scraper
+  - [**satori**](https://github.com/vercel/satori) - Library to generate images from HTML and CSS
+  - [**sharp**](https://sharp.pixelplumbing.com/) - Image processing library
+  - [**budoux**](https://github.com/google/budoux) - Line break organizer tool
 
 ## 🎉 Features
 
