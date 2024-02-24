@@ -477,15 +477,15 @@ tags:
 - `news`: お知らせ
 - `works`: 作品紹介
 
-利用可能なカテゴリは、[src/content/categories](https://github.com/ricora/alg-blog/tree/main/src/content/categories)にて定義されています。
+利用可能なカテゴリは、[src/content/categories](https://github.com/ricora/alg.tus-ricora.com/tree/main/src/content/categories)にて定義されています。
 
 ### タグ
 
 タグは、記事のキーワードを指定するために使用されます。タグは、`tags`プロパティに配列で指定します。
 
-タグは、[src/content/tags](https://github.com/ricora/alg-blog/tree/main/src/content/tags)にて定義されているタグのIDもしくは、任意の文字列を指定することができます。
+タグは、[src/content/tags](https://github.com/ricora/alg.tus-ricora.com/tree/main/src/content/tags)にて定義されているタグのIDもしくは、任意の文字列を指定することができます。
 
-[src/content/tags](https://github.com/ricora/alg-blog/tree/main/src/content/tags)にて定義されていないタグを指定した場合、その指定したタグ名（文字列）が新たにタグとして登録されます。このとき、指定したタグ名（文字列）が新たに登録されたタグのID兼タイトルとなります。IDとタイトルを別々にしたい場合は、[src/content/tags](https://github.com/ricora/alg-blog/tree/main/src/content/tags)にて新たにタグを定義してください。このとき、新たに作成したYAMLファイルのファイル名がタグのIDとなり、YAMLファイル内の`title`プロパティの値がタグのタイトルとなります。
+[src/content/tags](https://github.com/ricora/alg.tus-ricora.com/tree/main/src/content/tags)にて定義されていないタグを指定した場合、その指定したタグ名（文字列）が新たにタグとして登録されます。このとき、指定したタグ名（文字列）が新たに登録されたタグのID兼タイトルとなります。IDとタイトルを別々にしたい場合は、[src/content/tags](https://github.com/ricora/alg.tus-ricora.com/tree/main/src/content/tags)にて新たにタグを定義してください。このとき、新たに作成したYAMLファイルのファイル名がタグのIDとなり、YAMLファイル内の`title`プロパティの値がタグのタイトルとなります。
 
 > [!example] 例：タグの定義
 > 以下に、IDが`rust`でタイトルが`Rust`のタグを定義する例を示します。
