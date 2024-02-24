@@ -3,7 +3,7 @@
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=734781265&skip_quickstart=true&geo=SoutheastAsia)
 
 
-<!-- TODO: Wikiのリンクを張る -->
+<!-- TODO: CONTRIBUTING.mdへの誘導を追加する -->
 
 このリポジトリは[RICORA Programming Team](https://alg.tus-ricora.com/)のブログを管理するためのものです。ブログの編集やローカルでの閲覧方法についてはWikiを参照してください。
 
