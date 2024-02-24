@@ -34,9 +34,15 @@ export const NavDrawer: Component<NavDrawer> = (props) => {
                   <span class="inline-block">プログラミング班</span>
                 </Drawer.Description>
                 <div class="flex flex-row gap-2 text-fg-muted">
-                  {props.githubIcon}
-                  {props.twitterIcon}
-                  {props.youtubeIcon}
+                  <a class="hover:text-fg-default" href="https://github.com/RICORA/">
+                    {props.githubIcon}
+                  </a>
+                  <a class="hover:text-fg-default" href="https://twitter.com/ricora_alg/">
+                    {props.twitterIcon}
+                  </a>
+                  <a class="hover:text-fg-default" href="https://www.youtube.com/channel/UC4qBY_aaTvTkQ3E0PY89T2">
+                    {props.youtubeIcon}
+                  </a>
                 </div>
               </div>
               <Drawer.CloseTrigger class="mb-auto rounded-lg p-2 transition hover:bg-bg-muted">
