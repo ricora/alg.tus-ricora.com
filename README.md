@@ -49,9 +49,9 @@
 
 利用可能なMDX記法については、[alg.tus-ricora.com/mdx-guide](https://alg.tus-ricora.com/mdx-guide)を参照してください。
 
-### About us
+### About
 
-`src/content/pages/about-us/`にあるMDXファイルを基に、サークルの紹介ページを[alg.tus-ricora.com/about-us](https://alg.tus-ricora.com/about-us)にて公開します。
+`src/content/pages/about/`にあるMDXファイルを基に、サークルの紹介ページを[alg.tus-ricora.com/about](https://alg.tus-ricora.com/about)にて公開します。
 
 ### Members
 
