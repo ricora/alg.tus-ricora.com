@@ -55,7 +55,7 @@ const ogImageUrl = new URL(path.join("posts", `${post.slug}.png`), Astro.site)
             </div>
           </div>
           {
-            lastmod && (
+            lastmod && post.data.date.getTime() !== post.data.lastmod?.getTime() && (
               <div class="mx-auto my-2">
                 <div class="font-bold">最終更新</div>
                 <div>{lastmod}</div>
