@@ -1,0 +1,12 @@
+name: Rai
+description: 情報計算科学科。普段はWeb開発をしています。最近はRustを使ったコンパイラ開発やゲーム制作に興味があります。
+image: https://avatars.githubusercontent.com/u/96561881
+social:
+  - link: https://r4ai.dev/
+  - icon: simple-icons:github
+    link: https://github.com/r4ai
+  - icon: brand:zenn
+    link: https://zenn.dev/t4aru
+  - icon: simple-icons:bluesky
+    link: https://bsky.app/profile/r4ai.dev
+joined_year: 2022
