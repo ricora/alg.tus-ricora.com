@@ -53,7 +53,7 @@ export const PostCard: Component<PostCardProps> = (props) => {
             <Icon name="tabler:calendar-time" class="h-4 w-4 sm:h-5 sm:w-5" />
             <span>投稿: {formatDate(props.date)}</span>
           </div>
-          {props.lastmod && (
+          {props.lastmod && props.lastmod.getTime() !== props.date.getTime() && (
             <div class="flex flex-row items-center gap-2">
               <Icon name="tabler:refresh" class="h-5 w-5" />
               <span>最終更新: {formatDate(props.lastmod)}</span>
