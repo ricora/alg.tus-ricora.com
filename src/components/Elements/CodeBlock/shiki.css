@@ -14,7 +14,7 @@
   }
 
   & span.line {
-    @apply border-l-2 border-l-transparent px-4;
+    @apply h-6 border-l-2 border-l-transparent px-4;
   }
 
   /* 行番号表示 */
