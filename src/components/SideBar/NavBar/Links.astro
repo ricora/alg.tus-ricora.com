@@ -1,5 +1,6 @@
 ---
 import { Icon, type IconName } from "@/components/Elements/Icon"
+import { twMerge } from "tailwind-merge"
 
 type Link = {
   title: string
@@ -58,14 +59,22 @@ const links: Link[] = [
     href: "/link",
   },
 ]
+
+type Props = {
+  class?: string
+}
+const props = Astro.props
 ---
 
-<div class="hidden flex-col overflow-y-auto md:flex">
+<div class="flex flex-col overflow-y-auto md:w-full">
   {
     links.map((link) => (
       <a
         href={link.href}
-        class="flex flex-row gap-4 rounded-md p-2 text-fg-muted transition hover:bg-bg-muted hover:text-fg-default"
+        class={twMerge(
+          "flex flex-row gap-4 rounded-md p-2 text-fg-muted transition hover:bg-bg-muted hover:text-fg-default",
+          props.class,
+        )}
       >
         <Icon name={link.icon} class="h-6 w-6" />
         <span>{link.title}</span>

@@ -6,6 +6,7 @@ import Links from "./Links.astro"
 import { ToggleThemeButton } from "./ToggleThemeButton"
 import { Icon } from "@/components/Elements/Icon"
 import { SearchModal } from "./SearchModal"
+import { NavDrawer } from "./NavDrawer"
 
 type Props = HTMLAttributes<"aside">
 const { class: className, ...props } = Astro.props
@@ -19,24 +20,28 @@ const { class: className, ...props } = Astro.props
 
 <aside
   class={twMerge(
-    "flex flex-col gap-4 py-12 md:sticky md:top-0 md:h-dvh md:max-w-[25%] lg:max-w-[20%] xl:max-w-[15%]",
+    "flex flex-row md:flex-col gap-1 md:gap-4 py-3 md:py-12 px-4 md:px-0 sticky top-0 md:h-dvh md:max-w-[25%] lg:max-w-[20%] xl:max-w-[15%] items-center md:items-start backdrop-blur-xl border-b md:border-b-0 dark:backdrop-brightness-[0.3] backdrop-brightness-150 md:backdrop-filter-none md:dark:backdrop-filter-none",
     className,
   )}
   data-pagefind-ignore="all"
   {...props}
 >
-  <a href="/" class="mx-2 h-fit w-fit">
-    <Icon name="brand:ricora" alt="RICORA" class="h-32 w-32 rounded-full bg-bg-default p-2 shadow-md" />
+  <a href="/" class="h-fit w-fit md:mx-2">
+    <Icon
+      name="brand:ricora"
+      alt="RICORA"
+      class="h-6 w-6 rounded-full shadow-md md:h-32 md:w-32 md:bg-bg-default md:p-2"
+    />
   </a>
-  <div class="mx-2 flex flex-col gap-2">
-    <h1 class="text-xl font-bold">RICORA Programming Team</h1>
-    <h2 class="gap-2 text-sm text-fg-muted">
-      <span class="inline-block">東京理科大学<span> </span></span>
-      <span class="inline-block">電子計算機研究会<span> </span></span>
+  <div class="ml-1 mr-auto flex flex-col gap-2 md:mx-2">
+    <h1 class="text-sm font-bold md:text-xl">RICORA Programming Team</h1>
+    <h2 class="hidden gap-2 text-sm text-fg-muted md:block">
+      <span class="inline-block">東京理科大学&nbsp;</span>
+      <span class="inline-block">電子計算機研究会&nbsp;</span>
       <span class="inline-block">プログラミング班</span>
     </h2>
   </div>
-  <div class="mx-2 flex flex-row gap-2">
+  <div class="mx-2 hidden flex-row gap-2 md:flex">
     <IconLink name="line-md:github-loop" label="GitHub" href="https://github.com/RICORA/" client:load />
     <IconLink name="line-md:twitter-x" label="X (旧Twitter)" href="https://twitter.com/ricora_alg/" client:load />
     <IconLink
@@ -46,7 +51,7 @@ const { class: className, ...props } = Astro.props
       client:load
     />
   </div>
-  <Links />
+  <Links class="hidden md:flex" />
   <SearchModal client:only="solid">
     <Icon slot="searchIcon" name="tabler:search" class="h-6 w-6" />
     <Icon slot="buttonIcon" name="tabler:search" class="h-6 w-6" />
@@ -54,4 +59,11 @@ const { class: className, ...props } = Astro.props
   <div class="mt-auto hidden p-2 md:flex">
     <ToggleThemeButton client:only="solid" />
   </div>
+  <NavDrawer client:load class="md:hidden">
+    <Icon slot="closeButtonIcon" name="tabler:x" class="h-6 w-6" />
+    <Icon slot="githubIcon" name="tabler:brand-github" class="h-6 w-6 hover:text-fg-default" />
+    <Icon slot="twitterIcon" name="tabler:brand-twitter" class="h-6 w-6 hover:text-fg-default" />
+    <Icon slot="youtubeIcon" name="tabler:brand-youtube" class="h-6 w-6 hover:text-fg-default" />
+    <Links slot="links" />
+  </NavDrawer>
 </aside>

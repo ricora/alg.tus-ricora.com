@@ -16,9 +16,9 @@ export const SearchModal: Component<SearchModalProps> = (props) => {
 
   return (
     <Dialog.Root closeOnEscapeKeyDown closeOnInteractOutside open={isOpen()} onOpenChange={(e) => setIsOpen(e.open)}>
-      <Dialog.Trigger class="flex flex-row gap-4 rounded-md p-2 text-fg-muted transition hover:bg-bg-muted hover:text-fg-default">
+      <Dialog.Trigger class="flex flex-row gap-4 rounded-md p-2 text-fg-muted transition hover:bg-bg-muted hover:text-fg-default md:w-full">
         {props.buttonIcon}
-        <span>検索</span>
+        <span class="hidden md:inline-block">検索</span>
       </Dialog.Trigger>
       <Portal mount={document.querySelector("#modal")!}>
         <Dialog.Backdrop class="h-dvh w-dvw bg-black/50 opacity-100 transition-opacity data-[state=closed]:opacity-0" />
