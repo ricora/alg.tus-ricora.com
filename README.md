@@ -5,7 +5,7 @@
 
 <!-- TODO: CONTRIBUTING.mdへの誘導を追加する -->
 
-このリポジトリは[RICORA Programming Team](https://alg.tus-ricora.com/)のブログを管理するためのものです。ブログの編集やローカルでの閲覧方法についてはWikiを参照してください。
+このリポジトリでは[RICORA Programming Team](https://alg.tus-ricora.com/)のWebサイトを管理しています。
 
 ## 🤖 Tech Stack
 
