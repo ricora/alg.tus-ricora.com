@@ -31,6 +31,7 @@ export default defineConfig({
     // NOTE: Astroのバグで誤ったリダイレクト用のページが生成されるので、解決されるまでこの設定は無効化し、手動でリダイレクト用のページを生成する
     //"/p/[...slug]": "/posts/[...slug]",
     "/link": "/links",
+    "/about-us": "/about",
   },
   integrations: [tailwind(), solidJs(), mdx(), sitemap(), pagefind()],
   markdown: {
