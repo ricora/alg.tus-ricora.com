@@ -43,9 +43,9 @@
 
 ### Blog
 
-`src/content/posts/`にあるMDXファイルを基に、ブログ記事を生成します。
+`src/content/posts/`以下にあるMDXファイルを基に、ブログ記事を生成します。
 
-生成したブログ記事は、[alg.tus-ricora.com/posts](https://alg.tus-ricora.com/posts)にて公開されます。
+生成したブログ記事は、`alg.tus-ricora.com/posts`以下にて公開します。公開中のブログ記事一覧は、[alg.tus-ricora.com/archives](https://alg.tus-ricora.com/archives)にて確認できます。
 
 利用可能なMDX記法については、[alg.tus-ricora.com/mdx-guide](https://alg.tus-ricora.com/mdx-guide)を参照してください。
 
