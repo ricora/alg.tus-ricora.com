@@ -45,7 +45,9 @@ export const NavDrawer: Component<NavDrawer> = (props) => {
             </Drawer.Header>
             <Drawer.Body>{props.links}</Drawer.Body>
             <Drawer.Footer>
-              <ToggleThemeButton class="mr-auto" />
+              <div class="mr-auto">
+                <ToggleThemeButton />
+              </div>
             </Drawer.Footer>
           </Drawer.Content>
         </Drawer.Positioner>
