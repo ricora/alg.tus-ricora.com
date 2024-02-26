@@ -11,6 +11,10 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .tool-versions
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
       - name: Install dependencies
@@ -23,6 +27,10 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .tool-versions
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
       - name: Install dependencies
@@ -35,6 +43,10 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .tool-versions
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
       - name: Install dependencies
@@ -47,6 +59,10 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .tool-versions
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
       - name: Install dependencies
