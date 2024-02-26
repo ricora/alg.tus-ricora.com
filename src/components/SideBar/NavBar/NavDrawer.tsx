@@ -40,7 +40,7 @@ export const NavDrawer: Component<NavDrawer> = (props) => {
                   <a class="hover:text-fg-default" href="https://twitter.com/ricora_alg/">
                     {props.twitterIcon}
                   </a>
-                  <a class="hover:text-fg-default" href="https://www.youtube.com/channel/UC4qBY_aaTvTkQ3E0PY89T2">
+                  <a class="hover:text-fg-default" href="https://www.youtube.com/channel/UC4qBY_aaTvTkQ3E0PY89T2A">
                     {props.youtubeIcon}
                   </a>
                 </div>
