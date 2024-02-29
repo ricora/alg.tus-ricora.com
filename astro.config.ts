@@ -23,6 +23,7 @@ import remarkMath from "remark-math"
 import rehypeKatex from "rehype-katex"
 import { pagefind } from "./src/lib/astro-integrations/pagefind"
 import sitemap from "@astrojs/sitemap"
+import { remarkInlineCode } from "@/lib/remark-plugins/remarkInlineCode"
 
 // https://astro.build/config
 export default defineConfig({
@@ -37,6 +38,7 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [
       remarkMath,
+      remarkInlineCode,
       remarkCallout,
       remarkMetaString,
       [

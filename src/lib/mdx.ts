@@ -10,5 +10,5 @@ export const mdxComponents = {
   pre: CodeBlock,
   "link-card": LinkCard,
   oembed: OEmbed,
-  code: Code,
+  "inline-code": Code,
 }
