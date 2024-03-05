@@ -37,7 +37,7 @@
     "@eslint/eslintrc": "^3.0.0",
     "@eslint/js": "^8.56.0",
     "@iconify/iconify": "^3.1.1",
-    "@park-ui/tailwind-plugin": "^0.19.1",
+    "@park-ui/tailwind-plugin": "^0.20.0",
     "@radix-ui/colors": "^3.0.0",
     "@types/bun": "^1.0.0",
     "@types/dompurify": "^3.0.5",
