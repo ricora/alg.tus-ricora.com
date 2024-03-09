@@ -7,11 +7,6 @@ const checkTitle = () => {
   const allowedPrefixList = ["chore", "docs", "feat", "fix", "perf", "refactor", "style", "test"]
   const allowTitleRegex = new RegExp(`^(${allowedPrefixList.join("|")})(\\(([\\w$.* -]*)\\))?: (.+)(?:\\n|$)`, "g")
   if (!allowTitleRegex.test(title)) {
-    for (const prefix of allowedPrefixList) {
-      if (title.startsWith(`${prefix}: `)) {
-        return
-      }
-    }
     fail(
       `PRのタイトルが不正です: \`${title}\`\n次のいずれかのPrefixを使用してください: \n${allowedPrefixList
         .map((prefix) => {
