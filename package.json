@@ -12,6 +12,8 @@
     "format:check": "prettier --ignore-path .gitignore --check . --cache",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
+    "textlint": "textlint ./src/content/",
+    "textlint:fix": "textlint --fix ./src/content/",
     "test": "bun test",
     "prepare": "husky install"
   },
