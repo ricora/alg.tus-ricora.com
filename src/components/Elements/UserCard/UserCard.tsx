@@ -26,9 +26,9 @@ export const UserCard: Component<UserCardProps> = (props) => {
             <Tooltip.Trigger>
               <a class="opacity-70 transition hover:opacity-100" href={s.link}>
                 {s.icon ? (
-                  <Icon name={s.icon as IconName} class="h-6 w-6" />
+                  <Icon name={s.icon as IconName} class="size-6" />
                 ) : (
-                  <Icon name="heroicons:link" class="h-6 w-6" />
+                  <Icon name="heroicons:link" class="size-6" />
                 )}
               </a>
             </Tooltip.Trigger>

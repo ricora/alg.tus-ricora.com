@@ -18,7 +18,7 @@ export const NavDrawer: Component<NavDrawer> = (props) => {
     <Drawer.Root variant="left">
       <Drawer.Trigger class={props.class}>
         <div class="rounded-md p-2 text-fg-muted transition hover:bg-bg-muted hover:text-fg-default">
-          <Icon name="tabler:align-right" class="h-6 w-6" />
+          <Icon name="tabler:align-right" class="size-6" />
         </div>
       </Drawer.Trigger>
       <Portal mount={document.querySelector("#modal")!}>

@@ -12,6 +12,7 @@ export const Button = <T extends keyof JSX.IntrinsicElements = "button">(props: 
 
 type ButtonVariantProps = VariantProps<typeof styles>
 
+// eslint-disable-next-line tailwindcss/no-custom-classname
 const styles = tv(
   {
     base: "button",

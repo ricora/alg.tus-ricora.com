@@ -27,6 +27,7 @@ export const Switch = (props: SwitchProps) => {
 
 type SwitchVariantProps = VariantProps<typeof styles>
 
+// eslint-disable-next-line tailwindcss/no-custom-classname
 const styles = tv(
   {
     base: "switchRecipe",

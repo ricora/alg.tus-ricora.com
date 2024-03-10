@@ -50,17 +50,17 @@ export const PostCard: Component<PostCardProps> = (props) => {
         </a>
         <footer class="flex flex-row flex-wrap gap-2 text-xs font-semibold text-fg-subtle sm:gap-4 sm:text-sm">
           <div class="flex flex-row items-center gap-2">
-            <Icon name="tabler:calendar-time" class="h-4 w-4 sm:h-5 sm:w-5" />
+            <Icon name="tabler:calendar-time" class="size-4 sm:size-5" />
             <span>投稿: {formatDate(props.date)}</span>
           </div>
           {props.lastmod && props.lastmod.getTime() !== props.date.getTime() && (
             <div class="flex flex-row items-center gap-2">
-              <Icon name="tabler:refresh" class="h-5 w-5" />
+              <Icon name="tabler:refresh" class="size-5" />
               <span>最終更新: {formatDate(props.lastmod)}</span>
             </div>
           )}
           <div class="flex flex-row items-center gap-2">
-            <Icon name="tabler:clock" class="h-5 w-5" />
+            <Icon name="tabler:clock" class="size-5" />
             <span>読了時間: 約{calculateReadingTime(props.body)}分</span>
           </div>
         </footer>
