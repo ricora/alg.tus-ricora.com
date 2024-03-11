@@ -217,7 +217,7 @@ import { TwoColumn } from "./TwoColumn"
 
 最初のバッククォート3つの後に、言語名を指定することで、シンタックスハイライトが適用されます。シンタックスハイライトには[Shiki](https://shiki.style/)を使用しています。シンタックスハイライトをサポートしている言語については、[Shikiのドキュメント](https://shiki.style/languages)を参照してください。
 
-言語名の後には、半角スペース区切りで属性を指定することができます。以下に利用可能な属性の例を示します。
+言語名の後には、半角スペース区切りで属性を指定できます。以下に利用可能な属性の例を示します。
 
 ### タイトル付きコードブロック
 
@@ -483,7 +483,7 @@ tags:
 
 タグは、記事のキーワードを指定するために使用されます。タグは、`tags`プロパティに配列で指定します。
 
-タグは、[src/content/tags](https://github.com/ricora/alg.tus-ricora.com/tree/main/src/content/tags)にて定義されているタグのIDもしくは、任意の文字列を指定することができます。
+タグは、[src/content/tags](https://github.com/ricora/alg.tus-ricora.com/tree/main/src/content/tags)にて定義されているタグのIDもしくは、任意の文字列を指定できます。
 
 [src/content/tags](https://github.com/ricora/alg.tus-ricora.com/tree/main/src/content/tags)にて定義されていないタグを指定した場合、その指定したタグ名（文字列）が新たにタグとして登録されます。このとき、指定したタグ名（文字列）が新たに登録されたタグのID兼タイトルとなります。IDとタイトルを別々にしたい場合は、[src/content/tags](https://github.com/ricora/alg.tus-ricora.com/tree/main/src/content/tags)にて新たにタグを定義してください。このとき、新たに作成したYAMLファイルのファイル名がタグのIDとなり、YAMLファイル内の`title`プロパティの値がタグのタイトルとなります。
 
@@ -792,7 +792,7 @@ tags:
 
 ### ネストしたコールアウト
 
-コールアウトはネストすることができます。
+コールアウトはネストできます。
 
 {/* prettier-ignore */}
 <TwoColumn>
@@ -923,7 +923,7 @@ https://adventar.org/calendars/7447
 [Astro]: https://astro.build/
 [React]: https://ja.react.dev/
 
-MDXでは、ファイル内にJSXを記述することができます。
+MDXでは、ファイル内にJSXを記述できます。
 
 > [!note] JSXとは
 > [JSX（JavaScript XML）](https://facebook.github.io/jsx/)は、XMLライクなJavaScriptの拡張構文です。
@@ -990,7 +990,7 @@ import { Counter } from "./Counter"
 >
 > https://docs.astro.build/ja/reference/directives-reference/#client-directives
 
-また、任意のJSX要素の中ではMDX記法を使用することができます。
+また、任意のJSX要素の中ではMDX記法を使用できます。
 
 {/* prettier-ignore */}
 <TwoColumn>
@@ -1028,7 +1028,7 @@ import { Counter } from "./Counter"
 
 ## JavaScript式
 
-MDXでは、ファイル内にJavaScript式を記述することができます。
+MDXでは、ファイル内にJavaScript式を記述できます。
 
 `{}`で囲まれた部分は、JavaScript式として評価されます。
 
