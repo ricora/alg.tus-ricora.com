@@ -11,9 +11,10 @@ export const Code = (props: CodeProps) => {
 
 type CodeVariantProps = VariantProps<typeof styles>
 
+// eslint-disable-next-line tailwindcss/no-custom-classname
 const styles = tv(
   {
-    base: "code not-prose",
+    base: "not-prose code",
     defaultVariants: { size: "md", variant: "outline" },
     variants: {
       variant: { outline: "code--variant_outline", ghost: "code--variant_ghost" },

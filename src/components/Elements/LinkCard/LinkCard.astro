@@ -40,7 +40,7 @@ const shouldInvertFavicon = url.hostname.includes("github")
           favicon ? (
             <img src={favicon} class={twMerge("inline-block h-4 w-4", shouldInvertFavicon && "dark:invert")} />
           ) : (
-            <Icon name="tabler:world-x" class="h-4 w-4" />
+            <Icon name="tabler:world-x" class="size-4" />
           )
         }
         <p class="truncate text-fg-muted">{url.hostname}</p>
@@ -48,10 +48,10 @@ const shouldInvertFavicon = url.hostname.includes("github")
     </div>
     {
       image.url && (
-        <div class="flex-shrink-0">
+        <div class="shrink-0">
           <img
             src={image.url}
-            class="h-24 w-24 object-cover md:h-36 md:w-auto md:rounded-r-lg"
+            class="size-24 object-cover md:h-36 md:w-auto md:rounded-r-lg"
             alt={image.alt}
             loading="lazy"
           />

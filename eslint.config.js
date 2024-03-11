@@ -44,7 +44,11 @@ const globalConfig = defineFlatConfig([
 
 /** @type {import("eslint-define-config").FlatESLintConfig[]} */
 //  @ts-expect-error Linter.FlatConfigをFlatESLintConfigに変換できない
-const extendedConfig = compat.extends("plugin:@typescript-eslint/recommended", "plugin:astro/recommended")
+const extendedConfig = compat.extends(
+  "plugin:@typescript-eslint/recommended",
+  "plugin:astro/recommended",
+  "plugin:tailwindcss/recommended",
+)
 
 const astroConfig = defineFlatConfig({
   files: ["**/*.astro"],
