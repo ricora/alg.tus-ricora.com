@@ -59,7 +59,7 @@ Issueを作成する前に同様のIssueが既に存在しないかをよく確�
 
 [GitHubのリポジトリ](https://github.com/ricora/alg-blog)の右上にある「Fork」ボタンをクリックして、自分のアカウントにこのリポジトリをフォークしてください。
 
-![image](https://github.com/ricora/alg-blog/assets/96561881/92fd2f08-92c4-40f8-ae6f-9265c771f003)
+![Forkボタンの場所](https://github.com/ricora/alg.tus-ricora.com/assets/96561881/3667c988-4867-40a3-8f5f-52c787de32e4)
 
 #### Featureブランチを切る方法
 
@@ -70,11 +70,13 @@ Issueを作成する前に同様のIssueが既に存在しないかをよく確�
 <!-- prettier-ignore -->
 > [!TIP]
 > [mise](https://github.com/jdx/mise)や[asdf](https://asdf-vm.com/)といったバージョン管理ツールを利用すると、[`.tool-versions`](./.tool-versions)に記載されたバージョンのBunを簡単にインストールすることができます。
-> 
+>
 > [mise](https://github.com/jdx/mise)の場合、
+>
 > ```sh
 > mise install
 > ```
+>
 > で必要なバージョンのBunをインストールできます。
 
 #### ローカル環境で開発を行う
