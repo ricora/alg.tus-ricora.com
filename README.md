@@ -67,6 +67,6 @@
 
 [pagefind](https://pagefind.app/)を利用して、サイト内の検索を実装しています。左側サイドバーから検索ボタンを押すか、<kbd>Ctrl</kbd> + <kbd>K</kbd>を押すことで検索を開始できます。
 
-## 📄 LICENSE
+## ⚖️ License
 
-このリポジトリは[MIT License](./LICENSE)の下で公開されています。ただし、ブランディングや記事等の文章ファイルについてはこれに含まれず、pull requestを使ったプロジェクトへの変更の提案を目的とした複製や改変のみを認めます。
+  このリポジトリは[MIT License](./LICENSE)の下で公開されています。**ただし、ロゴや組織名称等のブランディング、記事等の文章ファイルはMIT Licenseの適用範囲に含まれていないことに注意してください。これらのファイルについては、[Pull requestによる変更の提案](https://docs.github.com/ja/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests)を目的とした複製や改変のみを認めます。**
