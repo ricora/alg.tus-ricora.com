@@ -122,7 +122,7 @@ export class CustomTerminal {
         this.xterm.write("  \x1B[1;36mclear\x1B[0m         - Clear the terminal screen.\n\r")
         break
       case "ls":
-        if (args.includes("-a") || args.includes("--all")) {
+        if (args.some((arg) => /^-[a-zA-Z]*a[a-zA-Z]*/.test(arg)) || args.includes("--all")) {
           this.xterm.write(".\n\r")
           this.xterm.write("..\n\r")
           this.xterm.write(".secret.md\n\r")
