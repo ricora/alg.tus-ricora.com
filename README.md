@@ -69,4 +69,4 @@
 
 ## ⚖️ License
 
-  このリポジトリは[MIT License](./LICENSE)の下で公開されています。**ただし、ロゴや組織名称等のブランディング、記事等の文章ファイルはMIT Licenseの適用範囲に含まれていないことに注意してください。これらのファイルについては、[Pull requestによる変更の提案](https://docs.github.com/ja/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests)を目的とした複製や改変のみを認めます。**
+このリポジトリは[MIT License](./LICENSE)の下で公開されています。**ただし、ロゴや組織名称等のブランディング、記事等の文章ファイルはMIT Licenseの適用範囲に含まれていないことに注意してください。これらのファイルについては、[Pull requestによる変更の提案](https://docs.github.com/ja/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests)を目的とした複製や改変のみを認めます。**
