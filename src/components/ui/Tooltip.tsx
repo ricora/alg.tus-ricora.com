@@ -3,6 +3,7 @@ import type { ComponentProps } from "solid-js"
 import { tv } from "tailwind-variants"
 import { createStyleContext } from "@/lib/create-style-context"
 
+// eslint-disable-next-line tailwindcss/no-custom-classname
 const styles = tv(
   {
     base: "tooltip",

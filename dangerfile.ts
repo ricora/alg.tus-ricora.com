@@ -19,6 +19,7 @@ const checkTitle = () => {
 
 const checkCloseIssue = () => {
   if (
+    !/\[bot\]$/.test(danger.github.pr.user.login) &&
     !/(close|closes|closed|fix|fixes|fixed|resolve|resolves|resolved)\s+(#\d+|https:\/\/github\.com\/[\w.-]+\/[\w.-]+\/issues\/\d+)/i.test(
       body,
     )

@@ -178,13 +178,13 @@ const SearchResult: Component<SearchResultProps> = (props) => {
         onFocus={() => props.setActiveIndex(props.index)}
         onMouseEnter={() => props.setActiveIndex(props.index)}
       >
-        <div class="my-auto h-8 w-8 flex-none">
+        <div class="my-auto size-8 flex-none">
           {result()?.meta["image_svg"] ? (
-            <div class="h-full w-full" innerHTML={decodeURIComponent(result()!.meta["image_svg"])}></div>
+            <div class="size-full" innerHTML={decodeURIComponent(result()!.meta["image_svg"])}></div>
           ) : (
             // Because `<Search />` is client only component, we can't use `<Icon />` here because it is server only component.
             // So we use static icon component `<HeroiconsDocumentText />` instead.
-            <HeroiconsDocumentText class="h-full w-full" />
+            <HeroiconsDocumentText class="size-full" />
           )}
         </div>
         <div class="flex flex-col gap-1">
