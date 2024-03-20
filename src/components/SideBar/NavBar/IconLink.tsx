@@ -14,7 +14,7 @@ export const IconLink = (props: Props) => {
     <Tooltip.Root closeDelay={150} openDelay={300}>
       <Tooltip.Trigger>
         <a {...aTagProps}>
-          <Icon name={iconLinkProps.name} class="h-6 w-6 text-fg-muted transition hover:text-fg-default" />
+          <Icon name={iconLinkProps.name} class="size-6 text-fg-muted transition hover:text-fg-default" />
         </a>
       </Tooltip.Trigger>
       <Tooltip.Positioner>

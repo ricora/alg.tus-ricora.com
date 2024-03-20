@@ -24,7 +24,7 @@ export const Tabs: Component<TabsProps> = (props) => {
                 tab.isActive ? "text-fg-default" : "text-fg-muted hover:text-fg-default",
               )}
             >
-              <Icon name={tab.icon} class="h-5 w-5 flex-none md:h-7 md:w-7" />
+              <Icon name={tab.icon} class="size-5 flex-none md:size-7" />
               <span>{tab.value}</span>
             </a>
           </span>

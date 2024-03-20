@@ -19,7 +19,7 @@ export const CategoryCard: Component<CategoryCardProps> = (props) => {
         category.data.twClassName,
       )}
     >
-      <Icon name={category.data.icon as IconName} class="h-5 w-5" />
+      <Icon name={category.data.icon as IconName} class="size-5" />
       <div>{category.data.title}</div>
     </a>
   )

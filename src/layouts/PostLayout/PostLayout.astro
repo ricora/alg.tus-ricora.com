@@ -43,7 +43,7 @@ const ogImageUrl = new URL(path.join("posts", `${post.slug}.png`), Astro.site)
       <header class="flex flex-col items-center gap-6">
         <Icon
           name={post.data.icon as IconName}
-          class="h-44 w-44 rounded-full bg-bg-default p-8 shadow-md"
+          class="size-44 rounded-full bg-bg-default p-8 shadow-md"
           pagefindImage
         />
         <h1 class="text-3xl font-bold" data-pagefind-meta="title">{post.data.title}</h1>
