@@ -1,6 +1,7 @@
 ---
 import { Icon, type IconName } from "@/components/Elements/Icon"
 import { PostCard } from "@/components/Elements/PostCard"
+import { Terminal } from "@/components/Elements/Terminal"
 import { Button } from "@/components/ui/Button"
 import { BaseLayout } from "@/layouts/BaseLayout"
 import { getPosts } from "@/lib/posts"
@@ -92,5 +93,18 @@ const contents: ContentType[] = [
         </section>
       ))
     }
+    <section>
+      <div class="mx-auto max-w-screen-xl">
+        <div class="flex flex-col gap-6 rounded-lg border bg-bg-default p-6 md:px-12 md:py-8">
+          <h2 class="flex flex-row items-center gap-3 text-2xl font-black md:text-3xl">
+            <Icon name="fluent-emoji-flat:keyboard" class="w-10 flex-none md:w-12" />
+            <span>Terminal</span>
+          </h2>
+          <div class="flex flex-col gap-3">
+            <Terminal client:only="solid" />
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 </BaseLayout>
