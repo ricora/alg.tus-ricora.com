@@ -1,4 +1,6 @@
 ---
+import { Icon } from "@/components/Elements/Icon"
+import { githubRepositoryUrl } from "@/lib/metadata"
 import "@/styles/global.css"
 import themeScript from "./theme?raw"
 import { build } from "esbuild"
@@ -93,8 +95,15 @@ const bundledThemeScript = "console.time('theme');" + result.outputFiles[0].text
       <NavBar />
       <div class="flex flex-1 flex-col gap-8 px-4 md:px-0">
         <slot />
-        <footer class="p-4 text-center">
-          &copy; {new Date().getFullYear()} RICORA Programming Team
+        <footer class="space-y-4 p-4 text-center">
+          <div>&copy; {new Date().getFullYear()} RICORA Programming Team</div>
+          <a
+            href={githubRepositoryUrl}
+            class="flex items-center justify-center space-x-2 text-sm text-fg-muted transition hover:text-fg-default"
+          >
+            <Icon name="line-md:github-loop" class="size-5" />
+            <div>View on GitHub</div>
+          </a>
         </footer>
       </div>
       <InfoBar />
