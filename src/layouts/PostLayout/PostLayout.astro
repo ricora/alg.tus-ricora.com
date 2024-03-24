@@ -1,6 +1,8 @@
 ---
 import "@/styles/katex.css"
 import { Icon, type IconName } from "@/components/Elements/Icon"
+import { CategoryCard } from "@/components/Elements/PostCard/CategoryCard"
+import { TagCard } from "@/components/Elements/PostCard/TagCard"
 import { BaseLayout, type BaseLayoutProps } from "@/layouts/BaseLayout"
 import { formatDate } from "@/lib/date"
 import { calculateReadingTime } from "@/lib/posts"
@@ -18,6 +20,8 @@ const { Content } = await post.render()
 const date = formatDate(post.data.date)
 const lastmod = post.data.lastmod ? formatDate(post.data.lastmod) : undefined
 const readingTime = calculateReadingTime(post.body)
+const categories = post.data.categories
+const tags = post.data.tags || []
 
 const postUrl = new URL(path.join("posts", post.slug), Astro.site)
 const ogImageUrl = new URL(path.join("posts", `${post.slug}.png`), Astro.site)
@@ -47,6 +51,10 @@ const ogImageUrl = new URL(path.join("posts", `${post.slug}.png`), Astro.site)
           pagefindImage
         />
         <h1 class="text-3xl font-bold" data-pagefind-meta="title">{post.data.title}</h1>
+        <div class="flex flex-wrap">
+          {categories.map((category) => <CategoryCard id={category.id} />)}
+          {tags.map((tag) => <TagCard id={tag} />)}
+        </div>
         <div class="flex w-full max-w-lg flex-row flex-wrap justify-between text-center">
           <div class="mx-auto my-2">
             <div class="font-bold">投稿</div>
