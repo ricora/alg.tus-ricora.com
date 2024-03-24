@@ -1,4 +1,5 @@
 ---
+import { TagCard } from "@/components/Elements/PostCard/TagCard"
 import { Tabs, type TabsProps } from "@/components/Elements/Tabs"
 import { BaseLayout } from "@/layouts/BaseLayout"
 import { getTags } from "@/lib/tags"
@@ -40,17 +41,7 @@ const tabProps: TabsProps = {
     </div>
 
     <div class="flex flex-wrap">
-      {
-        tags.map((tag) => (
-          <a
-            href={`/tags/${tag.id}`}
-            class="m-1 rounded-lg border bg-bg-default px-4 py-2 text-sm transition hover:bg-bg-muted"
-          >
-            <span class="pr-1 text-xs text-fg-muted">#</span>
-            <span>{tag.title}</span>
-          </a>
-        ))
-      }
+      {tags.map((tag) => <TagCard id={tag.id} />)}
     </div>
   </main>
 </BaseLayout>
