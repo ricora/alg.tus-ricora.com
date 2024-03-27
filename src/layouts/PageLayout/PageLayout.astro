@@ -3,6 +3,7 @@ import "@/styles/katex.css"
 import { BaseLayout, type BaseLayoutProps } from "@/layouts/BaseLayout"
 import type { CollectionEntry } from "astro:content"
 import { mdxComponents } from "@/lib/mdx"
+import { TOC } from "@/components/Elements/TOC"
 import { LinkCard } from "@/components/Elements/LinkCard"
 
 export type Props = Partial<BaseLayoutProps> & {
@@ -10,7 +11,7 @@ export type Props = Partial<BaseLayoutProps> & {
 }
 const { page, ...props } = Astro.props
 
-const { Content } = await page.render()
+const { Content, headings } = await page.render()
 ---
 
 <BaseLayout
@@ -21,7 +22,7 @@ const { Content } = await page.render()
   }}
   {...props}
 >
-  <main class="my-12 flex-1">
+  <main class="my-12 flex flex-1">
     <article class="mx-auto max-w-screen-md">
       <header class="flex flex-col items-center gap-6">
         <h1 class="text-4xl font-bold" data-pagefind-meta="title">{page.data.title}</h1>
@@ -39,5 +40,10 @@ const { Content } = await page.render()
         <Content components={mdxComponents} />
       </section>
     </article>
+    <aside class="relative mx-4 hidden w-[224px] xl:block">
+      <div class="sticky top-[100px]">
+        <TOC headings={headings} client:only="solid" />
+      </div>
+    </aside>
   </main>
 </BaseLayout>
