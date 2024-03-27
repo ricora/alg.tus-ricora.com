@@ -3,6 +3,7 @@ import "@/styles/katex.css"
 import { Icon, type IconName } from "@/components/Elements/Icon"
 import { CategoryCard } from "@/components/Elements/PostCard/CategoryCard"
 import { TagCard } from "@/components/Elements/PostCard/TagCard"
+import { TOC } from "@/components/Elements/TOC"
 import { BaseLayout, type BaseLayoutProps } from "@/layouts/BaseLayout"
 import { formatDate } from "@/lib/date"
 import { calculateReadingTime } from "@/lib/posts"
@@ -82,27 +83,7 @@ const ogImageUrl = new URL(path.join("posts", `${post.slug}.png`), Astro.site)
     </article>
     <aside class="relative mx-4 hidden w-[224px] xl:block">
       <div class="sticky top-[100px]">
-        <div class="mb-4 text-xl font-bold">目次</div>
-        <ul class="relative border-s border-border-muted">
-          {
-            headings
-              .filter((heading) => heading.depth === 2 || heading.depth === 3)
-              .map((heading) => (
-                <li class="mb-2 ms-4">
-                  <div
-                    class={`absolute ${
-                      heading.depth === 2 ? "-start-1.5 mt-1.5 size-3" : "-start-1 mt-2 size-2"
-                    } rounded-full border border-border-muted bg-border-muted`}
-                  />
-                  <a href={`#${heading.slug}`} class="block max-w-[200px] truncate">
-                    <span class={`text-mauve-11 ${heading.depth === 2 ? "font-bold" : "font-normal"}`}>
-                      {heading.text}
-                    </span>
-                  </a>
-                </li>
-              ))
-          }
-        </ul>
+        <TOC headings={headings} client:only="solid" />
       </div>
     </aside>
   </main>
