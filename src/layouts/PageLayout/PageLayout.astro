@@ -12,6 +12,8 @@ export type Props = Partial<BaseLayoutProps> & {
 const { page, ...props } = Astro.props
 
 const { Content, headings } = await page.render()
+
+const tocHeadings = headings.filter((heading) => heading.depth === 2 || heading.depth === 3)
 ---
 
 <BaseLayout
@@ -40,10 +42,14 @@ const { Content, headings } = await page.render()
         <Content components={mdxComponents} />
       </section>
     </article>
-    <aside class="relative mx-4 hidden w-[224px] xl:block">
-      <div class="sticky top-[100px]">
-        <TOC headings={headings} client:only="solid" />
-      </div>
-    </aside>
+    {
+      tocHeadings.length > 0 && (
+        <aside class="relative mx-4 hidden w-[224px] xl:block">
+          <div class="sticky top-[100px]">
+            <TOC headings={headings} client:only="solid" />
+          </div>
+        </aside>
+      )
+    }
   </main>
 </BaseLayout>
