@@ -1,5 +1,6 @@
 import type { MarkdownHeading } from "astro"
 import { onMount, type Component } from "solid-js"
+import { twMerge } from "tailwind-merge"
 
 export type TOCProps = {
   headings: MarkdownHeading[]
@@ -16,13 +17,14 @@ export const TOC: Component<TOCProps> = (props) => {
     .map((heading) => (
       <li class="mb-2 ms-4">
         <div
-          class={`absolute ${
-            heading.depth === 2 ? "-start-[6px] mt-1.5 size-3" : "-start-[3px] mt-2 size-1.5"
-          } rounded-full border border-border-muted bg-border-muted`}
+          class={twMerge(
+            "absolute rounded-full border border-border-muted bg-border-muted",
+            heading.depth === 2 ? "-start-[6px] mt-1.5 size-3" : "-start-[3px] mt-2 size-1.5",
+          )}
         />
         <a href={`#${heading.slug}`} class="block max-w-[200px] truncate">
           <span
-            class={`text-mauve-11 ${heading.depth === 2 ? "font-bold" : "font-normal"}`}
+            class={twMerge("text-mauve-11", heading.depth === 2 ? "font-bold" : "font-normal")}
             id={`toc-${heading.text.toLowerCase().replace(/ /g, "-")}`}
           >
             {heading.text}
