@@ -34,7 +34,7 @@ export const TOC: Component<TOCProps> = (props) => {
     ))
 
   onMount(() => {
-    observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
+    observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         const toc = document.getElementById(`toc-${entry.target.id.toLowerCase().replace(/ /g, "-")}`)
         if (!toc) return
