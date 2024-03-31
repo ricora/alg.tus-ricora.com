@@ -11,7 +11,7 @@ export const getStaticPaths = async () => {
 
 export const GET = async ({ params }: APIContext) => {
   const post = await getEntryBySlug("posts", params.slug as string)
-  const body = post?.body
+  const body = post?.body?.trimStart()
   return new Response(body, {
     headers: {
       "content-type": "text/mdx; charset=utf-8",
