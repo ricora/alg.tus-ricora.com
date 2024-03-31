@@ -5,6 +5,7 @@ import { CategoryCard } from "@/components/Elements/PostCard/CategoryCard"
 import { TagCard } from "@/components/Elements/PostCard/TagCard"
 import { BaseLayout, type BaseLayoutProps } from "@/layouts/BaseLayout"
 import { formatDate } from "@/lib/date"
+import { githubRepositoryUrl } from "@/lib/metadata"
 import { calculateReadingTime } from "@/lib/posts"
 import type { CollectionEntry } from "astro:content"
 import { mdxComponents } from "@/lib/mdx"
@@ -25,6 +26,9 @@ const tags = post.data.tags || []
 
 const postUrl = new URL(path.join("posts", post.slug), Astro.site)
 const ogImageUrl = new URL(path.join("posts", `${post.slug}.png`), Astro.site)
+
+const githubRepositoryUrlWithSlash = githubRepositoryUrl.endsWith("/") ? githubRepositoryUrl : `${githubRepositoryUrl}/`
+const githubEditUrl = new URL(`edit/main/src/content/posts/${post.id}`, githubRepositoryUrlWithSlash)
 ---
 
 <BaseLayout
@@ -76,9 +80,18 @@ const ogImageUrl = new URL(path.join("posts", `${post.slug}.png`), Astro.site)
           </div>
         </div>
       </header>
-      <section class="prose mt-16 max-w-full dark:prose-invert">
+      <section class="prose my-16 max-w-full dark:prose-invert">
         <Content components={mdxComponents} />
       </section>
+      <div class="flex flex-wrap py-4">
+        <a
+          href={githubEditUrl.href}
+          class="m-1 flex flex-row items-center gap-1 rounded-lg border bg-bg-default px-4 py-2 text-sm transition hover:bg-bg-muted"
+        >
+          <Icon name="tabler:pencil" class="size-5 text-fg-muted" />
+          <div>GitHubで編集する</div>
+        </a>
+      </div>
     </article>
   </main>
 </BaseLayout>
