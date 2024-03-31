@@ -25,7 +25,7 @@ export const TOC: Component<TOCProps> = (props) => {
         <a href={`#${heading.slug}`} class="block max-w-[200px] truncate">
           <span
             class={twMerge("text-mauve-11", heading.depth === 2 ? "font-bold" : "font-normal")}
-            id={`toc-${heading.text.toLowerCase().replace(/ /g, "-")}`}
+            id={`toc-${heading.text.toLowerCase().replaceAll(" ", "-")}`}
           >
             {heading.text}
           </span>
@@ -36,7 +36,7 @@ export const TOC: Component<TOCProps> = (props) => {
   onMount(() => {
     observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        const toc = document.getElementById(`toc-${entry.target.id.toLowerCase().replace(/ /g, "-")}`)
+        const toc = document.getElementById(`toc-${entry.target.id.toLowerCase().replaceAll(" ", "-")}`)
         if (!toc) return
         if (entry.isIntersecting) {
           if (pendingDeactivateHeadingElements.length > 0) {
@@ -60,7 +60,7 @@ export const TOC: Component<TOCProps> = (props) => {
     })
     props.headings.forEach((heading) => {
       if (heading.depth === 2 || heading.depth === 3) {
-        observer.observe(document.getElementById(heading.text.toLowerCase().replace(/ /g, "-"))!)
+        observer.observe(document.getElementById(heading.text.toLowerCase().replaceAll(" ", "-"))!)
       }
     })
   })
