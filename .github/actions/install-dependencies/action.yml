@@ -15,3 +15,4 @@ runs:
         bun install --frozen-lockfile ||
         bun install --frozen-lockfile ||
         bun install --frozen-lockfile
+      shell: bash
