@@ -1,6 +1,6 @@
 name: Install dependencies
 description: As noted in issue \#234, `bun install` fails probabilistically, so if the installation fails, reinstall up to 10 times until it succeeds
-run:
+runs:
   using: composite
   steps:
     - name: Install dependencies
