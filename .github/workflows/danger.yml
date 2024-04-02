@@ -13,7 +13,7 @@ jobs:
       - name: Setup Node and Bun
         uses: jdx/mise-action@v2
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        uses: ./.github/actions/install-dependencies
       - name: Danger
         run: bun danger ci
         env:
