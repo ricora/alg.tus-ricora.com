@@ -66,9 +66,9 @@ export const TOC: Component<TOCProps> = (props) => {
   })
 
   return (
-    <div>
+    <div class="flex max-h-[calc(100dvh-5rem)] flex-col">
       <div class="mb-4 text-xl font-bold">目次</div>
-      <div class="h-[480px] overflow-auto p-3">
+      <div class="overflow-auto p-3">
         <ul class="relative border-s border-border-muted">{headingElements}</ul>
       </div>
     </div>
