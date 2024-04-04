@@ -15,10 +15,10 @@ export const TOC: Component<TOCProps> = (props) => {
   const headingElements = headings
     .filter((heading) => heading.depth === 2 || heading.depth === 3)
     .map((heading) => (
-      <li class="mb-2 ms-4">
+      <li class="mb-2 ms-4" id={`toc-${heading.text.toLowerCase().replaceAll(" ", "-")}`}>
         <div
           class={twMerge(
-            "absolute rounded-full border border-border-muted bg-border-muted",
+            "absolute rounded-full border border-mauve-6 bg-mauve-6 data-[active=true]:border-mauve-8 data-[active=true]:bg-mauve-8",
             heading.depth === 2 ? "-start-[6px] mt-1.5 size-3" : "-start-[3px] mt-2 size-1.5",
           )}
         />
@@ -28,7 +28,6 @@ export const TOC: Component<TOCProps> = (props) => {
               "text-mauve-11 data-[active=true]:text-mauve-12",
               heading.depth === 2 ? "font-bold" : "font-normal",
             )}
-            id={`toc-${heading.text.toLowerCase().replaceAll(" ", "-")}`}
           >
             {heading.text}
           </span>
@@ -36,27 +35,35 @@ export const TOC: Component<TOCProps> = (props) => {
       </li>
     ))
 
+  const setDataActive = (element: HTMLElement, active: boolean) => {
+    element
+      .getElementsByTagName("a")[0]
+      .getElementsByTagName("span")[0]
+      .setAttribute("data-active", active ? "true" : "false")
+    element.getElementsByTagName("div")[0].setAttribute("data-active", active ? "true" : "false")
+  }
+
   onMount(() => {
     observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        const toc = document.getElementById(`toc-${entry.target.id.toLowerCase().replaceAll(" ", "-")}`)
-        if (!toc) return
+        const tocLiElement = document.getElementById(`toc-${entry.target.id.toLowerCase().replaceAll(" ", "-")}`)
+        if (!tocLiElement) return
         if (entry.isIntersecting) {
           if (pendingDeactivateHeadingElements.length > 0) {
             pendingDeactivateHeadingElements.forEach((element) => {
-              element.setAttribute("data-active", "false")
+              setDataActive(element, false)
             })
             pendingDeactivateHeadingElements = []
             activeHeadingCount = 0
           }
-          toc.setAttribute("data-active", "true")
+          setDataActive(tocLiElement, true)
           activeHeadingCount++
         } else {
           if (activeHeadingCount > 1) {
-            toc.setAttribute("data-active", "false")
+            setDataActive(tocLiElement, false)
             activeHeadingCount--
           } else {
-            pendingDeactivateHeadingElements.push(toc)
+            pendingDeactivateHeadingElements.push(tocLiElement)
           }
         }
       })
