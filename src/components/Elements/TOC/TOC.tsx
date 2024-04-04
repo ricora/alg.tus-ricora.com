@@ -24,7 +24,10 @@ export const TOC: Component<TOCProps> = (props) => {
         />
         <a href={`#${heading.slug}`} class="block max-w-[200px] truncate">
           <span
-            class={twMerge("text-mauve-11", heading.depth === 2 ? "font-bold" : "font-normal")}
+            class={twMerge(
+              "text-mauve-11 data-[active=true]:text-mauve-12",
+              heading.depth === 2 ? "font-bold" : "font-normal",
+            )}
             id={`toc-${heading.text.toLowerCase().replaceAll(" ", "-")}`}
           >
             {heading.text}
@@ -41,16 +44,16 @@ export const TOC: Component<TOCProps> = (props) => {
         if (entry.isIntersecting) {
           if (pendingDeactivateHeadingElements.length > 0) {
             pendingDeactivateHeadingElements.forEach((element) => {
-              element.setAttribute("class", element.getAttribute("class")!.replace("text-mauve-12", "text-mauve-11"))
+              element.setAttribute("data-active", "false")
             })
             pendingDeactivateHeadingElements = []
             activeHeadingCount = 0
           }
-          toc.setAttribute("class", toc.getAttribute("class")!.replace("text-mauve-11", "text-mauve-12"))
+          toc.setAttribute("data-active", "true")
           activeHeadingCount++
         } else {
           if (activeHeadingCount > 1) {
-            toc.setAttribute("class", toc.getAttribute("class")!.replace("text-mauve-12", "text-mauve-11"))
+            toc.setAttribute("data-active", "false")
             activeHeadingCount--
           } else {
             pendingDeactivateHeadingElements.push(toc)
