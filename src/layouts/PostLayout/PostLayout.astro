@@ -96,15 +96,15 @@ const githubEditUrl = new URL(`edit/main/src/content/posts/${post.id}`, githubRe
             </aside>
           )
         }
-        <div class="flex flex-wrap py-4">
-          <a
-            href={githubEditUrl.href}
-            class="m-1 flex flex-row items-center gap-1 rounded-lg border bg-bg-default px-4 py-2 text-sm transition hover:bg-bg-muted"
-          >
-            <Icon name="tabler:pencil" class="size-5 text-fg-muted" />
-            <div>GitHubで編集する</div>
-          </a>
-        </div>
+      </div>
+      <div class="flex flex-wrap py-4">
+        <a
+          href={githubEditUrl.href}
+          class="m-1 flex flex-row items-center gap-1 rounded-lg border bg-bg-default px-4 py-2 text-sm transition hover:bg-bg-muted"
+        >
+          <Icon name="tabler:pencil" class="size-5 text-fg-muted" />
+          <div>GitHubで編集する</div>
+        </a>
       </div>
     </article>
   </main>
