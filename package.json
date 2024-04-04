@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@ark-ui/solid": "^2.0.0",
-    "@astrojs/mdx": "2.2.0",
+    "@astrojs/mdx": "2.2.3",
     "@astrojs/sitemap": "^3.0.5",
     "@astrojs/solid-js": "4.0.1",
     "@astrojs/tailwind": "5.1.0",
@@ -40,7 +40,7 @@
     "tailwindcss": "^3.4.0"
   },
   "devDependencies": {
-    "@astrojs/check": "0.5.9",
+    "@astrojs/check": "0.5.10",
     "@eslint/eslintrc": "^3.0.0",
     "@eslint/js": "^8.56.0",
     "@iconify/iconify": "^3.1.1",
@@ -65,10 +65,10 @@
     "eslint-config-flat-gitignore": "^0.1.2",
     "eslint-config-prettier": "^9.1.0",
     "eslint-define-config": "^2.0.0",
-    "eslint-plugin-astro": "^0.31.0",
+    "eslint-plugin-astro": "^0.33.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-tailwindcss": "^3.14.3",
-    "globals": "^14.0.0",
+    "globals": "^15.0.0",
     "hast-util-from-html": "^2.0.1",
     "hast-util-select": "^6.0.2",
     "hast-util-to-html": "^9.0.0",
@@ -97,6 +97,7 @@
     "tailwindcss-animate": "^1.0.7",
     "textlint": "^14.0.3",
     "textlint-filter-rule-comments": "^1.2.2",
+    "textlint-plugin-mdx": "^1.0.1",
     "textlint-rule-preset-ja-technical-writing": "^10.0.1",
     "typescript": "^5.3.3",
     "unfurl.js": "^6.3.2",

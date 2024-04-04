@@ -14,7 +14,7 @@ jobs:
       - name: Setup Node and Bun
         uses: jdx/mise-action@v2
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        uses: ./.github/actions/install-dependencies
       - name: Format
         run: bun run format:check
 
@@ -26,7 +26,7 @@ jobs:
       - name: Setup Node and Bun
         uses: jdx/mise-action@v2
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        uses: ./.github/actions/install-dependencies
       - name: Lint
         run: bun run lint
 
@@ -38,7 +38,7 @@ jobs:
       - name: Setup Node and Bun
         uses: jdx/mise-action@v2
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        uses: ./.github/actions/install-dependencies
       - name: Test
         run: bun run test
 
@@ -50,7 +50,7 @@ jobs:
       - name: Setup Node and Bun
         uses: jdx/mise-action@v2
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        uses: ./.github/actions/install-dependencies
       - name: Build
         run: bun run build
 
@@ -62,6 +62,6 @@ jobs:
       - name: Setup Node and Bun
         uses: jdx/mise-action@v2
       - name: Install dependencies
-        run: bun install --frozen-lockfile
+        uses: ./.github/actions/install-dependencies
       - name: Lint text
         run: bun run textlint
