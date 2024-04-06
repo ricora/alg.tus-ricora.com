@@ -3,6 +3,7 @@ import "@/styles/katex.css"
 import { Icon, type IconName } from "@/components/Elements/Icon"
 import { CategoryCard } from "@/components/Elements/PostCard/CategoryCard"
 import { TagCard } from "@/components/Elements/PostCard/TagCard"
+import { TOC } from "@/components/Elements/TOC"
 import { BaseLayout, type BaseLayoutProps } from "@/layouts/BaseLayout"
 import { formatDate } from "@/lib/date"
 import { githubRepositoryUrl } from "@/lib/metadata"
@@ -16,7 +17,7 @@ export type Props = Partial<BaseLayoutProps> & {
 }
 const { post, ...props } = Astro.props
 
-const { Content } = await post.render()
+const { Content, headings } = await post.render()
 
 const date = formatDate(post.data.date)
 const lastmod = post.data.lastmod ? formatDate(post.data.lastmod) : undefined
@@ -26,6 +27,8 @@ const tags = post.data.tags || []
 
 const postUrl = new URL(path.join("posts", post.slug), Astro.site)
 const ogImageUrl = new URL(path.join("posts", `${post.slug}.png`), Astro.site)
+
+const tocHeadings = headings.filter((heading) => heading.depth === 2 || heading.depth === 3)
 
 const githubRepositoryUrlWithSlash = githubRepositoryUrl.endsWith("/") ? githubRepositoryUrl : `${githubRepositoryUrl}/`
 const githubEditUrl = new URL(`edit/main/src/content/posts/${post.id}`, githubRepositoryUrlWithSlash)
@@ -46,9 +49,9 @@ const githubEditUrl = new URL(`edit/main/src/content/posts/${post.id}`, githubRe
   }}
   {...props}
 >
-  <main class="my-12 flex-1">
-    <article class="mx-auto max-w-screen-md">
-      <header class="flex flex-col items-center gap-6">
+  <main class="my-12 flex flex-1">
+    <article class="mx-auto">
+      <header class="mx-auto flex max-w-screen-md flex-col items-center gap-6">
         <Icon
           name={post.data.icon as IconName}
           class="size-44 rounded-full bg-bg-default p-8 shadow-md"
@@ -80,9 +83,20 @@ const githubEditUrl = new URL(`edit/main/src/content/posts/${post.id}`, githubRe
           </div>
         </div>
       </header>
-      <section class="prose my-16 max-w-full dark:prose-invert">
-        <Content components={mdxComponents} />
-      </section>
+      <div class="mt-16 flex flex-row gap-5">
+        <section class="prose max-w-screen-md dark:prose-invert">
+          <Content components={mdxComponents} />
+        </section>
+        {
+          tocHeadings.length > 0 && (
+            <aside class="relative mx-5 hidden w-56 xl:block">
+              <div class="sticky top-10">
+                <TOC headings={headings} client:idle />
+              </div>
+            </aside>
+          )
+        }
+      </div>
       <div class="flex flex-wrap py-4">
         <a
           href={githubEditUrl.href}
