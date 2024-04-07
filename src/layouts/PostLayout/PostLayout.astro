@@ -52,11 +52,7 @@ const githubEditUrl = new URL(`edit/main/src/content/posts/${post.id}`, githubRe
   <main class="my-12 flex flex-1">
     <article class="mx-auto">
       <header class="mx-auto flex max-w-screen-md flex-col items-center gap-6">
-        <Icon
-          name={post.data.icon as IconName}
-          class="size-44 rounded-full bg-bg-default p-8 shadow-md"
-          pagefindImage
-        />
+        <Icon name={post.data.icon as IconName} class="size-44 rounded-full border bg-bg-default p-8" pagefindImage />
         <h1 class="text-3xl font-bold" data-pagefind-meta="title">{post.data.title}</h1>
         <div class="flex flex-wrap">
           {categories.map((category) => <CategoryCard id={category.id} />)}
