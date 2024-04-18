@@ -15,7 +15,7 @@ export const TOC: Component<TOCProps> = (props) => {
   const headingElements = headings
     .filter((heading) => heading.depth === 2 || heading.depth === 3)
     .map((heading) => (
-      <li class="mb-2 ms-4" id={`toc-${heading.text.toLowerCase().replaceAll(" ", "-")}`}>
+      <li class="mb-2 ms-4" id={`toc-${heading.slug}`}>
         <div
           class={twMerge(
             "absolute rounded-full border border-mauve-6 bg-mauve-6 data-[active=true]:border-mauve-8 data-[active=true]:bg-mauve-8",
@@ -46,7 +46,7 @@ export const TOC: Component<TOCProps> = (props) => {
   onMount(() => {
     observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        const tocLiElement = document.getElementById(`toc-${entry.target.id.toLowerCase().replaceAll(" ", "-")}`)
+        const tocLiElement = document.getElementById(`toc-${entry.target.id}`)
         if (!tocLiElement) return
         if (entry.isIntersecting) {
           if (pendingDeactivateHeadingElements.length > 0) {
@@ -70,7 +70,7 @@ export const TOC: Component<TOCProps> = (props) => {
     })
     props.headings.forEach((heading) => {
       if (heading.depth === 2 || heading.depth === 3) {
-        observer.observe(document.getElementById(heading.text.toLowerCase().replaceAll(" ", "-"))!)
+        observer.observe(document.getElementById(heading.slug)!)
       }
     })
   })
