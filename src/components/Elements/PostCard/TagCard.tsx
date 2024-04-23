@@ -12,9 +12,9 @@ export const TagCard: Component<TagCardProps> = (props) => {
   return (
     <a
       href={`/tags/${tag.id}`}
-      class="m-1 rounded-lg border bg-bg-default px-4 py-2 text-sm transition hover:bg-bg-muted"
+      class="m-1 flex flex-row items-center gap-1 rounded-md border bg-bg-default px-2.5 py-1 text-sm transition hover:bg-bg-muted sm:px-4 sm:text-base"
     >
-      <span class="pr-1 text-xs text-fg-muted">#</span>
+      <span class="pr-0.5 text-xs text-fg-muted sm:text-sm">#</span>
       <span>{tag.title}</span>
     </a>
   )
