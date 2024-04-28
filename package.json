@@ -28,7 +28,7 @@
     "@tailwindcss/typography": "^0.5.10",
     "@xterm/addon-fit": "^0.10.0",
     "@xterm/xterm": "^5.4.0",
-    "astro": "4.4.15",
+    "astro": "4.7.0",
     "bowser": "^2.11.0",
     "budoux": "^0.6.1",
     "cowsay": "^1.6.0",
