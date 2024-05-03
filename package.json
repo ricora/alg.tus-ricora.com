@@ -65,7 +65,7 @@
     "eslint-config-flat-gitignore": "^0.1.2",
     "eslint-config-prettier": "^9.1.0",
     "eslint-define-config": "^2.0.0",
-    "eslint-plugin-astro": "^0.34.0",
+    "eslint-plugin-astro": "^1.0.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-tailwindcss": "^3.14.3",
     "globals": "^15.0.0",
