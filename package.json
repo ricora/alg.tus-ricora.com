@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@ark-ui/solid": "^2.0.0",
-    "@astrojs/mdx": "2.3.1",
+    "@astrojs/mdx": "3.0.0",
     "@astrojs/sitemap": "^3.0.5",
     "@astrojs/solid-js": "4.2.0",
     "@astrojs/tailwind": "5.1.0",
