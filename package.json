@@ -42,7 +42,7 @@
   "devDependencies": {
     "@astrojs/check": "0.6.0",
     "@eslint/eslintrc": "^3.0.0",
-    "@eslint/js": "^8.56.0",
+    "@eslint/js": "^9.0.0",
     "@iconify/iconify": "^3.1.1",
     "@park-ui/tailwind-plugin": "^0.20.0",
     "@radix-ui/colors": "^3.0.0",
