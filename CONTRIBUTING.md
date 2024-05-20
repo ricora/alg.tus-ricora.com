@@ -91,6 +91,27 @@ git clone https://github.com/r4ai/alg.tus-ricora.com.git
 
 #### Featureブランチを切る方法
 
+まずは、クローンしたリポジトリのディレクトリに移動してください。
+
+```sh
+cd alg.tus-ricora.com
+```
+
+次に、Featureブランチを切ってください。
+
+```sh
+git switch -c feature/<機能名>
+```
+
+`<機能名>` には、追加する機能や修正する内容を簡潔に記述してください。
+例えば、`feature/add-schedule-component` や `feature/issue-123` などです。
+
+例：
+
+```sh
+git switch -c feature/add-schedule-component
+```
+
 ### 開発環境の構築
 
 このプロジェクトではJavaScriptランタイムとして[Bun](https://bun.sh/)を利用しています。必要なバージョンは[`.tool-versions`](./.tool-versions)を参照してください。
