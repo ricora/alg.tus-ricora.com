@@ -265,7 +265,7 @@ joined_year: 2022
 - `src/layouts/PostLayout`: ブログ記事ページで利用するレイアウト
 - `src/layouts/PageLayout`: ブログ記事以外のページ（`/about`, `/mdx-guide`等）で利用するレイアウト
 
-## Iconify
+## 😄 Iconify
 
 Iconifyは、様々なアイコンを提供するフレームワークです。本サイトでは、Iconifyを利用してアイコンを表示しています。
 
