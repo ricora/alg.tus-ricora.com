@@ -11,11 +11,11 @@
 | `src/assets`              | サイト全体でアセットとして使われるファイルを格納する（画像など）               |
 | `src/lib`                 | サイト全体で使われるユーティリティ関数を定義する                               |
 | `src/content/posts`       | ブログ記事のMDXファイルを格納する                                              |
-| `src/content/members`     | メンバー一覧ページで使われるメンバー情報を格納する                                |
+| `src/content/members`     | メンバー一覧ページで使われるメンバー情報を格納する                             |
 | `src/content/pages`       | `/about-us`や`/contact`などのページのMDXファイルを格納する                     |
 | `src/components/Elements` | サイト全体で使われるコンポーネントを定義する（ボタン、リンクカード、タブなど） |
 | `src/components/SideBar`  | サイドバーのコンポーネントを定義する                                           |
-| `src/components/ui`       | ParkUIによって生成されるコンポーネントを格納する                              |
+| `src/components/ui`       | ParkUIによって生成されるコンポーネントを格納する                               |
 | `src/layouts`             | 複数ページで共通のレイアウトを定義する                                         |
 
 ディレクトリ構造は、[Project Structure | Astro Docs](https://docs.astro.build/en/basics/project-structure/)や[Bulletproof React](https://github.com/alan2207/bulletproof-react)を参考にしています。
@@ -43,7 +43,7 @@
 
 #### `src/assets/icons`
 
-`src/assets/icons`ディレクトリでは、サイトで利用するアイコンを格納します。ここで定義されたアイコンは、Iconify の [Custom icon sets](https://iconify.design/docs/icons/custom.html) として定義され、サイト全体で使えるようになります。
+`src/assets/icons`ディレクトリでは、サイトで利用するアイコンを格納します。ここで定義されたアイコンは、Iconifyの [Custom icon sets](https://iconify.design/docs/icons/custom.html) として定義され、サイト全体で使えるようになります。
 
 例えば、`src/assets/icons/brand` で定義されたアイコンは、以下のようにして使うことができます。
 
@@ -57,7 +57,7 @@ import { Icon } from "@/components/Elements/Icon"
 
 `src/assets/icons/brand` に新たなアイコンを追加する場合は、以下の手順に従ってください。
 
-1. `src/assets/icons/brand` に、新たなアイコンの SVG ファイルを追加します。
+1. `src/assets/icons/brand` に、新たなアイコンのSVGファイルを追加します。
 
    ```sh
    touch src/assets/icons/brand/new-icon.svg
@@ -97,7 +97,7 @@ import { Icon } from "@/components/Elements/Icon"
 
 `src/lib`ディレクトリでは、サイト全体で使われるユーティリティ関数を定義します。
 
-例えば、`src/lib/remark-plugins/` では MDX に独自の文法を追加するための Remark プラグインを定義しています。
+例えば、`src/lib/remark-plugins/` ではMDXに独自の文法を追加するためのRemarkプラグインを定義しています。
 
 ### `src/content`
 
@@ -107,19 +107,19 @@ import { Icon } from "@/components/Elements/Icon"
 
 #### `src/content/posts`
 
-`src/content/posts`ディレクトリでは、ブログ記事の MDX ファイルを格納します。
+`src/content/posts`ディレクトリでは、ブログ記事のMDXファイルを格納します。
 
 ディレクリ構造はそのままルーティングに反映されます。
 例えば、`src/content/posts/hello-world-2024/index.mdx`は`/posts/hello-world-2024`に対応します。
 
-各 MDX ファイルで利用できる文法については [本サイトで利用可能なMDX記法一覧 | RICORA Programming Team](https://alg.tus-ricora.com/mdx-guide/) を参照してください。
+各MDXファイルで利用できる文法については [本サイトで利用可能なMDX記法一覧 | RICORA Programming Team](https://alg.tus-ricora.com/mdx-guide/) を参照してください。
 
 #### `src/content/members`
 
 `src/content/members`ディレクトリでは、メンバー一覧ページで使われるメンバー情報を格納します。
 
-メンバー情報は YAML ファイルで定義され、以下のような構造を持ちます。
-なお、ファイル名は GitHub の ID と一致するようにしてください。
+メンバー情報はYAMLファイルで定義され、以下のような構造を持ちます。
+なお、ファイル名はGitHubのIDと一致するようにしてください。
 
 ```yaml
 # src/content/members/r4ai.yaml
@@ -137,13 +137,13 @@ social:
 joined_year: 2022
 ```
 
-また、YAML ファイル内で利用可能なプロパティは以下の通りです。
+また、YAMLファイル内で利用可能なプロパティは以下の通りです。
 
 | プロパティ名  | 必須 | 型                     | 説明                     |
 | :------------ | :--- | :--------------------- | :----------------------- |
 | `name`        | ⭕   | 文字列                 | 名前                     |
 | `description` | ⭕   | 文字列                 | 簡単な自己紹介           |
-| `image`       | ⭕   | 文字列（URL）          | アイコン画像の URL       |
+| `image`       | ⭕   | 文字列（URL）          | アイコン画像のURL        |
 | `social`      | ⭕   | ソーシャルリンクの配列 | ソーシャルリンクのリスト |
 
 `social` プロパティの各要素（ソーシャルリンク）は以下のプロパティを持ちます。
@@ -152,7 +152,7 @@ joined_year: 2022
 | :----------- | :--- | :---------------------------------------- | :------------------------------------- |
 | `label`      | ❌   | 文字列                                    | ソーシャルリンクのラベル               |
 | `icon`       | ❌   | [文字列（Iconifyのアイコン名）](#iconify) | ソーシャルリンクの[アイコン](#iconify) |
-| `link`       | ⭕   | 文字列（URL）                             | リンク先の URL                         |
+| `link`       | ⭕   | 文字列（URL）                             | リンク先のURL                          |
 
 #### `src/content/pages`
 
@@ -168,7 +168,7 @@ joined_year: 2022
 
 `src/components/Elements`ディレクトリでは、サイト全体で使われる基本的なコンポーネントを定義します。
 
-例えば、`src/components/Elements/Icon/` では Iconify を利用してアイコンを表示するコンポーネントを定義しています。
+例えば、`src/components/Elements/Icon/` ではIconifyを利用してアイコンを表示するコンポーネントを定義しています。
 
 例として、新たに `Button` コンポーネントを追加する手順を以下に示します。
 
@@ -208,7 +208,7 @@ joined_year: 2022
 
 #### `src/components/ui`
 
-`src/components/ui` ディレクトリでは、ParkUI によって生成されるコンポーネントを格納します。
+`src/components/ui` ディレクトリでは、ParkUIによって生成されるコンポーネントを格納します。
 
 例として、新たに [Button](https://park-ui.com/docs/panda/components/button) コンポーネントを追加する手順を以下に示します。
 基本的には、[Button | Park UI](https://park-ui.com/docs/panda/components/button) のインストール手順に従えば良いです。
@@ -267,13 +267,13 @@ joined_year: 2022
 
 ## Iconify
 
-Iconify は、様々なアイコンを提供するフレームワークです。本サイトでは、Iconify を利用してアイコンを表示しています。
+Iconifyは、様々なアイコンを提供するフレームワークです。本サイトでは、Iconifyを利用してアイコンを表示しています。
 
 利用可能なアイコン名は [Icônes](https://icones.js.org/) 等で検索できます。
 
 ### アイコンの表示
 
-以下は Simple Icons の GitHub アイコンを表示する例です。
+以下はSimple IconsのGitHubアイコンを表示する例です。
 `<collection>:<icon-name>` の形式でアイコン名を指定します。
 
 ```astro
@@ -286,7 +286,7 @@ import { Icon } from "@/components/Elements/Icon"
 
 ### `alg.tus-ricora.com` でのみ利用可能なアイコン
 
-`alg.tus-ricora.com` では、Inonify に登録されていないアイコンを利用するために、独自のアイコンコレクションを定義しています。
+`alg.tus-ricora.com` では、Inonifyに登録されていないアイコンを利用するために、独自のアイコンコレクションを定義しています。
 現在、以下のコレクションが利用可能です。
 
 - `brand`: 有名なサービスのロゴなど
