@@ -28,9 +28,9 @@
 
 #### `src/assets/icons`
 
-`src/assets/icons`ディレクトリでは、サイトで利用するアイコンを格納します。ここで定義されたアイコンは、Iconifyの [Custom icon sets](https://iconify.design/docs/icons/custom.html) として定義され、サイト全体で使えるようになります。
+`src/assets/icons`ディレクトリでは、サイトで利用するアイコンを格納します。ここで定義されたアイコンは、Iconifyの[Custom icon sets](https://iconify.design/docs/icons/custom.html)として定義され、サイト全体で使えるようになります。
 
-例えば、`src/assets/icons/brand` で定義されたアイコンは、以下のようにして使うことができます。
+例えば、`src/assets/icons/brand`で定義されたアイコンは、以下のようにして使うことができます。
 
 ```astro
 ---
@@ -40,15 +40,15 @@ import { Icon } from "@/components/Elements/Icon"
 <Icon name="brand:atcoder" />
 ```
 
-`src/assets/icons/brand` に新たなアイコンを追加する場合は、以下の手順に従ってください。
+`src/assets/icons/brand`に新たなアイコンを追加する場合は、以下の手順に従ってください。
 
-1. `src/assets/icons/brand` に、新たなアイコンのSVGファイルを追加します。
+1. `src/assets/icons/brand`に、新たなアイコンのSVGファイルを追加します。
 
    ```sh
    touch src/assets/icons/brand/new-icon.svg
    ```
 
-2. `src/assets/icons/brand/index.ts` の `brandIconCollection` に、新たに追加したアイコンを登録します。
+2. `src/assets/icons/brand/index.ts`の`brandIconCollection`に、新たに追加したアイコンを登録します。
 
    ```diff
      // src/assets/icons/brand/index.ts
@@ -86,17 +86,17 @@ import { Icon } from "@/components/Elements/Icon"
 
 `src/components/Elements`ディレクトリでは、サイト全体で使われる基本的なコンポーネントを定義します。
 
-例えば、`src/components/Elements/Icon/` ではIconifyを利用してアイコンを表示するコンポーネントを定義しています。
+例えば、`src/components/Elements/Icon/`ではIconifyを利用してアイコンを表示するコンポーネントを定義しています。
 
-例として、新たに `Button` コンポーネントを追加する手順を以下に示します。
+例として、新たに`Button`コンポーネントを追加する手順を以下に示します。
 
-1. 新たに `src/components/Elements/Button/` ディレクトリを作成します。
+1. 新たに`src/components/Elements/Button/`ディレクトリを作成します。
 
    ```sh
    mkdir src/components/Elements/Button
    ```
 
-2. `src/components/Elements/Button/Button.tsx` を作成し、`Button` コンポーネントを定義します。
+2. `src/components/Elements/Button/Button.tsx`を作成し、`Button`コンポーネントを定義します。
 
    ```tsx
    // src/components/Elements/Button/Button.tsx
@@ -110,7 +110,7 @@ import { Icon } from "@/components/Elements/Icon"
    }
    ```
 
-3. `src/components/Elements/Button/index.ts` を作成し、`Button` コンポーネントをエクスポートします。
+3. `src/components/Elements/Button/index.ts`を作成し、`Button`コンポーネントをエクスポートします。
 
    ```ts
    // src/components/Elements/Button/index.ts
@@ -122,16 +122,16 @@ import { Icon } from "@/components/Elements/Icon"
 
 `src/components/SideBar`ディレクトリでは、サイドバーのコンポーネントを定義します。
 
-例えば、`src/components/SideBar/NavBar/` では、画面左側に表示されるナビゲーションバーを定義しています。
+例えば、`src/components/SideBar/NavBar/`では、画面左側に表示されるナビゲーションバーを定義しています。
 
 #### `src/components/ui`
 
-`src/components/ui` ディレクトリでは、ParkUIによって生成されるコンポーネントを格納します。
+`src/components/ui`ディレクトリでは、ParkUIによって生成されるコンポーネントを格納します。
 
-例として、新たに [Button](https://park-ui.com/docs/panda/components/button) コンポーネントを追加する手順を以下に示します。
-基本的には、[Button | Park UI](https://park-ui.com/docs/panda/components/button) のインストール手順に従えば良いです。
+例として、新たに[Button](https://park-ui.com/docs/panda/components/button)コンポーネントを追加する手順を以下に示します。
+基本的には、[Button | Park UI](https://park-ui.com/docs/panda/components/button)のインストール手順に従えば良いです。
 
-1. [Installation](https://park-ui.com/docs/panda/components/button#installation) に記載されているスニペットを、`src/components/ui` ディレクトリ内の適切なファイルにコピーします。
+1. [Installation](https://park-ui.com/docs/panda/components/button#installation)に記載されているスニペットを、`src/components/ui`ディレクトリ内の適切なファイルにコピーします。
 
    ```tsx
    // src/components/ui/Button.tsx
@@ -179,7 +179,7 @@ import { Icon } from "@/components/Elements/Icon"
 
 `src/content`ディレクトリでは、サイトのコンテンツを格納します。
 
-詳しくは [Content Collections | Astro Docs](https://docs.astro.build/en/guides/content-collections/) を参照してください。
+詳しくは[Content Collections | Astro Docs](https://docs.astro.build/en/guides/content-collections/)を参照してください。
 
 #### `src/content/posts`
 
@@ -188,7 +188,7 @@ import { Icon } from "@/components/Elements/Icon"
 ディレクリ構造はそのままルーティングに反映されます。
 例えば、`src/content/posts/hello-world-2024/index.mdx`は`/posts/hello-world-2024`に対応します。
 
-各MDXファイルで利用できる文法については [本サイトで利用可能なMDX記法一覧 | RICORA Programming Team](https://alg.tus-ricora.com/mdx-guide/) を参照してください。
+各MDXファイルで利用できる文法については[本サイトで利用可能なMDX記法一覧 | RICORA Programming Team](https://alg.tus-ricora.com/mdx-guide/)を参照してください。
 
 #### `src/content/members`
 
@@ -222,7 +222,7 @@ joined_year: 2022
 | `image`       | ⭕   | 文字列（URL）          | アイコン画像のURL        |
 | `social`      | ⭕   | ソーシャルリンクの配列 | ソーシャルリンクのリスト |
 
-`social` プロパティの各要素（ソーシャルリンク）は以下のプロパティを持ちます。
+`social`プロパティの各要素（ソーシャルリンク）は以下のプロパティを持ちます。
 
 | プロパティ名 | 必須 | 型                                        | 説明                                   |
 | :----------- | :--- | :---------------------------------------- | :------------------------------------- |
@@ -248,7 +248,7 @@ joined_year: 2022
 
 `src/lib`ディレクトリでは、サイト全体で使われるユーティリティ関数を定義します。
 
-例えば、`src/lib/remark-plugins/` ではMDXに独自の文法を追加するためのRemarkプラグインを定義しています。
+例えば、`src/lib/remark-plugins/`ではMDXに独自の文法を追加するためのRemarkプラグインを定義しています。
 
 ### `src/pages`
 
@@ -257,7 +257,7 @@ joined_year: 2022
 ルーティングはファイルベースで行われます。例えば、`src/pages/index.astro`は`/`に、`src/pages/about.astro`は`/about`に対応します。
 各`index.astro`ファイルでは、そのページのレイアウトや使用するデータの取得を行います。
 
-詳しくは [Pages | Astro Docs](https://docs.astro.build/en/basics/astro-pages/) を参照してください。
+詳しくは[Pages | Astro Docs](https://docs.astro.build/en/basics/astro-pages/)を参照してください。
 
 ### `src/styles`
 
@@ -269,12 +269,12 @@ joined_year: 2022
 
 Iconifyは、様々なアイコンを提供するフレームワークです。本サイトでは、Iconifyを利用してアイコンを表示しています。
 
-利用可能なアイコン名は [Icônes](https://icones.js.org/) 等で検索できます。
+利用可能なアイコン名は[Icônes](https://icones.js.org/)等で検索できます。
 
 ### アイコンの表示
 
 以下はSimple IconsのGitHubアイコンを表示する例です。
-`<collection>:<icon-name>` の形式でアイコン名を指定します。
+`<collection>:<icon-name>`の形式でアイコン名を指定します。
 
 ```astro
 ---
@@ -284,13 +284,13 @@ import { Icon } from "@/components/Elements/Icon"
 <Icon name="simple-icons:github" />
 ```
 
-### `alg.tus-ricora.com` でのみ利用可能なアイコン
+### `alg.tus-ricora.com`でのみ利用可能なアイコン
 
-`alg.tus-ricora.com` では、Iconifyに登録されていないアイコンを利用するために、独自のアイコンコレクションを定義しています。
+`alg.tus-ricora.com`では、Iconifyに登録されていないアイコンを利用するために、独自のアイコンコレクションを定義しています。
 現在、以下のコレクションが利用可能です。
 
 - `brand`: 有名なサービスのロゴなど
 
-#### `brand` コレクション
+#### `brand`コレクション
 
-`brand` コレクションで利用可能なアイコンについては、[`src/assets/icons/brand`](/src/assets/icons/brand) を参照してください。
+`brand`コレクションで利用可能なアイコンについては、[`src/assets/icons/brand`](/src/assets/icons/brand)を参照してください。
