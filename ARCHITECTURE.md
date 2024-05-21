@@ -286,7 +286,7 @@ import { Icon } from "@/components/Elements/Icon"
 
 ### `alg.tus-ricora.com` でのみ利用可能なアイコン
 
-`alg.tus-ricora.com` では、Inonifyに登録されていないアイコンを利用するために、独自のアイコンコレクションを定義しています。
+`alg.tus-ricora.com` では、Iconifyに登録されていないアイコンを利用するために、独自のアイコンコレクションを定義しています。
 現在、以下のコレクションが利用可能です。
 
 - `brand`: 有名なサービスのロゴなど
