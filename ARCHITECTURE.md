@@ -11,11 +11,11 @@
 | `src/assets`              | サイト全体でアセットとして使われるファイルを格納する（画像など）               |
 | `src/lib`                 | サイト全体で使われるユーティリティ関数を定義する                               |
 | `src/content/posts`       | ブログ記事のMDXファイルを格納する                                              |
-| `src/content/members`     | RICORA Programming Teamのメンバー情報を格納する                                |
+| `src/content/members`     | メンバー一覧ページで使われるメンバー情報を格納する                                |
 | `src/content/pages`       | `/about-us`や`/contact`などのページのMDXファイルを格納する                     |
 | `src/components/Elements` | サイト全体で使われるコンポーネントを定義する（ボタン、リンクカード、タブなど） |
 | `src/components/SideBar`  | サイドバーのコンポーネントを定義する                                           |
-| `src/components/ui`       | ParkUI によって生成されるコンポーネントを格納する                              |
+| `src/components/ui`       | ParkUIによって生成されるコンポーネントを格納する                              |
 | `src/layouts`             | 複数ページで共通のレイアウトを定義する                                         |
 
 ディレクトリ構造は、[Project Structure | Astro Docs](https://docs.astro.build/en/basics/project-structure/)や[Bulletproof React](https://github.com/alan2207/bulletproof-react)を参考にしています。
@@ -116,7 +116,7 @@ import { Icon } from "@/components/Elements/Icon"
 
 #### `src/content/members`
 
-`src/content/members`ディレクトリでは、RICORA Programming Teamのメンバー情報を格納します。
+`src/content/members`ディレクトリでは、メンバー一覧ページで使われるメンバー情報を格納します。
 
 メンバー情報は YAML ファイルで定義され、以下のような構造を持ちます。
 なお、ファイル名は GitHub の ID と一致するようにしてください。
