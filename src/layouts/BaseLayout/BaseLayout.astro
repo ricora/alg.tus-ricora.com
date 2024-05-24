@@ -91,21 +91,21 @@ const bundledThemeScript = "console.time('theme');" + result.outputFiles[0].text
   </head>
   <body class="bg-bg-canvas text-fg-default">
     <script is:inline set:html={bundledThemeScript} />
-    <div class="relative mx-auto flex h-fit min-h-full flex-col md:flex-row md:gap-8 md:px-4 xl:max-w-[1536px]">
+    <div class="relative mx-auto flex min-h-full flex-col">
       <NavBar />
-      <div class="flex flex-1 flex-col gap-8 px-4 md:px-0">
+      <div class="flex flex-1 flex-col gap-8 px-5">
         <slot />
-        <footer class="space-y-4 p-4 text-center">
-          <div>&copy; {new Date().getFullYear()} RICORA Programming Team</div>
-          <a
-            href={githubRepositoryUrl}
-            class="flex items-center justify-center space-x-2 text-sm text-fg-muted transition hover:text-fg-default"
-          >
-            <Icon name="line-md:github-loop" class="size-5" />
-            <div>View on GitHub</div>
-          </a>
-        </footer>
       </div>
+      <footer class="space-y-4 p-4 text-center">
+        <div>&copy; {new Date().getFullYear()} RICORA Programming Team</div>
+        <a
+          href={githubRepositoryUrl}
+          class="flex items-center justify-center space-x-2 text-sm text-fg-muted transition hover:text-fg-default"
+        >
+          <Icon name="line-md:github-loop" class="size-5" />
+          <div>View on GitHub</div>
+        </a>
+      </footer>
       <InfoBar />
     </div>
     <div id="modal" class="fixed left-0 top-0 z-40"></div>

@@ -20,7 +20,7 @@
 
   html,
   body {
-    @apply h-max min-h-full transition-colors duration-500;
+    @apply h-full transition-colors duration-500;
   }
 }
 

@@ -28,7 +28,7 @@ const postsByTag = posts
 ---
 
 <BaseLayout title={tag.title} og={{ url: new URL(path.join("tags", tag.id), Astro.site) }}>
-  <main class="flex flex-1 flex-col gap-8 py-12">
+  <main class="mx-auto flex w-full max-w-screen-lg flex-1 flex-col gap-8 py-12">
     <header class="flex flex-col gap-6">
       <h1 class="text-3xl font-bold sm:text-4xl md:text-5xl">{tag.title}</h1>
       <p class="text-fg-muted sm:text-lg">
