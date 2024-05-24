@@ -1,65 +1,68 @@
 ---
 import { twMerge } from "tailwind-merge"
 import type { HTMLAttributes } from "astro/types"
-import { IconLink } from "./IconLink"
-import Links from "./Links.astro"
 import { ToggleThemeButton } from "./ToggleThemeButton"
 import { Icon } from "@/components/Elements/Icon"
 import { SearchModal } from "./SearchModal"
-import { NavDrawer } from "./NavDrawer"
+import { NavDrawer, NavDrawerSocialLinks, NavDrawerLinks } from "./NavDrawer"
+import { LinkMenu } from "./LinkMenu"
+import { Link } from "./Link"
+import { IconLink } from "./IconLink"
+import { links } from "./links"
+import { socialLinks } from "./links"
 
 type Props = HTMLAttributes<"aside">
 const { class: className, ...props } = Astro.props
 ---
 
-<script>
-  // TODO: SolidJS or Reactで宣言的に実装する
-  import { toggleTheme } from "@/lib/theme"
-  document.querySelector("#toggleTheme")?.addEventListener("click", toggleTheme)
-</script>
-
-<aside
+<header
   class={twMerge(
-    "flex flex-row md:flex-col gap-1 md:gap-4 py-3 md:py-12 px-4 md:px-0 sticky top-0 md:h-dvh md:max-w-[25%] lg:max-w-[20%] xl:max-w-[15%] items-center md:items-start backdrop-blur-xl border-b md:border-b-0 dark:backdrop-brightness-[0.3] backdrop-brightness-150 md:backdrop-filter-none md:dark:backdrop-filter-none z-30",
+    "sticky top-0 backdrop-blur-xl bg-bg-canvas/95 supports-[backdrop-filter]:bg-bg-canvas/60 z-30",
     className,
   )}
   data-pagefind-ignore="all"
   {...props}
 >
-  <a href="/" class="size-fit md:mx-2">
-    <Icon name="brand:ricora" alt="RICORA" class="size-6 rounded-full border md:size-32 md:bg-bg-default md:p-2" />
-  </a>
-  <div class="ml-1 mr-auto flex flex-col gap-2 md:mx-2">
-    <h1 class="text-sm font-bold md:text-xl">RICORA Programming Team</h1>
-    <h2 class="hidden gap-2 text-sm text-fg-muted md:block">
-      <span class="inline-block">東京理科大学&nbsp;</span>
-      <span class="inline-block">電子計算機研究会&nbsp;</span>
-      <span class="inline-block">プログラミング班</span>
-    </h2>
+  <div class="container mx-auto flex h-14 max-w-screen-2xl items-center justify-between px-8">
+    <div class="flex flex-row gap-6">
+      <a href="/" class="flex flex-row items-center gap-2">
+        <Icon name="brand:ricora" alt="RICORA" class="size-6" />
+        <span class="text-sm font-bold">RICORA Programming Team</span>
+      </a>
+      <nav class="hidden flex-row items-center gap-0 xl:flex">
+        {
+          links.map((link) =>
+            link.type === "menu" ? (
+              <LinkMenu title={link.title} links={link.links} client:load />
+            ) : (
+              <Link title={link.title} href={link.href} />
+            ),
+          )
+        }
+      </nav>
+    </div>
+    <div class="flex flex-row items-center gap-0 md:gap-6">
+      <SearchModal client:only="solid">
+        <Icon slot="searchIcon" name="tabler:search" class="size-6" />
+        <Icon slot="buttonIcon" name="tabler:search" class="size-6" />
+      </SearchModal>
+      <div class="flex flex-row items-center gap-0">
+        {
+          socialLinks.map((link) => (
+            <IconLink name={link.icon} label={link.label} href={link.href} class="hidden md:flex" client:load />
+          ))
+        }
+        <div class="mx-2 my-auto hidden h-8 w-[2px] rounded-full bg-border-subtle md:block xl:hidden"></div>
+        <ToggleThemeButton class="hidden md:block" client:only="solid">
+          <Icon slot="lightIcon" name="tabler:sun" class="flex size-6 items-center" />
+          <Icon slot="darkIcon" name="tabler:moon-stars" class="flex size-6 items-center" />
+        </ToggleThemeButton>
+        <NavDrawer client:load class="xl:hidden">
+          <Icon slot="closeButtonIcon" name="tabler:x" class="size-6" />
+          <NavDrawerLinks links={links} slot="links" />
+          <NavDrawerSocialLinks links={socialLinks} slot="socialLinks" />
+        </NavDrawer>
+      </div>
+    </div>
   </div>
-  <div class="mx-2 hidden flex-row gap-2 md:flex">
-    <IconLink name="line-md:github-loop" label="GitHub" href="https://github.com/RICORA/" client:load />
-    <IconLink name="line-md:twitter-x" label="X (旧Twitter)" href="https://twitter.com/ricora_alg/" client:load />
-    <IconLink
-      name="line-md:youtube"
-      label="YouTube"
-      href="https://www.youtube.com/channel/UC4qBY_aaTvTkQ3E0PY89T2A"
-      client:load
-    />
-  </div>
-  <Links class="hidden md:flex" />
-  <SearchModal client:only="solid">
-    <Icon slot="searchIcon" name="tabler:search" class="size-6" />
-    <Icon slot="buttonIcon" name="tabler:search" class="size-6" />
-  </SearchModal>
-  <div class="mt-auto hidden p-2 md:flex">
-    <ToggleThemeButton client:only="solid" />
-  </div>
-  <NavDrawer client:load class="md:hidden">
-    <Icon slot="closeButtonIcon" name="tabler:x" class="size-6" />
-    <Icon slot="githubIcon" name="tabler:brand-github" class="size-6" />
-    <Icon slot="twitterIcon" name="tabler:brand-twitter" class="size-6" />
-    <Icon slot="youtubeIcon" name="tabler:brand-youtube" class="size-6" />
-    <Links slot="links" />
-  </NavDrawer>
-</aside>
+</header>
