@@ -1,6 +1,10 @@
 # Contribution Guide
 
-文章。
+このドキュメントは、alg.tus-ricora.com への貢献を行うためのガイドラインです。
+
+> [!CAUTION]
+> 現在執筆途中の個所があります。
+> 一部の情報が不足している可能性がありますので、ご了承ください。
 
 ## Table of Contents
 
