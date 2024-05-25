@@ -114,79 +114,319 @@ git switch -c feature/add-schedule-component
 
 ### 開発環境の構築
 
-このプロジェクトではJavaScriptランタイムとして[Bun](https://bun.sh/)を利用しています。必要なバージョンは[`.tool-versions`](./.tool-versions)を参照してください。
+このリポジトリではJavaScriptランタイムとして[Node.js](https://nodejs.org/)を、パッケージ管理ツールとして[Bun](https://bun.sh/)を利用しています。
+開発に必要なバージョンは[`.tool-versions`](./.tool-versions)を参照してください。
 
-<!-- prettier-ignore -->
-> [!TIP]
-> [mise](https://github.com/jdx/mise)や[asdf](https://asdf-vm.com/)といったバージョン管理ツールを利用すると、[`.tool-versions`](./.tool-versions)に記載されたバージョンのBunを簡単にインストールすることができます。
->
-> [mise](https://github.com/jdx/mise)の場合、
->
-> ```sh
-> mise install
-> ```
->
-> で必要なバージョンのBunをインストールできます。
+詳しい導入方法が分からない場合は、[GitHub Codespacesで開発を行う](#github-codespacesで開発を行う)から始めることをお勧めします。こちらの方法では、全自動で開発環境が構築されるため、[ローカル環境で開発を行う](#ローカル環境で開発を行う)に比べて簡単です。
 
 #### ローカル環境で開発を行う
 
-##### 依存関係のインストール
+このリポジトリではJavaScriptランタイムとして[Node.js](https://nodejs.org/)を、パッケージ管理ツールとして[Bun](https://bun.sh/)を利用しています。
 
-以下のコマンドで依存関係をインストールします。
+したがって、開発には[`.tool-versions`](./.tool-versions)に記載されたバージョンのNode.jsとBunが必要です。
+
+<!-- prettier-ignore -->
+> [!TIP]
+> 直接Node.jsとBunを公式サイトからインストールすることも可能ですが、バージョン管理が面倒になるため、[mise](https://github.com/jdx/mise)や[asdf](https://asdf-vm.com/)といったバージョン管理ツールを利用することを推奨します。
+
+ここでは、バージョン管理ツールとして [mise](https://mise.jdx.dev/) を利用した場合の手順を説明します。
+
+1. **[mise](https://mise.jdx.dev/)のインストール**
+
+   miseをインストールするために、次のコマンドを実行してください。
+
+   ```sh
+   curl https://mise.run | sh
+   ```
+
+   続いて、miseを有効化するために、利用しているシェルに応じて次のコマンドを実行してください。
+
+   - bashの場合：
+
+     ```sh
+     echo 'eval "$(mise activate bash)"' >> ~/.bashrc
+     ```
+
+   - zshの場合：
+
+     ```sh
+     echo 'eval "$(mise activate zsh)"' >> ~/.zshrc
+     ```
+
+   - fishの場合：
+
+     ```sh
+     echo 'mise activate fish | source' >> ~/.config/fish/config.fish
+     ```
+
+   さらに、miseのパスを通すために、利用しているシェルに応じて次のコマンドを実行してください。
+
+   - bashの場合：
+
+     ```sh
+     echo 'export PATH="$HOME/.local/share/mise/shims:$PATH"' >> ~/.bash_profile
+     ```
+
+   - zshの場合：
+
+     ```sh
+     echo 'export PATH="$HOME/.local/share/mise/shims:$PATH"' >> ~/.zprofile
+     ```
+
+   - fishの場合：
+
+     ```sh
+     fish_add_path ~/.local/share/mise/shims
+     ```
+
+   詳しいインストール方法については、[Getting Started | mise-en-place](https://mise.jdx.dev/getting-started.html#quickstart)を参照してください。
+
+2. **[mise](https://mise.jdx.dev/)を利用したNode.jsとBunのインストール**
+
+   以下のコマンドを実行して、[`.tool-versions`](./.tool-versions)に記載されたバージョンのNode.jsとBunをインストールしてください。
+
+   ```sh
+   mise install
+   ```
+
+3. **依存関係のインストール**
+
+   依存関係をインストールするために、次のコマンドを実行してください。
+
+   ```sh
+   bun install
+   ```
+
+   これにより、依存関係がインストールされ、開発環境が整います。
+
+   この他のコマンドについては、[付録/コマンド](#コマンド)を参照してください。
+
+#### GitHub Codespacesで開発を行う
+
+次のボタンをクリックして、GitHub Codespacesで開発環境を構築してください。
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=734781265&skip_quickstart=true&geo=SoutheastAsia)
+
+このボタンをクリックすると、ブラウザ上で開発環境が構築されます。`.tool-versions`に記載されたバージョンのNode.jsとBunが自動的にインストールされるため、すぐに開発を始められます。
+
+起動後は、ターミナルを開いて以下のコマンドを一度実行してください。
 
 ```sh
 bun install
 ```
 
-##### ビルド
+これにより、依存関係がインストールされ、開発環境が整います。
 
-以下のコマンドでビルドを行い、静的なHTMLファイルを生成します。
+この他のコマンドについては、[付録/コマンド](#コマンド)を参照してください。
 
-```sh
-bun run build
+### 記事を執筆する
+
+#### 1. 記事の執筆
+
+まずは、記事を執筆します。記事は、[`src/content/posts`](./src/content/posts/)ディレクトリ下にMDXファイルとして保存します。
+
+例えば、`https://alg.tus-ricora.com/posts/first-contributions/`というURLでアクセスできる記事を追加したい場合は、`src/content/posts/first-contributions/index.mdx`というファイルを作成します。
+
+以下は、記事のMDXファイルの例です。
+
+```mdx
+---
+title: はじめての貢献
+date: 2024-05-25T00:00:00+09:00
+categories:
+  - news
+tags:
+  - 雑記
+icon: fluent-emoji:building-construction
+---
+
+alg.tus-ricora.com への貢献に興味を持っていただき、ありがとうございます！
+
+この記事があなたの貢献の第一歩となることを願っています。
 ```
 
-ビルド結果は`./dist/`に保存されます。
+詳しいMDXの記法については、[本サイトで利用可能なMDX記法一覧 | RICORA Programming Team](https://alg.tus-ricora.com/mdx-guide/)を参照してください。
 
-このコマンドは、TypeScriptの型チェックとサイトのビルドを行います。これらを個別に行いたい場合は、`bun run astro check`と`bun run astro build`をそれぞれ実行してください。
+#### 2. 記事のプレビュー
 
-##### 開発サーバーの起動
+記事を執筆したら、記事が正しく表示されるかどうかを確認します。
 
-以下のコマンドで開発サーバーを起動します。
+以下のコマンドを実行して、開発サーバーを起動してください。
 
 ```sh
 bun run dev
 ```
 
-> [!WARNING]
-> 開発サーバーを起動する前に、ビルドを一度行ってください。
-> ビルド時に検索用インデックスを生成するため、ビルドをしないと検索エンジンとして利用している[pagefind](https://pagefind.app/)が正しく動作しません。
+開発サーバーはデフォルトでは[http://localhost:4321/](http://localhost:4321/)で起動します。
 
-開発サーバーはデフォルトでは[http://localhost:4321/](http://localhost:4321/)で起動します。HMR (Hot Module Replacement)によって、ファイルの変更を検知して自動的にブラウザの画面が更新されます。
-
-##### テスト
-
-以下のコマンドでテストを実行します。
-
-```sh
-bun run test
-```
-
-テストには[bun test](https://bun.sh/docs/cli/test)を利用しています。今後テストランナーを変更する可能性を考慮してscriptsを経由していますが、単に`bun test`としても実行できます。
-
-##### プレビューサーバーの起動
-
-以下のコマンドで`dist/`ディレクトリの中身をプレビューするサーバーを起動します。
-
-```sh
-bun run preview
-```
-
-#### GitHub Codespacesで開発を行う
-
-### 記事を執筆する
+先ほど作成した`src/content/posts/first-contributions/index.mdx`を閲覧するには、[http://localhost:4321/posts/first-contributions/](http://localhost:4321/posts/first-contributions/)にアクセスしてください。
 
 ### 機能を開発する
+
+#### 1. 機能の開発
+
+まずは機能を開発します。ここでは、いくつかの例を挙げます。
+開発に際しては、このリポジトリの[アーキテクチャ](./ARCHITECTURE.md)を軽く把握しておくことをお勧めします。
+
+##### 例: リンク一覧にconnpassを追加する
+
+例として、[#293](https://github.com/ricora/alg.tus-ricora.com/issues/293)を解決するために、リンク一覧にconnpassを追加する方法を説明します。
+
+まず、`/links`ページの内容は[`src/content/pages/links/index.mdx`](./src/content/pages/links/index.mdx)で記述されています。これは、記事以外の多くのページのコンテンツは[`src/content/pages`]下にて管理されているためです。したがって、`/links`ページにconnpassのリンクを追加するには、このファイルを編集する必要があります。
+
+実際に、`src/content/pages/links/index.mdx`を編集して、connpassのリンクを追加します。
+
+```diff
+  ---
+  title: リンク
+  draft: false
+  links:
+    - title: RICORA
+      description: Music TeamとProgramming Teamを合わせた、RICORA全体のホームページです。
+      website: https://tus-ricora.com
+      image: https://github.com/ricora.png
+
+    - title: RICORA Music Team
+      description: RICORA Music Teamのホームページです。
+      website: https://music.tus-ricora.com
+      image: https://github.com/ricora.png
+
+    - title: GitHub
+      description: RICORA Programming TeamのGitHubリポジトリです。
+      website: https://github.com/RICORA
+      image: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+
+    - title: Twitter
+      description: RICORA Programming Teamの公式Twitterです。
+      website: https://twitter.com/ricora_alg
+      image: https://abs.twimg.com/responsive-web/client-web-legacy/icon-ios.b1fc7275.png
+
+    - title: YouTube
+      description: RICORA Programming TeamのYouTubeチャンネルです。
+      website: https://www.youtube.com/channel/UC4qBY_aaTvTkQ3E0PY89T2A
+      image: https://lh3.googleusercontent.com/KhY28aTw30hEJXooMF-_rQqwMIIqofFvasbZJtEpvlgHQwLXKP3KW0OoCTtoYpDNn_U=w128
+
+
++   - title: connpass
++     description: RICORA Programming Teamのconnpassページです。
++     website: https://ricora.connpass.com/
++     image: https://connpass.com/static/img/468_468.png
+
+    - title: Wiki
+      description: RICORA Programming Teamの部員向け技術メモ置き場です。
+      website: https://alg-wiki.tus-ricora.com/
+      image: https://github.com/ricora.png
+
+    - title: Slides
+      description: RICORA Programming Teamの部員向けスライド資料置き場です。
+      website: https://alg-slides.tus-ricora.com/
+      image: https://github.com/ricora.png
+
+    - title: 東京理科大学
+      description: 東京理科大学のホームページです。
+      website: https://www.tus.ac.jp/
+      image: https://www.tus.ac.jp/about/university/symbol/img/symbole03.jpg
+
+    - title: 神楽坂一丁目通信局 かぐちょ
+      description: 神楽坂キャンパスを拠点に活動されている神楽坂一丁目通信局 かぐちょのホームページです。
+      website: https://kagucho.net/
+      image: https://kagucho.net/ico/safari-pinned-tab.svg
+
+    - title: 情報技術クラブ ITC
+      description: 葛飾キャンパスを拠点に活動されている情報技術クラブ ITCのホームページです。
+      website: https://tusitclub.net/
+      image: https://tusitclub.net/favicon.ico
+  ---
+```
+
+続いて、開発サーバーを起動して、`/links`ページにconnpassのリンクが表示されるかどうかを確認します。
+
+```sh
+bun run dev
+```
+
+ブラウザ上で、[http://localhost:4321/links/](http://localhost:4321/links/)にアクセスし、connpassのリンクが表示されていることを確認してください。
+
+変更が正しく反映されていることを確認したら、この変更をコミットしてください。
+
+```sh
+git add src/content/pages/links/index.mdx
+git commit -m "feat: `/links`ページにconnpassへのリンクを追加"
+```
+
+そして、この変更をリモートリポジトリにプッシュしてください。
+
+```sh
+git push origin <feature-branch>
+```
+
+`<feature-branch>` には、[featureブランチを切る方法](#featureブランチを切る方法)で作成したブランチ名を指定してください。
+
+例：
+
+```sh
+git push origin feature/add-connpass-link
+```
+
+### メンバー一覧に自分の情報を追加する
+
+メンバー一覧に自分の情報を追加する方法を説明します。
+
+メンバー情報は、[`src/content/members`](./src/content/members/)下のyamlファイルで管理されています。
+したがって、自分の情報を追加するには、このディレクトリに自身の情報を記述したyamlファイルを作成する必要があります。なお、ファイル名は`<GITHUB_ID>.yaml`としてください。`<GITHUB_ID>`には、GitHubのIDを指定してください。
+
+例として、GitHubのIDが`r4ai`の場合を考えます。
+まず、`src/content/members/r4ai.yaml`を作成して、自身の情報を記述します。
+
+```yaml
+# src/content/members/r4ai.yaml
+name: Rai
+description: 情報計算科学科。普段はWeb開発をしています。最近はRustを使ったコンパイラ開発やゲーム制作に興味があります。
+image: https://avatars.githubusercontent.com/u/96561881
+social:
+  - link: https://r4ai.dev/
+  - icon: simple-icons:github
+    link: https://github.com/r4ai
+  - icon: brand:zenn
+    link: https://zenn.dev/t4aru
+  - icon: simple-icons:bluesky
+    link: https://bsky.app/profile/r4ai.dev
+joined_year: 2022
+```
+
+このファイルを作成したら、開発サーバーを起動して、メンバー一覧に自分の情報が表示されるかどうかを確認します。
+
+```sh
+bun run dev
+```
+
+ブラウザ上で、[http://localhost:4321/members/](http://localhost:4321/members/)にアクセスし、自分の情報が表示されていることを確認してください。メンバーは参加年度の降順で表示されます。
+
+変更が正しく反映されていることを確認したら、この変更をコミットしてください。
+
+```sh
+git add src/content/members/r4ai.yaml
+git commit -m "feat: メンバー一覧にr4aiを追加"
+```
+
+そして、この変更をリモートリポジトリにプッシュしてください。
+
+```sh
+git push origin <feature-branch>
+```
+
+`<feature-branch>` には、[featureブランチを切る方法](#featureブランチを切る方法)で作成したブランチ名を指定してください。
+
+例：
+
+```sh
+git push origin feature/add-r4ai-to-members
+```
+
+> [!NOTE]
+> 実際にメンバー情報を追加しているPull Requestの例：
+>
+> - [docs(members): membersにr4aiを追加 by r4ai · Pull Request #169 · ricora/alg.tus-ricora.com](https://github.com/ricora/alg.tus-ricora.com/pull/169)
 
 ### Pull Requestを開く
 
