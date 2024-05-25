@@ -216,6 +216,35 @@ Pull Requestのタイトルはマージ後のコミットメッセージとし�
 
 #### Pull Requestの本文
 
+Pull Requestの本文には、以下の内容を明確に記載してください。
+
+- 解決するIssueの番号
+- 変更内容
+- 確認事項
+
+例：
+
+```md
+close #123
+
+## 変更内容
+
+- hogeを追加
+- fugaを修正
+- piyoのためにfooを削除
+
+## 確認事項
+
+- hogehogeが表示されること
+- fugafugaが表示されないこと
+- piyopiyoのレイアウトが崩れないこと
+```
+
+> [!NOTE]
+> 実際のPull Requestの例は、以下のリンクを参照してください。
+>
+> - [Pull requests · ricora/alg.tus-ricora.com](https://github.com/ricora/alg.tus-ricora.com/pulls?q=is%3Apr+-author%3Aapp%2Frenovate+is%3Aclosed)
+
 ### Reviewを受ける
 
 #### Reviewの承認後
