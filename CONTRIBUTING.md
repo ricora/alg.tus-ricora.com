@@ -95,7 +95,8 @@ Issueを作成する前に同様のIssueが既に存在しないかをよく確�
 
 ## Pull Requestを作成する
 
-文章。
+> [!CAUTION]
+> このセクションは執筆途中です。加筆者を募集しています。
 
 一つのPull Requestは一つの機能追加やバグ修正に対応します。一度のPull Requestで複数の機能追加やバグ修正を行うことは避けてください。
 
@@ -303,6 +304,9 @@ bun run dev
 先ほど作成した`src/content/posts/first-contributions/index.mdx`を閲覧するには、[http://localhost:4321/posts/first-contributions/](http://localhost:4321/posts/first-contributions/)にアクセスしてください。
 
 ### 機能を開発する
+
+> [!CAUTION]
+> このセクションは執筆途中です。加筆者を募集しています。
 
 いくつかの機能を開発する例を示します。
 開発に際しては、このリポジトリの[ARCHITECTURE.md](./ARCHITECTURE.md)を軽く把握しておくことをお勧めします。
@@ -528,6 +532,9 @@ close #123
 
 ### Reviewを受ける
 
+> [!CAUTION]
+> このセクションは執筆途中です。加筆者を募集しています。
+
 #### Reviewの承認後
 
 Squash and Mergeでマージし、作業ブランチを削除します。
@@ -535,6 +542,9 @@ Squash and Mergeでマージし、作業ブランチを削除します。
 ## 付録
 
 ### コマンド
+
+> [!CAUTION]
+> このセクションは執筆途中です。加筆者を募集しています。
 
 #### 依存関係のインストール
 
