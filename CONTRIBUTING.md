@@ -253,7 +253,7 @@ git switch -c feature/add-schedule-component
 起動後は、ターミナルを開いて以下のコマンドを一度実行してください。
 
 ```sh
-bun install
+bun install --frozen-lockfile 
 ```
 
 これにより、依存関係がインストールされ、開発環境が整います。
@@ -305,7 +305,7 @@ bun run dev
 ### 機能を開発する
 
 いくつかの機能を開発する例を示します。
-開発に際しては、このリポジトリの[アーキテクチャ](./ARCHITECTURE.md)を軽く把握しておくことをお勧めします。
+開発に際しては、このリポジトリの[ARCHITECTURE.md](./ARCHITECTURE.md)を軽く把握しておくことをお勧めします。
 
 #### 例: リンク一覧にconnpassを追加する
 
@@ -475,7 +475,7 @@ Issueと同様に、タイトルはわかりやすく簡潔に、誤解が生じ
 
 #### Pull Requestのタイトル
 
-Pull Requestのタイトルはマージ後のコミットメッセージとして使われます。タイトルは[Angular-style](https://github.com/angular/angular/blob/main/CONTRIBUTING.md#type)のコミットメッセージに従って記述してください。
+Pull Requestのタイトルはマージ後のコミットメッセージとして使われます。タイトルは[Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)のコミットメッセージに従って記述してください。
 
 ```plaintext
 <type>(<scope>): <short summary>
@@ -541,7 +541,7 @@ Squash and Mergeでマージし、作業ブランチを削除します。
 以下のコマンドで依存関係をインストールします。
 
 ```sh
-bun install
+bun install --frozen-lockfile
 ```
 
 #### ビルド
