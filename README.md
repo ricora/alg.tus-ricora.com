@@ -67,7 +67,7 @@
 
 [pagefind](https://pagefind.app/)を利用して、サイト内の検索を実装しています。左側サイドバーから検索ボタンを押すか、<kbd>Ctrl</kbd> + <kbd>K</kbd>を押すことで検索を開始できます。
 
-## ✨ Contributing
+## 🤝 Contributing
 
 貢献する方法については、[CONTRIBUTING.md](./CONTRIBUTING.md)を参照してください。
 開発環境の整備やコマンド一覧等もこちらに記載されています。
