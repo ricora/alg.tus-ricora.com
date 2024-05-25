@@ -430,7 +430,9 @@ social:
 joined_year: 2022
 ```
 
-このファイルを作成したら、開発サーバーを起動して、メンバー一覧に自分の情報が表示されるかどうかを確認します。
+このyamlファイル内で利用できるプロパティについては、[ARCHITECTURE.md](./ARCHITECTURE.md#srccontentmembers)を参照してください。
+
+続いて、開発サーバーを起動して、メンバー一覧に自分の情報が表示されるかどうかを確認します。
 
 ```sh
 bun run dev
