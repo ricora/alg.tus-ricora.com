@@ -49,11 +49,11 @@
 本リポジトリでは、タスク管理のために GitHub Issues を利用しています。以下の目的に応じて Issue を作成してください。
 
 - 記事の提案 (新規記事の追加)
-  - 例：#282, #283
+  - 例: [#282](https://github.com/ricora/alg.tus-ricora.com/issues/282), [#283](https://github.com/ricora/alg.tus-ricora.com/issues/283)
 - バグ報告 (既存の記事の修正、機能の修正)
-  - 例：#82, #202
+  - 例: [#82](https://github.com/ricora/alg.tus-ricora.com/issues/82), [#202](https://github.com/ricora/alg.tus-ricora.com/issues/202)
 - 機能の提案 (新機能の追加、既存機能の改修)
-  - 例：#242, #28, #232, #191, ...
+  - 例: [#28](https://github.com/ricora/alg.tus-ricora.com/issues/28), [#191](https://github.com/ricora/alg.tus-ricora.com/issues/191), [#232](https://github.com/ricora/alg.tus-ricora.com/issues/232), [#242](https://github.com/ricora/alg.tus-ricora.com/issues/242)
 - その他 (質問、議論、依存関係の更新)
 
 自分自身でPull Requestを作成する場合でも、対応するIssueを作成することを推奨します。
