@@ -253,7 +253,7 @@ git switch -c feature/add-schedule-component
 起動後は、ターミナルを開いて以下のコマンドを一度実行してください。
 
 ```sh
-bun install --frozen-lockfile 
+bun install --frozen-lockfile
 ```
 
 これにより、依存関係がインストールされ、開発環境が整います。
