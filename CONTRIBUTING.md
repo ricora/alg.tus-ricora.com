@@ -150,6 +150,9 @@ git switch -c feature/<機能名>
 git switch -c feature/add-schedule-component
 ```
 
+> [!NOTE]
+> Featureブランチにおけるコミットは最終的にはSquash and mergeによってPR単位でまとめられますが、コミットの粒度やメッセージの内容は適切に保つようにしてください。
+
 ### 開発環境の構築
 
 このリポジトリではJavaScriptランタイムとして[Node.js](https://nodejs.org/)を、パッケージ管理ツールとして[Bun](https://bun.sh/)を利用しています。
