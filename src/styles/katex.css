@@ -1,3 +1,8 @@
 .katex {
   font-size: 1.1rem !important;
 }
+
+.katex-html {
+  overflow-y: hidden;
+  overflow-x: auto;
+}
