@@ -40,7 +40,7 @@ export const links = [
         type: "link",
         title: "作品紹介",
         href: "/categories/works",
-        icon: "tabler:palette",
+        icon: "tabler:sparkles",
       },
     ],
   },
