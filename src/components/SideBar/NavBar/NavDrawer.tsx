@@ -26,12 +26,14 @@ export const NavDrawer: Component<NavDrawer> = (props) => {
           <Drawer.Content class="mr-auto max-w-[80%]">
             <Drawer.Header class="flex flex-row justify-between">
               <div class="flex flex-col gap-2">
-                <Drawer.Title>RICORA Programming Team</Drawer.Title>
-                <Drawer.Description class="block gap-2">
-                  <span class="inline-block">東京理科大学&nbsp;</span>
-                  <span class="inline-block">電子計算機研究会&nbsp;</span>
-                  <span class="inline-block">プログラミング班</span>
-                </Drawer.Description>
+                <a href="/" class="flex flex-col gap-2">
+                  <Drawer.Title>RICORA Programming Team</Drawer.Title>
+                  <Drawer.Description class="block gap-2">
+                    <span class="inline-block">東京理科大学&nbsp;</span>
+                    <span class="inline-block">電子計算機研究会&nbsp;</span>
+                    <span class="inline-block">プログラミング班</span>
+                  </Drawer.Description>
+                </a>
                 <div class="flex flex-row gap-2 text-fg-muted">{props.socialLinks}</div>
               </div>
               <Drawer.CloseTrigger class="mb-auto rounded-lg p-2 transition hover:bg-bg-muted">
