@@ -18,6 +18,8 @@ pre-commit:
     prettier:
       glob: "*.{js,cjs,ts,jsx,tsx,astro,md,mdx,html,css,json,yaml,yml}"
       run: bun prettier --write {staged_files}
+      stage_fixed: true
     eslint:
       glob: "*.{js,cjs,ts,jsx,tsx,astro}"
       run: bun eslint --fix {staged_files}
+      stage_fixed: true
