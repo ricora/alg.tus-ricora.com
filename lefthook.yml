@@ -1,0 +1,24 @@
+# EXAMPLE USAGE:
+#
+#   Refer for explanation to following link:
+#   https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md
+#
+# pre-push:
+#   commands:
+#     packages-audit:
+#       tags: frontend security
+#       run: yarn audit
+#     gems-audit:
+#       tags: backend security
+#       run: bundle audit
+#
+pre-commit:
+  commands:
+    prettier:
+      glob: "*.{js,cjs,ts,jsx,tsx,astro,md,mdx,html,css,json,yaml,yml}"
+      run: bun prettier --write {staged_files}
+      stage_fixed: true
+    eslint:
+      glob: "*.{js,cjs,ts,jsx,tsx,astro}"
+      run: bun eslint --fix {staged_files}
+      stage_fixed: true

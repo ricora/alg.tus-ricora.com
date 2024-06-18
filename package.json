@@ -15,7 +15,7 @@
     "textlint": "textlint ./src/content/",
     "textlint:fix": "textlint --fix ./src/content/",
     "test": "bun test",
-    "prepare": "husky install"
+    "prepare": "lefthook install"
   },
   "dependencies": {
     "@ark-ui/solid": "^2.0.0",
@@ -72,11 +72,10 @@
     "hast-util-from-html": "^2.0.1",
     "hast-util-select": "^6.0.2",
     "hast-util-to-html": "^9.0.0",
-    "husky": "^9.0.0",
     "isomorphic-dompurify": "^2.3.0",
     "jsdom": "^24.0.0",
     "katex": "^0.16.9",
-    "lint-staged": "^15.2.0",
+    "lefthook": "^1.6.16",
     "pagefind": "^1.0.4",
     "postcss-load-config": "^5.0.2",
     "prettier": "^3.1.1",
