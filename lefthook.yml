@@ -13,7 +13,6 @@
 #       run: bundle audit
 #
 pre-commit:
-  parallel: true
   commands:
     prettier:
       glob: "*.{js,cjs,ts,jsx,tsx,astro,md,mdx,html,css,json,yaml,yml}"
