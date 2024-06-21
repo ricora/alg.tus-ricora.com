@@ -9,6 +9,7 @@ export type LinkMenu = {
 export type Link = {
   type: "link"
   title: string
+  description: string
   icon: IconName
   href: string
 }
@@ -27,18 +28,21 @@ export const links = [
       {
         type: "link",
         title: "お知らせ",
+        description: '"お知らせ"に関連する記事を表示します',
         href: "/categories/news",
         icon: "tabler:speakerphone",
       },
       {
         type: "link",
         title: "活動記録",
+        description: '"活動記録"に関連する記事を表示します',
         href: "/categories/activities",
         icon: "tabler:book-2",
       },
       {
         type: "link",
         title: "作品紹介",
+        description: '"作品紹介"に関連する記事を表示します',
         href: "/categories/works",
         icon: "tabler:sparkles",
       },
@@ -47,30 +51,35 @@ export const links = [
   {
     type: "link",
     title: "アーカイブ",
+    description: "過去の記事を表示します",
     href: "/archives",
     icon: "tabler:archive",
   },
   {
     type: "link",
     title: "RICORAについて",
+    description: "RICORAについての情報を表示します",
     icon: "tabler:info-circle",
     href: "/about",
   },
   {
     type: "link",
     title: "お問い合わせ",
+    description: "RICORAへのお問い合わせフォームを表示します",
     icon: "tabler:mail",
     href: "/contact",
   },
   {
     type: "link",
     title: "メンバー",
+    description: "RICORAのメンバー一覧を表示します",
     icon: "tabler:users",
     href: "/members",
   },
   {
     type: "link",
     title: "リンク",
+    description: "RICORAに関連するリンクを表示します",
     icon: "tabler:link",
     href: "/links",
   },

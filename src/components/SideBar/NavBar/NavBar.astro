@@ -16,10 +16,7 @@ const { class: className, ...props } = Astro.props
 ---
 
 <header
-  class={twMerge(
-    "sticky top-0 backdrop-blur-xl bg-bg-canvas/95 supports-[backdrop-filter]:bg-bg-canvas/60 z-30",
-    className,
-  )}
+  class={twMerge("sticky top-0 backdrop-blur-xl bg-bg-canvas z-30 border-b", className)}
   data-pagefind-ignore="all"
   {...props}
 >

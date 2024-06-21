@@ -46,6 +46,8 @@ export default {
       animation: {
         "switch-to-right": "switch-to-right 0.3s ease-out",
         "switch-to-left": "switch-to-left 0.3s ease-out",
+        "reveal-in-from-top": "reveal-in-from-top 0.3s ease-out",
+        "reveal-out-to-top": "reveal-out-to-top 0.3s ease-out",
       },
       keyframes: {
         "switch-to-right": {
@@ -62,6 +64,22 @@ export default {
           },
           to: {
             left: "0",
+          },
+        },
+        "reveal-in-from-top": {
+          "0%": {
+            "clip-path": "inset(0 0 100% 0)",
+          },
+          "100%": {
+            "clip-path": "inset(0 0 0 0)",
+          },
+        },
+        "reveal-out-to-top": {
+          "0%": {
+            "clip-path": "inset(0 0 0 0)",
+          },
+          "100%": {
+            "clip-path": "inset(0 0 100% 0)",
           },
         },
       },
