@@ -3,6 +3,7 @@ import { type IconName } from "@/components/Elements/Icon"
 export type LinkMenu = {
   type: "menu"
   title: string
+  icon: IconName
   links: Link[]
 }
 
@@ -24,6 +25,7 @@ export const links = [
   {
     type: "menu",
     title: "記事",
+    icon: "tabler:news",
     links: [
       {
         type: "link",

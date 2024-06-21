@@ -1,28 +1,35 @@
-import { createEffect, createSignal, type Component } from "solid-js"
+import { createEffect, createSignal, on, type Component } from "solid-js"
 import type { Link as LinkType } from "./links"
-import { Icon } from "@/components/Elements/Icon"
+import { Icon, type IconName } from "@/components/Elements/Icon"
 import { HoverCard } from "@ark-ui/solid"
 import { twMerge } from "tailwind-merge"
 
 export type LinkMenuProps = {
   title: string
+  icon: IconName
   links: LinkType[]
 }
 
 export const LinkMenu: Component<LinkMenuProps> = (props) => {
   const [isOpen, setOpen] = createSignal(false)
-  const [hidden, setHidden] = createSignal(false)
+  const [hidden, setHidden] = createSignal(true)
 
   let timeoutToCloseMenu: NodeJS.Timeout | undefined = undefined
-  createEffect(() => {
-    if (isOpen()) {
-      setHidden(false)
-      clearTimeout(timeoutToCloseMenu)
-    } else {
-      timeoutToCloseMenu = setTimeout(() => setHidden(true), 300)
-      return () => clearTimeout(timeoutToCloseMenu)
-    }
-  })
+  createEffect(
+    on(
+      isOpen,
+      () => {
+        if (isOpen()) {
+          setHidden(false)
+          clearTimeout(timeoutToCloseMenu)
+        } else {
+          timeoutToCloseMenu = setTimeout(() => setHidden(true), 300)
+          return () => clearTimeout(timeoutToCloseMenu)
+        }
+      },
+      { defer: true },
+    ),
+  )
 
   return (
     <>
@@ -34,7 +41,10 @@ export const LinkMenu: Component<LinkMenuProps> = (props) => {
           )}
           onClick={() => setOpen((prev) => !prev)}
         >
-          <span>{props.title}</span>
+          <div class="flex flex-row items-center gap-2">
+            <Icon name={props.icon} class="size-6" />
+            <span>{props.title}</span>
+          </div>
           <Icon name="tabler:chevron-down" class="size-4 transition-transform group-data-[state=open]:rotate-180" />
         </HoverCard.Trigger>
         <HoverCard.Content

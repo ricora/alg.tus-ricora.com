@@ -33,9 +33,9 @@ const { class: className, ...props } = Astro.props
         {
           links.map((link) =>
             link.type === "menu" ? (
-              <LinkMenu title={link.title} links={link.links} client:load />
+              <LinkMenu icon={link.icon} title={link.title} links={link.links} client:load />
             ) : (
-              <Link title={link.title} href={link.href} />
+              <Link icon={link.icon} title={link.title} href={link.href} />
             ),
           )
         }
