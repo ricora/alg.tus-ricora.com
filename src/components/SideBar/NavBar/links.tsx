@@ -58,11 +58,32 @@ export const links = [
     icon: "tabler:archive",
   },
   {
-    type: "link",
+    type: "menu",
     title: "RICORAについて",
-    description: "RICORAについての情報を表示します",
     icon: "tabler:info-circle",
-    href: "/about",
+    links: [
+      {
+        type: "link",
+        title: "RICORAについて",
+        description: "RICORA Programming Teamについての紹介を表示します",
+        icon: "tabler:info-circle",
+        href: "/about",
+      },
+      {
+        type: "link",
+        title: "メンバー",
+        description: "RICORA Programming Teamのメンバー一覧を表示します",
+        icon: "tabler:users",
+        href: "/members",
+      },
+      {
+        type: "link",
+        title: "リンク",
+        description: "RICORA Programming Teamに関連するリンク一覧を表示します",
+        icon: "tabler:link",
+        href: "/links",
+      },
+    ],
   },
   {
     type: "link",
@@ -70,20 +91,6 @@ export const links = [
     description: "RICORAへのお問い合わせフォームを表示します",
     icon: "tabler:mail",
     href: "/contact",
-  },
-  {
-    type: "link",
-    title: "メンバー",
-    description: "RICORAのメンバー一覧を表示します",
-    icon: "tabler:users",
-    href: "/members",
-  },
-  {
-    type: "link",
-    title: "リンク",
-    description: "RICORAに関連するリンクを表示します",
-    icon: "tabler:link",
-    href: "/links",
   },
 ] as const satisfies (LinkMenu | Link)[]
 
