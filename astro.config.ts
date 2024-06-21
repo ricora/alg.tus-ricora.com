@@ -33,6 +33,7 @@ export default defineConfig({
     //"/p/[...slug]": "/posts/[...slug]",
     "/link": "/links",
     "/about-us": "/about",
+    "/posts": "/archives",
   },
   integrations: [tailwind(), solidJs(), mdx(), sitemap(), pagefind()],
   markdown: {
