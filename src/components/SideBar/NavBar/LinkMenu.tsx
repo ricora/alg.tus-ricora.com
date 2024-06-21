@@ -58,7 +58,10 @@ export const LinkMenu: Component<LinkMenuProps> = (props) => {
             <ul class="flex flex-row gap-12">
               {props.links.map((link) => (
                 <li class="max-w-52">
-                  <a class="group flex flex-col gap-3 text-fg-muted transition hover:cursor-pointer hover:text-fg-default">
+                  <a
+                    class="group flex flex-col gap-3 text-fg-muted transition hover:cursor-pointer hover:text-fg-default"
+                    href={link.href}
+                  >
                     <div class="flex flex-row items-center gap-2">
                       <Icon name={link.icon} class="size-6" />
                       <span>{link.title}</span>
