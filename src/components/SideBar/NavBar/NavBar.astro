@@ -29,16 +29,20 @@ const { class: className, ...props } = Astro.props
           <span class="hidden text-xs text-fg-subtle xl:block">東京理科大学 電子計算機研究会 プログラミング班</span>
         </div>
       </a>
-      <nav class="hidden flex-row items-center gap-0 xl:flex">
-        {
-          links.map((link) =>
-            link.type === "menu" ? (
-              <LinkMenu icon={link.icon} title={link.title} links={link.links} client:load />
-            ) : (
-              <Link icon={link.icon} title={link.title} href={link.href} />
-            ),
-          )
-        }
+      <nav>
+        <ul class="hidden flex-row items-center gap-0 xl:flex">
+          {
+            links.map((link) => (
+              <li>
+                {link.type === "menu" ? (
+                  <LinkMenu icon={link.icon} title={link.title} links={link.links} client:load />
+                ) : (
+                  <Link icon={link.icon} title={link.title} href={link.href} />
+                )}
+              </li>
+            ))
+          }
+        </ul>
       </nav>
     </div>
     <div class="flex flex-row items-center gap-0 md:gap-6">
