@@ -24,6 +24,34 @@ export type SocialLink = {
 export const links = [
   {
     type: "menu",
+    title: "RICORAについて",
+    icon: "tabler:info-circle",
+    links: [
+      {
+        type: "link",
+        title: "RICORAについて",
+        description: "RICORAについての紹介を表示します",
+        icon: "tabler:info-circle",
+        href: "/about",
+      },
+      {
+        type: "link",
+        title: "メンバー",
+        description: "RICORAのメンバー一覧を表示します",
+        icon: "tabler:users",
+        href: "/members",
+      },
+      {
+        type: "link",
+        title: "リンク",
+        description: "RICORAに関連するリンク一覧を表示します",
+        icon: "tabler:link",
+        href: "/links",
+      },
+    ],
+  },
+  {
+    type: "menu",
     title: "記事",
     icon: "tabler:news",
     links: [
@@ -52,45 +80,17 @@ export const links = [
   },
   {
     type: "link",
-    title: "アーカイブ",
-    description: "過去の記事を表示します",
-    href: "/archives",
-    icon: "tabler:archive",
-  },
-  {
-    type: "menu",
-    title: "RICORAについて",
-    icon: "tabler:info-circle",
-    links: [
-      {
-        type: "link",
-        title: "RICORAについて",
-        description: "RICORAについての紹介を表示します",
-        icon: "tabler:info-circle",
-        href: "/about",
-      },
-      {
-        type: "link",
-        title: "メンバー",
-        description: "RICORAのメンバー一覧を表示します",
-        icon: "tabler:users",
-        href: "/members",
-      },
-      {
-        type: "link",
-        title: "リンク",
-        description: "RICORAに関連するリンク一覧を表示します",
-        icon: "tabler:link",
-        href: "/links",
-      },
-    ],
-  },
-  {
-    type: "link",
     title: "お問い合わせ",
     description: "RICORAへのお問い合わせフォームを表示します",
     icon: "tabler:mail",
     href: "/contact",
+  },
+  {
+    type: "link",
+    title: "アーカイブ",
+    description: "過去の記事を表示します",
+    href: "/archives",
+    icon: "tabler:archive",
   },
 ] as const satisfies (LinkMenu | Link)[]
 
