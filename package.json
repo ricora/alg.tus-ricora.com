@@ -14,8 +14,7 @@
     "lint:fix": "eslint --fix .",
     "textlint": "textlint ./src/content/",
     "textlint:fix": "textlint --fix ./src/content/",
-    "test": "bun test",
-    "prepare": "lefthook install"
+    "test": "bun test"
   },
   "dependencies": {
     "@ark-ui/solid": "^2.0.0",
