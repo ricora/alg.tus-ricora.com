@@ -39,7 +39,7 @@
     "tailwindcss": "^3.4.0"
   },
   "devDependencies": {
-    "@astrojs/check": "0.9.3",
+    "@astrojs/check": "0.9.4",
     "@eslint/eslintrc": "^3.0.0",
     "@eslint/js": "^9.0.0",
     "@iconify/iconify": "^3.1.1",
