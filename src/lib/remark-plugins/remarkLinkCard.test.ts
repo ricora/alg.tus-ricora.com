@@ -14,6 +14,7 @@ const process = async (md: string) => {
   let mdast: mdast.Root
   const html = (
     await unified()
+      // @ts-expect-error broken types
       .use(remarkParse)
       .use(remarkLinkCard)
       .use(() => (tree: mdast.Root) => {
@@ -25,6 +26,7 @@ const process = async (md: string) => {
         hast = tree
         return hast
       })
+      // @ts-expect-error broken types
       .use(rehypeStringify)
       .process(md)
   ).toString()

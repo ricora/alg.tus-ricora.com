@@ -1,3 +1,5 @@
+import "mdast-util-to-hast"
+
 import type { Root } from "mdast"
 import { type Plugin } from "unified"
 import { visit } from "unist-util-visit"
