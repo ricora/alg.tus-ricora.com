@@ -1,7 +1,7 @@
 import { getOgImage } from "@/components/Elements/OpenGraphImage"
 import { getTags } from "@/lib/tags"
 import type { APIContext } from "astro"
-import { getCollection, getEntryBySlug } from "astro:content"
+import { getCollection, getEntry } from "astro:content"
 
 export const getStaticPaths = async () => {
   const posts = await getCollection("posts")
@@ -14,7 +14,7 @@ export const getStaticPaths = async () => {
 const tags = await getTags()
 
 export const GET = async ({ params }: APIContext) => {
-  const post = await getEntryBySlug("posts", params.slug as string)
+  const post = await getEntry("posts", params.slug as string)
   const body = await getOgImage({
     title: post?.data.title ?? "",
     category: post?.data.categories.length ? post?.data.categories[0].id : "",
