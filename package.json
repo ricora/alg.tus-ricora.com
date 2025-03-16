@@ -74,7 +74,7 @@
     "hast-util-select": "^6.0.2",
     "hast-util-to-html": "^9.0.0",
     "isomorphic-dompurify": "^2.3.0",
-    "jsdom": "^25.0.0",
+    "jsdom": "^26.0.0",
     "katex": "^0.16.9",
     "lefthook": "^1.6.16",
     "mdast-util-to-hast": "13.2.0",
