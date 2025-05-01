@@ -6,7 +6,9 @@
     "editorconfig.editorconfig",
     "github.vscode-github-actions",
     "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint"
+    "dbaeumer.vscode-eslint",
+    "oven.bun-vscode",
+    "3w36zj6.textlint"
   ],
   "unwantedRecommendations": []
 }
