@@ -1,9 +1,10 @@
 {
   "name": "alg.tus-ricora.com",
-  "build": {
-    "dockerfile": "../Dockerfile"
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers-extra/features/mise:1": {}
   },
-  "containerUser": "dev",
+  "onCreateCommand": ["bash", "-c", "echo 'eval \"$(mise activate bash)\"' >> ~/.bashrc && mise install"],
   "customizations": {
     "vscode": {
       "extensions": [
