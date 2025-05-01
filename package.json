@@ -64,7 +64,7 @@
     "esbuild": "^0.25.0",
     "eslint": "^9.0.0",
     "eslint-config-flat-gitignore": "^2.0.0",
-    "eslint-config-prettier": "^9.1.0",
+    "eslint-config-prettier": "^10.0.0",
     "eslint-define-config": "^2.0.0",
     "eslint-plugin-astro": "^1.0.0",
     "eslint-plugin-jsx-a11y": "^6.8.0",
