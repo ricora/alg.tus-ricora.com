@@ -88,9 +88,9 @@ const bundledThemeScript = result.outputFiles[0].text
     <link rel="sitemap" href="/sitemap-index.xml" />
     <OpenGraphMeta {...og} />
     <TwitterCardMeta {...twitter} />
+    <script is:inline set:html={bundledThemeScript} />
   </head>
   <body class="bg-bg-canvas text-fg-default">
-    <script is:inline set:html={bundledThemeScript} />
     <div class="relative mx-auto flex min-h-full flex-col">
       <NavBar />
       <div class="flex flex-1 flex-col gap-8 px-5">
