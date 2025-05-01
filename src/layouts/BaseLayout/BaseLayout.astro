@@ -74,7 +74,7 @@ const result = await build({
   minify: true,
   write: false,
 })
-const bundledThemeScript = "console.time('theme');" + result.outputFiles[0].text + "console.timeLog('theme');"
+const bundledThemeScript = result.outputFiles[0].text
 ---
 
 <html lang="ja">
