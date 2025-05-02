@@ -18,7 +18,7 @@ export const Terminal: Component = () => {
         </div>
         <div class="text-xs text-white/90">guest@ricora-alg</div>
       </div>
-      <div class="*:*:rounded-md *:p-2" ref={(el) => (terminalDiv = el)}></div>
+      <div class="*:*:rounded-md *:p-2" ref={(el) => (terminalDiv = el)} />
     </div>
   )
 }

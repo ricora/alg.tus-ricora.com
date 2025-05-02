@@ -1,3 +1,4 @@
+import { For } from "solid-js"
 import type { Component, JSX } from "solid-js"
 import * as Drawer from "@/components/ui/Drawer"
 import { Icon } from "@/components/Elements/Icon"
@@ -56,11 +57,13 @@ export const NavDrawer: Component<NavDrawer> = (props) => {
 export const NavDrawerSocialLinks: Component<{ links: SocialLink[] }> = (props) => {
   return (
     <>
-      {props.links.map((link) => (
-        <a class="hover:text-fg-default" href={link.href}>
-          <Icon name={link.icon} class="size-6" />
-        </a>
-      ))}
+      <For each={props.links}>
+        {(link) => (
+          <a class="hover:text-fg-default" href={link.href}>
+            <Icon name={link.icon} class="size-6" />
+          </a>
+        )}
+      </For>
     </>
   )
 }
@@ -68,19 +71,21 @@ export const NavDrawerSocialLinks: Component<{ links: SocialLink[] }> = (props) 
 export const NavDrawerLinks: Component<{ links: (Link | LinkMenu)[] }> = (props) => {
   return (
     <>
-      {props.links.map((link) =>
-        link.type === "menu" ? (
-          <NavDrawerLinks links={link.links} />
-        ) : (
-          <a
-            href={link.href}
-            class="flex flex-row gap-4 rounded-md p-2 text-fg-muted transition hover:bg-bg-muted hover:text-fg-default"
-          >
-            <Icon name={link.icon} class="size-6" />
-            <span>{link.title}</span>
-          </a>
-        ),
-      )}
+      <For each={props.links}>
+        {(link) =>
+          link.type === "menu" ? (
+            <NavDrawerLinks links={link.links} />
+          ) : (
+            <a
+              href={link.href}
+              class="flex flex-row gap-4 rounded-md p-2 text-fg-muted transition hover:bg-bg-muted hover:text-fg-default"
+            >
+              <Icon name={link.icon} class="size-6" />
+              <span>{link.title}</span>
+            </a>
+          )
+        }
+      </For>
     </>
   )
 }

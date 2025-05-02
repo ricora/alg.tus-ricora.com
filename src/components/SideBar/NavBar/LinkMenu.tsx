@@ -1,4 +1,4 @@
-import { createEffect, createSignal, on, type Component } from "solid-js"
+import { createEffect, createSignal, on, type Component, For } from "solid-js"
 import type { Link as LinkType } from "./links"
 import { Icon, type IconName } from "@/components/Elements/Icon"
 import { HoverCard } from "@ark-ui/solid"
@@ -56,20 +56,22 @@ export const LinkMenu: Component<LinkMenuProps> = (props) => {
         >
           <div class="mx-auto my-4 max-w-screen-2xl px-8">
             <ul class="flex flex-row gap-12">
-              {props.links.map((link) => (
-                <li class="max-w-52">
-                  <a
-                    class="group flex flex-col gap-3 text-fg-muted transition hover:cursor-pointer hover:text-fg-default"
-                    href={link.href}
-                  >
-                    <div class="flex flex-row items-center gap-2">
-                      <Icon name={link.icon} class="size-6" />
-                      <span>{link.title}</span>
-                    </div>
-                    <span class="text-sm text-fg-subtle group-hover:text-fg-muted">{link.description}</span>
-                  </a>
-                </li>
-              ))}
+              <For each={props.links}>
+                {(link) => (
+                  <li class="max-w-52">
+                    <a
+                      class="group flex flex-col gap-3 text-fg-muted transition hover:cursor-pointer hover:text-fg-default"
+                      href={link.href}
+                    >
+                      <div class="flex flex-row items-center gap-2">
+                        <Icon name={link.icon} class="size-6" />
+                        <span>{link.title}</span>
+                      </div>
+                      <span class="text-sm text-fg-subtle group-hover:text-fg-muted">{link.description}</span>
+                    </a>
+                  </li>
+                )}
+              </For>
             </ul>
           </div>
         </HoverCard.Content>

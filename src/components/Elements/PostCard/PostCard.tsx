@@ -2,7 +2,7 @@ import { Icon, type IconName } from "@/components/Elements/Icon"
 import { formatDate } from "@/lib/date"
 import { calculateReadingTime } from "@/lib/posts"
 import { type CollectionEntry } from "astro:content"
-import { type Component } from "solid-js"
+import { type Component, For } from "solid-js"
 import { twMerge } from "tailwind-merge"
 import { CategoryCard } from "./CategoryCard"
 
@@ -38,9 +38,7 @@ export const PostCard: Component<PostCardProps> = (props) => {
       <div class="my-2 flex flex-col gap-2.5 sm:gap-4">
         <header>
           <div class="flex flex-row flex-wrap gap-2">
-            {props.categories.map((category) => (
-              <CategoryCard id={category} />
-            ))}
+            <For each={props.categories}>{(category) => <CategoryCard id={category} />}</For>
           </div>
         </header>
         <a href={`/posts/${props.slug}`}>

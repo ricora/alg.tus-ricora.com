@@ -1,3 +1,5 @@
+/* eslint-disable solid/reactivity */
+
 import { loadDefaultJapaneseParser } from "budoux"
 import fs from "node:fs"
 import satori from "satori"

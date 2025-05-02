@@ -7,6 +7,7 @@ import {
   createMemo,
   type Setter,
   type JSX,
+  For,
 } from "solid-js"
 import type { PagefindSearchResult, PagefindSearchResults } from "./type"
 import { isDev } from "@/lib/runtime"
@@ -86,7 +87,7 @@ export const Search: Component<SearchProps> = (props) => {
     >
       <form
         class={twMerge("flex w-full flex-none flex-row gap-3 px-2 pt-1", isQuerying() ? "border-b pb-3" : "pb-1")}
-        onsubmit={handleOnSubmit}
+        onSubmit={handleOnSubmit}
       >
         <div class="flex items-center">{props.searchIcon}</div>
         <input
@@ -124,6 +125,7 @@ type SearchResultsProps = {
 }
 
 const SearchResults: Component<SearchResultsProps> = (props) => {
+  // eslint-disable-next-line solid/reactivity
   const setResultRef = (i: number) => (el: HTMLAnchorElement) => {
     props.setResultRefs((refs) => {
       refs[i] = el
@@ -139,17 +141,19 @@ const SearchResults: Component<SearchResultsProps> = (props) => {
         </div>
       ) : (
         <ol class="mt-3 flex flex-auto flex-col gap-2 overflow-y-auto">
-          {props.results?.map((result, i) => (
-            <Suspense>
-              <SearchResult
-                index={i}
-                result={result}
-                ref={setResultRef(i)}
-                active={i === props.activeIndex}
-                setActiveIndex={props.setActiveIndex}
-              />
-            </Suspense>
-          ))}
+          <For each={props.results}>
+            {(result, index) => (
+              <Suspense>
+                <SearchResult
+                  index={index()}
+                  result={result}
+                  ref={setResultRef(index())}
+                  active={index() === props.activeIndex}
+                  setActiveIndex={props.setActiveIndex}
+                />
+              </Suspense>
+            )}
+          </For>
         </ol>
       )}
     </>
@@ -180,7 +184,11 @@ const SearchResult: Component<SearchResultProps> = (props) => {
       >
         <div class="my-auto size-8 flex-none">
           {result()?.meta["image_svg"] ? (
-            <div class="size-full" innerHTML={decodeURIComponent(result()!.meta["image_svg"])}></div>
+            <div
+              class="size-full"
+              // eslint-disable-next-line solid/no-innerhtml
+              innerHTML={decodeURIComponent(result()!.meta["image_svg"])}
+            />
           ) : (
             // Because `<Search />` is client only component, we can't use `<Icon />` here because it is server only component.
             // So we use static icon component `<HeroiconsDocumentText />` instead.
@@ -189,7 +197,11 @@ const SearchResult: Component<SearchResultProps> = (props) => {
         </div>
         <div class="flex flex-col gap-1">
           <div class="font-bold">{result()?.meta["title"]}</div>
-          <div class="text-sm text-fg-subtle" innerHTML={result()?.excerpt} />
+          <div
+            class="text-sm text-fg-subtle"
+            // eslint-disable-next-line solid/no-innerhtml
+            innerHTML={result()?.excerpt}
+          />
         </div>
       </a>
     </li>
