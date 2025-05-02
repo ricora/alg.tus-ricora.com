@@ -1,19 +1,21 @@
 // @ts-check
-import { defineFlatConfig } from "eslint-define-config"
 import eslint from "@eslint/js"
+import tseslint from "typescript-eslint"
 import gitignore from "eslint-config-flat-gitignore"
 import eslintConfigPrettier from "eslint-config-prettier"
-import { FlatCompat } from "@eslint/eslintrc"
 import globals from "globals"
-import typescriptESLint from "@typescript-eslint/eslint-plugin"
 import typescriptESLintParser from "@typescript-eslint/parser"
 import astroESLintParser from "astro-eslint-parser"
+// @ts-expect-error eslint-plugin-tailwindcss doesn't have typescript types: https://github.com/francoismassart/eslint-plugin-tailwindcss/issues/371
+import tailwind from "eslint-plugin-tailwindcss"
+import astro from "eslint-plugin-astro"
 
-/// <reference types="@eslint-types/typescript-eslint" />
-
-const compat = new FlatCompat()
-
-const globalConfig = defineFlatConfig([
+const globalConfig = tseslint.config(
+  gitignore(),
+  eslint.configs.recommended,
+  eslintConfigPrettier,
+  tseslint.configs.recommended,
+  ...tailwind.configs["flat/recommended"],
   {
     rules: {
       "no-console": "error",
@@ -32,40 +34,19 @@ const globalConfig = defineFlatConfig([
         ...globals.browser,
         ...globals.node,
       },
-      parser: typescriptESLintParser,
-    },
-    plugins: {
-      // todo: typescript-eslintはflatConfigに未対応で型が合わないので、型を上書きしている
-      /** @type {Record<string, import("eslint").ESLint.Plugin>} */
-      typescriptESLint,
     },
   },
-])
-
-/** @type {import("eslint-define-config").FlatESLintConfig[]} */
-//  @ts-expect-error Linter.FlatConfigをFlatESLintConfigに変換できない
-const extendedConfig = compat.extends(
-  "plugin:@typescript-eslint/recommended",
-  "plugin:astro/recommended",
-  "plugin:tailwindcss/recommended",
 )
 
-const astroConfig = defineFlatConfig({
+const astroConfig = tseslint.config(...astro.configs.recommended, {
   files: ["**/*.astro"],
   languageOptions: {
     parser: astroESLintParser,
     parserOptions: {
-      parser: "@typescript-eslint/parser",
+      parser: typescriptESLintParser,
       extraFileExtensions: [".astro"],
     },
   },
 })
 
-export default defineFlatConfig([
-  gitignore(),
-  eslint.configs.recommended,
-  eslintConfigPrettier,
-  ...extendedConfig,
-  ...globalConfig,
-  astroConfig,
-])
+export default tseslint.config(...globalConfig, ...astroConfig)
