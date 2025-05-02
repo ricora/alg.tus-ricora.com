@@ -2,7 +2,7 @@ import { defineConfig } from "astro/config"
 import tailwind from "@astrojs/tailwind"
 import solidJs from "@astrojs/solid-js"
 import mdx from "@astrojs/mdx"
-import { remarkCallout } from "./src/lib/remark-plugins/remarkCallout"
+import { remarkCallout } from "@r4ai/remark-callout"
 import { remarkLinkCard } from "./src/lib/remark-plugins/remarkLinkCard"
 import {
   rehypeCustomCode,
