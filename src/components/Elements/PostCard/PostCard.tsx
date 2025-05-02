@@ -1,14 +1,12 @@
 import { Icon, type IconName } from "@/components/Elements/Icon"
 import { formatDate } from "@/lib/date"
 import { calculateReadingTime } from "@/lib/posts"
-import { getCollection } from "astro:content"
+import { type CollectionEntry } from "astro:content"
 import { type Component } from "solid-js"
 import { twMerge } from "tailwind-merge"
 import { CategoryCard } from "./CategoryCard"
 
-const categories = await getCollection("categories")
-
-type CategoryType = (typeof categories)[number]
+type CategoryType = CollectionEntry<"categories">
 type CategorySlugType = CategoryType["id"]
 
 export type PostCardProps = {
