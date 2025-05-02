@@ -66,13 +66,13 @@ export const Title = withContext(ArkDrawer.Title, "title")
 export const Trigger = withContext(ArkDrawer.Trigger, "trigger")
 
 export type RootProps = ComponentProps<typeof Root>
-export interface BackdropProps extends ComponentProps<typeof Backdrop> {}
-export interface BodyProps extends ComponentProps<typeof Body> {}
-export interface CloseTriggerProps extends ComponentProps<typeof CloseTrigger> {}
-export interface ContentProps extends ComponentProps<typeof Content> {}
-export interface DescriptionProps extends ComponentProps<typeof Description> {}
-export interface FooterProps extends ComponentProps<typeof Footer> {}
-export interface HeaderProps extends ComponentProps<typeof Header> {}
-export interface PositionerProps extends ComponentProps<typeof Positioner> {}
-export interface TitleProps extends ComponentProps<typeof Title> {}
-export interface TriggerProps extends ComponentProps<typeof Trigger> {}
+export type BackdropProps = ComponentProps<typeof Backdrop>
+export type BodyProps = ComponentProps<typeof Body>
+export type CloseTriggerProps = ComponentProps<typeof CloseTrigger>
+export type ContentProps = ComponentProps<typeof Content>
+export type DescriptionProps = ComponentProps<typeof Description>
+export type FooterProps = ComponentProps<typeof Footer>
+export type HeaderProps = ComponentProps<typeof Header>
+export type PositionerProps = ComponentProps<typeof Positioner>
+export type TitleProps = ComponentProps<typeof Title>
+export type TriggerProps = ComponentProps<typeof Trigger>

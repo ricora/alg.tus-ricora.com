@@ -28,8 +28,8 @@ export const Positioner = withContext(Tooltip.Positioner, "positioner")
 export const Trigger = withContext(Tooltip.Trigger, "trigger")
 
 export type RootProps = ComponentProps<typeof Root>
-export interface ArrowProps extends ComponentProps<typeof Arrow> {}
-export interface ArrowTipProps extends ComponentProps<typeof ArrowTip> {}
-export interface ContentProps extends ComponentProps<typeof Content> {}
-export interface PositionerProps extends ComponentProps<typeof Positioner> {}
-export interface TriggerProps extends ComponentProps<typeof Trigger> {}
+export type ArrowProps = ComponentProps<typeof Arrow>
+export type ArrowTipProps = ComponentProps<typeof ArrowTip>
+export type ContentProps = ComponentProps<typeof Content>
+export type PositionerProps = ComponentProps<typeof Positioner>
+export type TriggerProps = ComponentProps<typeof Trigger>
