@@ -10,5 +10,6 @@
     // e.g. twColor: text-red-6;
     // > https://github.com/tailwindlabs/tailwindcss-intellisense/issues/270
     "tw.*:(?:.|\n)*?[\"'`]([^\"'`]*).*?,"
-  ]
+  ],
+  "textlint.languages": ["markdown", "mdx"]
 }
