@@ -27,7 +27,7 @@ const Svg: Component<{ iconData: IconData | undefined; alt: string | undefined }
       xmlns="http://www.w3.org/2000/svg"
       viewBox={`${props.iconData?.left} ${props.iconData?.top} ${props.iconData?.width} ${props.iconData?.height}`}
       fill="none"
-      style="width:100%"
+      style={{ width: "100%" }}
     >
       {props.alt && <title>{props.alt}</title>}
       <Dynamic component={props.iconData?.body} />
@@ -45,18 +45,19 @@ const IconComponent: Component<IconProps> = (props) => {
   if (!isServer) {
     // eslint-disable-next-line no-console
     console.error("Icon component should only be used on the server")
+    // eslint-disable-next-line solid/components-return-once
     return null
   }
 
   const [iconData] = createResource(() => getIconData(props.name))
   const svg = <Svg iconData={iconData()} alt={props.alt} />
 
-  const shouldSetPagefindMeta = props.pagefindImage && isServer
+  const shouldSetPagefindMeta = () => props.pagefindImage && isServer
 
   return (
     <div
       {...props}
-      data-pagefind-meta={shouldSetPagefindMeta && `image_svg:${encodeURIComponent(renderToString(() => svg))}`}
+      data-pagefind-meta={shouldSetPagefindMeta() && `image_svg:${encodeURIComponent(renderToString(() => svg))}`}
     >
       {svg}
     </div>

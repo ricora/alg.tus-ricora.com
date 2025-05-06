@@ -9,6 +9,8 @@ import astroESLintParser from "astro-eslint-parser"
 // @ts-expect-error eslint-plugin-tailwindcss doesn't have typescript types: https://github.com/francoismassart/eslint-plugin-tailwindcss/issues/371
 import tailwind from "eslint-plugin-tailwindcss"
 import astro from "eslint-plugin-astro"
+import solid from "eslint-plugin-solid"
+import * as mdx from "eslint-plugin-mdx"
 
 const globalConfig = tseslint.config(
   gitignore(),
@@ -38,6 +40,14 @@ const globalConfig = tseslint.config(
   },
 )
 
+const solidConfig = tseslint.config({
+  files: ["**/*.{ts,tsx,mdx}"],
+  ...solid.configs["flat/typescript"],
+  languageOptions: {
+    parser: typescriptESLintParser,
+  },
+})
+
 const astroConfig = tseslint.config(...astro.configs.recommended, {
   files: ["**/*.astro"],
   languageOptions: {
@@ -49,4 +59,15 @@ const astroConfig = tseslint.config(...astro.configs.recommended, {
   },
 })
 
-export default tseslint.config(...globalConfig, ...astroConfig)
+const mdxConfig = tseslint.config(
+  {
+    ...mdx.flat,
+    processor: mdx.createRemarkProcessor({
+      lintCodeBlocks: true,
+      languageMapper: {},
+    }),
+  },
+  mdx.flatCodeBlocks,
+)
+
+export default tseslint.config(...globalConfig, ...astroConfig, ...solidConfig, ...mdxConfig)

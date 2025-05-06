@@ -19,5 +19,6 @@ const transform = (html: string) => {
 }
 
 export const OEmbedRich: Component<{ oEmbed: OEmbedRichSchema }> = (props) => {
+  // eslint-disable-next-line solid/no-innerhtml
   return <div class="w-full" innerHTML={transform(sanitize(props.oEmbed.html))} data-oembed />
 }

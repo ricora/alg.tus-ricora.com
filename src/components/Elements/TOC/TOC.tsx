@@ -11,29 +11,29 @@ export const TOC: Component<TOCProps> = (props) => {
   let activeHeadingCount: number = 0
   let pendingDeactivateHeadingElements: HTMLElement[] = []
 
-  const headings = props.headings
-  const headingElements = headings
-    .filter((heading) => heading.depth === 2 || heading.depth === 3)
-    .map((heading) => (
-      <li class="mb-2 ms-4" id={`toc-${heading.slug}`}>
-        <div
-          class={twMerge(
-            "absolute rounded-full border border-mauve-6 bg-mauve-6 data-[active=true]:border-mauve-8 data-[active=true]:bg-mauve-8",
-            heading.depth === 2 ? "-start-[6px] mt-1.5 size-3" : "-start-[3px] mt-2 size-1.5",
-          )}
-        />
-        <a href={`#${heading.slug}`} class="block max-w-[200px] truncate">
-          <span
+  const headingElements = () =>
+    props.headings
+      .filter((heading) => heading.depth === 2 || heading.depth === 3)
+      .map((heading) => (
+        <li class="mb-2 ms-4" id={`toc-${heading.slug}`}>
+          <div
             class={twMerge(
-              "text-mauve-11 data-[active=true]:text-mauve-12",
-              heading.depth === 2 ? "font-bold" : "font-normal",
+              "absolute rounded-full border border-mauve-6 bg-mauve-6 data-[active=true]:border-mauve-8 data-[active=true]:bg-mauve-8",
+              heading.depth === 2 ? "-start-[6px] mt-1.5 size-3" : "-start-[3px] mt-2 size-1.5",
             )}
-          >
-            {heading.text}
-          </span>
-        </a>
-      </li>
-    ))
+          />
+          <a href={`#${heading.slug}`} class="block max-w-[200px] truncate">
+            <span
+              class={twMerge(
+                "text-mauve-11 data-[active=true]:text-mauve-12",
+                heading.depth === 2 ? "font-bold" : "font-normal",
+              )}
+            >
+              {heading.text}
+            </span>
+          </a>
+        </li>
+      ))
 
   const setDataActive = (element: HTMLElement, active: boolean) => {
     element
@@ -79,7 +79,7 @@ export const TOC: Component<TOCProps> = (props) => {
     <div class="flex max-h-[calc(100dvh-5rem)] flex-col">
       <div class="mb-4 text-xl font-bold">目次</div>
       <div class="overflow-auto p-3">
-        <ul class="relative border-s border-border-muted">{headingElements}</ul>
+        <ul class="relative border-s border-border-muted">{headingElements()}</ul>
       </div>
     </div>
   )

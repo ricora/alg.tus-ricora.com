@@ -10,17 +10,17 @@ export type CategoryCardProps = {
 }
 
 export const CategoryCard: Component<CategoryCardProps> = (props) => {
-  const category = categories.find((category) => category.id === props.id)!
+  const category = () => categories.find((category) => category.id === props.id)!
   return (
     <a
       href={`/categories/${props.id}`}
       class={twMerge(
         "m-1 flex flex-row items-center gap-1 rounded-md bg-blue-9 px-2.5 py-1 text-sm font-bold text-white transition sm:px-4 sm:text-base",
-        category.data.twClassName,
+        category().data.twClassName,
       )}
     >
-      <Icon name={category.data.icon as IconName} class="size-5" />
-      <div>{category.data.title}</div>
+      <Icon name={category().data.icon as IconName} class="size-5" />
+      <div>{category().data.title}</div>
     </a>
   )
 }
