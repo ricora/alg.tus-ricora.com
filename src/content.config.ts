@@ -1,4 +1,5 @@
 import { z, defineCollection, reference } from "astro:content"
+import { glob } from "astro/loaders"
 
 export const postsSchema = z
   .object({
@@ -58,27 +59,27 @@ export const tagsSchema = z.object({
 })
 
 const postsCollection = defineCollection({
-  type: "content",
+  loader: glob({ base: "src/content/posts", pattern: "**/[^_]*.mdx" }),
   schema: postsSchema,
 })
 
 const pagesCollection = defineCollection({
-  type: "content",
+  loader: glob({ base: "src/content/pages", pattern: "**/[^_]*.mdx" }),
   schema: pagesSchema,
 })
 
 const membersCollection = defineCollection({
-  type: "data",
+  loader: glob({ base: "src/content/members", pattern: "**/[^_]*.yaml" }),
   schema: membersSchema,
 })
 
 const categoriesCollection = defineCollection({
-  type: "data",
+  loader: glob({ base: "src/content/categories", pattern: "**/[^_]*.yaml" }),
   schema: categoriesSchema,
 })
 
 const tagsCollection = defineCollection({
-  type: "data",
+  loader: glob({ base: "src/content/tags", pattern: "**/[^_]*.yaml" }),
   schema: tagsSchema,
 })
 
