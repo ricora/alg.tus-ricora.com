@@ -7,15 +7,15 @@ import { twMerge } from "tailwind-merge"
 import { CategoryCard } from "./CategoryCard"
 
 type CategoryType = CollectionEntry<"categories">
-type CategorySlugType = CategoryType["id"]
+type CategoryIdType = CategoryType["id"]
 
 export type PostCardProps = {
   title: string
   icon: IconName
-  body: string
+  body?: string
   tags: string[]
-  categories: CategorySlugType[]
-  slug: string
+  categories: CategoryIdType[]
+  id: string
   date: Date
   lastmod?: Date
   animationDelay?: number
@@ -43,7 +43,7 @@ export const PostCard: Component<PostCardProps> = (props) => {
             ))}
           </div>
         </header>
-        <a href={`/posts/${props.slug}`}>
+        <a href={`/posts/${props.id}`}>
           <h2 class="text-lg font-black sm:text-xl md:text-2xl">{props.title}</h2>
         </a>
         <footer class="flex flex-row flex-wrap gap-2 text-xs font-semibold text-fg-subtle sm:gap-4 sm:text-sm">
@@ -59,7 +59,7 @@ export const PostCard: Component<PostCardProps> = (props) => {
           )}
           <div class="flex flex-row items-center gap-2">
             <Icon name="tabler:clock" class="size-5" />
-            <span>読了時間: 約{calculateReadingTime(props.body)}分</span>
+            <span>読了時間: 約{calculateReadingTime(props.body ?? "")}分</span>
           </div>
         </footer>
       </div>

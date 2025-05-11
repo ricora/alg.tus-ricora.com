@@ -7,18 +7,18 @@ export const getStaticPaths = async () => {
   const posts = await getCollection("posts")
 
   return posts.map((post) => ({
-    params: { slug: post.slug },
+    params: { id: post.id },
   }))
 }
 
 const tags = await getTags()
 
 export const GET = async ({ params }: APIContext) => {
-  const post = await getEntry("posts", params.slug as string)
+  const post = await getEntry("posts", params.id as string)
   const body = await getOgImage({
     title: post?.data.title ?? "",
     category: post?.data.categories.length ? post?.data.categories[0].id : "",
-    tags: (post?.data.tags ?? []).map((slug) => tags.find((tag) => tag.id === slug)?.title ?? slug),
+    tags: (post?.data.tags ?? []).map((id) => tags.find((tag) => tag.id === id)?.title ?? id),
   })
   return new Response(body, {
     headers: {

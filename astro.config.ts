@@ -30,7 +30,7 @@ export default defineConfig({
   site: "https://alg.tus-ricora.com/",
   redirects: {
     // NOTE: Astroのバグで誤ったリダイレクト用のページが生成されるので、解決されるまでこの設定は無効化し、手動でリダイレクト用のページを生成する
-    //"/p/[...slug]": "/posts/[...slug]",
+    // "/p/[...id]": "/posts/[...id]",
     "/link": "/links",
     "/about-us": "/about",
     "/posts": "/archives",
