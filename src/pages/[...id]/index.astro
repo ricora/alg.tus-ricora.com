@@ -9,7 +9,7 @@ export const getStaticPaths = async () => {
   const postEntries = await getCollection("pages", ({ data }) => (isDev ? true : !data.draft))
   return postEntries.map((page) => ({
     params: {
-      slug: page.slug,
+      id: page.id,
     },
     props: {
       page,

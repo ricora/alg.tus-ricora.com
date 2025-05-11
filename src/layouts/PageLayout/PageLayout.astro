@@ -5,13 +5,14 @@ import type { CollectionEntry } from "astro:content"
 import { mdxComponents } from "@/lib/mdx"
 import { TOC } from "@/components/Elements/TOC"
 import { LinkCard } from "@/components/Elements/LinkCard"
+import { render } from "astro:content"
 
 export type Props = Partial<BaseLayoutProps> & {
   page: CollectionEntry<"pages">
 }
 const { page, ...props } = Astro.props
 
-const { Content, headings } = await page.render()
+const { Content, headings } = await render(page)
 
 const tocHeadings = headings.filter((heading) => heading.depth === 2 || heading.depth === 3)
 ---
@@ -19,7 +20,7 @@ const tocHeadings = headings.filter((heading) => heading.depth === 2 || heading.
 <BaseLayout
   title={page.data.title}
   og={{
-    url: new URL(page.slug, Astro.site),
+    url: new URL(page.id, Astro.site),
     ...props.og,
   }}
   {...props}
