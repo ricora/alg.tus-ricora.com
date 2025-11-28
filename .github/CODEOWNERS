@@ -1,0 +1,10 @@
+* @sou1118 @3w36zj6 @r4ai @BruCandy
+
+# Exclude dependency management files for Renovate
+/.tool-versions
+/mise.toml
+/package.json
+/bun.lock
+/bun.lockb
+/.github/workflows/*
+/biome.jsonc
