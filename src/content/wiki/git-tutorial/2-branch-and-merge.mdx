@@ -53,7 +53,7 @@ git branch -l
 を打つと、次のように表示されます。
 
 ```sh
-  master or main
+  main
 * (new branch name)
 ```
 
@@ -63,13 +63,13 @@ git branch -l
 では、また元のブランチに戻りましょう。そのためのコマンドはこちらです。
 
 ```sh
-git checkout main or master
+git checkout main
 ```
 
 もしくは、こちらです。
 
 ```sh
-git switch main or master
+git switch main
 ```
 
 を打ちます。そこで再度現在のブランチ一覧を確認します。
@@ -77,7 +77,7 @@ git switch main or master
 ```sh
 > git branch -l
 
-* master or main
+* main
   (new branch name)
 ```
 
@@ -102,7 +102,7 @@ touch lol.txt
 
 touchは本来ファイル生成コマンドではないのですが、それはさておき。
 
-これでまたmain/masterに戻ります。さて、`ls`をしてみてください。
+これでまたmainに戻ります。さて、`ls`をしてみてください。
 
 ```sh
 > ls
@@ -184,7 +184,7 @@ Date: ...
 
   something
 
-commit ... (master)
+commit ... (main)
 ```
 
 確かにさっきA.txtを編集したはずなのにmainでは表示されていませんね。
@@ -223,7 +223,7 @@ commit "initial commit"
    ブランチ main
 ```
 
-ここで`git switch main / master`をすると、HEADの位置はmaster / mainブランチの先頭のコミットへ移動します。
+ここで`git switch main`をすると、HEADの位置はmainブランチの先頭のコミットへ移動します。
 
 ```sh
                   -----> commit "wrote to A.txt"
@@ -237,7 +237,7 @@ commit "initial commit"
    ブランチ main <= HEAD
 ```
 
-ここで、例えば`touch b.txt`などを打って新規にファイルを作成し、それをコミットするとどうなるでしょうか。main / masterはeditAと異なる方向へ1コミット分進みます。
+ここで、例えば`touch b.txt`などを打って新規にファイルを作成し、それをコミットするとどうなるでしょうか。mainはeditAと異なる方向へ1コミット分進みます。
 
 ```sh
                   -----> commit "wrote to A.txt"
@@ -265,7 +265,7 @@ commit "initial commit" --> commit "create B.txt"
 - 新規機能開発・機能追加
 - バグ修正などのパッチ当て作業
 
-いずれもどこかのタイミングで開発の本流、例えばmainやmasterブランチにそのコミットを反映させる必要があるものです。
+いずれもどこかのタイミングで開発の本流であるmainブランチにそのコミットを反映させる必要があるものです。
 
 そこで、ブランチにはマージという機能があります。mergeというのは混ぜる、という意味の英単語です。その名の通り、2つのブランチを合流させるためのものです。
 
