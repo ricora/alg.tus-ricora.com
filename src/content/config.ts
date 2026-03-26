@@ -46,6 +46,12 @@ export const pagesSchema = z.object({
 })
 export type PagesSchema = z.infer<typeof pagesSchema>
 
+export const wikiSchema = z.object({
+  title: z.string(),
+  draft: z.boolean().optional(),
+})
+export type WikiSchema = z.infer<typeof wikiSchema>
+
 export const categoriesSchema = z.object({
   title: z.string(),
   twClassName: z.string(),
@@ -67,6 +73,11 @@ const pagesCollection = defineCollection({
   schema: pagesSchema,
 })
 
+const wikiCollection = defineCollection({
+  type: "content",
+  schema: wikiSchema,
+})
+
 const membersCollection = defineCollection({
   type: "data",
   schema: membersSchema,
@@ -85,6 +96,7 @@ const tagsCollection = defineCollection({
 export const collections = {
   posts: postsCollection,
   pages: pagesCollection,
+  wiki: wikiCollection,
   members: membersCollection,
   categories: categoriesCollection,
   tags: tagsCollection,

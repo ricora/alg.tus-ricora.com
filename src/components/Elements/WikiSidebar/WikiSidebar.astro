@@ -1,0 +1,88 @@
+---
+import { Icon } from "@/components/Elements/Icon"
+import type { WikiSection } from "@/lib/wiki"
+import { toWikiHref } from "@/lib/wiki"
+
+type SidebarVariant = "panel" | "embedded"
+
+type SidebarState =
+  | {
+      kind: "none"
+    }
+  | {
+      kind: "current"
+      slug: string
+    }
+
+type Props = {
+  sections: WikiSection[]
+  variant: SidebarVariant
+  state: SidebarState
+}
+
+const { sections, variant, state } = Astro.props
+const currentSlug = state.kind === "current" ? state.slug : undefined
+---
+
+<nav
+  aria-label="Wiki navigation"
+  class:list={[
+    "rounded-lg",
+    variant === "panel" && "border bg-bg-default p-4",
+    variant === "embedded" && "bg-transparent p-0",
+  ]}
+>
+  {variant === "panel" && <div class="mb-3 text-lg font-bold">ページ一覧</div>}
+  <ul class="flex flex-col gap-3">
+    {
+      sections.map((section) => {
+        const isCurrentSection = section.slug === currentSlug
+        const isOpen = section.slug === currentSlug || section.pages.some((page) => page.slug === currentSlug)
+
+        return (
+          <li>
+            <details open={isOpen} class="wiki-section group/section">
+              <summary class="flex cursor-pointer list-none items-center justify-between rounded px-2 py-1 font-semibold text-fg-muted transition hover:bg-bg-subtle hover:text-fg-default [&::-webkit-details-marker]:hidden">
+                {section.slug ? (
+                  <a
+                    href={toWikiHref(section.slug)}
+                    class:list={[
+                      "flex-1 pr-2 transition",
+                      isCurrentSection ? "text-fg-default" : "text-fg-muted hover:text-fg-default",
+                    ]}
+                  >
+                    {section.title}
+                  </a>
+                ) : (
+                  <span class:list={["flex-1 pr-2", isCurrentSection ? "text-fg-default" : "text-fg-muted"]}>
+                    {section.title}
+                  </span>
+                )}
+                <span class="ml-2 shrink-0 text-fg-muted" aria-hidden="true">
+                  <Icon name="tabler:chevron-down" class="size-4 transition-transform group-open/section:rotate-180" />
+                </span>
+              </summary>
+              <div class="grid grid-rows-[0fr] opacity-0 transition-[grid-template-rows,opacity,margin] duration-200 ease-out group-open/section:mt-2 group-open/section:grid-rows-[1fr] group-open/section:opacity-100">
+                <div class="overflow-hidden">
+                  <ul class="flex flex-col gap-1 pl-2">
+                    {section.pages.map((page) => (
+                      <li>
+                        <a
+                          href={toWikiHref(page.slug)}
+                          aria-current={page.slug === currentSlug ? "page" : undefined}
+                          class="block rounded px-2 py-1 text-sm text-fg-muted transition hover:bg-bg-subtle hover:text-fg-default aria-[current=page]:bg-bg-subtle aria-[current=page]:font-semibold aria-[current=page]:text-fg-default"
+                        >
+                          {page.title}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </details>
+          </li>
+        )
+      })
+    }
+  </ul>
+</nav>
