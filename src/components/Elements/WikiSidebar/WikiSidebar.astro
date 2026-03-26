@@ -33,7 +33,7 @@ const { sections, variant, currentSlug } = Astro.props
 
         return (
           <li>
-            <details open={isOpen} class="wiki-section group/section">
+            <details open={!hasCurrent || isOpen} class="wiki-section group/section">
               <summary class="flex cursor-pointer list-none items-center justify-between rounded px-2 py-1 font-semibold text-fg-muted transition hover:bg-bg-subtle hover:text-fg-default [&::-webkit-details-marker]:hidden">
                 <span class:list={["flex-1 pr-2", isCurrentSection ? "text-fg-default" : "text-fg-muted"]}>
                   {section.title}
