@@ -63,6 +63,10 @@
 
 `src/content/pages/links/`にあるMDXファイルを基に、サークルのリンク集ページを[alg.tus-ricora.com/links](https://alg.tus-ricora.com/links)にて公開します。
 
+### Wiki
+
+`src/content/wiki/`にあるMDXファイルを基に、Wikiページを[alg.tus-ricora.com/wiki](https://alg.tus-ricora.com/wiki)にて公開します。
+
 ### Search
 
 [pagefind](https://pagefind.app/)を利用して、サイト内の検索を実装しています。左側サイドバーから検索ボタンを押すか、<kbd>Ctrl</kbd> + <kbd>K</kbd>を押すことで検索を開始できます。

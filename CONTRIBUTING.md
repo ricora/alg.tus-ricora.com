@@ -28,6 +28,7 @@
     - [記事を執筆する](#記事を執筆する)
       - [1. 記事の執筆](#1-記事の執筆)
       - [2. 記事のプレビュー](#2-記事のプレビュー)
+    - [Wikiを執筆する](#wikiを執筆する)
     - [機能を開発する](#機能を開発する)
       - [例: リンク一覧にconnpassを追加する](#例-リンク一覧にconnpassを追加する)
     - [メンバー一覧に自分の情報を追加する](#メンバー一覧に自分の情報を追加する)
@@ -302,6 +303,16 @@ bun run dev
 開発サーバーはデフォルトでは[http://localhost:4321/](http://localhost:4321/)で起動します。
 
 先ほど作成した`src/content/posts/first-contributions/index.mdx`を閲覧するには、[http://localhost:4321/posts/first-contributions/](http://localhost:4321/posts/first-contributions/)にアクセスしてください。
+
+### Wikiを執筆する
+
+Wikiページは[`src/content/wiki`](./src/content/wiki/)以下で管理されています。
+
+- セクションごとにディレクトリを作成し、必ず`index.mdx`を配置してください。
+- セクション配下の個別ページは、同じディレクトリ内に追加してください。
+- 例: `src/content/wiki/git-tutorial/index.mdx`と`src/content/wiki/git-tutorial/1-init-add-commit.mdx`
+
+`index.mdx`がないセクションは、ビルド時エラーになります。
 
 ### 機能を開発する
 
