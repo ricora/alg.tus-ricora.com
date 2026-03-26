@@ -47,7 +47,7 @@ const { previous, next } = getWikiPrevNext(allPages, page.slug)
   >
     <aside class="hidden w-80 shrink-0 xl:block">
       <div class="sticky top-20">
-        <WikiSidebar sections={sections} variant="panel" state={{ kind: "current", slug: page.slug }} />
+        <WikiSidebar sections={sections} variant="panel" currentSlug={page.slug} />
       </div>
     </aside>
 

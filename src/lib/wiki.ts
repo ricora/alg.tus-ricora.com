@@ -5,13 +5,11 @@ import { isDev } from "@/lib/runtime"
 export type WikiEntry = CollectionEntry<"wiki">
 
 export type WikiNavPage = {
-  id: string
   title: string
   slug: string
 }
 
 export type WikiSection = {
-  key: string
   title: string
   slug?: string
   pages: WikiNavPage[]
@@ -49,7 +47,6 @@ const humanizeSegment = (segment: string) =>
     .join(" ")
 
 const toPage = (entry: WikiEntry): WikiNavPage => ({
-  id: entry.id,
   title: entry.data.title,
   slug: entry.slug,
 })
@@ -87,7 +84,12 @@ export const getWikiSections = (pages: WikiEntry[]) => {
   for (const page of pages) {
     const parts = stripExtension(page.id).split("/")
     const sectionKey = parts.length >= 2 ? parts[0] : "__root"
-    grouped.set(sectionKey, [...(grouped.get(sectionKey) ?? []), page])
+    let sectionPages = grouped.get(sectionKey)
+    if (!sectionPages) {
+      sectionPages = []
+      grouped.set(sectionKey, sectionPages)
+    }
+    sectionPages.push(page)
   }
 
   const keys = [...grouped.keys()].sort((a, b) => {
@@ -102,7 +104,6 @@ export const getWikiSections = (pages: WikiEntry[]) => {
     const sectionChildPages = sectionPages.filter((page) => page !== sectionIndexPage)
 
     return {
-      key,
       title: key === "__root" ? "General" : sectionIndexPage?.data.title ?? humanizeSegment(key),
       slug: sectionIndexPage?.slug,
       pages: sectionChildPages.map(toPage),
