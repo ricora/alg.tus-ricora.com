@@ -36,7 +36,7 @@ const sections = getWikiSections(pages)
             <section class="rounded-lg border bg-bg-default p-4">
               <h2 class="text-xl font-bold text-fg-default">
                 {section.slug ? (
-                  <a href={toWikiHref(section.slug)} class="text-fg-default transition hover:text-fg-default">
+                  <a href={toWikiHref(section.slug)} class="text-fg-default transition hover:underline">
                     {section.title}
                   </a>
                 ) : (
