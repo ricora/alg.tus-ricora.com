@@ -1,14 +1,8 @@
 ---
 import "katex/dist/katex.min.css"
-import "@/styles/katex.css"
 import type { CollectionEntry } from "astro:content"
-import { Icon } from "@/components/Elements/Icon"
-import { TOC } from "@/components/Elements/TOC"
-import WikiSidebar from "@/components/Elements/WikiSidebar/WikiSidebar.astro"
-import WikiPageListPanel from "@/components/Elements/WikiSidebar/WikiPageListPanel.astro"
-import { BaseLayout } from "@/layouts/BaseLayout"
-import { mdxComponents } from "@/lib/mdx"
-import { getWikiBreadcrumbs, getWikiPages, getWikiPrevNext, getWikiSections, toWikiHref } from "@/lib/wiki"
+import { getWikiPages } from "@/lib/wiki"
+import { WikiLayout } from "@/layouts/WikiLayout"
 
 export const getStaticPaths = async () => {
   const pages = await getWikiPages()
@@ -29,109 +23,6 @@ type Props = {
 }
 
 const { page, allPages } = Astro.props
-const { Content, headings } = await page.render()
-const tocHeadings = headings.filter((heading) => heading.depth === 2 || heading.depth === 3)
-const sections = getWikiSections(allPages)
-const breadcrumbs = getWikiBreadcrumbs(page, allPages)
-const { previous, next } = getWikiPrevNext(allPages, page.slug)
 ---
 
-<BaseLayout
-  title={page.data.title}
-  description={page.data.title}
-  og={{
-    url: new URL(`/wiki/${page.slug}/`, Astro.site),
-  }}
->
-  <main
-    class="mx-auto my-8 grid w-full max-w-[1600px] flex-1 grid-cols-1 gap-6 xl:grid-cols-[20rem_minmax(0,1fr)_14rem]"
-  >
-    <aside class="hidden w-80 shrink-0 xl:block">
-      <div class="sticky top-20">
-        <WikiSidebar sections={sections} variant="panel" currentSlug={page.slug} />
-      </div>
-    </aside>
-
-    <article class="w-full min-w-0">
-      <WikiPageListPanel sections={sections} currentSlug={page.slug} />
-
-      <nav aria-label="Breadcrumb" class="mb-6 text-sm text-fg-muted">
-        <ol class="flex flex-wrap items-center gap-2">
-          {
-            breadcrumbs.map((item, index) => (
-              <>
-                <li>
-                  {item.href ? (
-                    <a href={item.href} class="text-fg-muted transition hover:text-fg-default">
-                      {item.title}
-                    </a>
-                  ) : (
-                    <span class="text-fg-default">{item.title}</span>
-                  )}
-                </li>
-                {index < breadcrumbs.length - 1 && (
-                  <li aria-hidden="true">
-                    <Icon name="tabler:chevron-right" class="size-4" />
-                  </li>
-                )}
-              </>
-            ))
-          }
-        </ol>
-      </nav>
-
-      <header class="mb-8">
-        <h1 class="text-4xl font-bold" data-pagefind-meta="title">{page.data.title}</h1>
-      </header>
-
-      <section class="prose w-full max-w-none dark:prose-invert">
-        <Content components={mdxComponents} />
-
-        <nav class="not-prose mt-12 grid gap-3 border-t border-border-muted pt-6 md:grid-cols-2">
-          <div>
-            {
-              previous && (
-                <a
-                  href={toWikiHref(previous.slug)}
-                  class="block rounded-lg border bg-bg-default p-3 transition hover:bg-bg-muted"
-                >
-                  <div class="flex items-center gap-1 text-xs text-fg-muted">
-                    <Icon name="tabler:arrow-left" class="size-4" />
-                    <span>前のページ</span>
-                  </div>
-                  <div class="font-semibold text-fg-default">{previous.data.title}</div>
-                </a>
-              )
-            }
-          </div>
-          <div class="md:text-right">
-            {
-              next && (
-                <a
-                  href={toWikiHref(next.slug)}
-                  class="block rounded-lg border bg-bg-default p-3 transition hover:bg-bg-muted"
-                >
-                  <div class="flex items-center justify-end gap-1 text-xs text-fg-muted">
-                    <span>次のページ</span>
-                    <Icon name="tabler:arrow-right" class="size-4" />
-                  </div>
-                  <div class="font-semibold text-fg-default">{next.data.title}</div>
-                </a>
-              )
-            }
-          </div>
-        </nav>
-      </section>
-    </article>
-
-    {
-      tocHeadings.length > 0 && (
-        <aside class="hidden xl:block">
-          <div class="sticky top-20">
-            <TOC headings={headings} client:idle />
-          </div>
-        </aside>
-      )
-    }
-  </main>
-</BaseLayout>
+<WikiLayout page={page} allPages={allPages} />
