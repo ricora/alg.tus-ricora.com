@@ -1,0 +1,28 @@
+---
+import "katex/dist/katex.min.css"
+import type { CollectionEntry } from "astro:content"
+import { getWikiPages } from "@/lib/wiki"
+import { WikiLayout } from "@/layouts/WikiLayout"
+
+export const getStaticPaths = async () => {
+  const pages = await getWikiPages()
+  return pages.map((page) => ({
+    params: {
+      slug: page.slug,
+    },
+    props: {
+      page,
+      allPages: pages,
+    },
+  }))
+}
+
+type Props = {
+  page: CollectionEntry<"wiki">
+  allPages: CollectionEntry<"wiki">[]
+}
+
+const { page, allPages } = Astro.props
+---
+
+<WikiLayout page={page} allPages={allPages} />

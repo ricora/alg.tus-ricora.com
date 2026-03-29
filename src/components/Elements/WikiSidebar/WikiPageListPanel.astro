@@ -1,0 +1,30 @@
+---
+import { Icon } from "@/components/Elements/Icon"
+import WikiSidebar from "@/components/Elements/WikiSidebar/WikiSidebar.astro"
+import type { WikiSection } from "@/lib/wiki"
+
+type Props = {
+  sections: WikiSection[]
+  currentSlug?: string
+}
+
+const { sections, currentSlug } = Astro.props
+---
+
+<div class="w-full xl:hidden">
+  <details class="group mb-6 w-full" aria-label="ページ一覧">
+    <summary
+      class="flex w-full cursor-pointer list-none items-center justify-between gap-2 rounded-lg border bg-bg-default px-4 py-3 font-semibold text-fg-muted transition hover:bg-bg-muted hover:text-fg-default group-open:text-fg-default [&::-webkit-details-marker]:hidden"
+      aria-controls="wiki-page-list-panel-content"
+    >
+      <span>ページ一覧</span>
+      <span class="text-fg-muted" aria-hidden="true">
+        <Icon name="tabler:chevron-down" class="size-4 transition-transform group-open:rotate-180" />
+      </span>
+    </summary>
+
+    <div id="wiki-page-list-panel-content" class="mt-3 rounded-lg border bg-bg-default p-4">
+      <WikiSidebar sections={sections} variant="embedded" currentSlug={currentSlug} />
+    </div>
+  </details>
+</div>

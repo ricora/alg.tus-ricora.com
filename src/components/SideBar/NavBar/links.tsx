@@ -1,4 +1,4 @@
-import { type IconName } from "@/components/Elements/Icon"
+import type { IconName } from "@/components/Elements/Icon"
 
 export type LinkMenu = {
   type: "menu"
@@ -91,6 +91,13 @@ export const links = [
     description: "過去の記事を表示します",
     href: "/archives",
     icon: "tabler:archive",
+  },
+  {
+    type: "link",
+    title: "Wiki",
+    description: "Wiki記事を表示します",
+    href: "/wiki",
+    icon: "tabler:book",
   },
 ] as const satisfies (LinkMenu | Link)[]
 
