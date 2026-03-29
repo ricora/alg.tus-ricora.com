@@ -36,7 +36,7 @@ const { previous, next } = getWikiPrevNext(allPages, page.slug)
     class="mx-auto my-8 grid w-full max-w-[1600px] flex-1 grid-cols-1 gap-6 xl:grid-cols-[20rem_minmax(0,1fr)_14rem]"
   >
     <aside class="hidden w-80 shrink-0 xl:block">
-      <div class="sticky top-20">
+      <div class="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto">
         <WikiSidebar sections={sections} variant="panel" currentSlug={page.slug} />
       </div>
     </aside>
@@ -116,7 +116,7 @@ const { previous, next } = getWikiPrevNext(allPages, page.slug)
     {
       tocHeadings.length > 0 && (
         <aside class="hidden xl:block">
-          <div class="sticky top-20">
+          <div class="sticky top-24">
             <TOC headings={headings} client:idle />
           </div>
         </aside>
