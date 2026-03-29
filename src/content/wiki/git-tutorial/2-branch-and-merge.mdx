@@ -53,8 +53,11 @@ git switch -c (new branch name)
 
 です。(new branch name)には好きな名前を入れてください。
 
-> なんで同じことをするためのコマンドが複数あるかは、[ここ](https://www.git-tower.com/learn/git/commands/git-switch#:~:text=The%20%22switch%22%20command,and%20creating%20branches!)とかを読んでください。
-> また、ブランチは慣習により`切る`という表現をします。
+なぜ同じことをするためのコマンドが複数あるかは、次の記事を読んでください。
+
+https://www.git-tower.com/learn/git/commands/git-switch
+
+また、ブランチは慣習により`切る`という表現をします。
 
 さて、これで新しいブランチに移ることができました。では、ブランチの一覧を見てそれを確認しましょう。
 
@@ -300,7 +303,9 @@ B. 直接マージできない状態。
 マージするブランチともう1つのブランチでコミットログに差があり、単純に融合できない場合もあります。
 そのような場合は、git側でエラーを吐くこともあります。エラーログを読み、コミットログも確認してブランチの履歴がスパゲッティ化しないようにしましょう。
 
-詳しくは`man git-merge`もしくは`man 1 git-merge`とか[Branching and Merging - Git SCM Book](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging)を読んでください。
+詳しくは`man git-merge`もしくは`man 1 git-merge`を確認したうえで、次の資料を読んでください。
+
+https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging
 
 ただし、マージする機会はそれほど多くありません。必要になったら都度調べながら進めれば十分です。
 
