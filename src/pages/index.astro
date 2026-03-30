@@ -1,10 +1,40 @@
 ---
 import { Icon, type IconName } from "@/components/Elements/Icon"
+import { FeaturedCarousel } from "@/components/Elements/FeaturedCarousel"
+import type { FeaturedItem } from "@/components/Elements/FeaturedCarousel"
 import { PostCard } from "@/components/Elements/PostCard"
 import { Terminal } from "@/components/Elements/Terminal"
 import { Button } from "@/components/ui/Button"
 import { BaseLayout } from "@/layouts/BaseLayout"
 import { getPosts } from "@/lib/posts"
+
+const featuredItems: FeaturedItem[] = [
+  {
+    title: "HonoXで構築する学園祭の模擬店向け注文管理システム",
+    image: "https://storage.googleapis.com/zenn-user-upload/7c5b6c86f04b-20251224.png",
+    link: "https://zenn.dev/ricora/articles/9cd4eb6bfcea13",
+  },
+  {
+    title: "Collect Drop!",
+    image: "https://github.com/user-attachments/assets/fe81d07f-1d07-46eb-813b-1054c7e60e8c",
+    link: "/posts/collect-drop",
+  },
+  {
+    title: "RICORA Beats",
+    image: "https://user-images.githubusercontent.com/52315048/210119143-7ece6a92-8cd1-4b67-8460-744f099a6e54.png",
+    link: "/posts/ricora-beats",
+  },
+  {
+    title: "新入生歓迎ガイダンス",
+    image: "https://pbs.twimg.com/media/GoYLOIFWIAAKYGu?format=jpg&name=orig",
+    link: "/tags/%E6%96%B0%E6%AD%93",
+  },
+  {
+    title: "理大祭",
+    image: "https://pbs.twimg.com/media/G6ZmYllbwAAtjVy?format=jpg&name=orig",
+    link: "/tags/%E7%90%86%E5%A4%A7%E7%A5%AD",
+  },
+]
 
 const posts = await getPosts()
 posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
@@ -55,6 +85,11 @@ const contents: ContentType[] = [
   }}
 >
   <main class="flex flex-1 flex-col gap-6 py-12">
+    <section>
+      <div class="mx-auto max-w-screen-xl">
+        <FeaturedCarousel items={featuredItems} client:load />
+      </div>
+    </section>
     {
       contents.map((content) => (
         <section>
