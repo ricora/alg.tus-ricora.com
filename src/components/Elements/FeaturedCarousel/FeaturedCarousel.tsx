@@ -19,13 +19,17 @@ export const FeaturedCarousel: Component<FeaturedCarouselProps> = (props) => {
 
   const resetAutoPlay = () => {
     if (autoPlayTimer) clearInterval(autoPlayTimer)
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    if (prefersReducedMotion || props.items.length <= 1) return
+
     autoPlayTimer = setInterval(() => {
       setCurrentIndex((prev) => (prev === props.items.length - 1 ? 0 : prev + 1))
     }, interval())
   }
 
   onMount(() => {
-    if (props.items.length > 1) resetAutoPlay()
+    resetAutoPlay()
   })
 
   onCleanup(() => {
