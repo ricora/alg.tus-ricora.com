@@ -1,4 +1,4 @@
-import { createSignal, onMount, For, Show } from "solid-js"
+import { createSignal, onCleanup, onMount, For, Show } from "solid-js"
 import { Icon } from "@/components/Elements/Icon"
 
 type Message = {
@@ -32,18 +32,41 @@ export const ChatIntroduction = () => {
   const [isTyping, setIsTyping] = createSignal(false)
 
   let observerRef: HTMLDivElement | undefined
+  let observer: IntersectionObserver | undefined
+  const timeoutIds = new Set<number>()
+  const intervalIds = new Set<number>()
+
+  const scheduleTimeout = (callback: () => void, delay: number) => {
+    const timeoutId = window.setTimeout(() => {
+      timeoutIds.delete(timeoutId)
+      callback()
+    }, delay)
+    timeoutIds.add(timeoutId)
+  }
 
   onMount(() => {
-    const observer = new IntersectionObserver(
+    observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting && visibleIndex() === -1) {
-          observer.disconnect()
+        if (entries[0]?.isIntersecting && visibleIndex() === -1) {
+          observer?.disconnect()
           startNext(0)
         }
       },
       { threshold: 0.3 },
     )
     if (observerRef) observer.observe(observerRef)
+  })
+
+  onCleanup(() => {
+    observer?.disconnect()
+    for (const timeoutId of timeoutIds) {
+      window.clearTimeout(timeoutId)
+    }
+    timeoutIds.clear()
+    for (const intervalId of intervalIds) {
+      window.clearInterval(intervalId)
+    }
+    intervalIds.clear()
   })
 
   const startNext = (idx: number) => {
@@ -53,24 +76,26 @@ export const ChatIntroduction = () => {
     const msg = SCRIPT[idx]
 
     if (msg.role === "user") {
-      setTimeout(() => {
+      scheduleTimeout(() => {
         startNext(idx + 1)
       }, 800)
     } else {
       setIsTyping(true)
       setTypingText("")
       let charIndex = 0
-      const interval = setInterval(() => {
+      const intervalId = window.setInterval(() => {
         setTypingText(msg.content.slice(0, charIndex + 1))
         charIndex++
         if (charIndex >= msg.content.length) {
-          clearInterval(interval)
+          window.clearInterval(intervalId)
+          intervalIds.delete(intervalId)
           setIsTyping(false)
-          setTimeout(() => {
+          scheduleTimeout(() => {
             startNext(idx + 1)
           }, 600)
         }
       }, 40)
+      intervalIds.add(intervalId)
     }
   }
 
@@ -86,13 +111,13 @@ export const ChatIntroduction = () => {
             style={{ display: visibleIndex() >= i() ? "flex" : "none" }}
           >
             {msg.role === "assistant" && (
-              <div class="dark:bg-gray-800 border-gray-200 dark:border-gray-700 flex h-10 w-10 flex-none items-center justify-center overflow-hidden rounded-full border bg-white shadow-sm">
+              <div class="flex h-10 w-10 flex-none items-center justify-center overflow-hidden rounded-full border border-border-muted bg-bg-default shadow-sm">
                 <Icon name="brand:ricora" class="h-7 w-7" />
               </div>
             )}
 
             <div
-              class={`bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700 max-w-[85%] border px-5 py-3 text-fg-default shadow-sm ${
+              class={`max-w-[85%] border border-border-muted bg-bg-muted px-5 py-3 text-fg-default shadow-sm ${
                 msg.role === "user" ? "rounded-2xl rounded-tr-sm" : "rounded-2xl rounded-tl-sm"
               }`}
             >
@@ -110,7 +135,7 @@ export const ChatIntroduction = () => {
             </div>
 
             {msg.role === "user" && (
-              <div class="dark:bg-gray-800 border-gray-200 dark:border-gray-700 flex h-10 w-10 flex-none items-center justify-center overflow-hidden rounded-full border bg-white shadow-sm">
+              <div class="flex h-10 w-10 flex-none items-center justify-center overflow-hidden rounded-full border border-border-muted bg-bg-default shadow-sm">
                 {(i() / 2) % 3 === 0 && <Icon name="fluent-emoji:cat-face" class="h-7 w-7" />}
                 {(i() / 2) % 3 === 1 && <Icon name="fluent-emoji:fox" class="h-7 w-7" />}
                 {(i() / 2) % 3 === 2 && <Icon name="fluent-emoji:penguin" class="h-7 w-7" />}
