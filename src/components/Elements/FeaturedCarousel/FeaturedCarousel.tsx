@@ -108,10 +108,9 @@ export const FeaturedCarousel: Component<FeaturedCarouselProps> = (props) => {
                           class="h-full w-full object-cover"
                           loading={index() === 0 ? "eager" : "lazy"}
                         />
+                        {/* 画像内のテキストの可読性を確保するため、明示的に黒色のグラデーション背景を使用する */}
                         <div class="absolute inset-x-0 bottom-0 rounded-b-lg bg-gradient-to-t from-black/70 via-black/30 to-transparent p-4 sm:p-6">
-                          <h3 class="text-base font-bold text-white drop-shadow-lg sm:text-xl md:text-2xl">
-                            {item.title}
-                          </h3>
+                          <h3 class="text-base font-bold text-white sm:text-xl md:text-2xl">{item.title}</h3>
                         </div>
                       </div>
                     </a>
@@ -124,7 +123,7 @@ export const FeaturedCarousel: Component<FeaturedCarouselProps> = (props) => {
               <button
                 type="button"
                 onClick={goToPrev}
-                class="absolute left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm transition-all hover:bg-black/60 sm:left-4 sm:h-12 sm:w-12"
+                class="absolute left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-mauve-a8 text-white backdrop-blur-sm transition-all hover:bg-mauve-a9 sm:left-4 sm:h-12 sm:w-12"
                 aria-label="前のスライド"
               >
                 <Icon name="tabler:chevron-left" class="h-5 w-5 sm:h-6 sm:w-6" />
@@ -133,7 +132,7 @@ export const FeaturedCarousel: Component<FeaturedCarouselProps> = (props) => {
               <button
                 type="button"
                 onClick={goToNext}
-                class="absolute right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm transition-all hover:bg-black/60 sm:right-4 sm:h-12 sm:w-12"
+                class="absolute right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-mauve-a8 text-white backdrop-blur-sm transition-all hover:bg-mauve-a9 sm:right-4 sm:h-12 sm:w-12"
                 aria-label="次のスライド"
               >
                 <Icon name="tabler:chevron-right" class="h-5 w-5 sm:h-6 sm:w-6" />
