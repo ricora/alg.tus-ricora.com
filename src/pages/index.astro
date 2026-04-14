@@ -1,10 +1,41 @@
 ---
 import { Icon, type IconName } from "@/components/Elements/Icon"
+import { FeaturedCarousel } from "@/components/Elements/FeaturedCarousel"
+import type { FeaturedItem } from "@/components/Elements/FeaturedCarousel"
 import { PostCard } from "@/components/Elements/PostCard"
 import { Terminal } from "@/components/Elements/Terminal"
+import { ChatIntroduction } from "@/components/Elements/ChatIntroduction"
 import { Button } from "@/components/ui/Button"
 import { BaseLayout } from "@/layouts/BaseLayout"
 import { getPosts } from "@/lib/posts"
+
+const featuredItems: FeaturedItem[] = [
+  {
+    title: "HonoXで構築する学園祭の模擬店向け注文管理システム",
+    image: "https://storage.googleapis.com/zenn-user-upload/7c5b6c86f04b-20251224.png",
+    link: "https://zenn.dev/ricora/articles/9cd4eb6bfcea13",
+  },
+  {
+    title: "Collect Drop!",
+    image: "https://github.com/user-attachments/assets/fe81d07f-1d07-46eb-813b-1054c7e60e8c",
+    link: "/posts/collect-drop",
+  },
+  {
+    title: "RICORA Beats",
+    image: "https://user-images.githubusercontent.com/52315048/210119143-7ece6a92-8cd1-4b67-8460-744f099a6e54.png",
+    link: "/posts/ricora-beats",
+  },
+  {
+    title: "新入生歓迎ガイダンス",
+    image: "https://github.com/user-attachments/assets/ea3089f3-e4e3-4356-a544-1cb55bcd3543",
+    link: "/tags/%E6%96%B0%E6%AD%93",
+  },
+  {
+    title: "理大祭",
+    image: "https://github.com/user-attachments/assets/950d82a0-0030-418f-8c9f-b4b17c847e36",
+    link: "/tags/%E7%90%86%E5%A4%A7%E7%A5%AD",
+  },
+]
 
 const posts = await getPosts()
 posts.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
@@ -21,14 +52,6 @@ type ContentType = {
 }
 
 const contents: ContentType[] = [
-  {
-    headerTitle: "RICORA Programming Teamについて",
-    headerIcon: "fluent-emoji:desktop-computer",
-    description:
-      "RICORA Programming Teamは東京理科大学 野田キャンパスにて活動するプログラミングサークルです。低レイヤー領域の探究から競技プログラミング、CTF、ゲーム制作、Web開発など多岐にわたり活動を行っています。",
-    linkTitle: "もっと詳しく見る",
-    link: "/about",
-  },
   {
     headerTitle: "最新記事",
     headerIcon: "fluent-emoji:newspaper",
@@ -55,6 +78,30 @@ const contents: ContentType[] = [
   }}
 >
   <main class="flex flex-1 flex-col gap-6 py-12">
+    <section>
+      <div class="mx-auto max-w-screen-xl">
+        <FeaturedCarousel items={featuredItems} client:load />
+      </div>
+    </section>
+    <section>
+      <div class="mx-auto max-w-screen-xl">
+        <div class="flex flex-col gap-6 rounded-lg border bg-bg-default p-6 md:px-12 md:py-8">
+          <h2 class="flex flex-row items-center gap-3 text-2xl font-black md:text-3xl">
+            <Icon name="fluent-emoji:desktop-computer" class="w-10 flex-none md:w-12" />
+            <span>RICORA Programming Teamについて</span>
+          </h2>
+          <p class="text-fg-muted md:text-lg">
+            RICORA Programming Teamは東京理科大学
+            野田キャンパスにて活動するプログラミングサークルです。低レイヤー領域の探究から競技プログラミング、CTF、ゲーム制作、Web開発など多岐にわたり活動を行っています。
+          </p>
+          <ChatIntroduction client:visible />
+          <Button variant="outline" class="dark:border-border-muted" size="lg" as="a" href="/about">
+            もっと詳しく見る
+            <Icon name="tabler:chevron-right" class="w-8" />
+          </Button>
+        </div>
+      </div>
+    </section>
     {
       contents.map((content) => (
         <section>
