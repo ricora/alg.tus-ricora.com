@@ -19,10 +19,7 @@ export const process = async (
   let hast: hast.Node
   const html = (
     await unified()
-      .use(
-        // @ts-expect-error - remarkParse types are broken
-        remarkParse,
-      )
+      .use(remarkParse)
       .use(remarkRehype)
       .use(() => (tree: hast.Node) => {
         hast = tree
