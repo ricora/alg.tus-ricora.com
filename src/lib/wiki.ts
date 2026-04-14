@@ -6,12 +6,12 @@ export type WikiEntry = CollectionEntry<"wiki">
 
 export type WikiNavPage = {
   title: string
-  slug: string
+  id: string
 }
 
 export type WikiSection = {
   title: string
-  slug?: string
+  id?: string
   pages: WikiNavPage[]
 }
 
@@ -21,10 +21,11 @@ export type WikiBreadcrumb = {
 }
 
 const stripExtension = (id: string) => id.replace(/\.(md|mdx)$/u, "")
+const normalizeWikiId = (id: string) => stripExtension(id).replace(/\/index$/u, "")
 
 const comparePath = (a: string, b: string) => {
-  const aParts = stripExtension(a).split("/")
-  const bParts = stripExtension(b).split("/")
+  const aParts = normalizeWikiId(a).split("/")
+  const bParts = normalizeWikiId(b).split("/")
 
   const len = Math.min(aParts.length, bParts.length)
   for (let i = 0; i < len; i++) {
@@ -48,20 +49,20 @@ const humanizeSegment = (segment: string) =>
 
 const toPage = (entry: WikiEntry): WikiNavPage => ({
   title: entry.data.title,
-  slug: entry.slug,
+  id: entry.id,
 })
 
 const assertSectionIndexPages = (pages: WikiEntry[]) => {
-  const pagePaths = new Set(pages.map((page) => stripExtension(page.id)))
+  const pagePaths = new Set(pages.map((page) => normalizeWikiId(page.id)))
   const sectionKeys = new Set(
     pages
-      .map((page) => stripExtension(page.id).split("/"))
+      .map((page) => normalizeWikiId(page.id).split("/"))
       .filter((parts) => parts.length >= 2)
       .map((parts) => parts[0]),
   )
 
   const missingSections = [...sectionKeys]
-    .filter((sectionKey) => !pagePaths.has(`${sectionKey}/index`))
+    .filter((sectionKey) => !pagePaths.has(sectionKey))
     .sort((a, b) => a.localeCompare(b, "ja"))
 
   if (missingSections.length > 0) {
@@ -69,7 +70,7 @@ const assertSectionIndexPages = (pages: WikiEntry[]) => {
   }
 }
 
-export const toWikiHref = (slug: string) => `/wiki/${slug}/`
+export const toWikiHref = (id: string) => `/wiki/${normalizeWikiId(id)}/`
 
 export const getWikiPages = async () => {
   const pages = await getCollection("wiki", ({ data }) => (isDev ? true : !data.draft))
@@ -82,7 +83,7 @@ export const getWikiSections = (pages: WikiEntry[]) => {
   const grouped = new Map<string, WikiEntry[]>()
 
   for (const page of pages) {
-    const parts = stripExtension(page.id).split("/")
+    const parts = normalizeWikiId(page.id).split("/")
     const sectionKey = parts.length >= 2 ? parts[0] : "__root"
     let sectionPages = grouped.get(sectionKey)
     if (!sectionPages) {
@@ -100,12 +101,12 @@ export const getWikiSections = (pages: WikiEntry[]) => {
 
   return keys.map((key) => {
     const sectionPages = (grouped.get(key) ?? []).sort((a, b) => comparePath(a.id, b.id))
-    const sectionIndexPage = sectionPages.find((page) => stripExtension(page.id).endsWith("/index"))
+    const sectionIndexPage = sectionPages.find((page) => normalizeWikiId(page.id) === key)
     const sectionChildPages = sectionPages.filter((page) => page !== sectionIndexPage)
 
     return {
       title: key === "__root" ? "General" : (sectionIndexPage?.data.title ?? humanizeSegment(key)),
-      slug: sectionIndexPage?.slug,
+      id: sectionIndexPage?.id,
       pages: sectionChildPages.map(toPage),
     } satisfies WikiSection
   })
@@ -114,17 +115,17 @@ export const getWikiSections = (pages: WikiEntry[]) => {
 export const getWikiBreadcrumbs = (current: WikiEntry, pages: WikiEntry[]) => {
   const breadcrumbs: WikiBreadcrumb[] = [{ title: "Wiki", href: "/wiki/" }]
 
-  const currentPath = stripExtension(current.id)
+  const currentPath = normalizeWikiId(current.id)
   const parts = currentPath.split("/")
 
   if (parts.length >= 2) {
     const sectionKey = parts[0]
-    const sectionIndex = pages.find((page) => stripExtension(page.id) === `${sectionKey}/index`)
+    const sectionIndex = pages.find((page) => normalizeWikiId(page.id) === sectionKey)
     const isSectionIndexPage = current.id === sectionIndex?.id
 
     breadcrumbs.push({
       title: sectionIndex?.data.title ?? humanizeSegment(sectionKey),
-      href: isSectionIndexPage ? undefined : sectionIndex ? toWikiHref(sectionIndex.slug) : undefined,
+      href: isSectionIndexPage ? undefined : sectionIndex ? toWikiHref(sectionIndex.id) : undefined,
     })
 
     if (isSectionIndexPage) return breadcrumbs
@@ -134,8 +135,8 @@ export const getWikiBreadcrumbs = (current: WikiEntry, pages: WikiEntry[]) => {
   return breadcrumbs
 }
 
-export const getWikiPrevNext = (pages: WikiEntry[], currentSlug: string) => {
-  const index = pages.findIndex((page) => page.slug === currentSlug)
+export const getWikiPrevNext = (pages: WikiEntry[], currentId: string) => {
+  const index = pages.findIndex((page) => page.id === currentId)
   if (index === -1) return { previous: undefined, next: undefined }
 
   return {

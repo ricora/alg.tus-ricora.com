@@ -7,7 +7,7 @@ import WikiPageListPanel from "@/components/Elements/WikiSidebar/WikiPageListPan
 import { BaseLayout, type BaseLayoutProps } from "@/layouts/BaseLayout"
 import { mdxComponents } from "@/lib/mdx"
 import { getWikiBreadcrumbs, getWikiPrevNext, getWikiSections, toWikiHref } from "@/lib/wiki"
-import type { CollectionEntry } from "astro:content"
+import { render, type CollectionEntry } from "astro:content"
 
 export type Props = Partial<BaseLayoutProps> & {
   page: CollectionEntry<"wiki">
@@ -15,19 +15,19 @@ export type Props = Partial<BaseLayoutProps> & {
 }
 
 const { page, allPages, ...props } = Astro.props
-const { Content, headings } = await page.render()
+const { Content, headings } = await render(page)
 
 const tocHeadings = headings.filter((heading) => heading.depth === 2 || heading.depth === 3)
 const sections = getWikiSections(allPages)
 const breadcrumbs = getWikiBreadcrumbs(page, allPages)
-const { previous, next } = getWikiPrevNext(allPages, page.slug)
+const { previous, next } = getWikiPrevNext(allPages, page.id)
 ---
 
 <BaseLayout
   title={page.data.title}
   description={page.data.title}
   og={{
-    url: new URL(`/wiki/${page.slug}/`, Astro.site),
+    url: new URL(`/wiki/${page.id}/`, Astro.site),
     ...props.og,
   }}
   {...props}
@@ -37,12 +37,12 @@ const { previous, next } = getWikiPrevNext(allPages, page.slug)
   >
     <aside class="hidden w-80 shrink-0 xl:block">
       <div class="sticky top-24 max-h-[calc(100vh-6rem)] overflow-y-auto">
-        <WikiSidebar sections={sections} variant="panel" currentSlug={page.slug} />
+        <WikiSidebar sections={sections} variant="panel" currentId={page.id} />
       </div>
     </aside>
 
     <article class="w-full min-w-0">
-      <WikiPageListPanel sections={sections} currentSlug={page.slug} />
+      <WikiPageListPanel sections={sections} currentId={page.id} />
 
       <nav aria-label="Breadcrumb" class="mb-6 text-sm text-fg-muted">
         <ol class="flex flex-wrap items-center gap-2">
@@ -81,7 +81,7 @@ const { previous, next } = getWikiPrevNext(allPages, page.slug)
             {
               previous && (
                 <a
-                  href={toWikiHref(previous.slug)}
+                  href={toWikiHref(previous.id)}
                   class="block rounded-lg border bg-bg-default p-3 transition hover:bg-bg-muted"
                 >
                   <div class="flex items-center gap-1 text-xs text-fg-muted">
@@ -97,7 +97,7 @@ const { previous, next } = getWikiPrevNext(allPages, page.slug)
             {
               next && (
                 <a
-                  href={toWikiHref(next.slug)}
+                  href={toWikiHref(next.id)}
                   class="block rounded-lg border bg-bg-default p-3 transition hover:bg-bg-muted"
                 >
                   <div class="flex items-center justify-end gap-1 text-xs text-fg-muted">

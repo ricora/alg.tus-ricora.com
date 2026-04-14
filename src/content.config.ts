@@ -75,7 +75,7 @@ const pagesCollection = defineCollection({
 })
 
 const wikiCollection = defineCollection({
-  type: "content",
+  loader: glob({ base: "src/content/wiki", pattern: "**/[^_]*.mdx" }),
   schema: wikiSchema,
 })
 

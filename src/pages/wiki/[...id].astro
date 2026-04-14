@@ -8,7 +8,7 @@ export const getStaticPaths = async () => {
   const pages = await getWikiPages()
   return pages.map((page) => ({
     params: {
-      slug: page.slug,
+      id: page.id,
     },
     props: {
       page,
