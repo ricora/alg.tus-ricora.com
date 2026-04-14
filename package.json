@@ -91,6 +91,7 @@
     "remark-rehype": "11.1.2",
     "remark-stringify": "11.0.0",
     "scule": "^1.3.0",
+    "shiki": "^3.23.0",
     "sirv": "^3.0.0",
     "tailwind-merge": "^3.0.0",
     "tailwind-variants": "^1.0.0",
