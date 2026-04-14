@@ -6,7 +6,7 @@ import { process } from "./test-utils/process"
 
 const md2html = async (...params: Parameters<typeof process>) => process(...params).then(({ html }) => html)
 
-describe("rehypeShikiji", () => {
+describe("rehypeCustomCode", () => {
   let jsdom: JSDOM
   let parser: DOMParser
 
