@@ -116,7 +116,7 @@ export type RehypeCustomCodeOptions<M extends Meta = Meta> = {
   /**
    * Whether to export the code text as props.
    * This is useful when you want to use the code text in custom components.
-   * @default options.shiki ? false : true
+   * @default false
    * @example
    * ```ts
    * const options: RehypeCustomCodeOptions = {
@@ -173,24 +173,24 @@ type PluginReturn = (tree: Root, file: VFile) => void
  *
  * @example
  * ```ts
- * import { rehypeCustomCode } from "rehype-custom-code";
+ * import { rehypeCustomCode } from "@/lib/rehype-plugins/custom-code";
+ * import { createHighlighter, bundledLanguages } from "shiki";
  *
  * const md = `
  *   \`\`\`javascript title="Hello, World!" {1-5}
  *   console.log("Hello, World!");
  *   \`\`\`
  * `;
+ * const highlighter = await createHighlighter({
+ *   langs: Object.keys(bundledLanguages),
+ *   themes: ["github-light", "one-dark-pro"],
+ * });
  *
  * const html = await unified()
  *   .use(remarkParse)
  *   .use(remarkRehype)
  *   .use(rehypeCustomCode, {
- *     shiki: {
- *       themes: {
- *         light: "github-light",
- *         dark: "one-dark-pro",
- *       },
- *     },
+ *     highlighter,
  *   })
  *   .use(rehypeStringify)
  *   .process(md);
@@ -206,7 +206,7 @@ export const rehypeCustomCode = <M extends Meta = Meta>(_options: RehypeCustomCo
 
   const highlighter = options.highlighter
 
-  return async (tree, file) => {
+  return (tree, file) => {
     visit(tree, "element", (preNode, index, parent) => {
       // check if the current node is a block code element
       if (!parent || index == null || !isPreElement(preNode)) return
