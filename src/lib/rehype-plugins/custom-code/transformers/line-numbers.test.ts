@@ -3,7 +3,7 @@ import { JSDOM } from "jsdom"
 import { beforeAll, describe, expect, test } from "bun:test"
 import { process } from "../test-utils/process.js"
 
-describe("highlight lines", () => {
+describe("line numbers", () => {
   let jsdom: JSDOM
   let parser: DOMParser
 
