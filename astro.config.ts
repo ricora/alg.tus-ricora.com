@@ -10,7 +10,7 @@ import {
   transformerDiff,
   transformerHighlightLine,
   transformerLineNumbers,
-} from "rehype-custom-code"
+} from "./src/lib/rehype-plugins/custom-code"
 import { remarkMetaString } from "remark-meta-string"
 import {
   googleSlidesTransformer,
@@ -24,6 +24,7 @@ import rehypeKatex from "rehype-katex"
 import { pagefind } from "./src/lib/astro-integrations/pagefind"
 import sitemap from "@astrojs/sitemap"
 import { remarkInlineCode } from "./src/lib/remark-plugins/remarkInlineCode"
+import { bundledLanguages, createHighlighter } from "shiki"
 
 // https://astro.build/config
 export default defineConfig({
@@ -57,10 +58,16 @@ export default defineConfig({
         {
           propsPrefix: "",
           shouldExportCodeAsProps: true,
-          shiki: {
+          highlighter: await createHighlighter({
+            langs: Object.keys(bundledLanguages),
+            themes: ["one-dark-pro", "github-light"],
+          }),
+          codeToHastOptions: {
             themes: {
-              light: "github-light",
-              dark: "one-dark-pro",
+              themes: {
+                light: "github-light",
+                dark: "one-dark-pro",
+              },
             },
             transformers: (meta) => [
               transformerLineNumbers(meta, "data"),
