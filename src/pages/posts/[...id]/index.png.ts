@@ -20,7 +20,9 @@ export const GET = async ({ params }: APIContext) => {
     category: post?.data.categories.length ? post?.data.categories[0].id : "",
     tags: (post?.data.tags ?? []).map((id) => tags.find((tag) => tag.id === id)?.title ?? id),
   })
-  return new Response(body, {
+  const image = body.buffer.slice(body.byteOffset, body.byteOffset + body.byteLength) as ArrayBuffer
+
+  return new Response(image, {
     headers: {
       "content-type": "image/png",
     },
