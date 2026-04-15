@@ -6,12 +6,12 @@ import WikiSidebar from "@/components/Elements/WikiSidebar/WikiSidebar.astro"
 import WikiPageListPanel from "@/components/Elements/WikiSidebar/WikiPageListPanel.astro"
 import { BaseLayout, type BaseLayoutProps } from "@/layouts/BaseLayout"
 import { mdxComponents } from "@/lib/mdx"
-import { getWikiBreadcrumbs, getWikiPrevNext, getWikiSections, toWikiHref } from "@/lib/wiki"
-import { render, type CollectionEntry } from "astro:content"
+import { getWikiBreadcrumbs, getWikiPrevNext, getWikiSections, toWikiHref, type WikiEntry } from "@/lib/wiki"
+import { render } from "astro:content"
 
 export type Props = Partial<BaseLayoutProps> & {
-  page: CollectionEntry<"wiki">
-  allPages: CollectionEntry<"wiki">[]
+  page: WikiEntry
+  allPages: WikiEntry[]
 }
 
 const { page, allPages, ...props } = Astro.props
