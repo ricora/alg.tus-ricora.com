@@ -27,7 +27,7 @@ const { previous, next } = getWikiPrevNext(allPages, page.id)
   title={page.data.title}
   description={page.data.title}
   og={{
-    url: new URL(`/wiki/${page.id}/`, Astro.site),
+    url: new URL(toWikiHref(page.id), Astro.site),
     ...props.og,
   }}
   {...props}
