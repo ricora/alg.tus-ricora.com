@@ -1,5 +1,6 @@
 import { getCollection } from "astro:content"
 import type { CollectionEntry } from "astro:content"
+import path from "node:path"
 import { isDev } from "@/lib/runtime"
 
 export type WikiEntry = CollectionEntry<"wiki"> & {
@@ -53,14 +54,28 @@ const toPage = (entry: WikiEntry): WikiNavPage => ({
   id: entry.id,
 })
 
-const toWikiEntry = (entry: CollectionEntry<"wiki">): WikiEntry => {
-  if (!entry.filePath?.startsWith("src/content/wiki/")) {
+const wikiContentPath = path.join("src", "content", "wiki")
+
+const toWikiFileId = (entry: CollectionEntry<"wiki">) => {
+  if (!entry.filePath) return entry.id
+
+  const relativePaths = [
+    path.relative(wikiContentPath, path.normalize(entry.filePath)),
+    path.relative(path.resolve(wikiContentPath), path.resolve(entry.filePath)),
+  ]
+
+  const fileId = relativePaths.find((relativePath) => !relativePath.startsWith("..") && !path.isAbsolute(relativePath))
+  if (!fileId) {
     throw new Error(`Wiki entry must include filePath under src/content/wiki: ${entry.id}`)
   }
 
+  return fileId.replace(/\\/gu, "/")
+}
+
+const toWikiEntry = (entry: CollectionEntry<"wiki">): WikiEntry => {
   return {
     ...entry,
-    fileId: entry.filePath.slice("src/content/wiki/".length),
+    fileId: toWikiFileId(entry),
   }
 }
 
