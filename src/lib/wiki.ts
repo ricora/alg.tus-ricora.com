@@ -64,12 +64,14 @@ const toWikiFileId = (entry: CollectionEntry<"wiki">) => {
     path.relative(path.resolve(wikiContentPath), path.resolve(entry.filePath)),
   ]
 
-  const fileId = relativePaths.find((relativePath) => !relativePath.startsWith("..") && !path.isAbsolute(relativePath))
-  if (!fileId) {
+  const validRelativePath = relativePaths.find(
+    (relativePath) => !relativePath.startsWith("..") && !path.isAbsolute(relativePath),
+  )
+  if (validRelativePath === undefined) {
     throw new Error(`Wiki entry must include filePath under src/content/wiki: ${entry.id}`)
   }
 
-  return fileId.replace(/\\/gu, "/")
+  return validRelativePath.replace(/\\/gu, "/")
 }
 
 const toWikiEntry = (entry: CollectionEntry<"wiki">): WikiEntry => {
