@@ -59,19 +59,14 @@ const wikiContentPath = path.join("src", "content", "wiki")
 const toWikiFileId = (entry: CollectionEntry<"wiki">) => {
   if (!entry.filePath) return entry.id
 
-  const relativePaths = [
-    path.relative(wikiContentPath, path.normalize(entry.filePath)),
-    path.relative(path.resolve(wikiContentPath), path.resolve(entry.filePath)),
-  ]
+  const normalizedFilePath = entry.filePath.replace(/\\/g, "/")
+  const relativePath = path.relative(path.resolve(wikiContentPath), path.resolve(normalizedFilePath))
 
-  const validRelativePath = relativePaths.find(
-    (relativePath) => !relativePath.startsWith("..") && !path.isAbsolute(relativePath),
-  )
-  if (validRelativePath === undefined) {
+  if (relativePath.startsWith("..") || path.isAbsolute(relativePath)) {
     throw new Error(`Wiki entry must include filePath under src/content/wiki: ${entry.id}`)
   }
 
-  return validRelativePath.replace(/\\/gu, "/")
+  return relativePath.replace(/\\/g, "/")
 }
 
 const toWikiEntry = (entry: CollectionEntry<"wiki">): WikiEntry => {
