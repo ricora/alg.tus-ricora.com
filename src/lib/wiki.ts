@@ -61,15 +61,15 @@ const absoluteWikiContentPath = path.resolve(process.cwd(), wikiContentPath)
 const toWikiFileId = (entry: CollectionEntry<"wiki">) => {
   if (!entry.filePath) return entry.id
 
-  const normalizedFilePath = toPosixPath(entry.filePath)
-  const absoluteFilePath = path.resolve(process.cwd(), normalizedFilePath)
+  const absoluteFilePath = path.resolve(process.cwd(), entry.filePath)
   const relativePath = path.relative(absoluteWikiContentPath, absoluteFilePath)
+  const normalizedRelativePath = toPosixPath(relativePath)
 
-  if (relativePath.startsWith("..") || path.isAbsolute(relativePath)) {
+  if (normalizedRelativePath === ".." || normalizedRelativePath.startsWith("../") || path.isAbsolute(relativePath)) {
     throw new Error(`Wiki entry must include filePath under src/content/wiki: ${entry.id}`)
   }
 
-  return toPosixPath(relativePath)
+  return normalizedRelativePath
 }
 
 const toWikiEntry = (entry: CollectionEntry<"wiki">): WikiEntry => {
