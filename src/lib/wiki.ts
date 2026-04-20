@@ -54,19 +54,22 @@ const toPage = (entry: WikiEntry): WikiNavPage => ({
   id: entry.id,
 })
 
+const toPosixPath = (filePath: string) => filePath.replace(/\\/g, "/")
 const wikiContentPath = path.join("src", "content", "wiki")
+const absoluteWikiContentPath = path.resolve(process.cwd(), wikiContentPath)
 
 const toWikiFileId = (entry: CollectionEntry<"wiki">) => {
   if (!entry.filePath) return entry.id
 
-  const normalizedFilePath = entry.filePath.replace(/\\/g, "/")
-  const relativePath = path.relative(path.resolve(wikiContentPath), path.resolve(normalizedFilePath))
+  const normalizedFilePath = toPosixPath(entry.filePath)
+  const absoluteFilePath = path.resolve(process.cwd(), normalizedFilePath)
+  const relativePath = path.relative(absoluteWikiContentPath, absoluteFilePath)
 
   if (relativePath.startsWith("..") || path.isAbsolute(relativePath)) {
     throw new Error(`Wiki entry must include filePath under src/content/wiki: ${entry.id}`)
   }
 
-  return relativePath.replace(/\\/g, "/")
+  return toPosixPath(relativePath)
 }
 
 const toWikiEntry = (entry: CollectionEntry<"wiki">): WikiEntry => {
