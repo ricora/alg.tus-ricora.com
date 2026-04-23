@@ -8,10 +8,10 @@ type SidebarVariant = "panel" | "embedded"
 type Props = {
   sections: WikiSection[]
   variant: SidebarVariant
-  currentSlug?: string
+  currentId?: string
 }
 
-const { sections, variant, currentSlug } = Astro.props
+const { sections, variant, currentId } = Astro.props
 ---
 
 <nav
@@ -26,10 +26,9 @@ const { sections, variant, currentSlug } = Astro.props
   <ul class="flex flex-col gap-3">
     {
       sections.map((section) => {
-        const hasCurrent = currentSlug !== undefined
-        const isCurrentSection = hasCurrent && section.slug === currentSlug
-        const isOpen =
-          hasCurrent && (section.slug === currentSlug || section.pages.some((page) => page.slug === currentSlug))
+        const hasCurrent = currentId !== undefined
+        const isCurrentSection = hasCurrent && section.id === currentId
+        const isOpen = hasCurrent && (section.id === currentId || section.pages.some((page) => page.id === currentId))
 
         return (
           <li>
@@ -45,10 +44,10 @@ const { sections, variant, currentSlug } = Astro.props
               <div class="grid grid-rows-[0fr] opacity-0 transition-[grid-template-rows,opacity,margin] duration-200 ease-out group-open/section:mt-2 group-open/section:grid-rows-[1fr] group-open/section:opacity-100">
                 <div class="overflow-hidden">
                   <ul class="flex flex-col gap-1 pl-2">
-                    {section.slug && (
+                    {section.id && (
                       <li>
                         <a
-                          href={toWikiHref(section.slug)}
+                          href={toWikiHref(section.id)}
                           aria-current={isCurrentSection ? "page" : undefined}
                           class="block rounded px-2 py-1 text-sm text-fg-muted transition hover:bg-bg-subtle hover:text-fg-default aria-[current=page]:bg-bg-subtle aria-[current=page]:font-semibold aria-[current=page]:text-fg-default"
                         >
@@ -59,8 +58,8 @@ const { sections, variant, currentSlug } = Astro.props
                     {section.pages.map((page) => (
                       <li>
                         <a
-                          href={toWikiHref(page.slug)}
-                          aria-current={page.slug === currentSlug ? "page" : undefined}
+                          href={toWikiHref(page.id)}
+                          aria-current={page.id === currentId ? "page" : undefined}
                           class="block rounded px-2 py-1 text-sm text-fg-muted transition hover:bg-bg-subtle hover:text-fg-default aria-[current=page]:bg-bg-subtle aria-[current=page]:font-semibold aria-[current=page]:text-fg-default"
                         >
                           {page.title}

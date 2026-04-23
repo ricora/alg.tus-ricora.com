@@ -183,7 +183,6 @@ git switch -c feature/add-schedule-component
    ```
 
    続いて、miseを有効化するために、利用しているシェルに応じて次のコマンドを実行してください。
-
    - bashの場合：
 
      ```sh
@@ -203,7 +202,6 @@ git switch -c feature/add-schedule-component
      ```
 
    さらに、miseのパスを通すために、利用しているシェルに応じて次のコマンドを実行してください。
-
    - bashの場合：
 
      ```sh

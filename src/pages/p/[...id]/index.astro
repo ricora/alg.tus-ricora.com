@@ -7,7 +7,7 @@ export const getStaticPaths = async () => {
   const postEntries = await getPosts()
   return postEntries.map((post) => ({
     params: {
-      slug: post.slug,
+      id: post.id,
     },
     props: {
       post,
@@ -20,7 +20,7 @@ type Props = {
 }
 const { post } = Astro.props
 
-const redirectToUrl = new URL(path.join("posts", post.slug), Astro.site!).href
+const redirectToUrl = new URL(path.join("posts", post.id), Astro.site!).href
 ---
 
 <!doctype html>
@@ -29,5 +29,5 @@ const redirectToUrl = new URL(path.join("posts", post.slug), Astro.site!).href
   content="noindex"
 /><link rel="canonical" href={redirectToUrl} />
 <body>
-  <a href={redirectToUrl}>Redirecting from <code>/p/{post.slug}/</code> to <code>/posts/{post.slug}/</code></a>
+  <a href={redirectToUrl}>Redirecting from <code>/p/{post.id}/</code> to <code>/posts/{post.id}/</code></a>
 </body>

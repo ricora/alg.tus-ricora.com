@@ -1,4 +1,9 @@
 import { z, defineCollection, reference } from "astro:content"
+import { glob } from "astro/loaders"
+
+// Legacy collectionsと同様に、先頭が"_"のファイルはコレクション対象から除外する。
+const visibleMdxPattern = "**/[^_]*.mdx"
+const visibleDataPattern = "**/[^_]*.yaml"
 
 export const postsSchema = z
   .object({
@@ -64,32 +69,32 @@ export const tagsSchema = z.object({
 })
 
 const postsCollection = defineCollection({
-  type: "content",
+  loader: glob({ base: "src/content/posts", pattern: visibleMdxPattern }),
   schema: postsSchema,
 })
 
 const pagesCollection = defineCollection({
-  type: "content",
+  loader: glob({ base: "src/content/pages", pattern: visibleMdxPattern }),
   schema: pagesSchema,
 })
 
 const wikiCollection = defineCollection({
-  type: "content",
+  loader: glob({ base: "src/content/wiki", pattern: visibleMdxPattern }),
   schema: wikiSchema,
 })
 
 const membersCollection = defineCollection({
-  type: "data",
+  loader: glob({ base: "src/content/members", pattern: visibleDataPattern }),
   schema: membersSchema,
 })
 
 const categoriesCollection = defineCollection({
-  type: "data",
+  loader: glob({ base: "src/content/categories", pattern: visibleDataPattern }),
   schema: categoriesSchema,
 })
 
 const tagsCollection = defineCollection({
-  type: "data",
+  loader: glob({ base: "src/content/tags", pattern: visibleDataPattern }),
   schema: tagsSchema,
 })
 

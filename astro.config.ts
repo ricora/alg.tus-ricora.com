@@ -10,7 +10,7 @@ import {
   transformerDiff,
   transformerHighlightLine,
   transformerLineNumbers,
-} from "rehype-custom-code"
+} from "./src/lib/rehype-plugins/custom-code"
 import { remarkMetaString } from "remark-meta-string"
 import {
   googleSlidesTransformer,
@@ -24,13 +24,14 @@ import rehypeKatex from "rehype-katex"
 import { pagefind } from "./src/lib/astro-integrations/pagefind"
 import sitemap from "@astrojs/sitemap"
 import { remarkInlineCode } from "./src/lib/remark-plugins/remarkInlineCode"
+import { bundledLanguages, createHighlighter } from "shiki"
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://alg.tus-ricora.com/",
   redirects: {
     // NOTE: Astroのバグで誤ったリダイレクト用のページが生成されるので、解決されるまでこの設定は無効化し、手動でリダイレクト用のページを生成する
-    //"/p/[...slug]": "/posts/[...slug]",
+    // "/p/[...id]": "/posts/[...id]",
     "/link": "/links",
     "/about-us": "/about",
     "/posts": "/archives",
@@ -57,10 +58,16 @@ export default defineConfig({
         {
           propsPrefix: "",
           shouldExportCodeAsProps: true,
-          shiki: {
+          highlighter: await createHighlighter({
+            langs: Object.keys(bundledLanguages),
+            themes: ["one-dark-pro", "github-light"],
+          }),
+          codeToHastOptions: {
             themes: {
-              light: "github-light",
-              dark: "one-dark-pro",
+              themes: {
+                light: "github-light",
+                dark: "one-dark-pro",
+              },
             },
             transformers: (meta) => [
               transformerLineNumbers(meta, "data"),

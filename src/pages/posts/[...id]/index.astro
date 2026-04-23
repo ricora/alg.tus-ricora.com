@@ -8,7 +8,7 @@ export const getStaticPaths = async () => {
   const postEntries = await getPosts()
   return postEntries.map((post) => ({
     params: {
-      slug: post.slug,
+      id: post.id,
     },
     props: {
       post,

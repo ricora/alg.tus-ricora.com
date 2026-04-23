@@ -94,18 +94,18 @@ export const FeaturedCarousel: Component<FeaturedCarouselProps> = (props) => {
                   >
                     <a
                       href={item.link}
-                      class="block h-full w-full"
+                      class="block size-full"
                       style={{
                         "pointer-events": pos() === 0 ? "auto" : "none",
                       }}
                       aria-hidden={pos() !== 0}
                       tabIndex={pos() === 0 ? 0 : -1}
                     >
-                      <div class="h-full w-full overflow-hidden rounded-lg border bg-bg-default">
+                      <div class="size-full overflow-hidden rounded-lg border bg-bg-default">
                         <img
                           src={item.image}
                           alt={item.title}
-                          class="h-full w-full object-cover"
+                          class="size-full object-cover"
                           loading={index() === 0 ? "eager" : "lazy"}
                         />
                         {/* 画像内のテキストの可読性を確保するため、明示的に黒色のグラデーション背景を使用する */}
@@ -123,19 +123,19 @@ export const FeaturedCarousel: Component<FeaturedCarouselProps> = (props) => {
               <button
                 type="button"
                 onClick={goToPrev}
-                class="absolute left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-mauve-a8 text-white backdrop-blur-sm transition-all hover:bg-mauve-a9 sm:left-4 sm:h-12 sm:w-12"
+                class="absolute left-2 top-1/2 z-10 flex size-10 -translate-y-1/2 items-center justify-center rounded-full bg-mauve-a8 text-white backdrop-blur-sm transition-all hover:bg-mauve-a9 sm:left-4 sm:size-12"
                 aria-label="前のスライド"
               >
-                <Icon name="tabler:chevron-left" class="h-5 w-5 sm:h-6 sm:w-6" />
+                <Icon name="tabler:chevron-left" class="size-5 sm:size-6" />
               </button>
 
               <button
                 type="button"
                 onClick={goToNext}
-                class="absolute right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-mauve-a8 text-white backdrop-blur-sm transition-all hover:bg-mauve-a9 sm:right-4 sm:h-12 sm:w-12"
+                class="absolute right-2 top-1/2 z-10 flex size-10 -translate-y-1/2 items-center justify-center rounded-full bg-mauve-a8 text-white backdrop-blur-sm transition-all hover:bg-mauve-a9 sm:right-4 sm:size-12"
                 aria-label="次のスライド"
               >
-                <Icon name="tabler:chevron-right" class="h-5 w-5 sm:h-6 sm:w-6" />
+                <Icon name="tabler:chevron-right" class="size-5 sm:size-6" />
               </button>
             </Show>
           </div>

@@ -1,17 +1,20 @@
 import { getCollection } from "astro:content"
 import type { CollectionEntry } from "astro:content"
+import path from "node:path"
 import { isDev } from "@/lib/runtime"
 
-export type WikiEntry = CollectionEntry<"wiki">
+export type WikiEntry = CollectionEntry<"wiki"> & {
+  fileId: string
+}
 
 export type WikiNavPage = {
   title: string
-  slug: string
+  id: string
 }
 
 export type WikiSection = {
   title: string
-  slug?: string
+  id?: string
   pages: WikiNavPage[]
 }
 
@@ -48,14 +51,45 @@ const humanizeSegment = (segment: string) =>
 
 const toPage = (entry: WikiEntry): WikiNavPage => ({
   title: entry.data.title,
-  slug: entry.slug,
+  id: entry.id,
 })
 
+const toPosixPath = (filePath: string) => filePath.replace(/\\/g, "/")
+const wikiContentPath = path.join("src", "content", "wiki")
+const absoluteWikiContentPath = path.resolve(process.cwd(), wikiContentPath)
+
+const toWikiFileId = (entry: CollectionEntry<"wiki">) => {
+  if (!entry.filePath) throw new Error(`Wiki entry must include filePath under src/content/wiki: ${entry.id}`)
+
+  const absoluteFilePath = path.resolve(process.cwd(), entry.filePath)
+  const relativePath = path.relative(absoluteWikiContentPath, absoluteFilePath)
+  const normalizedRelativePath = toPosixPath(relativePath)
+
+  if (
+    !normalizedRelativePath ||
+    normalizedRelativePath == "." ||
+    normalizedRelativePath === ".." ||
+    normalizedRelativePath.startsWith("../") ||
+    path.isAbsolute(relativePath)
+  ) {
+    throw new Error(`Wiki entry must include filePath under src/content/wiki: ${entry.id}`)
+  }
+
+  return normalizedRelativePath
+}
+
+const toWikiEntry = (entry: CollectionEntry<"wiki">): WikiEntry => {
+  return {
+    ...entry,
+    fileId: toWikiFileId(entry),
+  }
+}
+
 const assertSectionIndexPages = (pages: WikiEntry[]) => {
-  const pagePaths = new Set(pages.map((page) => stripExtension(page.id)))
+  const pagePaths = new Set(pages.map((page) => stripExtension(page.fileId)))
   const sectionKeys = new Set(
     pages
-      .map((page) => stripExtension(page.id).split("/"))
+      .map((page) => stripExtension(page.fileId).split("/"))
       .filter((parts) => parts.length >= 2)
       .map((parts) => parts[0]),
   )
@@ -69,11 +103,11 @@ const assertSectionIndexPages = (pages: WikiEntry[]) => {
   }
 }
 
-export const toWikiHref = (slug: string) => `/wiki/${slug}/`
+export const toWikiHref = (id: string) => `/wiki/${id}/`
 
 export const getWikiPages = async () => {
-  const pages = await getCollection("wiki", ({ data }) => (isDev ? true : !data.draft))
-  const sortedPages = pages.sort((a, b) => comparePath(a.id, b.id))
+  const pages = (await getCollection("wiki", ({ data }) => (isDev ? true : !data.draft))).map(toWikiEntry)
+  const sortedPages = pages.sort((a, b) => comparePath(a.fileId, b.fileId))
   assertSectionIndexPages(sortedPages)
   return sortedPages
 }
@@ -82,7 +116,7 @@ export const getWikiSections = (pages: WikiEntry[]) => {
   const grouped = new Map<string, WikiEntry[]>()
 
   for (const page of pages) {
-    const parts = stripExtension(page.id).split("/")
+    const parts = stripExtension(page.fileId).split("/")
     const sectionKey = parts.length >= 2 ? parts[0] : "__root"
     let sectionPages = grouped.get(sectionKey)
     if (!sectionPages) {
@@ -99,13 +133,13 @@ export const getWikiSections = (pages: WikiEntry[]) => {
   })
 
   return keys.map((key) => {
-    const sectionPages = (grouped.get(key) ?? []).sort((a, b) => comparePath(a.id, b.id))
-    const sectionIndexPage = sectionPages.find((page) => stripExtension(page.id).endsWith("/index"))
+    const sectionPages = (grouped.get(key) ?? []).sort((a, b) => comparePath(a.fileId, b.fileId))
+    const sectionIndexPage = sectionPages.find((page) => stripExtension(page.fileId).endsWith("/index"))
     const sectionChildPages = sectionPages.filter((page) => page !== sectionIndexPage)
 
     return {
-      title: key === "__root" ? "General" : sectionIndexPage?.data.title ?? humanizeSegment(key),
-      slug: sectionIndexPage?.slug,
+      title: key === "__root" ? "General" : (sectionIndexPage?.data.title ?? humanizeSegment(key)),
+      id: sectionIndexPage?.id,
       pages: sectionChildPages.map(toPage),
     } satisfies WikiSection
   })
@@ -114,17 +148,17 @@ export const getWikiSections = (pages: WikiEntry[]) => {
 export const getWikiBreadcrumbs = (current: WikiEntry, pages: WikiEntry[]) => {
   const breadcrumbs: WikiBreadcrumb[] = [{ title: "Wiki", href: "/wiki/" }]
 
-  const currentPath = stripExtension(current.id)
+  const currentPath = stripExtension(current.fileId)
   const parts = currentPath.split("/")
 
   if (parts.length >= 2) {
     const sectionKey = parts[0]
-    const sectionIndex = pages.find((page) => stripExtension(page.id) === `${sectionKey}/index`)
-    const isSectionIndexPage = current.id === sectionIndex?.id
+    const sectionIndex = pages.find((page) => stripExtension(page.fileId) === `${sectionKey}/index`)
+    const isSectionIndexPage = current.fileId === sectionIndex?.fileId
 
     breadcrumbs.push({
       title: sectionIndex?.data.title ?? humanizeSegment(sectionKey),
-      href: isSectionIndexPage ? undefined : sectionIndex ? toWikiHref(sectionIndex.slug) : undefined,
+      href: isSectionIndexPage ? undefined : sectionIndex ? toWikiHref(sectionIndex.id) : undefined,
     })
 
     if (isSectionIndexPage) return breadcrumbs
@@ -134,8 +168,8 @@ export const getWikiBreadcrumbs = (current: WikiEntry, pages: WikiEntry[]) => {
   return breadcrumbs
 }
 
-export const getWikiPrevNext = (pages: WikiEntry[], currentSlug: string) => {
-  const index = pages.findIndex((page) => page.slug === currentSlug)
+export const getWikiPrevNext = (pages: WikiEntry[], currentId: string) => {
+  const index = pages.findIndex((page) => page.id === currentId)
   if (index === -1) return { previous: undefined, next: undefined }
 
   return {

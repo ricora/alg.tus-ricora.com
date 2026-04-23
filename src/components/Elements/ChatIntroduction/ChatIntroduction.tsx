@@ -111,8 +111,8 @@ export const ChatIntroduction = () => {
             style={{ display: visibleIndex() >= i() ? "flex" : "none" }}
           >
             {msg.role === "assistant" && (
-              <div class="flex h-10 w-10 flex-none items-center justify-center overflow-hidden rounded-full border border-border-muted bg-bg-default">
-                <Icon name="brand:ricora" class="h-7 w-7" />
+              <div class="flex size-10 flex-none items-center justify-center overflow-hidden rounded-full border border-border-muted bg-bg-default">
+                <Icon name="brand:ricora" class="size-7" />
               </div>
             )}
 
@@ -135,10 +135,10 @@ export const ChatIntroduction = () => {
             </div>
 
             {msg.role === "user" && (
-              <div class="flex h-10 w-10 flex-none items-center justify-center overflow-hidden rounded-full border border-border-muted bg-bg-default">
-                {(i() / 2) % 3 === 0 && <Icon name="fluent-emoji:cat-face" class="h-7 w-7" />}
-                {(i() / 2) % 3 === 1 && <Icon name="fluent-emoji:fox" class="h-7 w-7" />}
-                {(i() / 2) % 3 === 2 && <Icon name="fluent-emoji:penguin" class="h-7 w-7" />}
+              <div class="flex size-10 flex-none items-center justify-center overflow-hidden rounded-full border border-border-muted bg-bg-default">
+                {(i() / 2) % 3 === 0 && <Icon name="fluent-emoji:cat-face" class="size-7" />}
+                {(i() / 2) % 3 === 1 && <Icon name="fluent-emoji:fox" class="size-7" />}
+                {(i() / 2) % 3 === 2 && <Icon name="fluent-emoji:penguin" class="size-7" />}
               </div>
             )}
           </div>

@@ -35,8 +35,8 @@ const sections = getWikiSections(pages)
           sections.map((section) => (
             <section class="rounded-lg border bg-bg-default p-4">
               <h2 class="text-xl font-bold text-fg-default">
-                {section.slug ? (
-                  <a href={toWikiHref(section.slug)} class="text-fg-default transition hover:underline">
+                {section.id ? (
+                  <a href={toWikiHref(section.id)} class="text-fg-default transition hover:underline">
                     {section.title}
                   </a>
                 ) : (
@@ -46,7 +46,7 @@ const sections = getWikiSections(pages)
               <ul class="mt-3 list-disc space-y-2 pl-5">
                 {section.pages.map((page) => (
                   <li>
-                    <a href={toWikiHref(page.slug)} class="text-fg-muted transition hover:text-fg-default">
+                    <a href={toWikiHref(page.id)} class="text-fg-muted transition hover:text-fg-default">
                       {page.title}
                     </a>
                   </li>

@@ -11,22 +11,23 @@ import { calculateReadingTime } from "@/lib/posts"
 import type { CollectionEntry } from "astro:content"
 import { mdxComponents } from "@/lib/mdx"
 import * as path from "node:path"
+import { render } from "astro:content"
 
 export type Props = Partial<BaseLayoutProps> & {
   post: CollectionEntry<"posts">
 }
 const { post, ...props } = Astro.props
 
-const { Content, headings } = await post.render()
+const { Content, headings } = await render(post)
 
 const date = formatDate(post.data.date)
 const lastmod = post.data.lastmod ? formatDate(post.data.lastmod) : undefined
-const readingTime = calculateReadingTime(post.body)
+const readingTime = calculateReadingTime(post.body ?? "")
 const categories = post.data.categories
 const tags = post.data.tags || []
 
-const postUrl = new URL(path.join("posts", post.slug), Astro.site)
-const ogImageUrl = new URL(path.join("posts", `${post.slug}.png`), Astro.site)
+const postUrl = new URL(path.join("posts", post.id), Astro.site)
+const ogImageUrl = new URL(path.join("posts", `${post.id}.png`), Astro.site)
 
 const tocHeadings = headings.filter((heading) => heading.depth === 2 || heading.depth === 3)
 

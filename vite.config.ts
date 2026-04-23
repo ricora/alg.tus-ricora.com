@@ -3,7 +3,7 @@ import tsconfigPath from "vite-tsconfig-paths"
 
 export default defineConfig({
   ssr: {
-    noExternal: ["rehype-custom-code", "remark-meta-string"],
+    noExternal: ["remark-meta-string"],
   },
   plugins: [tsconfigPath({ root: "./" })],
 })
