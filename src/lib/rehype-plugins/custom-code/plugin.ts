@@ -93,11 +93,11 @@ export type RehypeCustomCodeOptions<M extends Meta = Meta> = {
    * ```
    * If this option is given, the following HTML will be output:
    * ```html
-   * <pre pre-lang="javascript" pre-title="Hello, World!" pre-line="1-5">
+   * <pre PRE-lang="javascript" PRE-title="Hello, World!" PRE-line="1-5">
    *   <!-- Some code... -->
    * </pre>
    * ```
-   * given `propsPrefix` is converted to lowercase
+   * The given `propsPrefix` is used as-is.
    */
   propsPrefix?: string
 
