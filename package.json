@@ -81,7 +81,7 @@
     "postcss-load-config": "^5.0.2",
     "prettier": "^3.1.1",
     "prettier-plugin-astro": "^0.14.0",
-    "prettier-plugin-tailwindcss": "^0.6.0",
+    "prettier-plugin-tailwindcss": "^0.7.0",
     "punycode": "^2.3.1",
     "rehype-katex": "7.0.1",
     "rehype-stringify": "^10.0.0",
