@@ -29,7 +29,7 @@
     "@xterm/xterm": "^5.4.0",
     "astro": "5.7.12",
     "bowser": "^2.11.0",
-    "budoux": "^0.7.0",
+    "budoux": "^0.8.0",
     "cowsay": "^1.6.0",
     "nanostores": "^0.11.0",
     "satori": "^0.16.0",
