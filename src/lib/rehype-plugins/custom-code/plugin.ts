@@ -36,15 +36,18 @@ export type ShikiOptions<M extends Meta = Meta> = {
 
 export type RehypeCustomCodeOptions<M extends Meta = Meta> = {
   /**
-   * glob pattern to language name associations.
-   * - key: glob pattern
+   * Regular expression pattern to language name associations.
+   * - key: regular expression pattern string matched with JavaScript regex semantics
    * - value: language name. if you want not to be highlighted with shiki, set `ignore`.
+   *
+   * Note: keys are treated as regex patterns, not glob patterns. Escape regex special
+   * characters if you want to match them literally.
    * @default {}
    * @example
    * ```ts
    * const langAssociations = {
    *   // highlight `jsx-like-lang` as `jsx`
-   *   "jsx-like-lang": "jsx",
+   *   "^jsx-like-lang$": "jsx",
    * };
    * ```
    * Following code block will be highlighted as jsx:

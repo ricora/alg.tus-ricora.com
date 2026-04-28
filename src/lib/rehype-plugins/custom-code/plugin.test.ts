@@ -86,7 +86,7 @@ describe("rehypeCustomCode", () => {
     expect(JSON5.parse<{ a: number; b: number; c: number }>(someObjectKey)).toEqual({ a: 1, b: 2, c: 3 })
   })
 
-  test("check langAssociations option", async () => {
+  test("check langAssociations option with regex pattern", async () => {
     const md = dedent`mermaid
       \`\`\`mermaid title="Hello, World!" {1-5}
       console.log("Hello, World!");
@@ -94,7 +94,7 @@ describe("rehypeCustomCode", () => {
     `
     const html = await md2html(md, {
       langAssociations: {
-        mermaid: "diagram",
+        "^mermaid$": "diagram",
       },
     })
     const doc = parser.parseFromString(html, "text/html")
