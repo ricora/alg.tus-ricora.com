@@ -17,7 +17,7 @@
     "test": "bun test"
   },
   "dependencies": {
-    "@ark-ui/solid": "^2.0.0",
+    "@ark-ui/solid": "^5.0.0",
     "@astrojs/mdx": "4.3.14",
     "@astrojs/sitemap": "3.7.2",
     "@astrojs/solid-js": "5.1.3",
