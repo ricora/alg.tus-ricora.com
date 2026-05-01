@@ -39,7 +39,7 @@
     "tailwindcss": "^3.4.0"
   },
   "devDependencies": {
-    "@astrojs/check": "0.9.8",
+    "@astrojs/check": "0.9.9",
     "@eslint/js": "^9.25.1",
     "@iconify/iconify": "^3.1.1",
     "@park-ui/tailwind-plugin": "^0.20.0",
