@@ -102,7 +102,7 @@ export const transformerDiff = (meta: Meta, propsPrefix: string): ShikiTransform
         const value = span.children[0].value
         const toRemoveChars = value.slice(0, toDeleteDiffIndentSize)
         for (const toRemoveChar of toRemoveChars) {
-          if (toRemoveChar !== " ") return
+          if (toRemoveChar !== " ") break
           toDeleteDiffIndentSize -= 1
           span.children[0].value = span.children[0].value.slice(1)
         }
