@@ -32,7 +32,7 @@
     "budoux": "^0.9.0",
     "cowsay": "^1.6.0",
     "nanostores": "^0.11.0",
-    "satori": "^0.26.0",
+    "satori": "^0.33.0",
     "sharp": "^0.35.0",
     "solid-js": "^1.8.7",
     "string-argv": "^0.3.2",
