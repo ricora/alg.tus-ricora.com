@@ -95,4 +95,23 @@ describe("diff", () => {
     expect(addedLines?.length).toBe(2)
     expect(removedLines?.length).toBe(1)
   })
+
+  test("diff code block should keep processing after non-space trim target", async () => {
+    const md = dedent`
+      \`\`\`rust diff
+      +  first();
+      plain();
+      +  second();
+      \`\`\`
+    `
+
+    const { html } = await process(md)
+    const doc = parser.parseFromString(html, "text/html")
+    const pre = doc.querySelector("pre")
+    const preCodeText = pre?.textContent?.split("\n")
+    const addedLines = pre?.querySelectorAll("[data-diff-added]")
+
+    expect(preCodeText).toEqual(["first();", "plain();", "second();"])
+    expect(addedLines?.length).toBe(2)
+  })
 })
